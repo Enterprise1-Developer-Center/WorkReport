@@ -5,6 +5,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
+import android.view.View;
+import butterknife.OnClick;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
@@ -26,6 +28,13 @@ public class MainActivity extends BaseActivity
     toggle.syncState();
 
     navigationView.setNavigationItemSelectedListener(this);
+  }
+
+  @OnClick({
+      R.id.date_rootview, R.id.group_rootview, R.id.person_rootview, R.id.start_time_rootview,
+      R.id.end_time_rootview, R.id.code_rootview, R.id.project_rootview, R.id.last_edit_rootview
+  }) void onClick(View view) {
+
   }
 
   @Override protected int getLayoutResID() {

@@ -17,4 +17,81 @@
 
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+  <style name="MainItemRootViewBase">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">?android:attr/actionBarSize</item>
+    <item name="android:orientation">horizontal</item>
+    <item name="android:background">?android:selectableItemBackground</item>
+  </style>
+  <style name="MainItemRootViewDate" parent="MainItemRootViewBase">
+    <item name="android:id">@id/date_rootview</item>
+  </style>
+  <style name="MainItemRootViewGroup" parent="MainItemRootViewBase">
+    <item name="android:id">@id/group_rootview</item>
+  </style>
+  <style name="MainItemRootViewPerson" parent="MainItemRootViewBase">
+    <item name="android:id">@id/person_rootview</item>
+  </style>
+  <style name="MainItemRootViewStartTime" parent="MainItemRootViewBase">
+    <item name="android:id">@id/start_time_rootview</item>
+  </style>
+  <style name="MainItemRootViewEndTime" parent="MainItemRootViewBase">
+    <item name="android:id">@id/end_time_rootview</item>
+  </style>
+  <style name="MainItemRootViewCode" parent="MainItemRootViewBase">
+    <item name="android:id">@id/code_rootview</item>
+  </style>
+  <style name="MainItemRootViewProject" parent="MainItemRootViewBase">
+    <item name="android:id">@id/project_rootview</item>
+  </style>
+  <style name="MainItemRootViewLastEdit" parent="MainItemRootViewBase">
+    <item name="android:id">@id/last_edit_rootview</item>
+  </style>
+
+  <style name="MainItemImageViewBase">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_marginLeft">@dimen/dp_10</item>
+  </style>
+
+  <style name="MainItemImageViewDate" parent="MainItemImageViewBase">
+    <item name="android:src">@drawable/ic_today</item>
+  </style>
+
+  <style name="MainItemImageViewGroup" parent="MainItemImageViewBase">
+    <item name="android:src">@drawable/ic_group</item>
+  </style>
+
+  <style name="MainItemImageViewPerson" parent="MainItemImageViewBase">
+    <item name="android:src">@drawable/ic_person</item>
+  </style>
+
+  <style name="MainItemImageViewStartTime" parent="MainItemImageViewBase">
+    <item name="android:src">@drawable/ic_timer</item>
+  </style>
+
+  <style name="MainItemImageViewEndTime" parent="MainItemImageViewBase">
+    <item name="android:src">@drawable/ic_timer_off</item>
+  </style>
+
+  <style name="MainItemImageViewCode" parent="MainItemImageViewBase">
+    <item name="android:src">@drawable/ic_format_list_numbered</item>
+  </style>
+
+  <style name="MainItemImageViewProject" parent="MainItemImageViewBase">
+    <item name="android:src">@drawable/ic_flight_takeoff</item>
+  </style>
+
+  <style name="MainItemImageViewLastEdit" parent="MainItemImageViewBase">
+    <item name="android:src">@drawable/ic_edit</item>
+  </style>
+
+  <style name="MainItemTextView" parent="TextAppearance.AppCompat.Body2">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_marginLeft">@dimen/dp_10</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:typeface">monospace</item>
+  </style>
+
 </resources>

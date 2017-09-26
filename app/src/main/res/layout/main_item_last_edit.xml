@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MainItemRootViewLastEdit">
+  <ImageView
+      style="@style/MainItemImageViewLastEdit"
+      />
+  <TextView
+      style="@style/MainItemTextView"
+      tools:text="2017-09-20 20:00"
+      />
+</LinearLayout>

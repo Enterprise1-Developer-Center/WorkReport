@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <item type="id" name="date_rootview" />
-  <item type="id" name="group_rootview" />
-  <item type="id" name="person_rootview" />
-  <item type="id" name="start_time_rootview" />
-  <item type="id" name="end_time_rootview" />
-  <item type="id" name="code_rootview" />
-  <item type="id" name="project_rootview" />
-  <item type="id" name="last_edit_rootview" />
-  <item type="id" name="date_textview" />
+  <item name="date_rootview" type="id"/>
+  <item name="group_rootview" type="id"/>
+  <item name="person_rootview" type="id"/>
+  <item name="start_time_rootview" type="id"/>
+  <item name="end_time_rootview" type="id"/>
+  <item name="code_rootview" type="id"/>
+  <item name="project_rootview" type="id"/>
+  <item name="last_edit_rootview" type="id"/>
+  <item name="date_textview" type="id"/>
+  <item name="fragment_container" type="id"/>
 </resources>

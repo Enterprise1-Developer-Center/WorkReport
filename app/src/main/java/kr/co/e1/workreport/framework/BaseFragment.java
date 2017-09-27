@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
@@ -15,19 +16,29 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
   private Unbinder unbinder;
+
   @Nullable @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     return inflater.inflate(getLayoutResID(), container, false);
   }
 
-  protected abstract int getLayoutResID();
+  @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+    onActivityCreate(savedInstanceState);
+  }
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    unbinder = ButterKnife.bind(this, view);
   }
 
   @Override public void onDestroyView() {
     super.onDestroyView();
+    unbinder.unbind();
   }
+
+  protected abstract int getLayoutResID();
+
+  protected abstract void onActivityCreate(Bundle savedInstanceState);
 }

@@ -33,11 +33,13 @@ public class MainActivity extends BaseActivity
     super.onCreate(savedInstanceState);
     presenter.onCreate(savedInstanceState);
 
+
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
           .add(R.id.fragment_container, LoginFragment.newInstance(null))
           .commitAllowingStateLoss();
     }
+
   }
 
   @Override public void setListener() {
@@ -57,11 +59,49 @@ public class MainActivity extends BaseActivity
     if (view.getId() == R.id.date_rootview) {
       javaAdapterUsers();
     } else if (view.getId() == R.id.group_rootview) {
-      javaSQL();
+      getUser();
+    } else if (view.getId() == R.id.person_rootview) {
+      createUser();
     }
   }
 
-  private void javaSQL() {
+  private void createUser() {
+    try {
+      // Path Parameters (user id)
+      URI adapterPath = new URI("/adapters/JavaSQL/");
+
+      WLResourceRequest request = new WLResourceRequest(adapterPath, WLResourceRequest.POST);
+      // Query Parameters
+      //request.setQueryParameter("age", "36");
+
+      // Header Parameters
+      //request.addHeader("birthdate", "820601");
+
+      // Form Parameters
+      //HashMap<String, String> formParams = new HashMap<>();
+      //formParams.put("height", "167");
+      HashMap<String, String> formParams = new HashMap<>();
+      formParams.put("userId", "enterprise1");
+      formParams.put("userPw", "enterprise1");
+      // Send
+      request.send(formParams, new WLResponseListener() {
+        public void onSuccess(WLResponse response) {
+          String responseText = response.getResponseText();
+
+          Log.d("InvokeSuccess", responseText);
+        }
+
+        public void onFailure(WLFailResponse response) {
+          String errorMsg = response.getErrorMsg();
+          Log.d("InvokeFail", errorMsg);
+        }
+      });
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void getUser() {
     try {
       // Path Parameters (user id)
       URI adapterPath = new URI("/adapters/JavaSQL/" + "mobile");
@@ -95,9 +135,11 @@ public class MainActivity extends BaseActivity
             resultText += "Height = " + response.getResponseJSON().getString("height") + "\n";
             resultText += "Birthdate = " + response.getResponseJSON().getString("birthdate");
           } catch (org.json.JSONException e) {
+            e.printStackTrace();
           }
 
           Log.d("InvokeSuccess", responseText + "\n" + resultText);
+          Log.d("InvokeSuccess2", response.getResponseJSON().toString());
           //updateTextView(resultText);
           //Toast.makeText(MainActivity.this, resultText, Toast.LENGTH_SHORT).show();
         }

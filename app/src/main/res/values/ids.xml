@@ -10,4 +10,5 @@
   <item name="last_edit_rootview" type="id"/>
   <item name="date_textview" type="id"/>
   <item name="fragment_container" type="id"/>
+  <item name="login_fragment" type="id"/>
 </resources>

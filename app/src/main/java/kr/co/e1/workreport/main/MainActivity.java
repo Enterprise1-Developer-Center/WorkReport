@@ -33,13 +33,12 @@ public class MainActivity extends BaseActivity
     super.onCreate(savedInstanceState);
     presenter.onCreate(savedInstanceState);
 
-
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-          .add(R.id.fragment_container, LoginFragment.newInstance(null))
-          .commitAllowingStateLoss();
+          .replace(R.id.fragment_container, LoginFragment.newInstance(null))
+          .addToBackStack(null)
+          .commit();
     }
-
   }
 
   @Override public void setListener() {
@@ -223,7 +222,11 @@ public class MainActivity extends BaseActivity
     if (drawer.isDrawerOpen(GravityCompat.START)) {
       drawer.closeDrawer(GravityCompat.START);
     } else {
-      super.onBackPressed();
+      if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+        getSupportFragmentManager().popBackStack();
+      } else {
+        super.onBackPressed();
+      }
     }
   }
 

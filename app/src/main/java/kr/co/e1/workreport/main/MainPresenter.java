@@ -11,7 +11,13 @@ public interface MainPresenter {
 
   void onNavigationItemSelected(int itemId);
 
+  void startMain();
+
   interface View {
     void setListener();
+
+    void openLoginFragment(Bundle savedInstanceState);
+
+    void closeLoginFragment();
   }
 }

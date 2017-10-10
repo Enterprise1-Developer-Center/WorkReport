@@ -18,5 +18,6 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     Log.d("OJH", "onActvityCreate");
+    view.setEditTextFilter();
   }
 }

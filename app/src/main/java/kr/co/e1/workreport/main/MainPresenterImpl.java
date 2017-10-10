@@ -17,7 +17,7 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
-    view.setListener();
+    view.openLoginFragment(savedInstanceState);
   }
 
   @Override public void onNavigationItemSelected(int itemId) {
@@ -34,5 +34,10 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (itemId == R.id.nav_send) {
 
     }
+  }
+
+  @Override public void startMain() {
+    view.closeLoginFragment();
+    view.setListener();
   }
 }

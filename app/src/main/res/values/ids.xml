@@ -11,4 +11,9 @@
   <item name="date_textview" type="id"/>
   <item name="fragment_container" type="id"/>
   <item name="login_fragment" type="id"/>
+  <item name="login_button" type="id"/>
+  <item name="id_edittext" type="id"/>
+  <item name="pw_edittext" type="id"/>
+  <item name="id_edittext_layout" type="id"/>
+  <item name="pw_edittext_layout" type="id"/>
 </resources>

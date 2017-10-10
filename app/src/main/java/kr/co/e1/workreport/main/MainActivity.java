@@ -26,19 +26,12 @@ import kr.co.e1.workreport.login.LoginFragment;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
-    HasSupportFragmentInjector {
+    HasSupportFragmentInjector, LoginCommunicationListener {
   @Inject MainPresenter presenter;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     presenter.onCreate(savedInstanceState);
-
-    if (savedInstanceState == null) {
-      getSupportFragmentManager().beginTransaction()
-          .replace(R.id.fragment_container, LoginFragment.newInstance(null))
-          .addToBackStack(null)
-          .commit();
-    }
   }
 
   @Override public void setListener() {
@@ -49,6 +42,19 @@ public class MainActivity extends BaseActivity
     toggle.syncState();
 
     navigationView.setNavigationItemSelectedListener(this);
+  }
+
+  @Override public void openLoginFragment(Bundle savedInstanceState) {
+    if (savedInstanceState == null) {
+      getSupportFragmentManager().beginTransaction()
+          .replace(R.id.fragment_container, LoginFragment.newInstance(null))
+          .addToBackStack(null)
+          .commit();
+    }
+  }
+
+  @Override public void closeLoginFragment() {
+    getSupportFragmentManager().popBackStack();
   }
 
   @OnClick({
@@ -222,11 +228,7 @@ public class MainActivity extends BaseActivity
     if (drawer.isDrawerOpen(GravityCompat.START)) {
       drawer.closeDrawer(GravityCompat.START);
     } else {
-      if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-        getSupportFragmentManager().popBackStack();
-      } else {
-        super.onBackPressed();
-      }
+      if (getSupportFragmentManager().getBackStackEntryCount() == 0) super.onBackPressed();
     }
   }
 
@@ -241,5 +243,9 @@ public class MainActivity extends BaseActivity
 
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {
     return fragmentDispatchingAndroidInjector;
+  }
+
+  @Override public void startMain() {
+    presenter.startMain();
   }
 }

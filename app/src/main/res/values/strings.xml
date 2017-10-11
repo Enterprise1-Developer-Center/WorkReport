@@ -7,4 +7,11 @@
   <string name="action_settings">Settings</string>
   <string name="id">ID</string>
   <string name="password">Password</string>
+  <string name="validate_all_empty">all empty</string>
+  <string name="validate_pass_short_or_long">pass too short or too long</string>
+  <string name="validate_id_short_or_long">username too short or too long</string>
+  <string name="validate_no_digits">no digits found</string>
+  <string name="validate_no_lowercase">no lowercase letters found</string>
+  <string name="validate_no_special_chars">no special chars found</string>
+  <string name="validate_pass_contains_id">pass contains substring of username</string>
 </resources>

@@ -22,18 +22,22 @@
         android:id="@id/id_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_person"
+        android:layout_marginLeft="@dimen/dp_100"
+        android:layout_marginRight="@dimen/dp_100"
         android:imeOptions="actionNext"
         android:inputType="textAutoComplete"
         android:maxLines="1"
         android:hint="@string/id"
         />
   </android.support.design.widget.TextInputLayout>
+
   <android.support.design.widget.TextInputLayout
       android:id="@id/pw_edittext_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      >
+      android:layout_marginLeft="@dimen/dp_100"
+      android:layout_marginRight="@dimen/dp_100"
+      app:passwordToggleEnabled="true">
     <android.support.design.widget.TextInputEditText
         android:id="@id/pw_edittext"
         android:layout_width="match_parent"
@@ -49,6 +53,7 @@
       android:id="@id/login_button"
       android:layout_width="?android:attr/actionBarSize"
       android:layout_height="?android:attr/actionBarSize"
+      android:layout_marginTop="@dimen/dp_20"
       android:src="@drawable/ic_login"
       />
 </LinearLayout>

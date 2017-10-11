@@ -48,7 +48,8 @@ public class LoginFragment extends BaseFragment implements LoginFragmentPresente
   }
 
   @OnClick(R.id.login_button) void onLoginClick() {
-    ((LoginCommunicationListener) getActivity()).startMain();
+    presenter.onLoginClick(idEdittext.getText().toString().trim(),
+        pwEdittext.getText().toString().trim(), ((LoginCommunicationListener)getActivity()));
   }
 
   @Override public void onDestroyView() {
@@ -64,9 +65,9 @@ public class LoginFragment extends BaseFragment implements LoginFragmentPresente
       }
       return null;
     };
-    idEdittext.setFilters(new InputFilter[]{idFilter});
+    idEdittext.setFilters(new InputFilter[] { idFilter });
     pwEdittext.setOnKeyListener((view, keyCode, keyEvent) -> {
-      if(keyCode == KeyEvent.KEYCODE_SPACE) {
+      if (keyCode == KeyEvent.KEYCODE_SPACE) {
         return true;
       }
       return false;

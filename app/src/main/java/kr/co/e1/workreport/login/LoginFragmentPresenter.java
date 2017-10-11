@@ -16,5 +16,11 @@ public interface LoginFragmentPresenter {
   interface View {
 
     void setEditTextFilter();
+
+    void showIDError(String msg);
+
+    void showPWError(String msg);
+
+    void hideKeyboard();
   }
 }

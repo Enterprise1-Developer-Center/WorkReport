@@ -2,6 +2,7 @@ package kr.co.e1.workreport.login;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.InputFilter;
 import android.util.Log;
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseFragment;
+import kr.co.e1.workreport.framework.SystemUtility;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
 
 /**
@@ -27,6 +29,8 @@ public class LoginFragment extends BaseFragment implements LoginFragmentPresente
   @BindView(R.id.id_edittext) EditText idEdittext;
   @BindView(R.id.pw_edittext) EditText pwEdittext;
   @BindView(R.id.login_button) ImageView loginButton;
+  @BindView(R.id.id_edittext_layout) TextInputLayout idEdittextLayout;
+  @BindView(R.id.pw_edittext_layout) TextInputLayout pwEdittextLayout;
 
   @Override protected int getLayoutResID() {
     return R.layout.fragment_login;
@@ -49,7 +53,7 @@ public class LoginFragment extends BaseFragment implements LoginFragmentPresente
 
   @OnClick(R.id.login_button) void onLoginClick() {
     presenter.onLoginClick(idEdittext.getText().toString().trim(),
-        pwEdittext.getText().toString().trim(), ((LoginCommunicationListener)getActivity()));
+        pwEdittext.getText().toString().trim(), ((LoginCommunicationListener) getActivity()));
   }
 
   @Override public void onDestroyView() {
@@ -72,5 +76,18 @@ public class LoginFragment extends BaseFragment implements LoginFragmentPresente
       }
       return false;
     });
+  }
+
+  @Override public void showIDError(String msg) {
+    idEdittextLayout.setError(msg);
+  }
+
+  @Override public void showPWError(String msg) {
+    pwEdittextLayout.setError(msg);
+  }
+
+  @Override public void hideKeyboard() {
+    SystemUtility.hideKeyboard(getContext(), idEdittext);
+    SystemUtility.hideKeyboard(getContext(), pwEdittext);
   }
 }

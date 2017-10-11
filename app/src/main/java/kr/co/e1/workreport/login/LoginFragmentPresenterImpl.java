@@ -24,11 +24,27 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     Log.d("OJH", "onActvityCreate");
     //view.setEditTextFilter();
+
   }
 
   @Override public void onLoginClick(String id, String pw, LoginCommunicationListener listener) {
+    view.showIDError("");
+    view.showPWError("");
     Resources res = MyApplication.getInstance().getResources();
-    LoginValidation.Validate2Result validate2Result = LoginValidation.validate2(pw, id, res);
+    LoginValidation.Validate2Result validate2Result = LoginValidation.validate2(id, pw, res);
+    String msg = validate2Result.getMessage();
+    switch (validate2Result.getErrorType()) {
+      case ID:
+        view.showIDError(msg);
+        break;
+      case PW:
+        view.showPWError(msg);
+        break;
+      case PASS:
+        view.hideKeyboard();
+        listener.startMain();
+        break;
+    }
     Timber.i(validate2Result.toString());
   }
 }

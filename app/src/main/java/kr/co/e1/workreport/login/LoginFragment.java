@@ -52,8 +52,10 @@ public class LoginFragment extends BaseFragment implements LoginFragmentPresente
   }
 
   @OnClick(R.id.login_button) void onLoginClick() {
-    presenter.onLoginClick(idEdittext.getText().toString().trim(),
-        pwEdittext.getText().toString().trim(), ((LoginCommunicationListener) getActivity()));
+    String id = idEdittext.getText().toString().trim();
+    String pw = pwEdittext.getText().toString().trim();
+    LoginCommunicationListener listener = (LoginCommunicationListener) getActivity();
+    presenter.onLoginClick(id, pw, listener);
   }
 
   @Override public void onDestroyView() {

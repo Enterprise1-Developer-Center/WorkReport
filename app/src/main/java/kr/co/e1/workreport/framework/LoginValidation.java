@@ -13,7 +13,7 @@ import timber.log.Timber;
 
 public class LoginValidation {
   private final static int MINIMUM_LENGTH_ID = 3;
-  private final static int MINIMUM_LENGTH_PW = 8;
+  private final static int MINIMUM_LENGTH_PW = 3;
   private final static int MAXIMUM_LENGTH = 15;
 
   public static boolean validate(String pass, String username) {

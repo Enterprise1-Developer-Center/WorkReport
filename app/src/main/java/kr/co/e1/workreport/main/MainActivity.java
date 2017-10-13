@@ -110,7 +110,6 @@ public class MainActivity extends BaseActivity
     try {
       // Path Parameters (user id)
       URI adapterPath = new URI("/adapters/JavaSQL/" + "mobile");
-
       WLResourceRequest request = new WLResourceRequest(adapterPath, WLResourceRequest.GET);
       // Query Parameters
       //request.setQueryParameter("age", "36");

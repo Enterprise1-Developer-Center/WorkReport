@@ -1,13 +1,9 @@
 package kr.co.e1.workreport.login;
 
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
-import kr.co.e1.workreport.app.MyApplication;
-import kr.co.e1.workreport.framework.LoginValidation;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 9. 27
@@ -21,15 +17,18 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
     this.view = view;
   }
 
-  @Override public void onActivityCreate(Bundle savedInstanceState) {
-    Log.d("OJH", "onActvityCreate");
+  @DebugLog @Override public void onActivityCreate(Bundle savedInstanceState) {
     //view.setEditTextFilter();
-
   }
 
   @Override public void onLoginClick(String id, String pw, LoginCommunicationListener listener) {
     view.showIDError("");
     view.showPWError("");
+    Networking.doLogin(id, pw);
+  }
+
+  /*
+  private void validate() {
     Resources res = MyApplication.getInstance().getResources();
     LoginValidation.Validate2Result validate2Result = LoginValidation.validate2(id, pw, res);
     String msg = validate2Result.getMessage();
@@ -47,4 +46,5 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
     }
     Timber.i(validate2Result.toString());
   }
+  */
 }

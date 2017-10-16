@@ -24,7 +24,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
   @Override public void onLoginClick(String id, String pw, LoginCommunicationListener listener) {
     view.showIDError("");
     view.showPWError("");
-    Networking.doLogin(id, pw);
+    new LoginNetworking().doLogin(id, pw);
   }
 
   /*

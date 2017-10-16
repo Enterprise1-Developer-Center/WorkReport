@@ -62,7 +62,6 @@ public class MainActivity extends BaseActivity
       R.id.end_time_rootview, R.id.code_rootview, R.id.project_rootview, R.id.last_edit_rootview
   }) void onClick(View view) {
     if (view.getId() == R.id.date_rootview) {
-      javaAdapterUsers();
     } else if (view.getId() == R.id.group_rootview) {
       getUser();
     } else if (view.getId() == R.id.person_rootview) {
@@ -144,62 +143,6 @@ public class MainActivity extends BaseActivity
 
           Log.d("InvokeSuccess", responseText + "\n" + resultText);
           Log.d("InvokeSuccess2", response.getResponseJSON().toString());
-          //updateTextView(resultText);
-          //Toast.makeText(MainActivity.this, resultText, Toast.LENGTH_SHORT).show();
-        }
-
-        public void onFailure(WLFailResponse response) {
-          //String responseText = response.getResponseText();
-          String errorMsg = response.getErrorMsg();
-          Log.d("InvokeFail", errorMsg);
-            /*
-            Toast.makeText(MainActivity.this, "Failed to Invoke Adapter Procedure",
-                Toast.LENGTH_SHORT).show();
-            */
-        }
-      });
-    } catch (URISyntaxException e) {
-      e.printStackTrace();
-    }
-  }
-
-  private void javaAdapterUsers() {
-    try {
-      // Path Parameters (First Name, Middle Name and Last Name)
-      URI adapterPath = new URI("/adapters/JavaAdapter/users/" + "OH" + "/" + "JAE" + "/" + "HO");
-
-      WLResourceRequest request = new WLResourceRequest(adapterPath, WLResourceRequest.POST);
-      // Query Parameters
-      request.setQueryParameter("age", "36");
-
-      // Header Parameters
-      request.addHeader("birthdate", "820601");
-
-      // Form Parameters
-      HashMap<String, String> formParams = new HashMap<>();
-      formParams.put("height", "167");
-
-      // Send
-      request.send(formParams, new WLResponseListener() {
-        public void onSuccess(WLResponse response) {
-          String responseText = response.getResponseText();
-          String resultText = "";
-
-          try {
-            resultText += "Name = "
-                + response.getResponseJSON().getString("first")
-                + " "
-                + response.getResponseJSON().getString("middle")
-                + " "
-                + response.getResponseJSON().getString("last")
-                + "\n";
-            resultText += "Age = " + response.getResponseJSON().getInt("age") + "\n";
-            resultText += "Height = " + response.getResponseJSON().getString("height") + "\n";
-            resultText += "Birthdate = " + response.getResponseJSON().getString("birthdate");
-          } catch (org.json.JSONException e) {
-          }
-
-          Log.d("InvokeSuccess", responseText + "\n" + resultText);
           //updateTextView(resultText);
           //Toast.makeText(MainActivity.this, resultText, Toast.LENGTH_SHORT).show();
         }

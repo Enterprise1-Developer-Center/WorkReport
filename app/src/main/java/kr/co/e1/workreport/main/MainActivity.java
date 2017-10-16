@@ -5,20 +5,12 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import butterknife.OnClick;
-import com.worklight.wlclient.api.WLFailResponse;
-import com.worklight.wlclient.api.WLResourceRequest;
-import com.worklight.wlclient.api.WLResponse;
-import com.worklight.wlclient.api.WLResponseListener;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.HashMap;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
@@ -63,102 +55,7 @@ public class MainActivity extends BaseActivity
   }) void onClick(View view) {
     if (view.getId() == R.id.date_rootview) {
     } else if (view.getId() == R.id.group_rootview) {
-      getUser();
     } else if (view.getId() == R.id.person_rootview) {
-      createUser();
-    }
-  }
-
-  private void createUser() {
-    try {
-      // Path Parameters (user id)
-      URI adapterPath = new URI("/adapters/JavaSQL/");
-
-      WLResourceRequest request = new WLResourceRequest(adapterPath, WLResourceRequest.POST);
-      // Query Parameters
-      //request.setQueryParameter("age", "36");
-
-      // Header Parameters
-      //request.addHeader("birthdate", "820601");
-
-      // Form Parameters
-      //HashMap<String, String> formParams = new HashMap<>();
-      //formParams.put("height", "167");
-      HashMap<String, String> formParams = new HashMap<>();
-      formParams.put("userId", "enterprise1");
-      formParams.put("userPw", "enterprise1");
-      // Send
-      request.send(formParams, new WLResponseListener() {
-        public void onSuccess(WLResponse response) {
-          String responseText = response.getResponseText();
-
-          Log.d("InvokeSuccess", responseText);
-        }
-
-        public void onFailure(WLFailResponse response) {
-          String errorMsg = response.getErrorMsg();
-          Log.d("InvokeFail", errorMsg);
-        }
-      });
-    } catch (URISyntaxException e) {
-      e.printStackTrace();
-    }
-  }
-
-  private void getUser() {
-    try {
-      // Path Parameters (user id)
-      URI adapterPath = new URI("/adapters/JavaSQL/" + "mobile");
-      WLResourceRequest request = new WLResourceRequest(adapterPath, WLResourceRequest.GET);
-      // Query Parameters
-      //request.setQueryParameter("age", "36");
-
-      // Header Parameters
-      //request.addHeader("birthdate", "820601");
-
-      // Form Parameters
-      //HashMap<String, String> formParams = new HashMap<>();
-      //formParams.put("height", "167");
-
-      // Send
-      request.send(new WLResponseListener() {
-        public void onSuccess(WLResponse response) {
-          String responseText = response.getResponseText();
-          String resultText = "";
-
-          try {
-            resultText += "Name = "
-                + response.getResponseJSON().getString("first")
-                + " "
-                + response.getResponseJSON().getString("middle")
-                + " "
-                + response.getResponseJSON().getString("last")
-                + "\n";
-            resultText += "Age = " + response.getResponseJSON().getInt("age") + "\n";
-            resultText += "Height = " + response.getResponseJSON().getString("height") + "\n";
-            resultText += "Birthdate = " + response.getResponseJSON().getString("birthdate");
-          } catch (org.json.JSONException e) {
-            e.printStackTrace();
-          }
-
-          Log.d("InvokeSuccess", responseText + "\n" + resultText);
-          Log.d("InvokeSuccess2", response.getResponseJSON().toString());
-          //updateTextView(resultText);
-          //Toast.makeText(MainActivity.this, resultText, Toast.LENGTH_SHORT).show();
-        }
-
-        public void onFailure(WLFailResponse response) {
-          //String responseText = response.getResponseText();
-          String errorMsg = response.getErrorMsg();
-          Log.d("InvokeFail", errorMsg);
-            /*
-            Toast.makeText(MainActivity.this, "Failed to Invoke Adapter Procedure",
-                Toast.LENGTH_SHORT).show();
-            */
-        }
-      });
-    } catch (URISyntaxException e) {
-      e.printStackTrace();
     }
   }
 

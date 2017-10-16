@@ -14,4 +14,8 @@
   <string name="validate_no_lowercase">no lowercase letters found</string>
   <string name="validate_no_special_chars">no special chars found</string>
   <string name="validate_pass_contains_id">pass contains substring of username</string>
+  <string name="settings">설정</string>
+  <string name="statistics">통계</string>
+  <string name="team_report">팀 업무보고</string>
+  <string name="review">리뷰(문의,제안,요청)</string>
 </resources>

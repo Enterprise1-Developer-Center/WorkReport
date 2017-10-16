@@ -21,17 +21,13 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onNavigationItemSelected(int itemId) {
-    if (itemId == R.id.nav_camera) {
+    if (itemId == R.id.nav_statistics) {
       // Handle the camera action
-    } else if (itemId == R.id.nav_gallery) {
+    } else if (itemId == R.id.nav_team_report) {
 
-    } else if (itemId == R.id.nav_slideshow) {
+    } else if (itemId == R.id.nav_settings) {
 
-    } else if (itemId == R.id.nav_manage) {
-
-    } else if (itemId == R.id.nav_share) {
-
-    } else if (itemId == R.id.nav_send) {
+    } else if (itemId == R.id.nav_review) {
 
     }
   }

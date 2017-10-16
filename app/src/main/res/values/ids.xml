@@ -16,4 +16,6 @@
   <item name="pw_edittext" type="id"/>
   <item name="id_edittext_layout" type="id"/>
   <item name="pw_edittext_layout" type="id"/>
+  <item name="drawer_layout" type="id"/>
+  <item name="navigation_view" type="id"/>
 </resources>

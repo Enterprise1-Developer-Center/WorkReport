@@ -19,5 +19,7 @@ public interface MainPresenter {
     void openLoginFragment(Bundle savedInstanceState);
 
     void closeLoginFragment();
+
+    void navigateToSettings();
   }
 }

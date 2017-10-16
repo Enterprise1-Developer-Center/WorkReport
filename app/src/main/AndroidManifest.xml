@@ -16,13 +16,15 @@
     <activity
         android:name=".main.MainActivity"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+    <activity android:name=".settings.SettingsActivity" android:screenOrientation="portrait"/>
     <activity android:name="com.worklight.wlclient.ui.UIActivity"/>
   </application>
 

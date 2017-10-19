@@ -20,8 +20,6 @@ public interface MainPresenter {
 
     void showLoginFragment(Bundle savedInstanceState);
 
-    void hideLoginFragment();
-
     void navigateToSettings();
 
     void changeTheme();
@@ -33,5 +31,9 @@ public interface MainPresenter {
     void finish();
 
     void popBackStack();
+
+    void hideAppBar();
+
+    void showAppBar();
   }
 }

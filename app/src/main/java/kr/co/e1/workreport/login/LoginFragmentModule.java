@@ -6,9 +6,10 @@ import dagger.Provides;
 /**
  * Created by jaeho on 2017. 9. 27
  */
+
 @Module public class LoginFragmentModule {
 
-  @Provides LoginFragmentPresenter.View provideView(LoginFragment loginFragment) {
+  @Provides LoginFragmentPresenter.View provideLoginView(LoginFragment loginFragment) {
     return loginFragment;
   }
 

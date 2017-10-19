@@ -42,18 +42,21 @@ public class MainActivity extends BaseActivity
 
     navigationView.setNavigationItemSelectedListener(this);
   }
+
   @Override public void showLoginFragment(Bundle savedInstanceState) {
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
           .replace(R.id.fragment_container, LoginFragment.newInstance(null))
           .addToBackStack(LoginFragment.class.getSimpleName())
           .commit();
-      appBar.setVisibility(View.GONE);
     }
   }
 
-  @Override public void hideLoginFragment() {
-    getSupportFragmentManager().popBackStack();
+  @Override public void hideAppBar() {
+    appBar.setVisibility(View.GONE);
+  }
+
+  @Override public void showAppBar() {
     appBar.setVisibility(View.VISIBLE);
   }
 
@@ -96,13 +99,13 @@ public class MainActivity extends BaseActivity
     return true;
   }
 
+  @Override public void loginComplete() {
+    presenter.loginComplete();
+  }
+
   @Inject DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {
     return fragmentDispatchingAndroidInjector;
-  }
-
-  @Override public void loginComplete() {
-    presenter.loginComplete();
   }
 }

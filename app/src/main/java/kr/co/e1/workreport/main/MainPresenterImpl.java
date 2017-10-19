@@ -1,7 +1,6 @@
 package kr.co.e1.workreport.main;
 
 import android.os.Bundle;
-import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 
@@ -13,17 +12,18 @@ public class MainPresenterImpl implements MainPresenter {
 
   private MainPresenter.View view;
 
-  @DebugLog @Inject public MainPresenterImpl(MainPresenter.View view) {
+  @Inject public MainPresenterImpl(MainPresenter.View view) {
     this.view = view;
     view.changeTheme();
   }
 
-  @DebugLog @Override public void onCreate(Bundle savedInstanceState) {
+  @Override public void onCreate(Bundle savedInstanceState) {
     view.setListener();
     view.showLoginFragment(savedInstanceState);
+    view.hideAppBar();
   }
 
-  @DebugLog @Override public void onNavigationItemSelected(int itemId) {
+  @Override public void onNavigationItemSelected(int itemId) {
     if (itemId == R.id.nav_statistics) {
       // Handle the camera action
     } else if (itemId == R.id.nav_team_report) {
@@ -36,7 +36,8 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void loginComplete() {
-    view.hideLoginFragment();
+    view.popBackStack();
+    view.showAppBar();
     view.showReportFragment();
   }
 

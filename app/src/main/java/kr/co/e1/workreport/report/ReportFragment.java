@@ -4,20 +4,26 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import butterknife.OnClick;
+import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseFragment;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 16
  */
 
-public class ReportFragment extends BaseFragment {
+public class ReportFragment extends BaseFragment implements ReportFragmentPresenter.View {
+
+  @Inject ReportFragmentPresenter presenter;
+
   @Override protected int getLayoutResID() {
     return R.layout.fragment_report;
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-
+    //presenter.onActivityCreate(savedInstanceState);
+    Timber.d("presenter = " + presenter);
   }
 
   public static Fragment newInstance(Bundle args) {
@@ -35,5 +41,4 @@ public class ReportFragment extends BaseFragment {
     } else if (view.getId() == R.id.person_rootview) {
     }
   }
-
 }

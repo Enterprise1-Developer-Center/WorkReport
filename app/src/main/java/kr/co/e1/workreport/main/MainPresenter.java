@@ -13,6 +13,8 @@ public interface MainPresenter {
 
   void loginComplete();
 
+  void onBackPressed(boolean isDrawerOpen, String fragmentName);
+
   interface View {
     void setListener();
 
@@ -25,5 +27,11 @@ public interface MainPresenter {
     void changeTheme();
 
     void showReportFragment();
+
+    void closeDrawer();
+
+    void finish();
+
+    void popBackStack();
   }
 }

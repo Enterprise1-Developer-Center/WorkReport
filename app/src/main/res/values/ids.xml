@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <item name="date_rootview" type="id"/>
-  <item name="group_rootview" type="id"/>
-  <item name="person_rootview" type="id"/>
-  <item name="start_time_rootview" type="id"/>
-  <item name="end_time_rootview" type="id"/>
-  <item name="code_rootview" type="id"/>
-  <item name="project_rootview" type="id"/>
-  <item name="last_edit_rootview" type="id"/>
+  <item name="date_container" type="id"/>
+  <item name="group_container" type="id"/>
+  <item name="person_container" type="id"/>
+  <item name="start_time_container" type="id"/>
+  <item name="end_time_container" type="id"/>
+  <item name="code_container" type="id"/>
+  <item name="project_container" type="id"/>
+  <item name="last_edit_container" type="id"/>
   <item name="date_textview" type="id"/>
   <item name="fragment_container" type="id"/>
-  <item name="login_fragment" type="id"/>
   <item name="login_button" type="id"/>
   <item name="id_edittext" type="id"/>
   <item name="pw_edittext" type="id"/>

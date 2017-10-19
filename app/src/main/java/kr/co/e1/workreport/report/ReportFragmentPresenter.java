@@ -10,7 +10,15 @@ public interface ReportFragmentPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
+  void onClick(int id);
+
+  void onReportDateSet(int y, int m, int dayOfMonth);
+
   interface View {
+
+    void showReportDatePickerDialog();
+
+    void showDate(String date);
 
   }
 }

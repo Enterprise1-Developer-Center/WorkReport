@@ -24,28 +24,28 @@
     <item name="android:background">?android:selectableItemBackground</item>
   </style>
   <style name="MainItemRootViewDate" parent="MainItemRootViewBase">
-    <item name="android:id">@id/date_rootview</item>
+    <item name="android:id">@id/date_container</item>
   </style>
   <style name="MainItemRootViewGroup" parent="MainItemRootViewBase">
-    <item name="android:id">@id/group_rootview</item>
+    <item name="android:id">@id/group_container</item>
   </style>
   <style name="MainItemRootViewPerson" parent="MainItemRootViewBase">
-    <item name="android:id">@id/person_rootview</item>
+    <item name="android:id">@id/person_container</item>
   </style>
   <style name="MainItemRootViewStartTime" parent="MainItemRootViewBase">
-    <item name="android:id">@id/start_time_rootview</item>
+    <item name="android:id">@id/start_time_container</item>
   </style>
   <style name="MainItemRootViewEndTime" parent="MainItemRootViewBase">
-    <item name="android:id">@id/end_time_rootview</item>
+    <item name="android:id">@id/end_time_container</item>
   </style>
   <style name="MainItemRootViewCode" parent="MainItemRootViewBase">
-    <item name="android:id">@id/code_rootview</item>
+    <item name="android:id">@id/code_container</item>
   </style>
   <style name="MainItemRootViewProject" parent="MainItemRootViewBase">
-    <item name="android:id">@id/project_rootview</item>
+    <item name="android:id">@id/project_container</item>
   </style>
   <style name="MainItemRootViewLastEdit" parent="MainItemRootViewBase">
-    <item name="android:id">@id/last_edit_rootview</item>
+    <item name="android:id">@id/last_edit_container</item>
   </style>
 
   <style name="MainItemImageViewBase">

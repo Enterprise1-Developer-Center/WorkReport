@@ -21,5 +21,7 @@ public interface MainPresenter {
     void closeLoginFragment();
 
     void navigateToSettings();
+
+    void changeTheme();
   }
 }

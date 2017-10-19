@@ -14,6 +14,7 @@ import butterknife.OnClick;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
@@ -59,6 +60,10 @@ public class MainActivity extends BaseActivity
   @Override public void navigateToSettings() {
     Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
     startActivity(intent);
+  }
+
+  @DebugLog @Override public void changeTheme() {
+    setTheme(R.style.AppTheme_NoActionBar);
   }
 
   @OnClick({

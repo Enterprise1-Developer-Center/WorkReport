@@ -15,6 +15,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @DebugLog @Inject public MainPresenterImpl(MainPresenter.View view) {
     this.view = view;
+    view.changeTheme();
   }
 
   @DebugLog @Override public void onCreate(Bundle savedInstanceState) {

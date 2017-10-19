@@ -94,4 +94,9 @@
     <item name="android:typeface">monospace</item>
   </style>
 
+  <!-- Splash Screen theme. -->
+  <style name="SplashTheme" parent="AppTheme.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash_background</item>
+  </style>
+
 </resources>

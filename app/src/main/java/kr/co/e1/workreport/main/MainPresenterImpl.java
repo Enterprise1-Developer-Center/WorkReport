@@ -36,7 +36,8 @@ public class MainPresenterImpl implements MainPresenter {
     }
   }
 
-  @Override public void startMain() {
+  @Override public void loginComplete() {
     view.closeLoginFragment();
+    view.showReportFragment();
   }
 }

@@ -25,7 +25,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
     view.showIDError("");
     view.showPWError("");
     new LoginNetworking().doLogin(id, pw);
-    listener.startMain();
+    listener.loginComplete();
   }
 
   /*

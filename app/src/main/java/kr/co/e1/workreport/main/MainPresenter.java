@@ -11,7 +11,7 @@ public interface MainPresenter {
 
   void onNavigationItemSelected(int itemId);
 
-  void startMain();
+  void loginComplete();
 
   interface View {
     void setListener();
@@ -23,5 +23,7 @@ public interface MainPresenter {
     void navigateToSettings();
 
     void changeTheme();
+
+    void showReportFragment();
   }
 }

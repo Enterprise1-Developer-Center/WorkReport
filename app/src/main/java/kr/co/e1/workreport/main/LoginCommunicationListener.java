@@ -5,5 +5,5 @@ package kr.co.e1.workreport.main;
  */
 
 public interface LoginCommunicationListener {
-  void startMain();
+  void loginComplete();
 }

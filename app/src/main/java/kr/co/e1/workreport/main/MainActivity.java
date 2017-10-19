@@ -14,11 +14,11 @@ import butterknife.OnClick;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
-import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.login.LoginFragment;
+import kr.co.e1.workreport.report.ReportFragment;
 import kr.co.e1.workreport.settings.SettingsActivity;
 
 public class MainActivity extends BaseActivity
@@ -62,8 +62,15 @@ public class MainActivity extends BaseActivity
     startActivity(intent);
   }
 
-  @DebugLog @Override public void changeTheme() {
+  @Override public void changeTheme() {
     setTheme(R.style.AppTheme_NoActionBar);
+  }
+
+  @Override public void showReportFragment() {
+    getSupportFragmentManager().beginTransaction()
+        .replace(R.id.fragment_container, ReportFragment.newInstance(null))
+        .addToBackStack(null)
+        .commit();
   }
 
   @OnClick({
@@ -100,7 +107,7 @@ public class MainActivity extends BaseActivity
     return fragmentDispatchingAndroidInjector;
   }
 
-  @Override public void startMain() {
-    presenter.startMain();
+  @Override public void loginComplete() {
+    presenter.loginComplete();
   }
 }

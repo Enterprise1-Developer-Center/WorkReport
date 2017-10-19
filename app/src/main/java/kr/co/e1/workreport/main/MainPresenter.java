@@ -18,9 +18,9 @@ public interface MainPresenter {
   interface View {
     void setListener();
 
-    void openLoginFragment(Bundle savedInstanceState);
+    void showLoginFragment(Bundle savedInstanceState);
 
-    void closeLoginFragment();
+    void hideLoginFragment();
 
     void navigateToSettings();
 

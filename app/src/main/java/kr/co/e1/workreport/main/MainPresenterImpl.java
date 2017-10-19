@@ -20,7 +20,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @DebugLog @Override public void onCreate(Bundle savedInstanceState) {
     view.setListener();
-    view.openLoginFragment(savedInstanceState);
+    view.showLoginFragment(savedInstanceState);
   }
 
   @DebugLog @Override public void onNavigationItemSelected(int itemId) {
@@ -36,7 +36,7 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void loginComplete() {
-    view.closeLoginFragment();
+    view.hideLoginFragment();
     view.showReportFragment();
   }
 

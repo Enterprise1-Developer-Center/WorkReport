@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
@@ -41,18 +42,19 @@ public class MainActivity extends BaseActivity
 
     navigationView.setNavigationItemSelectedListener(this);
   }
-
-  @Override public void openLoginFragment(Bundle savedInstanceState) {
+  @Override public void showLoginFragment(Bundle savedInstanceState) {
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
           .replace(R.id.fragment_container, LoginFragment.newInstance(null))
           .addToBackStack(LoginFragment.class.getSimpleName())
           .commit();
+      appBar.setVisibility(View.GONE);
     }
   }
 
-  @Override public void closeLoginFragment() {
+  @Override public void hideLoginFragment() {
     getSupportFragmentManager().popBackStack();
+    appBar.setVisibility(View.VISIBLE);
   }
 
   @Override public void navigateToSettings() {

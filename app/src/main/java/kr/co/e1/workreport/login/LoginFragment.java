@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.login;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.OnClick;
-import dagger.android.support.AndroidSupportInjection;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -44,11 +42,6 @@ public class LoginFragment extends BaseFragment implements LoginFragmentPresente
     LoginFragment f = new LoginFragment();
     f.setArguments(args);
     return f;
-  }
-
-  @Override public void onAttach(Context context) {
-    AndroidSupportInjection.inject(this);
-    super.onAttach(context);
   }
 
   @OnClick(R.id.login_button) void onLoginClick() {

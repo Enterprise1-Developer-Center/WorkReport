@@ -37,7 +37,6 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void loginComplete() {
     view.popBackStack("LoginFragment");
-    //view.showAppBar();
     view.showReportFragment();
   }
 

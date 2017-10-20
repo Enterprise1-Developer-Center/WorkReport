@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
-import android.view.View;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -53,15 +52,7 @@ public class MainActivity extends BaseActivity
           .commit();
     }
   }
-
-  @Override public void hideAppBar() {
-    appBar.setVisibility(View.GONE);
-  }
-
-  @Override public void showAppBar() {
-    appBar.setVisibility(View.VISIBLE);
-  }
-
+  
   @Override public void navigateToSettings() {
     Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
     startActivity(intent);
@@ -73,7 +64,6 @@ public class MainActivity extends BaseActivity
 
   @Override public void showReportFragment() {
     getSupportFragmentManager().beginTransaction()
-        //.setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation)
         .replace(R.id.fragment_report_container, ReportFragment.newInstance(null))
         .addToBackStack(ReportFragment.class.getSimpleName())
         .commit();
@@ -96,7 +86,7 @@ public class MainActivity extends BaseActivity
   }
 
   @DebugLog @Override public void popBackStack(String name) {
-    getSupportFragmentManager().popBackStack("LoginFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    getSupportFragmentManager().popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE);
   }
 
   @Override public boolean onNavigationItemSelected(MenuItem item) {

@@ -31,9 +31,5 @@ public interface MainPresenter {
     void finish();
 
     void popBackStack(String name);
-
-    void hideAppBar();
-
-    void showAppBar();
   }
 }

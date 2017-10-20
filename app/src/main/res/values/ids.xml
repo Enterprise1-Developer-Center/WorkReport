@@ -21,4 +21,5 @@
   <item name="fragment_report_container" type="id"/>
   <item name="coordinator" type="id"/>
   <item name="fab" type="id"/>
+  <item name="swipe_refresh" type="id"/>
 </resources>

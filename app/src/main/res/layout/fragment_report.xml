@@ -6,24 +6,29 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     >
-  <ScrollView
+  <android.support.v4.widget.SwipeRefreshLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      >
-    <LinearLayout
+      android:id="@id/swipe_refresh">
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         >
-      <include layout="@layout/main_item_date"/>
-      <include layout="@layout/main_item_group"/>
-      <include layout="@layout/main_item_person"/>
-      <include layout="@layout/main_item_start_time"/>
-      <include layout="@layout/main_item_end_time"/>
-      <include layout="@layout/main_item_code"/>
-      <include layout="@layout/main_item_project"/>
-      <include layout="@layout/main_item_last_edit"/>
-    </LinearLayout>
-  </ScrollView>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          >
+        <include layout="@layout/main_item_date"/>
+        <include layout="@layout/main_item_group"/>
+        <include layout="@layout/main_item_person"/>
+        <include layout="@layout/main_item_start_time"/>
+        <include layout="@layout/main_item_end_time"/>
+        <include layout="@layout/main_item_code"/>
+        <include layout="@layout/main_item_project"/>
+        <include layout="@layout/main_item_last_edit"/>
+      </LinearLayout>
+    </ScrollView>
+  </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

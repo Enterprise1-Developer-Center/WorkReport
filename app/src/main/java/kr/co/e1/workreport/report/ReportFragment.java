@@ -4,12 +4,12 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
-import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -24,6 +24,8 @@ public class ReportFragment extends BaseFragment
     implements ReportFragmentPresenter.View, View.OnClickListener {
 
   @Inject ReportFragmentPresenter presenter;
+
+  @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefresh;
 
   @Override protected int getLayoutResID() {
     return R.layout.fragment_report;
@@ -69,5 +71,19 @@ public class ReportFragment extends BaseFragment
 
   @Override public void showDate(String date) {
     dateTextView.setText(date);
+  }
+
+  @Override public void setListener() {
+    swipeRefresh.setOnRefreshListener(() -> {
+
+    });
+  }
+
+  @Override public void showProgress() {
+    swipeRefresh.setRefreshing(true);
+  }
+
+  @Override public void hideProgress() {
+    swipeRefresh.setRefreshing(false);
   }
 }

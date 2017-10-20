@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.report;
 
 import android.os.Bundle;
+import android.os.Handler;
 import hugo.weaving.DebugLog;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,7 +24,7 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
   }
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
-
+    view.setListener();
   }
 
   @Override public void onClick(int id) {
@@ -41,6 +42,10 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
         break;
       case R.id.fab:
         Timber.d("fab!!");
+        view.showProgress();
+        new Handler().postDelayed(() -> {
+          view.hideProgress();
+        }, 2000);
         break;
     }
   }
@@ -53,6 +58,6 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
     Timber.d(dateFormat.format(d));
     SimpleDateFormat dayOfWeekFormat = new SimpleDateFormat("EEEE", Locale.KOREA);
 
-    view.showDate(dateFormat.format(d) + " (" + dayOfWeekFormat.format(d).substring(0,1) + ")");
+    view.showDate(dateFormat.format(d) + " (" + dayOfWeekFormat.format(d).substring(0, 1) + ")");
   }
 }

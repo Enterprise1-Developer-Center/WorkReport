@@ -20,5 +20,10 @@ public interface ReportFragmentPresenter {
 
     void showDate(String date);
 
+    void setListener();
+
+    void showProgress();
+
+    void hideProgress();
   }
 }

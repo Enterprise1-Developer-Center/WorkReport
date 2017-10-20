@@ -4,12 +4,12 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -20,7 +20,8 @@ import timber.log.Timber;
  * Created by jaeho on 2017. 10. 16
  */
 
-public class ReportFragment extends BaseFragment implements ReportFragmentPresenter.View {
+public class ReportFragment extends BaseFragment
+    implements ReportFragmentPresenter.View, View.OnClickListener {
 
   @Inject ReportFragmentPresenter presenter;
 
@@ -32,7 +33,7 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
     presenter.onActivityCreate(savedInstanceState);
   }
 
-  public static Fragment newInstance(Bundle args) {
+  public static ReportFragment newInstance(Bundle args) {
     ReportFragment f = new ReportFragment();
     f.setArguments(args);
     return f;
@@ -41,7 +42,7 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   @OnClick({
       R.id.date_container, R.id.start_time_container, R.id.end_time_container, R.id.code_container,
       R.id.project_container
-  }) void onClick(View view) {
+  }) public void onClick(View view) {
     presenter.onClick(view.getId());
   }
 

@@ -39,6 +39,9 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
         break;
       case R.id.project_container:
         break;
+      case R.id.fab:
+        Timber.d("fab!!");
+        break;
     }
   }
 

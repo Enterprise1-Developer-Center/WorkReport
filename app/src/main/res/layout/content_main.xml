@@ -5,33 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    >
+    android:id="@id/fragment_report_container">
 
-  <LinearLayout
-      android:id="@id/fragment_container"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      />
-
-  <ScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:visibility="gone"
-      >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-      <include layout="@layout/main_item_date"/>
-      <include layout="@layout/main_item_group"/>
-      <include layout="@layout/main_item_person"/>
-      <include layout="@layout/main_item_start_time"/>
-      <include layout="@layout/main_item_end_time"/>
-      <include layout="@layout/main_item_code"/>
-      <include layout="@layout/main_item_project"/>
-      <include layout="@layout/main_item_last_edit"/>
-    </LinearLayout>
-  </ScrollView>
 </FrameLayout>

@@ -4,15 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
@@ -26,7 +27,6 @@ public class MainActivity extends BaseActivity
 
   @Inject MainPresenter presenter;
   @BindView(R.id.navigation_view) NavigationView navigationView;
-  @BindView(R.id.fragment_container) ViewGroup fragmentContainer;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -46,7 +46,9 @@ public class MainActivity extends BaseActivity
   @Override public void showLoginFragment(Bundle savedInstanceState) {
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-          .replace(R.id.fragment_container, LoginFragment.newInstance(null))
+          .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+              R.animator.enter_animation, R.animator.exit_animation)
+          .replace(R.id.fragment_login_container, LoginFragment.newInstance(null))
           .addToBackStack(LoginFragment.class.getSimpleName())
           .commit();
     }
@@ -71,7 +73,8 @@ public class MainActivity extends BaseActivity
 
   @Override public void showReportFragment() {
     getSupportFragmentManager().beginTransaction()
-        .replace(R.id.fragment_container, ReportFragment.newInstance(null))
+        //.setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation)
+        .replace(R.id.fragment_report_container, ReportFragment.newInstance(null))
         .addToBackStack(ReportFragment.class.getSimpleName())
         .commit();
   }
@@ -81,16 +84,19 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void onBackPressed() {
-    presenter.onBackPressed(drawer.isDrawerOpen(GravityCompat.START),
-        getSupportFragmentManager().getBackStackEntryAt(0).getName());
+    int stackCount = getSupportFragmentManager().getBackStackEntryCount();
+    if (stackCount > 0) {
+      presenter.onBackPressed(drawer.isDrawerOpen(GravityCompat.START),
+          getSupportFragmentManager().getBackStackEntryAt(stackCount - 1).getName());
+    }
   }
 
   @Override public void closeDrawer() {
     drawer.closeDrawer(GravityCompat.START);
   }
 
-  @Override public void popBackStack() {
-    getSupportFragmentManager().popBackStack();
+  @DebugLog @Override public void popBackStack(String name) {
+    getSupportFragmentManager().popBackStack("LoginFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
   }
 
   @Override public boolean onNavigationItemSelected(MenuItem item) {

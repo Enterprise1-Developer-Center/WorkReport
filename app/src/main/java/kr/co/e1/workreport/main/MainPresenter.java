@@ -30,7 +30,7 @@ public interface MainPresenter {
 
     void finish();
 
-    void popBackStack();
+    void popBackStack(String name);
 
     void hideAppBar();
 

@@ -9,7 +9,6 @@
   <item name="project_container" type="id"/>
   <item name="last_edit_container" type="id"/>
   <item name="date_textview" type="id"/>
-  <item name="fragment_container" type="id"/>
   <item name="login_button" type="id"/>
   <item name="id_edittext" type="id"/>
   <item name="pw_edittext" type="id"/>
@@ -18,4 +17,6 @@
   <item name="drawer_layout" type="id"/>
   <item name="navigation_view" type="id"/>
   <item name="app_bar_layout" type="id"/>
+  <item name="fragment_login_container" type="id"/>
+  <item name="fragment_report_container" type="id"/>
 </resources>

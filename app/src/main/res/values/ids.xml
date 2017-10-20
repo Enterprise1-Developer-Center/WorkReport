@@ -19,4 +19,6 @@
   <item name="app_bar_layout" type="id"/>
   <item name="fragment_login_container" type="id"/>
   <item name="fragment_report_container" type="id"/>
+  <item name="coordinator" type="id"/>
+  <item name="fab" type="id"/>
 </resources>

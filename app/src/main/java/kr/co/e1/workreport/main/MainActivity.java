@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity
           .commit();
     }
   }
-  
+
   @Override public void navigateToSettings() {
     Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
     startActivity(intent);

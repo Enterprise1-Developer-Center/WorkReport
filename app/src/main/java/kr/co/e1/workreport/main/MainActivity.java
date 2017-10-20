@@ -2,16 +2,13 @@ package kr.co.e1.workreport.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
-import android.view.View;
 import butterknife.BindView;
-import butterknife.OnClick;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
@@ -56,10 +53,8 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void showReportFragment() {
-    ReportFragment fragment = ReportFragment.newInstance(null);
-    onFabClickListener = fragment;
     getSupportFragmentManager().beginTransaction()
-        .replace(R.id.fragment_report_container, fragment)
+        .replace(R.id.fragment_report_container, ReportFragment.newInstance(null))
         .addToBackStack(ReportFragment.class.getSimpleName())
         .commit();
   }
@@ -72,8 +67,6 @@ public class MainActivity extends BaseActivity
   @Override public void changeTheme() {
     setTheme(R.style.AppTheme_NoActionBar);
   }
-
-  private View.OnClickListener onFabClickListener;
 
   @Override protected int getLayoutResID() {
     return R.layout.activity_main;
@@ -109,11 +102,5 @@ public class MainActivity extends BaseActivity
 
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {
     return fragmentDispatchingAndroidInjector;
-  }
-
-  @OnClick(R.id.fab) void onClick(View view) {
-    if (onFabClickListener != null) {
-      onFabClickListener.onClick(view);
-    }
   }
 }

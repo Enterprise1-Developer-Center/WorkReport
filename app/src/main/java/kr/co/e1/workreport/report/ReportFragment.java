@@ -20,8 +20,7 @@ import timber.log.Timber;
  * Created by jaeho on 2017. 10. 16
  */
 
-public class ReportFragment extends BaseFragment
-    implements ReportFragmentPresenter.View, View.OnClickListener {
+public class ReportFragment extends BaseFragment implements ReportFragmentPresenter.View {
 
   @Inject ReportFragmentPresenter presenter;
 

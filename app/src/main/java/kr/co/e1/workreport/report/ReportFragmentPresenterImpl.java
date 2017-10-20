@@ -1,7 +1,6 @@
 package kr.co.e1.workreport.report;
 
 import android.os.Bundle;
-import android.os.Handler;
 import hugo.weaving.DebugLog;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,13 +38,6 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
       case R.id.code_container:
         break;
       case R.id.project_container:
-        break;
-      case R.id.fab:
-        Timber.d("fab!!");
-        view.showProgress();
-        new Handler().postDelayed(() -> {
-          view.hideProgress();
-        }, 2000);
         break;
     }
   }

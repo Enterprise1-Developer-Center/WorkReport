@@ -4,9 +4,11 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,6 +27,7 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   @Inject ReportFragmentPresenter presenter;
 
   @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefresh;
+  @BindView(R.id.save_button) ImageView saveButton;
 
   @Override protected int getLayoutResID() {
     return R.layout.fragment_report;
@@ -42,7 +45,7 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
 
   @OnClick({
       R.id.date_container, R.id.start_time_container, R.id.end_time_container, R.id.code_container,
-      R.id.project_container
+      R.id.project_container, R.id.save_button
   }) public void onClick(View view) {
     presenter.onClick(view.getId());
   }
@@ -84,5 +87,15 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
 
   @Override public void hideProgress() {
     swipeRefresh.setRefreshing(false);
+  }
+
+  @Override public void enableSaveButton() {
+    saveButton.setEnabled(true);
+    saveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+  }
+
+  @Override public void disableSaveButton() {
+    saveButton.setEnabled(false);
+    saveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorLight));
   }
 }

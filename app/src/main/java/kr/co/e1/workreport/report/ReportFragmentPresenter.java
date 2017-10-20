@@ -25,5 +25,9 @@ public interface ReportFragmentPresenter {
     void showProgress();
 
     void hideProgress();
+
+    void disableSaveButton();
+
+    void enableSaveButton();
   }
 }

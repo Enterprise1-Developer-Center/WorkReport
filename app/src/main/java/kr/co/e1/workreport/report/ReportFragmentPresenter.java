@@ -41,5 +41,15 @@ public interface ReportFragmentPresenter {
     void setStartTime(String startTime);
 
     void setEndTime(String endTime);
+
+    void setGroup(String group);
+
+    void setPerson(String person);
+
+    void setCode(String code);
+
+    void setProject(String project);
+
+    void setLastEditDateTime(String lastEditDateTime);
   }
 }

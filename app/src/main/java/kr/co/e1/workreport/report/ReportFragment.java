@@ -106,13 +106,47 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
       presenter.onEndTimeSet(hourOfDay, minute);
     }, cHourOfDay, cMinute, true).show();
   }
+
   @BindView(R.id.start_time_textview) TextView startTimeTextView;
+
   @DebugLog @Override public void setStartTime(String startTime) {
     startTimeTextView.setText(startTime);
   }
+
   @BindView(R.id.end_time_textview) TextView endTimeTextView;
+
   @DebugLog @Override public void setEndTime(String endTime) {
     endTimeTextView.setText(endTime);
+  }
+
+  @BindView(R.id.group_textview) TextView groupTextView;
+
+  @Override public void setGroup(String group) {
+    groupTextView.setText(group);
+  }
+
+  @BindView(R.id.person_textview) TextView personTextView;
+
+  @Override public void setPerson(String person) {
+    personTextView.setText(person);
+  }
+
+  @BindView(R.id.code_textview) TextView codeTextView;
+
+  @Override public void setCode(String code) {
+    codeTextView.setText(code);
+  }
+
+  @BindView(R.id.project_textview) TextView projectTextView;
+
+  @Override public void setProject(String project) {
+    projectTextView.setText(project);
+  }
+
+  @BindView(R.id.last_edit_textview) TextView lastEditTextView;
+
+  @Override public void setLastEditDateTime(String lastEditDateTime) {
+    lastEditTextView.setText(lastEditDateTime);
   }
 
   @Override public void disableSaveButton() {

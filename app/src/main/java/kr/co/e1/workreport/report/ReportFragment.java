@@ -3,6 +3,7 @@ package kr.co.e1.workreport.report;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -147,6 +148,12 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
 
   @Override public void setLastEditDateTime(String lastEditDateTime) {
     lastEditTextView.setText(lastEditDateTime);
+  }
+
+  @Nullable @BindView(R.id.work_time_textview) TextView workTimeTextView;
+
+  @Override public void setWorkTime(String workTime) {
+    workTimeTextView.setText(workTime);
   }
 
   @Override public void disableSaveButton() {

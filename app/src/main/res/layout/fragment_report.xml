@@ -25,6 +25,7 @@
         <include layout="@layout/main_item_person"/>
         <include layout="@layout/main_item_start_time"/>
         <include layout="@layout/main_item_end_time"/>
+        <include layout="@layout/main_item_work_time"/>
         <include layout="@layout/main_item_code"/>
         <include layout="@layout/main_item_project"/>
         <include layout="@layout/main_item_last_edit"/>

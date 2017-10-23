@@ -31,6 +31,7 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
     view.setProject("현대오토넷 오토시스템");
     view.setStartTime("19:00");
     view.setEndTime("23:00");
+    view.setWorkTime("04:00");
     view.setLastEditDateTime("2017-10-23 (수) 14:12");
   }
 

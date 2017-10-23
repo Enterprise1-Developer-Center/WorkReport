@@ -5,6 +5,7 @@
   <item name="person_container" type="id"/>
   <item name="start_time_container" type="id"/>
   <item name="end_time_container" type="id"/>
+  <item name="work_time_container" type="id"/>
   <item name="code_container" type="id"/>
   <item name="project_container" type="id"/>
   <item name="last_edit_container" type="id"/>
@@ -25,6 +26,7 @@
   <item name="save_button" type="id"/>
   <item name="start_time_textview" type="id"/>
   <item name="end_time_textview" type="id"/>
+  <item name="work_time_textview" type="id"/>
   <item name="group_textview" type="id"/>
   <item name="person_textview" type="id"/>
   <item name="code_textview" type="id"/>

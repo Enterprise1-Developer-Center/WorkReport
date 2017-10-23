@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/WorkTimeMainItemContainer">
+  <ImageView
+      style="@style/WorkTimeMainItemImageView"
+      />
+  <TextView
+      style="@style/WorkTimeMainItemTextView"
+      tools:text="18:00"
+      />
+</LinearLayout>

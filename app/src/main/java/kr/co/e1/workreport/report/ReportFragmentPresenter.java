@@ -51,5 +51,7 @@ public interface ReportFragmentPresenter {
     void setProject(String project);
 
     void setLastEditDateTime(String lastEditDateTime);
+
+    void setWorkTime(String workTime);
   }
 }

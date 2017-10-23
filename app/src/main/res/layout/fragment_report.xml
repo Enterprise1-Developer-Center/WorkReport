@@ -29,19 +29,25 @@
         <include layout="@layout/main_item_code"/>
         <include layout="@layout/main_item_project"/>
         <include layout="@layout/main_item_last_edit"/>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/save_button"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70"
+            android:layout_margin="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_30"
+            app:backgroundTint="@color/colorLight"
+            app:srcCompat="@drawable/ic_save"
+            />
 
       </LinearLayout>
     </ScrollView>
 
   </android.support.v4.widget.SwipeRefreshLayout>
-  <android.support.design.widget.FloatingActionButton
-      android:id="@+id/save_button"
-      android:layout_width="@dimen/dp_70"
-      android:layout_height="@dimen/dp_70"
-      android:layout_gravity="bottom|end"
-      android:layout_margin="@dimen/dp_16"
-      app:backgroundTint="@color/colorLight"
-      app:srcCompat="@drawable/ic_save"
-      />
 
 </FrameLayout>

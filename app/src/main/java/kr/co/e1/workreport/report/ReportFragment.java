@@ -70,6 +70,7 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
 
   @Override public void setListener() {
     swipeRefresh.setOnRefreshListener(() -> {
+      presenter.onRefresh();
     });
   }
 
@@ -155,7 +156,7 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   @Override public void setWorkTime(String workTime) {
     workTimeTextView.setText(workTime);
   }
-
+  
   @Override public void disableSaveButton() {
     saveButton.setEnabled(false);
     saveButton.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.white));

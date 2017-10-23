@@ -18,6 +18,8 @@ public interface ReportFragmentPresenter {
 
   void onEndTimeSet(int hourOfDay, int minute);
 
+  void onRefresh();
+
   interface View {
 
     void showReportDatePickerDialog();
@@ -53,5 +55,6 @@ public interface ReportFragmentPresenter {
     void setLastEditDateTime(String lastEditDateTime);
 
     void setWorkTime(String workTime);
+
   }
 }

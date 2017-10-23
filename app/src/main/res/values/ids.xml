@@ -32,4 +32,5 @@
   <item name="code_textview" type="id"/>
   <item name="project_textview" type="id"/>
   <item name="last_edit_textview" type="id"/>
+  <item name="recyclerview" type="id"/>
 </resources>

@@ -15,6 +15,7 @@ import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.classification.ClassificationDialogFragment;
 import kr.co.e1.workreport.framework.BaseFragment;
 import timber.log.Timber;
 
@@ -156,7 +157,12 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   @Override public void setWorkTime(String workTime) {
     workTimeTextView.setText(workTime);
   }
-  
+
+  @Override public void showCodeDialogFragment() {
+    new ClassificationDialogFragment().show(getFragmentManager(),
+        ClassificationDialogFragment.class.getSimpleName());
+  }
+
   @Override public void disableSaveButton() {
     saveButton.setEnabled(false);
     saveButton.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.white));

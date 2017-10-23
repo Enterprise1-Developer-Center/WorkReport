@@ -47,6 +47,7 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
         view.showEndTimePickerDialog();
         break;
       case R.id.code_container:
+        view.showCodeDialogFragment();
         break;
       case R.id.project_container:
         break;

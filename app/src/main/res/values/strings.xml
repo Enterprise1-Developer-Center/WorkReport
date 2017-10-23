@@ -18,4 +18,5 @@
   <string name="statistics">통계</string>
   <string name="team_report">팀 업무보고</string>
   <string name="review">리뷰(문의/제안/요청)</string>
+  <string name="classification_code">분류코드</string>
 </resources>

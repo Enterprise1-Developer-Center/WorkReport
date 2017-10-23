@@ -29,16 +29,19 @@
         <include layout="@layout/main_item_project"/>
         <include layout="@layout/main_item_last_edit"/>
 
-        <ImageView
-            android:id="@id/save_button"
-            android:layout_width="?android:attr/actionBarSize"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_save"
-            />
       </LinearLayout>
     </ScrollView>
+
   </android.support.v4.widget.SwipeRefreshLayout>
+
+  <android.support.design.widget.FloatingActionButton
+      android:id="@+id/save_button"
+      android:layout_width="@dimen/dp_70"
+      android:layout_height="@dimen/dp_70"
+      android:layout_gravity="bottom|end"
+      android:layout_margin="@dimen/dp_16"
+      app:backgroundTint="@color/colorLight"
+      app:srcCompat="@drawable/ic_save"
+      />
 
 </FrameLayout>

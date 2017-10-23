@@ -4,11 +4,11 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,7 +27,7 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   @Inject ReportFragmentPresenter presenter;
 
   @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefresh;
-  @BindView(R.id.save_button) ImageView saveButton;
+  @BindView(R.id.save_button) FloatingActionButton saveButton;
 
   @Override protected int getLayoutResID() {
     return R.layout.fragment_report;
@@ -96,6 +96,6 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
 
   @Override public void disableSaveButton() {
     saveButton.setEnabled(false);
-    saveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorLight));
+    saveButton.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.white));
   }
 }

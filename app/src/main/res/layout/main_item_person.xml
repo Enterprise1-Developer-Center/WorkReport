@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MainItemRootViewPerson">
+    style="@style/PersonMainItemContainer">
   <ImageView
-      style="@style/MainItemImageViewPerson"
+      style="@style/PersonMainItemImageView"
       />
   <TextView
-      style="@style/MainItemTextView"
+      style="@style/PersonMainItemTextView"
       tools:text="오재호"
       />
 </LinearLayout>

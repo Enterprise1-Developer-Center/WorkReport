@@ -1,17 +1,16 @@
 package kr.co.e1.workreport.report;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
-import android.os.Build;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -52,32 +51,24 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
 
   @Override public void showReportDatePickerDialog() {
     Calendar calendar = Calendar.getInstance();
-    int year = calendar.get(Calendar.YEAR);
-    int month = calendar.get(Calendar.MONTH);
-    int day = calendar.get(Calendar.DAY_OF_MONTH);
-    Timber.d("year = " + year + ", month = " + month + ", day = " + day);
+    int cYear = calendar.get(Calendar.YEAR);
+    int cMonth = calendar.get(Calendar.MONTH);
+    int cDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+    Timber.d("year = " + cYear + ", month = " + cMonth + ", day = " + cDayOfMonth);
 
-    Context context =
-        new ContextThemeWrapper(getContext(), android.R.style.Theme_Holo_Light_Dialog);
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-      context = getContext(); // API 24 이상일 경우 시스템 기본 테마 사용
-    }
-    DatePickerDialog datePickerDialog =
-        new DatePickerDialog(context, (datePicker, y, m, dayOfMonth) -> {
-          presenter.onReportDateSet(y, m, dayOfMonth);
-        }, year, month, day);
-    datePickerDialog.show();
+    new DatePickerDialog(getContext(), (datePicker, year, month, dayOfMonth) -> {
+      presenter.onReportDateSet(year, month, dayOfMonth);
+    }, cYear, cMonth, cDayOfMonth).show();
   }
 
   @BindView(R.id.date_textview) TextView dateTextView;
 
-  @Override public void showDate(String date) {
+  @Override public void setReportDate(String date) {
     dateTextView.setText(date);
   }
 
   @Override public void setListener() {
     swipeRefresh.setOnRefreshListener(() -> {
-
     });
   }
 
@@ -92,6 +83,36 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   @Override public void enableSaveButton() {
     saveButton.setEnabled(true);
     saveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+  }
+
+  @Override public void showStartTimePickerDialog() {
+
+    Calendar calendar = Calendar.getInstance();
+    int cHourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
+    int cMinute = calendar.get(Calendar.MINUTE);
+
+    new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
+      presenter.onStartTimeSet(hourOfDay, minute);
+    }, cHourOfDay, cMinute, true).show();
+  }
+
+  @Override public void showEndTimePickerDialog() {
+
+    Calendar calendar = Calendar.getInstance();
+    int cHourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
+    int cMinute = calendar.get(Calendar.MINUTE);
+
+    new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
+      presenter.onEndTimeSet(hourOfDay, minute);
+    }, cHourOfDay, cMinute, true).show();
+  }
+  @BindView(R.id.start_time_textview) TextView startTimeTextView;
+  @DebugLog @Override public void setStartTime(String startTime) {
+    startTimeTextView.setText(startTime);
+  }
+  @BindView(R.id.end_time_textview) TextView endTimeTextView;
+  @DebugLog @Override public void setEndTime(String endTime) {
+    endTimeTextView.setText(endTime);
   }
 
   @Override public void disableSaveButton() {

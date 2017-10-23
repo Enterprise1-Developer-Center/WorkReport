@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.Locale;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 19
@@ -33,8 +32,10 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
         view.showReportDatePickerDialog();
         break;
       case R.id.start_time_container:
+        view.showStartTimePickerDialog();
         break;
       case R.id.end_time_container:
+        view.showEndTimePickerDialog();
         break;
       case R.id.code_container:
         break;
@@ -52,13 +53,27 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
   }
 
   @DebugLog @Override public void onReportDateSet(int year, int month, int dayOfMonth) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd (EE)");
     Calendar calendar = Calendar.getInstance();
     calendar.set(year, month, dayOfMonth);
     Date d = new Date(calendar.getTimeInMillis());
-    Timber.d(dateFormat.format(d));
-    SimpleDateFormat dayOfWeekFormat = new SimpleDateFormat("EEEE", Locale.KOREA);
+    String reportDate = dateFormat.format(d);
+    view.setReportDate(reportDate);
+  }
 
-    view.showDate(dateFormat.format(d) + " (" + dayOfWeekFormat.format(d).substring(0, 1) + ")");
+  @DebugLog @Override public void onStartTimeSet(int hourOfDay, int minute) {
+    Calendar calendar = Calendar.getInstance();
+
+    calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+        calendar.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
+
+    Date date = new Date(calendar.getTimeInMillis());
+    String startTime = new SimpleDateFormat("HH:mm", Locale.KOREA).format(date);
+    view.setStartTime(startTime);
+  }
+
+  @DebugLog @Override public void onEndTimeSet(int hourOfDay, int minute) {
+    String endTime = hourOfDay + ":" + minute;
+    view.setEndTime(endTime);
   }
 }

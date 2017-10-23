@@ -14,11 +14,15 @@ public interface ReportFragmentPresenter {
 
   void onReportDateSet(int y, int m, int dayOfMonth);
 
+  void onStartTimeSet(int hourOfDay, int minute);
+
+  void onEndTimeSet(int hourOfDay, int minute);
+
   interface View {
 
     void showReportDatePickerDialog();
 
-    void showDate(String date);
+    void setReportDate(String date);
 
     void setListener();
 
@@ -29,5 +33,13 @@ public interface ReportFragmentPresenter {
     void disableSaveButton();
 
     void enableSaveButton();
+
+    void showStartTimePickerDialog();
+
+    void showEndTimePickerDialog();
+
+    void setStartTime(String startTime);
+
+    void setEndTime(String endTime);
   }
 }

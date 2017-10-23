@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MainItemRootViewCode"
+    style="@style/CodeMainItemContainer"
     >
   <ImageView
-      style="@style/MainItemImageViewCode"
+      style="@style/CodeMainItemImageView"
       />
   <TextView
-      style="@style/MainItemTextView"
+      style="@style/CodeMainItemTextView"
       tools:text="11, 설계개발공유체게"
       />
 </LinearLayout>

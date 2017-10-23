@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MainItemRootViewGroup">
+    style="@style/GroupMainItemContainer">
   <ImageView
-      style="@style/MainItemImageViewGroup"
+      style="@style/GroupMainItemImageView"
       />
   <TextView
-      style="@style/MainItemTextView"
+      style="@style/GroupMainItemTextView"
       tools:text="BS"
       />
 </LinearLayout>

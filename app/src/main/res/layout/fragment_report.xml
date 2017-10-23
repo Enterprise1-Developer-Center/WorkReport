@@ -33,7 +33,6 @@
     </ScrollView>
 
   </android.support.v4.widget.SwipeRefreshLayout>
-
   <android.support.design.widget.FloatingActionButton
       android:id="@+id/save_button"
       android:layout_width="@dimen/dp_70"

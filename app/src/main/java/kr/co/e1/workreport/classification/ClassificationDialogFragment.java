@@ -19,6 +19,7 @@ public class ClassificationDialogFragment extends BaseAlertDialogFragment
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     Timber.d("presenter = " + presenter);
+    presenter.onActivityCreate(savedInstanceState);
   }
 
   @Override protected boolean getAttatchRoot() {
@@ -51,5 +52,9 @@ public class ClassificationDialogFragment extends BaseAlertDialogFragment
     return (dialog, which) -> {
       dialog.dismiss();
     };
+  }
+
+  @Override public void setRecyclerView() {
+
   }
 }

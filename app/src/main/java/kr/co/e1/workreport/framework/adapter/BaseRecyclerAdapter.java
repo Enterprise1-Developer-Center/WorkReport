@@ -24,11 +24,11 @@ public abstract class BaseRecyclerAdapter
 
   @LayoutRes public abstract int getLayoutRes(int viewType);
 
-  @Override public abstract void onBindViewHolder(BaseViewHolder holder, int position);
+  @Override public abstract void onBindViewHolder(BaseViewHolder viewHolder, int position);
 
   @Override public abstract int getItemCount();
 
-  public static class BaseViewHolder extends RecyclerView.ViewHolder {
+  protected static class BaseViewHolder extends RecyclerView.ViewHolder {
 
     public BaseViewHolder(View itemView) {
       super(itemView);

@@ -2,9 +2,13 @@ package kr.co.e1.workreport.classification;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import butterknife.BindView;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.classification.adapter.ClassificationAdapter;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import timber.log.Timber;
 
@@ -18,7 +22,6 @@ public class ClassificationDialogFragment extends BaseAlertDialogFragment
   @Inject ClassificationPresenter presenter;
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    Timber.d("presenter = " + presenter);
     presenter.onActivityCreate(savedInstanceState);
   }
 
@@ -54,7 +57,16 @@ public class ClassificationDialogFragment extends BaseAlertDialogFragment
     };
   }
 
-  @Override public void setRecyclerView() {
+  @BindView(R.id.recyclerview) RecyclerView recyclerView;
+  @Inject ClassificationAdapter adapter;
 
+  @Override public void setRecyclerView() {
+    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setAdapter(adapter);
+  }
+
+  @Override public void refresh() {
+    adapter.refresh();
   }
 }

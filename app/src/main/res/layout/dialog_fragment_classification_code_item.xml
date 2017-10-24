@@ -30,7 +30,7 @@
       tools:text="Profits"
       />
   <TextView
-      android:id="@+id/smal_class_textview"
+      android:id="@+id/small_class_textview"
       android:layout_width="wrap_content"
       android:layout_height="@dimen/dp_24"
       android:gravity="left|center_vertical"
@@ -45,7 +45,7 @@
       android:layout_height="@dimen/dp_24"
       android:textSize="@dimen/sp_10"
       app:layout_constraintLeft_toRightOf="@+id/code_textview"
-      app:layout_constraintTop_toBottomOf="@+id/smal_class_textview"
+      app:layout_constraintTop_toBottomOf="@+id/small_class_textview"
       tools:text="외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수"
       />
   <EditText

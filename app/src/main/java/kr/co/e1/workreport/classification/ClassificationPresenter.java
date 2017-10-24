@@ -11,7 +11,8 @@ public interface ClassificationPresenter {
   void onActivityCreate(Bundle savedInstanceState);
 
   interface View {
-
     void setRecyclerView();
+
+    void refresh();
   }
 }

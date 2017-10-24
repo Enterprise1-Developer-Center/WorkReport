@@ -29,11 +29,6 @@
         <include layout="@layout/main_item_code"/>
         <include layout="@layout/main_item_project"/>
         <include layout="@layout/main_item_last_edit"/>
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/save_button"

@@ -2,6 +2,7 @@ package kr.co.e1.workreport.framework;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
+import dagger.android.support.AndroidSupportInjection;
 
 /**
  * Created by jaeho on 2017. 10. 24
@@ -38,6 +40,11 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     onActivityCreate(savedInstanceState);
+  }
+
+  @Override public void onAttach(Context context) {
+    AndroidSupportInjection.inject(this);
+    super.onAttach(context);
   }
 
   protected abstract void onActivityCreate(Bundle savedInstanceState);

@@ -3,6 +3,7 @@ package kr.co.e1.workreport.classification;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import timber.log.Timber;
@@ -11,10 +12,13 @@ import timber.log.Timber;
  * Created by jaeho on 2017. 10. 23
  */
 
-public class ClassificationDialogFragment extends BaseAlertDialogFragment {
+public class ClassificationDialogFragment extends BaseAlertDialogFragment
+    implements ClassificationPresenter.View {
+
+  @Inject ClassificationPresenter presenter;
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-
+    Timber.d("presenter = " + presenter);
   }
 
   @Override protected boolean getAttatchRoot() {

@@ -3,6 +3,7 @@ package kr.co.e1.workreport.framework;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -30,8 +31,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     AndroidInjection.inject(this);
     setContentView(getLayoutResID());
     unbinder = ButterKnife.bind(this);
+    toolbar.setTitle(getTitleResId());
     setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(isDisplayHomeAsUpEnabled());
     setNavigationBarColor();
+    onCreated(savedInstanceState);
   }
 
   private void setNavigationBarColor() {
@@ -45,5 +49,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     unbinder.unbind();
   }
 
+  protected abstract void onCreated(Bundle savedInstanceState);
+
   protected abstract int getLayoutResID();
+
+  protected abstract @StringRes int getTitleResId();
+
+  protected abstract boolean isDisplayHomeAsUpEnabled();
 }

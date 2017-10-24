@@ -6,6 +6,8 @@ import dagger.Module;
 import dagger.android.ActivityKey;
 import dagger.android.AndroidInjector;
 import dagger.multibindings.IntoMap;
+import kr.co.e1.workreport.classificationcode.ClassificationCodeActivity;
+import kr.co.e1.workreport.classificationcode.ClassificationCodeComponent;
 import kr.co.e1.workreport.main.MainActivity;
 import kr.co.e1.workreport.main.MainActivityComponent;
 
@@ -17,4 +19,8 @@ import kr.co.e1.workreport.main.MainActivityComponent;
   @Binds @IntoMap @ActivityKey(MainActivity.class)
   abstract AndroidInjector.Factory<? extends Activity> bindMainActivity(
       MainActivityComponent.Builder builder);
+
+  @Binds @IntoMap @ActivityKey(ClassificationCodeActivity.class)
+  abstract AndroidInjector.Factory<? extends Activity> bindClassificatoinCodeActivity(
+      ClassificationCodeComponent.Builder builder);
 }

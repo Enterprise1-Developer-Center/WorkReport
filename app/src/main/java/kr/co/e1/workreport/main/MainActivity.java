@@ -26,8 +26,7 @@ public class MainActivity extends BaseActivity
   @Inject MainPresenter presenter;
   @BindView(R.id.navigation_view) NavigationView navigationView;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreate(savedInstanceState);
   }
 
@@ -70,6 +69,14 @@ public class MainActivity extends BaseActivity
 
   @Override protected int getLayoutResID() {
     return R.layout.activity_main;
+  }
+
+  @Override protected int getTitleResId() {
+    return R.string.app_name;
+  }
+
+  @Override protected boolean isDisplayHomeAsUpEnabled() {
+    return false;
   }
 
   @Override public void onBackPressed() {

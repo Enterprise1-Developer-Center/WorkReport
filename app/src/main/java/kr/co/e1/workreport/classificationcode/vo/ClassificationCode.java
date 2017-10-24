@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.classification.vo;
+package kr.co.e1.workreport.classificationcode.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

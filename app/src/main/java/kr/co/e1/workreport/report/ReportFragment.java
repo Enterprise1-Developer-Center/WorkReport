@@ -2,6 +2,7 @@ package kr.co.e1.workreport.report;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -15,7 +16,7 @@ import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.classification.ClassificationDialogFragment;
+import kr.co.e1.workreport.classificationcode.ClassificationCodeActivity;
 import kr.co.e1.workreport.framework.BaseFragment;
 import timber.log.Timber;
 
@@ -24,7 +25,7 @@ import timber.log.Timber;
  */
 
 public class ReportFragment extends BaseFragment implements ReportFragmentPresenter.View {
-
+  private final static int REQUEST_CODE = 10;
   @Inject ReportFragmentPresenter presenter;
 
   @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefresh;
@@ -159,8 +160,12 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   }
 
   @Override public void showCodeDialogFragment() {
-    new ClassificationDialogFragment().show(getFragmentManager(),
-        ClassificationDialogFragment.class.getSimpleName());
+    Intent intent = new Intent(getContext(), ClassificationCodeActivity.class);
+    startActivityForResult(intent, REQUEST_CODE);
+  }
+
+  @DebugLog @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
   }
 
   @Override public void disableSaveButton() {

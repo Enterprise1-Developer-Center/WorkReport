@@ -2,7 +2,6 @@ package kr.co.e1.workreport.main;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
-import kr.co.e1.workreport.classification.ClassificationProvider;
 import kr.co.e1.workreport.login.LoginFragmentProvider;
 import kr.co.e1.workreport.report.ReportFragmentProvider;
 
@@ -11,8 +10,7 @@ import kr.co.e1.workreport.report.ReportFragmentProvider;
  */
 
 @Subcomponent(modules = {
-    MainActivityModule.class, LoginFragmentProvider.class, ReportFragmentProvider.class,
-    ClassificationProvider.class
+    MainActivityModule.class, LoginFragmentProvider.class, ReportFragmentProvider.class
 }) public interface MainActivityComponent extends AndroidInjector<MainActivity> {
   @Subcomponent.Builder abstract class Builder extends AndroidInjector.Builder<MainActivity> {
 

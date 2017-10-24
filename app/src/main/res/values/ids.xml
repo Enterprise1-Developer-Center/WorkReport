@@ -33,4 +33,8 @@
   <item name="project_textview" type="id"/>
   <item name="last_edit_textview" type="id"/>
   <item name="recyclerview" type="id"/>
+  <item name="big_class_textview" type="id"/>
+  <item name="small_class_textview" type="id"/>
+  <item name="description_textview" type="id"/>
+  <item name="detail_edittext" type="id"/>
 </resources>

@@ -1,14 +1,13 @@
-package kr.co.e1.workreport.classification.adapter;
+package kr.co.e1.workreport.classificationcode.adapter;
 
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import butterknife.BindView;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Singleton;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.classification.vo.ClassificationCode;
+import kr.co.e1.workreport.classificationcode.vo.ClassificationCode;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
@@ -40,7 +39,7 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
   }
 
   @Override public int getLayoutRes(int viewType) {
-    return R.layout.dialog_fragment_classification_code_item;
+    return R.layout.content_classification_recycler_item;
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
@@ -51,7 +50,6 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
       holder.bigClassTextview.setText(classCode.getBigClass());
       holder.smallClassTextview.setText(classCode.getSmallClass());
       holder.descriptionTextview.setText(classCode.getDescription());
-      holder.detailEdittext.setText(classCode.getDetailWork());
     }
   }
 
@@ -96,7 +94,6 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
     @BindView(R.id.big_class_textview) TextView bigClassTextview;
     @BindView(R.id.small_class_textview) TextView smallClassTextview;
     @BindView(R.id.description_textview) TextView descriptionTextview;
-    @BindView(R.id.detail_edittext) EditText detailEdittext;
 
     public ClassificationViewHolder(View itemView) {
       super(itemView);

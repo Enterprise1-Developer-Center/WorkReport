@@ -60,5 +60,6 @@ public class ClassificationCodePresenterImpl implements ClassificationCodePresen
 
   @Override public void onBackPressed() {
     adapterDataModel.clear();
+    view.finish();
   }
 }

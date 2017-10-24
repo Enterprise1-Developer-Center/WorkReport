@@ -16,5 +16,7 @@ public interface ClassificationCodePresenter {
     void setRecyclerView();
 
     void refresh();
+
+    void finish();
   }
 }

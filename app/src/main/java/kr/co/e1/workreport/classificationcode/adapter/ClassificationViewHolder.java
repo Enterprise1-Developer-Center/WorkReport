@@ -28,5 +28,6 @@ public class ClassificationViewHolder extends BaseRecyclerAdapter.BaseViewHolder
 
   @OnClick(R.id.recyclerview_item_container) void onItemClick() {
     onRecyclerItemClickListener.onItemClick(selectableItem);
+    checkBox.setChecked(true);
   }
 }

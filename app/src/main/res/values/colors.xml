@@ -20,4 +20,7 @@
   <color name="colorIndigo_A400">#3D5AFE</color>
   <color name="colorIndigo_A700">#304FFE</color>
 
+  <color name="colorPink_50">#FCE4EC</color>
+  <color name="colorPink_100">#F8BBD0</color>
+
 </resources>

@@ -2,6 +2,7 @@ package kr.co.e1.workreport.classificationcode.adapter;
 
 import kr.co.e1.workreport.classificationcode.vo.ClassificationCode;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ import lombok.Setter;
  * Created by jaeho on 2017. 10. 25
  */
 
-@AllArgsConstructor public class SelectableItem {
+@Data @AllArgsConstructor public class SelectableItem {
   @Getter @Setter private boolean isSelected = false;
   @Getter private ClassificationCode classificationCode;
 

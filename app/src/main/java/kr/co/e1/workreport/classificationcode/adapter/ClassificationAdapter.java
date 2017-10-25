@@ -8,6 +8,7 @@ import kr.co.e1.workreport.classificationcode.vo.ClassificationCode;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
+import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 
 /**
  * Created by jaeho on 2017. 10. 24
@@ -21,14 +22,17 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
   private ArrayList<ClassificationCode> items = new ArrayList<>();
   private ArrayList<SelectableItem> selectableItems = new ArrayList<>();
 
-  private ClassificationAdapter() {
+  private OnRecyclerItemClickListener onRecyclerItemClickListener;
+
+  private ClassificationAdapter(OnRecyclerItemClickListener listener) {
+    this.onRecyclerItemClickListener = listener;
   }
 
-  public static ClassificationAdapter getInstance() {
+  public static ClassificationAdapter getInstance(OnRecyclerItemClickListener listener) {
     if (singletonInstance == null) {
       synchronized (ClassificationAdapter.class) {
         if (singletonInstance == null) {
-          singletonInstance = new ClassificationAdapter();
+          singletonInstance = new ClassificationAdapter(listener);
         }
       }
     }
@@ -54,6 +58,7 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
       holder.smallClassTextview.setText(classCode.getSmallClass());
       holder.descriptionTextview.setText(classCode.getDescription());
       holder.checkBox.setChecked(item.isSelected());
+      holder.onRecyclerItemClickListener = onRecyclerItemClickListener;
     }
   }
 

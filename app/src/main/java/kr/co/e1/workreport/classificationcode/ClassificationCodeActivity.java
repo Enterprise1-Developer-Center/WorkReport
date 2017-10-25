@@ -5,11 +5,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import butterknife.BindView;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationcode.adapter.ClassificationAdapter;
+import kr.co.e1.workreport.classificationcode.adapter.SelectableItem;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
+import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 import timber.log.Timber;
 
 /**
@@ -17,7 +20,7 @@ import timber.log.Timber;
  */
 
 public class ClassificationCodeActivity extends BaseActivity
-    implements ClassificationCodePresenter.View {
+    implements ClassificationCodePresenter.View, OnRecyclerItemClickListener<SelectableItem> {
 
   @Inject ClassificationCodePresenter presenter;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
@@ -61,5 +64,9 @@ public class ClassificationCodeActivity extends BaseActivity
   @Override public void onBackPressed() {
     //super.onBackPressed();
     presenter.onBackPressed();
+  }
+
+  @DebugLog @Override public void onItemClick(SelectableItem item) {
+
   }
 }

@@ -22,11 +22,12 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
     return new ClassificationCodePresenterImpl(view, adapter);
   }
 
-  @DebugLog @Provides ClassificationAdapter provideClassificationAdapter() {
-    return ClassificationAdapter.getInstance();
+  @DebugLog @Provides ClassificationAdapter provideClassificationAdapter(
+      ClassificationCodeActivity activity) {
+    return ClassificationAdapter.getInstance(activity);
   }
 
-  @DebugLog @Provides BaseAdapterView provideBaseAdapterView() {
-    return ClassificationAdapter.getInstance();
+  @DebugLog @Provides BaseAdapterView provideBaseAdapterView(ClassificationCodeActivity activity) {
+    return ClassificationAdapter.getInstance(activity);
   }
 }

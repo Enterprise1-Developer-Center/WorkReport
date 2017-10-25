@@ -1,12 +1,8 @@
 package kr.co.e1.workreport.classificationcode.adapter;
 
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.TextView;
-import butterknife.BindView;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Singleton;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationcode.vo.ClassificationCode;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
@@ -22,9 +18,15 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
 
   private static volatile ClassificationAdapter singletonInstance = null;
 
+  private ArrayList<ClassificationCode> items = new ArrayList<>();
+  private ArrayList<SelectableItem> selectableItems = new ArrayList<>();
+
+  private ClassificationAdapter() {
+  }
+
   public static ClassificationAdapter getInstance() {
     if (singletonInstance == null) {
-      synchronized (Singleton.class) {
+      synchronized (ClassificationAdapter.class) {
         if (singletonInstance == null) {
           singletonInstance = new ClassificationAdapter();
         }
@@ -32,8 +34,6 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
     }
     return singletonInstance;
   }
-
-  private ArrayList<ClassificationCode> items = new ArrayList<>();
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new ClassificationViewHolder(view);
@@ -46,11 +46,14 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof ClassificationViewHolder) {
       ClassificationViewHolder holder = (ClassificationViewHolder) viewHolder;
-      ClassificationCode classCode = items.get(position);
+      SelectableItem item = selectableItems.get(position);
+      ClassificationCode classCode = item.getClassificationCode();
+      holder.selectableItem = selectableItems.get(position);
       holder.codeTextview.setText(classCode.getCode());
       holder.bigClassTextview.setText(classCode.getBigClass());
       holder.smallClassTextview.setText(classCode.getSmallClass());
       holder.descriptionTextview.setText(classCode.getDescription());
+      holder.checkBox.setChecked(item.isSelected());
     }
   }
 
@@ -64,6 +67,16 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
 
   @Override public void add(ClassificationCode item) {
     items.add(item);
+    selectableItems.add(new SelectableItem(item, false));
+    /*
+    if (item.getCode() != null) {
+      if (item.getCode().length() > 0) {
+        selectableItems.add(new SelectableItem(item, true));
+      } else {
+        selectableItems.add(new SelectableItem(item, false));
+      }
+    }
+    */
   }
 
   @Override public void addAll(List<ClassificationCode> items) {
@@ -88,17 +101,5 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
 
   @Override public void clear() {
     items.clear();
-  }
-
-  final static class ClassificationViewHolder extends BaseViewHolder {
-    @BindView(R.id.code_textview) TextView codeTextview;
-    @BindView(R.id.big_class_textview) TextView bigClassTextview;
-    @BindView(R.id.small_class_textview) TextView smallClassTextview;
-    @BindView(R.id.description_textview) TextView descriptionTextview;
-    @BindView(R.id.checkbox) CheckBox checkBox;
-
-    public ClassificationViewHolder(View itemView) {
-      super(itemView);
-    }
   }
 }

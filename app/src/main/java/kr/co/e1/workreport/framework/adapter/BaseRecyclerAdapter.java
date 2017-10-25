@@ -28,7 +28,7 @@ public abstract class BaseRecyclerAdapter
 
   @Override public abstract int getItemCount();
 
-  protected static class BaseViewHolder extends RecyclerView.ViewHolder {
+  public static class BaseViewHolder extends RecyclerView.ViewHolder {
 
     public BaseViewHolder(View itemView) {
       super(itemView);

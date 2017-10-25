@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.classificationcode.adapter;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import butterknife.BindView;
 import java.util.ArrayList;
@@ -94,6 +95,7 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
     @BindView(R.id.big_class_textview) TextView bigClassTextview;
     @BindView(R.id.small_class_textview) TextView smallClassTextview;
     @BindView(R.id.description_textview) TextView descriptionTextview;
+    @BindView(R.id.checkbox) CheckBox checkBox;
 
     public ClassificationViewHolder(View itemView) {
       super(itemView);

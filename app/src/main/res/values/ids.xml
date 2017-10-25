@@ -37,4 +37,5 @@
   <item name="small_class_textview" type="id"/>
   <item name="description_textview" type="id"/>
   <item name="detail_edittext" type="id"/>
+  <item name="checkbox" type="id"/>
 </resources>

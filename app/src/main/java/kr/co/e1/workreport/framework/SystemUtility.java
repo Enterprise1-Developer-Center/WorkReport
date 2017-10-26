@@ -11,8 +11,18 @@ import android.view.inputmethod.InputMethodManager;
 public class SystemUtility {
 
   public static void hideKeyboard(Context context, View view) {
-    InputMethodManager imm =
-        (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    if (view != null) {
+      InputMethodManager imm =
+          (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+  }
+
+  public static void showSoftKeyboard(Context context, View view) {
+    if (view.requestFocus()) {
+      InputMethodManager imm =
+          (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+    }
   }
 }

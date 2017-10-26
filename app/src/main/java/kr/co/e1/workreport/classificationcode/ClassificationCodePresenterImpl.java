@@ -20,6 +20,7 @@ public class ClassificationCodePresenterImpl implements ClassificationCodePresen
   }
 
   @Override public void onCreated(Bundle savedInstanceState) {
+    view.hideKeyboard();
     view.setRecyclerView();
 
     //Request data;

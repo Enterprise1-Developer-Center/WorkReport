@@ -29,27 +29,10 @@ public class ClassificationViewHolder extends BaseRecyclerAdapter.BaseViewHolder
     super(itemView);
   }
 
-  void onFocusChange(View view) {
-    //view.requestFocus();
-  }
-
   @DebugLog @OnClick(R.id.recyclerview_item_container) void onItemClick() {
-    //detailEditText.requestFocus();
-
-    //Timber.d(detailEditText.hasFocus() + ", " + detailEditText.hasFocusable());
-    //radapterView.refresh();
-    //onFocusChange(detailEditText);
     checkBox.setChecked(!checkBox.isChecked());
     if (checkBox.isChecked()) onRecyclerItemClickListener.onItemClick(selectableItem);
     adapterView.refresh();
 
-  }
-
-  private void onItemClicked(SelectableItem item) {
-    /*
-    checkBox.setChecked(!checkBox.isChecked());
-    if (checkBox.isChecked()) onRecyclerItemClickListener.onItemClick(item);
-    */
-    //detailEditText.requestFocus();
   }
 }

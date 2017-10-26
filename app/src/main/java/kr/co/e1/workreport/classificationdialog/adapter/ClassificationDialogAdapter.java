@@ -1,7 +1,6 @@
 package kr.co.e1.workreport.classificationdialog.adapter;
 
 import android.view.View;
-import hugo.weaving.DebugLog;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -92,7 +91,7 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     items.add(index, item);
   }
 
-  @DebugLog @Override public int getSize() {
+  @Override public int getSize() {
     return items.size();
   }
 

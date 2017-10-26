@@ -1,9 +1,7 @@
 package kr.co.e1.workreport.report;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -17,10 +15,8 @@ import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.classificationcode.ClassificationCodeActivity;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialog;
 import kr.co.e1.workreport.classificationdialog.OnDialogClickListener;
-import kr.co.e1.workreport.classificationdialog.vo.SimpleClassificationCode;
 import kr.co.e1.workreport.framework.BaseFragment;
 import timber.log.Timber;
 
@@ -29,7 +25,7 @@ import timber.log.Timber;
  */
 
 public class ReportFragment extends BaseFragment
-    implements ReportFragmentPresenter.View, OnDialogClickListener<SimpleClassificationCode> {
+    implements ReportFragmentPresenter.View, OnDialogClickListener<Bundle> {
   private final static int REQUEST_CODE = 10;
   @Inject ReportFragmentPresenter presenter;
 
@@ -169,22 +165,12 @@ public class ReportFragment extends BaseFragment
         .show(getFragmentManager(), ClassificationDialog.class.getSimpleName());
   }
 
-  @DebugLog @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
-      String code = data.getStringExtra(ClassificationCodeActivity.CODE_INTENT_NAME);
-      String work = data.getStringExtra(ClassificationCodeActivity.WORK_INTENT_NAME);
-      Timber.d("code = " + code + ", work = " + work);
-      codeTextView.setText(code + "/" + work);
-    }
-  }
-
   @Override public void disableSaveButton() {
     saveButton.setEnabled(false);
     saveButton.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.white));
   }
 
-  @Override public void onClick(SimpleClassificationCode o) {
-    codeTextView.setText(o.getCode() + " / " + o.getWork());
+  @Override public void onDialogClick(Bundle o) {
+    codeTextView.setText(o.getString("code") + " / " + o.getString("work"));
   }
 }

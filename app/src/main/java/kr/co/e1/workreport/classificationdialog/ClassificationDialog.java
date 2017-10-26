@@ -5,15 +5,14 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 import butterknife.BindView;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
 import kr.co.e1.workreport.classificationdialog.adapter.SelectableItem;
-import kr.co.e1.workreport.classificationdialog.vo.SimpleClassificationCode;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
-import kr.co.e1.workreport.framework.ObjectUtils;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 
@@ -27,10 +26,9 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   @BindView(R.id.text_input_edittext) TextInputEditText workTextInputEditText;
   @Inject ClassificationDialogPresenter presenter;
 
-  OnDialogClickListener<SimpleClassificationCode> onDialogClickListener;
+  OnDialogClickListener<Bundle> onDialogClickListener;
 
-  public ClassificationDialog setOnDialogClickListener(
-      OnDialogClickListener<SimpleClassificationCode> listener) {
+  public ClassificationDialog setOnDialogClickListener(OnDialogClickListener<Bundle> listener) {
     onDialogClickListener = listener;
     return this;
   }
@@ -59,12 +57,13 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     return R.string.classification_code;
   }
 
+  private Bundle bundle = new Bundle();
+
   @Override protected DialogInterface.OnClickListener getOkOnClickListener() {
     return (dialogInterface, witch) -> {
-      String code = ObjectUtils.isEmpty(workTextInputEditText.getTag()) ? ""
-          : workTextInputEditText.getTag().toString();
-      String work = workTextInputEditText.getText().toString().trim();
-      onDialogClickListener.onClick(new SimpleClassificationCode(code, work));
+      bundle.putString("work", workTextInputEditText.getText().toString().trim());
+      if (TextUtils.isEmpty(bundle.getString("code"))) bundle.putString("code", "");
+      onDialogClickListener.onDialogClick(bundle);
     };
   }
 
@@ -90,6 +89,6 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   }
 
   @Override public void onItemClick(SelectableItem item) {
-    workTextInputEditText.setTag(item.getClassificationCode().getCode());
+    bundle.putString("code", item.getClassificationCode().getCode());
   }
 }

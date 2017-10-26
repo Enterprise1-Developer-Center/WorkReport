@@ -5,5 +5,5 @@ package kr.co.e1.workreport.classificationdialog;
  */
 
 public interface OnDialogClickListener<T> {
-  void onClick(T o);
+  void onDialogClick(T o);
 }

@@ -25,7 +25,7 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
 
   private OnRecyclerItemClickListener<SelectableItem> onRecyclerItemClickListener;
 
-  @DebugLog @Inject public ClassificationDialogAdapter(OnRecyclerItemClickListener listener) {
+  @Inject public ClassificationDialogAdapter(OnRecyclerItemClickListener listener) {
     this.onRecyclerItemClickListener = listener;
   }
 
@@ -37,7 +37,7 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     return R.layout.content_classification_recycler_item;
   }
 
-  @DebugLog @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
+  @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof ClassificationDialogViewHolder) {
       ClassificationDialogViewHolder holder = (ClassificationDialogViewHolder) viewHolder;
       SelectableItem item = selectableItems.get(position);
@@ -62,7 +62,7 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     notifyDataSetChanged();
   }
 
-  @DebugLog @Override public void add(ClassificationCode item) {
+  @Override public void add(ClassificationCode item) {
     items.add(item);
     selectableItems.add(new SelectableItem(item, false));
     /*

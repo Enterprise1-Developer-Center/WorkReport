@@ -15,14 +15,15 @@ import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
  */
 
 public class ClassificationAdapter extends BaseRecyclerAdapter
-    implements BaseAdapterDataModel<ClassificationCode>, BaseAdapterView {
+    implements BaseAdapterDataModel<ClassificationCode>, BaseAdapterView,
+    OnRecyclerItemClickListener<SelectableItem> {
 
   private static volatile ClassificationAdapter singletonInstance = null;
 
   private ArrayList<ClassificationCode> items = new ArrayList<>();
   private ArrayList<SelectableItem> selectableItems = new ArrayList<>();
 
-  private OnRecyclerItemClickListener onRecyclerItemClickListener;
+  private OnRecyclerItemClickListener<SelectableItem> onRecyclerItemClickListener;
 
   private ClassificationAdapter(OnRecyclerItemClickListener listener) {
     this.onRecyclerItemClickListener = listener;
@@ -58,7 +59,13 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
       holder.smallClassTextview.setText(classCode.getSmallClass());
       holder.descriptionTextview.setText(classCode.getDescription());
       holder.checkBox.setChecked(item.isSelected());
-      holder.onRecyclerItemClickListener = onRecyclerItemClickListener;
+      holder.onRecyclerItemClickListener = this;
+      if (item.isRequestFocus()) {
+        holder.detailEditText.requestFocus();
+      } else {
+        holder.detailEditText.clearFocus();
+      }
+      holder.adapterView = this;
     }
   }
 
@@ -106,5 +113,18 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
 
   @Override public void clear() {
     items.clear();
+  }
+
+  @Override public void onItemClick(SelectableItem item) {
+    for (SelectableItem selectableItem : selectableItems) {
+      if (!selectableItem.equals(item)) {
+        selectableItem.setSelected(false);
+        selectableItem.setRequestFocus(false);
+      } else {
+        selectableItem.setSelected(true);
+        selectableItem.setRequestFocus(true);
+      }
+    }
+    onRecyclerItemClickListener.onItemClick(item);
   }
 }

@@ -2,7 +2,6 @@ package kr.co.e1.workreport.classificationcode.adapter;
 
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -21,7 +20,6 @@ public class ClassificationViewHolder extends BaseRecyclerAdapter.BaseViewHolder
   @BindView(R.id.big_class_textview) TextView bigClassTextview;
   @BindView(R.id.small_class_textview) TextView smallClassTextview;
   @BindView(R.id.description_textview) TextView descriptionTextview;
-  @BindView(R.id.detail_edittext) EditText detailEditText;
   @BindView(R.id.checkbox) CheckBox checkBox;
   SelectableItem selectableItem;
   OnRecyclerItemClickListener<SelectableItem> onRecyclerItemClickListener;

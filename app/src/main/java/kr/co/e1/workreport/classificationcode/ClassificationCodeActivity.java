@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
@@ -27,6 +28,8 @@ public class ClassificationCodeActivity extends BaseActivity
 
   @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreated(savedInstanceState);
+    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
+        | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
   }
 
   @Override protected int getLayoutResID() {

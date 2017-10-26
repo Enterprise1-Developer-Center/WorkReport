@@ -60,11 +60,6 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
       holder.descriptionTextview.setText(classCode.getDescription());
       holder.checkBox.setChecked(item.isSelected());
       holder.onRecyclerItemClickListener = this;
-      if (item.isRequestFocus()) {
-        holder.detailEditText.requestFocus();
-      } else {
-        holder.detailEditText.clearFocus();
-      }
       holder.adapterView = this;
     }
   }

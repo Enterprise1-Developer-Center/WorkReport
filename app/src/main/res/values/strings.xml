@@ -19,5 +19,5 @@
   <string name="team_report">팀 업무보고</string>
   <string name="review">리뷰(문의/제안/요청)</string>
   <string name="classification_code">분류코드</string>
-  <string name="what_did_you_do_today">오늘은 무슨 업무 하셨어요?</string>
+  <string name="what_did_you_do_today">무슨 업무 하셨어요?</string>
 </resources>

@@ -25,9 +25,9 @@
       </intent-filter>
     </activity>
     <activity
-        android:windowSoftInputMode="stateAlwaysHidden|adjustPan|adjustResize"
         android:name=".classificationcode.ClassificationCodeActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait"
+        android:windowSoftInputMode="adjustResize"/>
     <activity
         android:name=".settings.SettingsActivity"
         android:screenOrientation="portrait"/>

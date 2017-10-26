@@ -57,5 +57,7 @@ public interface ReportFragmentPresenter {
     void setWorkTime(String workTime);
 
     void showCodeDialogFragment();
+
+    void showProjectChoiceDialog();
   }
 }

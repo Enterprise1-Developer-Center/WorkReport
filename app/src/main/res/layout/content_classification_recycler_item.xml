@@ -6,10 +6,9 @@
     android:id="@id/recyclerview_item_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clickable="true"
     android:background="?android:attr/selectableItemBackground"
     >
-  android:focusableInTouchMode="true"
-  android:focusable="true"
 
   <TextView
       android:id="@id/code_textview"

@@ -50,6 +50,7 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
         view.showCodeDialogFragment();
         break;
       case R.id.project_container:
+        view.showProjectChoiceDialog();
         break;
       case R.id.save_button:
         view.showProgress();

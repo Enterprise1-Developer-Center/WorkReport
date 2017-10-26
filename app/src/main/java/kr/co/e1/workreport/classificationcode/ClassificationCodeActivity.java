@@ -12,7 +12,6 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationcode.adapter.ClassificationAdapter;
 import kr.co.e1.workreport.classificationcode.adapter.SelectableItem;
 import kr.co.e1.workreport.framework.BaseActivity;
-import kr.co.e1.workreport.framework.SystemUtility;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 import timber.log.Timber;
@@ -59,8 +58,13 @@ public class ClassificationCodeActivity extends BaseActivity
     adapterView.refresh();
   }
 
-  @Override public void hideKeyboard() {
-    SystemUtility.hideKeyboard(getApplicationContext(), workTextInputEditText);
+  public final static String WORK_INTENT_NAME = "work";
+
+  @Override public void finishActivity() {
+    getIntent().putExtra(WORK_INTENT_NAME, workTextInputEditText.getText().toString().trim());
+    setResult(RESULT_OK, getIntent());
+    Timber.d("finishActivity code = " + getIntent().getStringExtra("code"));
+    finish();
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -69,11 +73,14 @@ public class ClassificationCodeActivity extends BaseActivity
   }
 
   @Override public void onBackPressed() {
-    //super.onBackPressed();
     presenter.onBackPressed();
   }
 
+  public final static String CODE_INTENT_NAME = "code";
+
   @DebugLog @Override public void onItemClick(SelectableItem item) {
-    SystemUtility.showSoftKeyboard(getApplicationContext(), workTextInputEditText);
+    Timber.d("SelectableItem = " + item.getClassificationCode().toString());
+    getIntent().putExtra(CODE_INTENT_NAME, item.getClassificationCode().getCode());
+    Timber.d("onItemClick get code = " + getIntent().getStringExtra("code"));
   }
 }

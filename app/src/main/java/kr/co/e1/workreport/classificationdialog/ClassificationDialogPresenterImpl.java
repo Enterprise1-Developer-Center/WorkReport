@@ -1,24 +1,24 @@
-package kr.co.e1.workreport.classificationcode;
+package kr.co.e1.workreport.classificationdialog;
 
 import android.os.Bundle;
-import kr.co.e1.workreport.classificationcode.vo.ClassificationCode;
+import javax.inject.Inject;
+import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 
 /**
  * Created by jaeho on 2017. 10. 24
  */
 
-public class ClassificationCodePresenterImpl implements ClassificationCodePresenter {
+public class ClassificationDialogPresenterImpl implements ClassificationDialogPresenter {
 
-  private View view;
+  private ClassificationDialogPresenter.View view;
   private BaseAdapterDataModel<ClassificationCode> adapterDataModel;
 
-  ClassificationCodePresenterImpl(View view, BaseAdapterDataModel adapterDataModel) {
+  @Inject ClassificationDialogPresenterImpl(View view) {
     this.view = view;
-    this.adapterDataModel = adapterDataModel;
   }
 
-  @Override public void onCreated(Bundle savedInstanceState) {
+  @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.setRecyclerView();
 
     //Request data;
@@ -57,8 +57,8 @@ public class ClassificationCodePresenterImpl implements ClassificationCodePresen
     view.refresh();
   }
 
-  @Override public void onBackPressed() {
-    view.finishActivity();
-    adapterDataModel.clear();
+  @Override
+  public void setAdapterDataModel(BaseAdapterDataModel<ClassificationCode> adapterDataModel) {
+    this.adapterDataModel = adapterDataModel;
   }
 }

@@ -39,6 +39,8 @@
         android:hint="@string/what_did_you_do_today"
         android:maxLength="20"
         android:maxLines="1"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         android:textColorHint="@color/colorAccent"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         />

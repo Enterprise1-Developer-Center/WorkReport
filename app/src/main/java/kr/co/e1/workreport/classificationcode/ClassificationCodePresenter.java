@@ -17,8 +17,6 @@ public interface ClassificationCodePresenter {
 
     void refresh();
 
-    void finish();
-
-    void hideKeyboard();
+    void finishActivity();
   }
 }

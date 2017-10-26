@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.report;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationcode.ClassificationCodeActivity;
+import kr.co.e1.workreport.classificationdialog.ClassificationDialog;
 import kr.co.e1.workreport.framework.BaseFragment;
 import timber.log.Timber;
 
@@ -160,12 +162,23 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   }
 
   @Override public void showCodeDialogFragment() {
+    /*
     Intent intent = new Intent(getContext(), ClassificationCodeActivity.class);
     startActivityForResult(intent, REQUEST_CODE);
+    */
+
+    new ClassificationDialog().show(getFragmentManager(),
+        ClassificationDialog.class.getSimpleName());
   }
 
   @DebugLog @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
+      String code = data.getStringExtra(ClassificationCodeActivity.CODE_INTENT_NAME);
+      String work = data.getStringExtra(ClassificationCodeActivity.WORK_INTENT_NAME);
+      Timber.d("code = " + code + ", work = " + work);
+      codeTextView.setText(code + "/" + work);
+    }
   }
 
   @Override public void disableSaveButton() {

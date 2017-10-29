@@ -171,10 +171,26 @@ public class ReportFragment extends BaseFragment
 
     /*
     new AlertDialog.Builder(getActivity()).setTitle(R.string.project)
-        .setSingleChoiceItems(new String[] { "호밀밭의 파수꾼", "세일즈맨의 죽음", "데미안", "도덕경" }, 0,
-            (dialogInterface, which) -> {
+        .setSingleChoiceItems(new String[] {
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
+        }, 0, (dialogInterface, which) -> {
 
-            })
+        })
         .setPositiveButton(android.R.string.ok, null)
         .show();
     */

@@ -11,6 +11,6 @@
 
   <include layout="@layout/app_bar_layout"/>
 
-  <include layout="@layout/content_classification"/>
+  <include layout="@layout/dialog_classification"/>
 
 </android.support.design.widget.CoordinatorLayout>

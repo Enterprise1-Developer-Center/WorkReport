@@ -41,4 +41,5 @@
   <item name="recyclerview_item_container" type="id"/>
   <item name="text_input_layout" type="id"/>
   <item name="text_input_edittext" type="id"/>
+  <item name="checked_textview" type="id"/>
 </resources>

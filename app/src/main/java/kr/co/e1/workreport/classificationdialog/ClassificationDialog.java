@@ -15,6 +15,7 @@ import kr.co.e1.workreport.classificationdialog.adapter.SelectableItem;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
 
 /**
  * Created by jaeho on 2017. 10. 26
@@ -42,7 +43,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   }
 
   @Override protected int getLayoutRes() {
-    return R.layout.content_classification;
+    return R.layout.dialog_classification;
   }
 
   @Override protected ViewGroup getRoot() {

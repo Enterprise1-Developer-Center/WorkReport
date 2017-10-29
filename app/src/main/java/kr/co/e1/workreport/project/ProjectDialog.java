@@ -2,18 +2,29 @@ package kr.co.e1.workreport.project;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import butterknife.BindView;
+import hugo.weaving.DebugLog;
+import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
+import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
+import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
 
 /**
  * Created by jaeho on 2017. 10. 29
  */
 
-public class ProjectDialog extends BaseAlertDialogFragment {
+public class ProjectDialog extends BaseAlertDialogFragment
+    implements ProjectDialogPresenter.View, OnRecyclerItemClickListener<Bundle> {
+
+  @Inject ProjectDialogPresenter presenter;
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-
+    presenter.onActivityCreate(savedInstanceState);
   }
 
   @Override protected boolean getAttatchRoot() {
@@ -21,7 +32,7 @@ public class ProjectDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected int getLayoutRes() {
-    return android.R.layout.select_dialog_singlechoice;
+    return R.layout.dialog_project;
   }
 
   @Override protected ViewGroup getRoot() {
@@ -43,4 +54,25 @@ public class ProjectDialog extends BaseAlertDialogFragment {
   @Override protected DialogInterface.OnClickListener getCancelOnClickListener() {
     return null;
   }
+
+  @DebugLog @Override public void onItemClick(Bundle item) {
+
+  }
+
+  @BindView(R.id.recyclerview) RecyclerView recyclerView;
+  BaseAdapterView adapterView;
+
+  @Inject ProjectDialogAdapter adapter;
+
+  @Override public void setRecyclerView() {
+    presenter.setAdapterDataModel(adapter);
+    adapterView = adapter;
+    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    recyclerView.setAdapter(adapter);
+  }
+
+  @Override public void refresh() {
+    adapterView.refresh();
+  }
+
 }

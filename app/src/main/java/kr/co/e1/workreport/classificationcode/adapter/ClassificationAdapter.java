@@ -45,7 +45,7 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
   }
 
   @Override public int getLayoutRes(int viewType) {
-    return R.layout.content_classification_recycler_item;
+    return R.layout.dialog_classification_recycler_item;
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {

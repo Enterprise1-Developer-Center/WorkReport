@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -17,8 +16,9 @@ import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialog;
-import kr.co.e1.workreport.classificationdialog.OnDialogClickListener;
 import kr.co.e1.workreport.framework.BaseFragment;
+import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
+import kr.co.e1.workreport.project.ProjectDialog;
 import timber.log.Timber;
 
 /**
@@ -167,7 +167,9 @@ public class ReportFragment extends BaseFragment
   }
 
   @Override public void showProjectChoiceDialog() {
+    new ProjectDialog().show(getFragmentManager(), ProjectDialog.class.getSimpleName());
 
+    /*
     new AlertDialog.Builder(getActivity()).setTitle(R.string.project)
         .setSingleChoiceItems(new String[] { "호밀밭의 파수꾼", "세일즈맨의 죽음", "데미안", "도덕경" }, 0,
             (dialogInterface, which) -> {
@@ -175,7 +177,7 @@ public class ReportFragment extends BaseFragment
             })
         .setPositiveButton(android.R.string.ok, null)
         .show();
-
+    */
   }
 
   @Override public void disableSaveButton() {

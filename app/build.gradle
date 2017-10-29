@@ -1,10 +1,9 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'hugo'
 
 android {
   compileSdkVersion 26
-  buildToolsVersion "26.0.1"
+  buildToolsVersion '26.0.2'
   defaultConfig {
     applicationId "kr.co.e1.workreport"
     minSdkVersion 21
@@ -33,10 +32,6 @@ android {
       url 'https://maven.google.com'
       // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
     }
-  }
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
   }
 }
 
@@ -68,4 +63,6 @@ dependencies {
   compile 'com.jakewharton.timber:timber:4.5.1'
 
   compile "org.projectlombok:lombok:1.16.18"
+  annotationProcessor "org.projectlombok:lombok:1.16.18"
+  provided 'javax.annotation:jsr250-api:1.0'
 }

@@ -3,6 +3,7 @@ package kr.co.e1.workreport.password;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 
@@ -11,8 +12,9 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
  */
 
 public class PasswordDialog extends BaseAlertDialogFragment implements PasswordDialogPresenter.View{
+  @Inject PasswordDialogPresenter presenter;
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-
+    presenter.onActivityCreate(savedInstanceState);
   }
 
   @Override protected boolean getAttatchRoot() {
@@ -36,7 +38,11 @@ public class PasswordDialog extends BaseAlertDialogFragment implements PasswordD
   }
 
   @Override protected DialogInterface.OnClickListener getOkOnClickListener() {
-    return null;
+    return new DialogInterface.OnClickListener() {
+      @Override public void onClick(DialogInterface dialogInterface, int which) {
+        presenter.onOkClick();
+      }
+    };
   }
 
   @Override protected DialogInterface.OnClickListener getCancelOnClickListener() {

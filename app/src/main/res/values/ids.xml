@@ -44,4 +44,10 @@
   <item name="checked_textview" type="id"/>
   <item name="textview" type="id"/>
   <item name="fragment_container" type="id"/>
+  <item name="now_edit_text" type="id"/>
+  <item name="new_edit_text" type="id"/>
+  <item name="new_confirm_edit_text" type="id"/>
+  <item name="now_text_input_layout" type="id"/>
+  <item name="new_text_input_layout" type="id"/>
+  <item name="new_confirm_text_input_layout" type="id"/>
 </resources>

@@ -141,8 +141,58 @@
   <style name="ProjectMainItemTextView" parent="BaseMainItemTextView">
     <item name="android:id">@id/project_textview</item>
   </style>
+
   <style name="LastEditMainItemTextView" parent="BaseMainItemTextView">
     <item name="android:id">@id/last_edit_textview</item>
+  </style>
+
+
+  <style name="BasePwChangeTextInputLayout">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginStart">@dimen/dp_10</item>
+    <item name="android:layout_marginEnd">@dimen/dp_10</item>
+  </style>
+
+  <style name="NowPwChangeTextInputLayout" parent="BasePwChangeTextInputLayout">
+    <item name="android:id">@id/now_text_input_layout</item>
+  </style>
+
+  <style name="NewPwChangeTextInputLayout" parent="BasePwChangeTextInputLayout">
+    <item name="android:id">@id/new_text_input_layout</item>
+  </style>
+
+  <style name="NewConfirmPwChangeTextInputLayout" parent="BasePwChangeTextInputLayout">
+    <item name="android:id">@id/new_confirm_text_input_layout</item>
+  </style>
+
+  <style name="BasePwChangeEditText">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:gravity">center</item>
+    <item name="android:inputType">textPassword</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:maxLength">20</item>
+    <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+    <item name="android:textColorHint">@color/colorAccent</item>
+  </style>
+
+  <style name="NowPwChangeEditText" parent="BasePwChangeEditText">
+    <item name="android:id">@id/now_edit_text</item>
+    <item name="android:hint">@string/now_password</item>
+    <item name="android:imeOptions">actionNext</item>
+  </style>
+
+  <style name="NewPwChangeEditText" parent="BasePwChangeEditText">
+    <item name="android:id">@id/new_edit_text</item>
+    <item name="android:hint">@string/new_password</item>
+    <item name="android:imeOptions">actionNext</item>
+  </style>
+
+  <style name="NewConfirmPwChangeEditText" parent="BasePwChangeEditText">
+    <item name="android:id">@id/new_confirm_edit_text</item>
+    <item name="android:hint">@string/new_password_confirm</item>
+    <item name="android:imeOptions">actionDone</item>
   </style>
 
   <!-- Splash Screen theme. -->

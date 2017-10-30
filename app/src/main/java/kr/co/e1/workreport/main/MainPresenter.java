@@ -20,7 +20,7 @@ public interface MainPresenter {
 
     void showLoginFragment(Bundle savedInstanceState);
 
-    void navigateToSettings();
+    void showPasswordChangeDialog();
 
     void changeTheme();
 

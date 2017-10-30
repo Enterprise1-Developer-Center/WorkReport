@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity
         .commit();
   }
 
-  @Override public void navigateToSettings() {
+  @Override public void showPasswordChangeDialog() {
     new PasswordDialog().show(getSupportFragmentManager(), PasswordDialog.class.getSimpleName());
   }
 

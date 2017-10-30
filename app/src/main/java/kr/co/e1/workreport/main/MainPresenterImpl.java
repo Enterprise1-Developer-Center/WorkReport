@@ -29,7 +29,7 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (itemId == R.id.nav_team_report) {
 
     } else if (itemId == R.id.nav_password) {
-      view.navigateToSettings();
+      view.showPasswordChangeDialog();
     } else if (itemId == R.id.nav_review) {
 
     }

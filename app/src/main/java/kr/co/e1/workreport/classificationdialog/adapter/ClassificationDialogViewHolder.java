@@ -7,7 +7,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 
@@ -23,7 +22,6 @@ public class ClassificationDialogViewHolder extends BaseRecyclerAdapter.BaseView
   @BindView(R.id.checkbox) CheckBox checkBox;
   ClassificationSelectableItem selectableItem;
   OnRecyclerItemClickListener<ClassificationSelectableItem> onRecyclerItemClickListener;
-  BaseAdapterView adapterView;
 
   public ClassificationDialogViewHolder(View itemView) {
     super(itemView);
@@ -32,6 +30,5 @@ public class ClassificationDialogViewHolder extends BaseRecyclerAdapter.BaseView
   @DebugLog @OnClick(R.id.recyclerview_item_container) void onItemClick() {
     checkBox.setChecked(!checkBox.isChecked());
     if (checkBox.isChecked()) onRecyclerItemClickListener.onItemClick(selectableItem);
-    adapterView.refresh();
   }
 }

@@ -49,7 +49,6 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
       holder.checkBox.setChecked(item.isSelected());
       holder.checkBox.setEnabled(false);
       holder.onRecyclerItemClickListener = this;
-      holder.adapterView = this;
     }
   }
 
@@ -100,5 +99,6 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
       }
     }
     onRecyclerItemClickListener.onItemClick(item);
+    refresh();
   }
 }

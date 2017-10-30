@@ -11,12 +11,4 @@ public class ProjectSelectableItem extends SelectableItem<Project> {
   public ProjectSelectableItem(Project project, boolean isSelected) {
     super(project, isSelected);
   }
-
-  @Override public boolean equals(SelectableItem item) {
-    if(item == this) {
-      return true;
-    }
-    return false;
-    //return super.equals(item);
-  }
 }

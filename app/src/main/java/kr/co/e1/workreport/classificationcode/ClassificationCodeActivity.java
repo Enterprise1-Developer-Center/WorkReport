@@ -79,8 +79,6 @@ public class ClassificationCodeActivity extends BaseActivity
   public final static String CODE_INTENT_NAME = "code";
 
   @DebugLog @Override public void onItemClick(SelectableItem item) {
-    Timber.d("SelectableItem = " + item.getClassificationCode().toString());
     getIntent().putExtra(CODE_INTENT_NAME, item.getClassificationCode().getCode());
-    Timber.d("onItemClick get code = " + getIntent().getStringExtra("code"));
   }
 }

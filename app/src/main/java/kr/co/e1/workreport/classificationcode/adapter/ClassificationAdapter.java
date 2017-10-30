@@ -75,15 +75,6 @@ public class ClassificationAdapter extends BaseRecyclerAdapter
   @Override public void add(ClassificationCode item) {
     items.add(item);
     selectableItems.add(new SelectableItem(item, false));
-    /*
-    if (item.getCode() != null) {
-      if (item.getCode().length() > 0) {
-        selectableItems.add(new SelectableItem(item, true));
-      } else {
-        selectableItems.add(new SelectableItem(item, false));
-      }
-    }
-    */
   }
 
   @Override public void addAll(List<ClassificationCode> items) {

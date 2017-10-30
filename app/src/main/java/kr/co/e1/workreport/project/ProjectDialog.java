@@ -57,7 +57,11 @@ public class ProjectDialog extends BaseAlertDialogFragment
   }
 
   @Override protected DialogInterface.OnClickListener getOkOnClickListener() {
-    return null;
+    return new DialogInterface.OnClickListener() {
+      @DebugLog @Override public void onClick(DialogInterface dialogInterface, int which) {
+        onDialogClickListener.onDialogClick(bundle);
+      }
+    };
   }
 
   @Override protected DialogInterface.OnClickListener getCancelOnClickListener() {

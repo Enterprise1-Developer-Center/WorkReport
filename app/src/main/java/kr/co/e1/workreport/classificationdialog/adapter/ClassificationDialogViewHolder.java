@@ -33,6 +33,5 @@ public class ClassificationDialogViewHolder extends BaseRecyclerAdapter.BaseView
     checkBox.setChecked(!checkBox.isChecked());
     if (checkBox.isChecked()) onRecyclerItemClickListener.onItemClick(selectableItem);
     adapterView.refresh();
-
   }
 }

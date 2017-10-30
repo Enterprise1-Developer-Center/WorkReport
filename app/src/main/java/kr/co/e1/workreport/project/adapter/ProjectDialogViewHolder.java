@@ -11,6 +11,7 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 import lombok.Setter;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 25
@@ -22,14 +23,16 @@ public class ProjectDialogViewHolder extends BaseRecyclerAdapter.BaseViewHolder 
   @BindView(R.id.textview) TextView textview;
   @Setter private BaseAdapterView adapterView;
   @Setter private ProjectSelectableItem selectableItem;
+  public int position;
 
   public ProjectDialogViewHolder(View itemView) {
     super(itemView);
   }
 
-  @DebugLog @OnClick(R.id.recyclerview_item_container) void onClick(View view) {
-    checkbox.setChecked(!checkbox.isChecked());
+  @DebugLog @OnClick(R.id.recyclerview_item_container) void onClick() {
+    Timber.d("position = " + position);
+    checkbox.setChecked(true);
     if (checkbox.isChecked()) onRecyclerItemClickListener.onItemClick(selectableItem);
-    adapterView.refresh();
+    //adapterView.refresh();
   }
 }

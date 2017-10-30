@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.project.adapter;
 
 import android.view.View;
+import hugo.weaving.DebugLog;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -42,10 +43,12 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
       ProjectSelectableItem selectableItem = selectableItems.get(position);
       Project project = selectableItem.getItem();
       holder.textview.setText(project.getName());
+      holder.checkbox.setChecked(selectableItem.isSelected());
       holder.checkbox.setEnabled(false);
       holder.setAdapterView(this);
       holder.setOnRecyclerItemClickListener(this);
       holder.setSelectableItem(selectableItem);
+      holder.position = position;
     }
   }
 
@@ -53,7 +56,7 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
     return getSize();
   }
 
-  @Override public void refresh() {
+  @DebugLog @Override public void refresh() {
     notifyDataSetChanged();
   }
 
@@ -88,6 +91,14 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void onItemClick(ProjectSelectableItem item) {
+    for (ProjectSelectableItem selectableItem : selectableItems) {
+      if (!selectableItem.equals(item)) {
+        selectableItem.setSelected(false);
+      } else {
+        selectableItem.setSelected(true);
+      }
+    }
     onRecyclerItemClickListener.onItemClick(item);
+    refresh();
   }
 }

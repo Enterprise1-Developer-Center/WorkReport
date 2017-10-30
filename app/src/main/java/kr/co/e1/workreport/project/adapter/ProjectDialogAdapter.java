@@ -17,11 +17,12 @@ import kr.co.e1.workreport.project.vo.Project;
 
 public class ProjectDialogAdapter extends BaseRecyclerAdapter
     implements BaseAdapterDataModel<Project>, BaseAdapterView,
-    OnRecyclerItemClickListener<Project> {
+    OnRecyclerItemClickListener<ProjectSelectableItem> {
 
   private ArrayList<Project> items = new ArrayList<>();
+  private ArrayList<ProjectSelectableItem> selectableItems = new ArrayList<>();
 
-  private OnRecyclerItemClickListener<Project> onRecyclerItemClickListener;
+  private OnRecyclerItemClickListener<ProjectSelectableItem> onRecyclerItemClickListener;
 
   @Inject public ProjectDialogAdapter(OnRecyclerItemClickListener listener) {
     this.onRecyclerItemClickListener = listener;
@@ -38,7 +39,13 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof ProjectDialogViewHolder) {
       ProjectDialogViewHolder holder = (ProjectDialogViewHolder) viewHolder;
-      holder.checkedTextView.setText(items.get(position).getName());
+      ProjectSelectableItem selectableItem = selectableItems.get(position);
+      Project project = selectableItem.getItem();
+      holder.textview.setText(project.getName());
+      holder.checkbox.setEnabled(false);
+      holder.setAdapterView(this);
+      holder.setOnRecyclerItemClickListener(this);
+      holder.setSelectableItem(selectableItem);
     }
   }
 
@@ -52,6 +59,7 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
 
   @Override public void add(Project item) {
     items.add(item);
+    selectableItems.add(new ProjectSelectableItem(item, false));
   }
 
   @Override public void addAll(List<Project> items) {
@@ -76,9 +84,10 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
 
   @Override public void clear() {
     items.clear();
+    selectableItems.clear();
   }
 
-  @Override public void onItemClick(Project item) {
+  @Override public void onItemClick(ProjectSelectableItem item) {
     onRecyclerItemClickListener.onItemClick(item);
   }
 }

@@ -17,7 +17,6 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialog;
 import kr.co.e1.workreport.framework.BaseFragment;
-import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
 import kr.co.e1.workreport.project.ProjectDialog;
 import timber.log.Timber;
 
@@ -25,9 +24,7 @@ import timber.log.Timber;
  * Created by jaeho on 2017. 10. 16
  */
 
-public class ReportFragment extends BaseFragment
-    implements ReportFragmentPresenter.View, OnDialogClickListener<Bundle> {
-  private final static int REQUEST_CODE = 10;
+public class ReportFragment extends BaseFragment implements ReportFragmentPresenter.View {
   @Inject ReportFragmentPresenter presenter;
 
   @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefresh;
@@ -162,46 +159,18 @@ public class ReportFragment extends BaseFragment
   }
 
   @Override public void showCodeDialogFragment() {
-    new ClassificationDialog().setOnDialogClickListener(this)
+    new ClassificationDialog().setOnDialogClickListener(
+        o -> codeTextView.setText(o.getString("code") + " / " + o.getString("work")))
         .show(getFragmentManager(), ClassificationDialog.class.getSimpleName());
   }
 
   @Override public void showProjectChoiceDialog() {
-    new ProjectDialog().show(getFragmentManager(), ProjectDialog.class.getSimpleName());
-
-    /*
-    new AlertDialog.Builder(getActivity()).setTitle(R.string.project)
-        .setSingleChoiceItems(new String[] {
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-            "11 | Profits | Outside Project | 외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수",
-        }, 0, (dialogInterface, which) -> {
-
-        })
-        .setPositiveButton(android.R.string.ok, null)
-        .show();
-    */
+    new ProjectDialog().setOnDialogClickListener(o -> projectTextView.setText(o.getString("name")))
+        .show(getFragmentManager(), ProjectDialog.class.getSimpleName());
   }
 
   @Override public void disableSaveButton() {
     saveButton.setEnabled(false);
     saveButton.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.white));
-  }
-
-  @Override public void onDialogClick(Bundle o) {
-    codeTextView.setText(o.getString("code") + " / " + o.getString("work"));
   }
 }

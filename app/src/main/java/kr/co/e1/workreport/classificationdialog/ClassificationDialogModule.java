@@ -3,8 +3,8 @@ package kr.co.e1.workreport.classificationdialog;
 import dagger.Module;
 import dagger.Provides;
 import hugo.weaving.DebugLog;
-import kr.co.e1.workreport.classificationdialog.adapter.SelectableItem;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
+import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 
 /**
@@ -21,13 +21,13 @@ import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
     return dialog;
   }
 
-  @Provides OnRecyclerItemClickListener<SelectableItem> provideOnRecyclerItemClickListener(
+  @Provides OnRecyclerItemClickListener<ClassificationSelectableItem> provideOnRecyclerItemClickListener(
       ClassificationDialog dialog) {
     return dialog;
   }
 
   @Provides ClassificationDialogAdapter provideClassificationDialogAdapter(
-      OnRecyclerItemClickListener<SelectableItem> listener) {
+      OnRecyclerItemClickListener<ClassificationSelectableItem> listener) {
     return new ClassificationDialogAdapter(listener);
   }
 

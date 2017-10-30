@@ -11,7 +11,7 @@ import butterknife.BindView;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
-import kr.co.e1.workreport.classificationdialog.adapter.SelectableItem;
+import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
@@ -22,7 +22,7 @@ import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
  */
 
 public class ClassificationDialog extends BaseAlertDialogFragment
-    implements ClassificationDialogPresenter.View, OnRecyclerItemClickListener<SelectableItem> {
+    implements ClassificationDialogPresenter.View, OnRecyclerItemClickListener<ClassificationSelectableItem> {
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.text_input_edittext) TextInputEditText workTextInputEditText;
   @Inject ClassificationDialogPresenter presenter;
@@ -89,7 +89,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     }
   }
 
-  @Override public void onItemClick(SelectableItem item) {
-    bundle.putString("code", item.getClassificationCode().getCode());
+  @Override public void onItemClick(ClassificationSelectableItem selectableItem) {
+    bundle.putString("code", selectableItem.getItem().getCode());
   }
 }

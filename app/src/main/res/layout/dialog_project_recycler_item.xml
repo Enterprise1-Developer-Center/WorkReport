@@ -1,12 +1,30 @@
-<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@id/checked_textview"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/recyclerview_item_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:checkMark="?android:attr/listChoiceIndicatorSingle"
-    android:ellipsize="marquee"
-    android:gravity="center_vertical"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-    android:textColor="?android:attr/textColorAlertDialogListItem"
+    android:layout_height="@dimen/dp_70"
     android:background="?attr/selectableItemBackground"
-    />
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/dp_10"
+    android:paddingEnd="@dimen/dp_10"
+    >
+
+  <CheckBox
+      android:id="@id/checkbox"
+      android:layout_width="?attr/actionBarSize"
+      android:layout_height="?attr/actionBarSize"
+      android:background="@drawable/checkbox_selector"
+      android:button="@null"
+      />
+
+  <TextView
+      android:id="@id/textview"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+      tools:text="백년을살아보니"
+      />
+</LinearLayout>

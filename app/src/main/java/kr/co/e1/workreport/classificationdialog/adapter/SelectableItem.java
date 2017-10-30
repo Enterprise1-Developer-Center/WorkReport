@@ -10,13 +10,8 @@ import lombok.Setter;
  */
 
 @AllArgsConstructor public class SelectableItem {
-  @Getter @Setter private boolean isSelected = false;
   @Getter private ClassificationCode classificationCode;
-
-  SelectableItem(ClassificationCode code, boolean isSelected) {
-    this.classificationCode = code;
-    this.isSelected = isSelected;
-  }
+  @Getter @Setter private boolean isSelected = false;
 
   public boolean equals(String code) {
     if (classificationCode != null && classificationCode.getCode() != null && code != null) {

@@ -1,10 +1,10 @@
 package kr.co.e1.workreport.project;
 
-import android.os.Bundle;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
+import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 
 /**
  * Created by jaeho on 2017. 10. 19
@@ -16,7 +16,7 @@ import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
     return dialog;
   }
 
-  @Provides OnRecyclerItemClickListener<Bundle> provideOnRecyclerItemClickListener(
+  @Provides OnRecyclerItemClickListener<ProjectSelectableItem> provideOnRecyclerItemClickListener(
       ProjectDialog dialog) {
     return dialog;
   }

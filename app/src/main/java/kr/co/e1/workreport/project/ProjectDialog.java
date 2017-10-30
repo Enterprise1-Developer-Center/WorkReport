@@ -12,19 +12,28 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
+import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 
 /**
  * Created by jaeho on 2017. 10. 29
  */
 
 public class ProjectDialog extends BaseAlertDialogFragment
-    implements ProjectDialogPresenter.View, OnRecyclerItemClickListener<Bundle> {
+    implements ProjectDialogPresenter.View, OnRecyclerItemClickListener<ProjectSelectableItem> {
 
   @Inject ProjectDialogPresenter presenter;
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     presenter.onActivityCreate(savedInstanceState);
+  }
+
+  OnDialogClickListener<Bundle> onDialogClickListener;
+
+  public ProjectDialog setOnDialogClickListener(OnDialogClickListener<Bundle> listener) {
+    onDialogClickListener = listener;
+    return this;
   }
 
   @Override protected boolean getAttatchRoot() {
@@ -55,8 +64,10 @@ public class ProjectDialog extends BaseAlertDialogFragment
     return null;
   }
 
-  @DebugLog @Override public void onItemClick(Bundle item) {
+  private Bundle bundle = new Bundle();
 
+  @DebugLog @Override public void onItemClick(ProjectSelectableItem selectableItem) {
+    bundle.putString("name", selectableItem.getItem().getName());
   }
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
@@ -74,5 +85,4 @@ public class ProjectDialog extends BaseAlertDialogFragment
   @Override public void refresh() {
     adapterView.refresh();
   }
-
 }

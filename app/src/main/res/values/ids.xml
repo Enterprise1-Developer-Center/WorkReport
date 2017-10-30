@@ -42,4 +42,5 @@
   <item name="text_input_layout" type="id"/>
   <item name="text_input_edittext" type="id"/>
   <item name="checked_textview" type="id"/>
+  <item name="textview" type="id"/>
 </resources>

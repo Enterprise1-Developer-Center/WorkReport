@@ -17,12 +17,12 @@ import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 
 public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     implements BaseAdapterDataModel<ClassificationCode>, BaseAdapterView,
-    OnRecyclerItemClickListener<SelectableItem> {
+    OnRecyclerItemClickListener<ClassificationSelectableItem> {
 
   private ArrayList<ClassificationCode> items = new ArrayList<>();
-  private ArrayList<SelectableItem> selectableItems = new ArrayList<>();
+  private ArrayList<ClassificationSelectableItem> selectableItems = new ArrayList<>();
 
-  private OnRecyclerItemClickListener<SelectableItem> onRecyclerItemClickListener;
+  private OnRecyclerItemClickListener<ClassificationSelectableItem> onRecyclerItemClickListener;
 
   @Inject public ClassificationDialogAdapter(OnRecyclerItemClickListener listener) {
     this.onRecyclerItemClickListener = listener;
@@ -39,8 +39,8 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof ClassificationDialogViewHolder) {
       ClassificationDialogViewHolder holder = (ClassificationDialogViewHolder) viewHolder;
-      SelectableItem item = selectableItems.get(position);
-      ClassificationCode classCode = item.getClassificationCode();
+      ClassificationSelectableItem item = selectableItems.get(position);
+      ClassificationCode classCode = item.getItem();
       holder.selectableItem = selectableItems.get(position);
       holder.codeTextview.setText(classCode.getCode());
       holder.bigClassTextview.setText(classCode.getBigClass());
@@ -63,7 +63,7 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
 
   @Override public void add(ClassificationCode item) {
     items.add(item);
-    selectableItems.add(new SelectableItem(item, false));
+    selectableItems.add(new ClassificationSelectableItem(item, false));
     /*
     if (item.getCode() != null) {
       if (item.getCode().length() > 0) {
@@ -100,8 +100,8 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     selectableItems.clear();
   }
 
-  @Override public void onItemClick(SelectableItem item) {
-    for (SelectableItem selectableItem : selectableItems) {
+  @Override public void onItemClick(ClassificationSelectableItem item) {
+    for (ClassificationSelectableItem selectableItem : selectableItems) {
       if (!selectableItem.equals(item)) {
         selectableItem.setSelected(false);
       } else {

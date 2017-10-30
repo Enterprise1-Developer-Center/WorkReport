@@ -43,4 +43,5 @@
   <item name="text_input_edittext" type="id"/>
   <item name="checked_textview" type="id"/>
   <item name="textview" type="id"/>
+  <item name="fragment_container" type="id"/>
 </resources>

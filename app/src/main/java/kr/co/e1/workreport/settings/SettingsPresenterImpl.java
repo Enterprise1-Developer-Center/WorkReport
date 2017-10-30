@@ -15,6 +15,6 @@ public class SettingsPresenterImpl implements SettingsPresenter {
   }
 
   @Override public void onCreated(Bundle savedInstanceState) {
-
+    view.showSettingsFragment();
   }
 }

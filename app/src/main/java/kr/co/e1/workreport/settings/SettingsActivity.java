@@ -5,6 +5,7 @@ import android.view.MenuItem;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
+import kr.co.e1.workreport.settingsfrag.SettingsFragment;
 
 /**
  * Created by jaeho on 2017. 10. 16
@@ -13,6 +14,7 @@ import kr.co.e1.workreport.framework.BaseActivity;
 public class SettingsActivity extends BaseActivity implements SettingsPresenter.View {
 
   @Inject SettingsPresenter presenter;
+
   @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreated(savedInstanceState);
   }
@@ -35,6 +37,13 @@ public class SettingsActivity extends BaseActivity implements SettingsPresenter.
   }
 
   @Override public void onBackPressed() {
+
     super.onBackPressed();
+  }
+
+  @Override public void showSettingsFragment() {
+    getFragmentManager().beginTransaction()
+        .replace(R.id.fragment_container, SettingsFragment.newInstance(null))
+        .commit();
   }
 }

@@ -12,5 +12,6 @@ public interface SettingsPresenter {
 
   interface View {
 
+    void showSettingsFragment();
   }
 }

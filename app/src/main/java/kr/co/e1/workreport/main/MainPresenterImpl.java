@@ -28,7 +28,7 @@ public class MainPresenterImpl implements MainPresenter {
       // Handle the camera action
     } else if (itemId == R.id.nav_team_report) {
 
-    } else if (itemId == R.id.nav_settings) {
+    } else if (itemId == R.id.nav_password) {
       view.navigateToSettings();
     } else if (itemId == R.id.nav_review) {
 

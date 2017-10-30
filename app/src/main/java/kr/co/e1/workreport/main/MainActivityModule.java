@@ -4,6 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialogComponent;
 import kr.co.e1.workreport.login.LoginFragmentComponent;
+import kr.co.e1.workreport.password.PasswordDialogComponent;
 import kr.co.e1.workreport.project.ProjectDialogComponent;
 import kr.co.e1.workreport.report.ReportFragmentComponent;
 
@@ -12,7 +13,7 @@ import kr.co.e1.workreport.report.ReportFragmentComponent;
  */
 @Module(subcomponents = {
     LoginFragmentComponent.class, ReportFragmentComponent.class,
-    ClassificationDialogComponent.class, ProjectDialogComponent.class
+    ClassificationDialogComponent.class, ProjectDialogComponent.class, PasswordDialogComponent.class
 }) public class MainActivityModule {
 
   @Provides MainPresenter.View provideMainView(MainActivity mainActivity) {

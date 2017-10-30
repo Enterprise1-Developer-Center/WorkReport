@@ -4,6 +4,7 @@ import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialogProvider;
 import kr.co.e1.workreport.login.LoginFragmentProvider;
+import kr.co.e1.workreport.password.PasswordDialogProvider;
 import kr.co.e1.workreport.project.ProjectDialogProvider;
 import kr.co.e1.workreport.report.ReportFragmentProvider;
 
@@ -13,7 +14,7 @@ import kr.co.e1.workreport.report.ReportFragmentProvider;
 
 @Subcomponent(modules = {
     MainActivityModule.class, LoginFragmentProvider.class, ReportFragmentProvider.class,
-    ClassificationDialogProvider.class, ProjectDialogProvider.class
+    ClassificationDialogProvider.class, ProjectDialogProvider.class, PasswordDialogProvider.class
 }) public interface MainActivityComponent extends AndroidInjector<MainActivity> {
   @Subcomponent.Builder abstract class Builder extends AndroidInjector.Builder<MainActivity> {
 

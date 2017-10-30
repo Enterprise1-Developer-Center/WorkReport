@@ -8,8 +8,6 @@ import dagger.android.AndroidInjector;
 import dagger.multibindings.IntoMap;
 import kr.co.e1.workreport.main.MainActivity;
 import kr.co.e1.workreport.main.MainActivityComponent;
-import kr.co.e1.workreport.settings.SettingsActivity;
-import kr.co.e1.workreport.settings.SettingsActivityComponent;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -19,8 +17,4 @@ import kr.co.e1.workreport.settings.SettingsActivityComponent;
   @Binds @IntoMap @ActivityKey(MainActivity.class)
   abstract AndroidInjector.Factory<? extends Activity> bindMainActivity(
       MainActivityComponent.Builder builder);
-
-  @Binds @IntoMap @ActivityKey(SettingsActivity.class)
-  abstract AndroidInjector.Factory<? extends Activity> bindSettingsActivity(
-      SettingsActivityComponent.Builder builder);
 }

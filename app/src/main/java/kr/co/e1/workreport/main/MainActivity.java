@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,8 +16,8 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.login.LoginFragment;
+import kr.co.e1.workreport.password.PasswordDialog;
 import kr.co.e1.workreport.report.ReportFragment;
-import kr.co.e1.workreport.settings.SettingsActivity;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
@@ -60,8 +59,7 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void navigateToSettings() {
-    Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-    startActivity(intent);
+    new PasswordDialog().show(getSupportFragmentManager(), PasswordDialog.class.getSimpleName());
   }
 
   @Override public void changeTheme() {

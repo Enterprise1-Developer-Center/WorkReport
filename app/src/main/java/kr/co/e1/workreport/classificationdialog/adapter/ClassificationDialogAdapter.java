@@ -60,6 +60,10 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     notifyDataSetChanged();
   }
 
+  public void refresh(int position) {
+    notifyItemChanged(position);
+  }
+
   @Override public void add(ClassificationCode item) {
     items.add(item);
     selectableItems.add(new ClassificationSelectableItem(item, false));
@@ -90,6 +94,8 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     selectableItems.clear();
   }
 
+  private int prePosition;
+
   @Override public void onItemClick(ClassificationSelectableItem item) {
     for (ClassificationSelectableItem selectableItem : selectableItems) {
       if (!selectableItem.equals(item)) {
@@ -98,7 +104,9 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
         selectableItem.setSelected(true);
       }
     }
+
+    refresh(prePosition);
+    prePosition = selectableItems.indexOf(item);
     onRecyclerItemClickListener.onItemClick(item);
-    refresh();
   }
 }

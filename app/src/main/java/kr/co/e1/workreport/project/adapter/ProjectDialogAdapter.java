@@ -83,12 +83,19 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
     return items.size();
   }
 
+  public void refresh(int oldPosition) {
+    notifyItemChanged(oldPosition);
+  }
+
   @Override public void clear() {
     items.clear();
     selectableItems.clear();
   }
 
+  private int prePosition;
+
   @Override public void onItemClick(ProjectSelectableItem item) {
+
     for (ProjectSelectableItem selectableItem : selectableItems) {
       if (!selectableItem.equals(item)) {
         selectableItem.setSelected(false);
@@ -96,7 +103,10 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
         selectableItem.setSelected(true);
       }
     }
+
+    refresh(prePosition);
+    prePosition = selectableItems.indexOf(item);
+
     onRecyclerItemClickListener.onItemClick(item);
-    refresh();
   }
 }

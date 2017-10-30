@@ -12,6 +12,7 @@ import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
@@ -30,7 +31,7 @@ public class MainActivity extends BaseActivity
     presenter.onCreate(savedInstanceState);
   }
 
-  @Override public void setListener() {
+  @DebugLog @Override public void setListener() {
     ActionBarDrawerToggle toggle =
         new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
             R.string.navigation_drawer_close);
@@ -95,7 +96,7 @@ public class MainActivity extends BaseActivity
     getSupportFragmentManager().popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE);
   }
 
-  @Override public boolean onNavigationItemSelected(MenuItem item) {
+  @DebugLog @Override public boolean onNavigationItemSelected(MenuItem item) {
     presenter.onNavigationItemSelected(item.getItemId());
     drawer.closeDrawer(GravityCompat.START);
     return true;

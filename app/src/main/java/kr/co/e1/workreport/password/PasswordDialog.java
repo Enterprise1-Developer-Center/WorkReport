@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.password;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
  * Created by jaeho on 2017. 10. 30
  */
 
-public class PasswordDialog extends BaseAlertDialogFragment implements PasswordDialogPresenter.View{
+public class PasswordDialog extends BaseAlertDialogFragment
+    implements PasswordDialogPresenter.View {
   @Inject PasswordDialogPresenter presenter;
+
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     presenter.onActivityCreate(savedInstanceState);
   }
@@ -38,14 +41,21 @@ public class PasswordDialog extends BaseAlertDialogFragment implements PasswordD
   }
 
   @Override protected DialogInterface.OnClickListener getOkOnClickListener() {
-    return new DialogInterface.OnClickListener() {
-      @Override public void onClick(DialogInterface dialogInterface, int which) {
-        presenter.onOkClick();
-      }
-    };
+    return (dialogInterface, which) -> presenter.onOkClick();
   }
 
   @Override protected DialogInterface.OnClickListener getCancelOnClickListener() {
     return null;
+  }
+
+  @Override public void onStart() {
+    super.onStart();
+    AlertDialog dialog = (AlertDialog) getDialog();
+    if (dialog != null) {
+      dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+          .setOnClickListener(view -> {
+
+          });
+    }
   }
 }

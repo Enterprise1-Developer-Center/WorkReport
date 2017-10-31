@@ -21,7 +21,11 @@ import kr.co.e1.workreport.teamreport.vo.TeamReport;
 public class TeamReportActivity extends BaseActivity
     implements TeamReportPresenter.View, OnRecyclerItemClickListener<TeamReport> {
 
+  @BindView(R.id.recyclerview) RecyclerView recyclerView;
+
+  @Inject TeamReportAdapter adapter;
   @Inject TeamReportPresenter presenter;
+  @Inject BaseAdapterView adapterView;
 
   @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreated(savedInstanceState);
@@ -48,13 +52,7 @@ public class TeamReportActivity extends BaseActivity
     return super.onOptionsItemSelected(item);
   }
 
-  @BindView(R.id.recyclerview) RecyclerView recyclerView;
-  @Inject TeamReportAdapter adapter;
-  private BaseAdapterView adapterView;
-
   @Override public void setRecyclerView() {
-    adapterView = adapter;
-    presenter.setAdapterDataModel(adapter);
     LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(adapter);

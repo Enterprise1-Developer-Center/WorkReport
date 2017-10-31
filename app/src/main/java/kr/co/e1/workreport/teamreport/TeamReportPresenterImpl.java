@@ -12,8 +12,10 @@ public class TeamReportPresenterImpl implements TeamReportPresenter {
   private TeamReportPresenter.View view;
   private BaseAdapterDataModel<TeamReport> adapterDataModel;
 
-  TeamReportPresenterImpl(TeamReportPresenter.View view) {
+  TeamReportPresenterImpl(TeamReportPresenter.View view,
+      BaseAdapterDataModel<TeamReport> adapterDataModel) {
     this.view = view;
+    this.adapterDataModel = adapterDataModel;
   }
 
   @Override public void onCreated(Bundle savedInstanceState) {

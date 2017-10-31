@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import dagger.android.support.AndroidSupportInjection;
+import kr.co.e1.workreport.R;
 
 /**
  * Created by jaeho on 2017. 10. 24
@@ -30,13 +31,10 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
         .create();
   }
 
-  protected View contentView;
-
   private View getContentView() {
     View view =
         LayoutInflater.from(getContext()).inflate(getLayoutRes(), getRoot(), getAttatchRoot());
     ButterKnife.bind(this, view);
-    contentView = view;
     return view;
   }
 
@@ -48,6 +46,17 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
   @Override public void onAttach(Context context) {
     AndroidSupportInjection.inject(this);
     super.onAttach(context);
+  }
+
+  protected AlertDialog alertDialog;
+  protected View contentView;
+  @Override public void onStart() {
+    super.onStart();
+    alertDialog = (AlertDialog) getDialog();
+    if (alertDialog != null) {
+      contentView = alertDialog.findViewById(R.id.password_dialog_container);
+      setCancelable(isDialogCancelable());
+    }
   }
 
   protected abstract void onActivityCreate(Bundle savedInstanceState);

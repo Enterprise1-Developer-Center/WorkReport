@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.password;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -67,9 +66,8 @@ public class PasswordDialog extends BaseAlertDialogFragment
 
   @Override public void onStart() {
     super.onStart();
-    AlertDialog dialog = (AlertDialog) getDialog();
-    if (dialog != null) {
-      dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(view -> {
+    if (alertDialog != null) {
+      alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(view -> {
         presenter.onOkClick();
       });
     }

@@ -18,7 +18,6 @@ public class PasswordDialogPresenterImpl implements PasswordDialogPresenter {
   }
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
-    view.setListener();
   }
 
   @DebugLog @Override public void onOkClick() {

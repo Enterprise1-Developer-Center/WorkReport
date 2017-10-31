@@ -51,4 +51,5 @@
   <item name="new_text_input_layout" type="id"/>
   <item name="new_confirm_text_input_layout" type="id"/>
   <item name="progressbar" type="id"/>
+  <item name="password_dialog_container" type="id"/>
 </resources>

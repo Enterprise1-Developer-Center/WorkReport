@@ -2,6 +2,7 @@ package kr.co.e1.workreport.statistics;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
 
@@ -9,9 +10,10 @@ import kr.co.e1.workreport.framework.BaseActivity;
  * Created by jaeho on 2017. 10. 31
  */
 
-public class StatisticsActivity extends BaseActivity {
+public class StatisticsActivity extends BaseActivity implements StatisticsPresenter.View {
+  @Inject StatisticsPresenter presenter;
   @Override protected void onCreated(Bundle savedInstanceState) {
-
+    presenter.onCreated(savedInstanceState);
   }
 
   @Override protected int getLayoutResID() {
@@ -27,7 +29,7 @@ public class StatisticsActivity extends BaseActivity {
   }
 
   @Override protected boolean isDagger() {
-    return false;
+    return true;
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {

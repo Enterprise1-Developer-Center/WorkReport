@@ -34,8 +34,4 @@ public class TeamReportPresenterImpl implements TeamReportPresenter {
     adapterDataModel.add(new TeamReport("장현희", "프로젝트 정보 요약"));
     view.refresh();
   }
-
-  @Override public void setAdapterDataModel(BaseAdapterDataModel<TeamReport> adapterDataModel) {
-    this.adapterDataModel = adapterDataModel;
-  }
 }

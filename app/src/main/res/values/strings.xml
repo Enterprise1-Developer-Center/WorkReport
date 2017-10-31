@@ -26,4 +26,5 @@
   <string name="now_password">현재 비밀번호</string>
   <string name="new_password">새로운 비밀번호</string>
   <string name="new_password_confirm">새로운 비밀번호 확인</string>
+  <string name="input_invalid_value">입력 값이 이상해요.</string>
 </resources>

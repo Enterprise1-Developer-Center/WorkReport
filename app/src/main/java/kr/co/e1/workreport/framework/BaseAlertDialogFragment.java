@@ -30,10 +30,13 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
         .create();
   }
 
+  protected View contentView;
+
   private View getContentView() {
     View view =
         LayoutInflater.from(getContext()).inflate(getLayoutRes(), getRoot(), getAttatchRoot());
     ButterKnife.bind(this, view);
+    contentView = view;
     return view;
   }
 

@@ -3,9 +3,11 @@ package kr.co.e1.workreport.password;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import butterknife.BindView;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -18,7 +20,6 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 public class PasswordDialog extends BaseAlertDialogFragment
     implements PasswordDialogPresenter.View {
 
-  @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefreshLayout;
   @Inject PasswordDialogPresenter presenter;
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
@@ -26,9 +27,14 @@ public class PasswordDialog extends BaseAlertDialogFragment
   }
 
   @Override public void setListener() {
-    swipeRefreshLayout.setOnRefreshListener(() -> {
-      presenter.onRefresh();
-    });
+  }
+
+  @Override public void showSnackBar(int resId) {
+    Snackbar.make(contentView, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showSnackBar(String msg) {
+    Snackbar.make(contentView, msg, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override protected boolean getAttatchRoot() {
@@ -79,11 +85,13 @@ public class PasswordDialog extends BaseAlertDialogFragment
     newConfirmTextInputEditText.setText("");
   }
 
+  @BindView(R.id.progressbar) ProgressBar progressBar;
+
   @Override public void showProgress() {
-    swipeRefreshLayout.setRefreshing(true);
+    progressBar.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideProgress() {
-    swipeRefreshLayout.setRefreshing(false);
+    progressBar.setVisibility(View.INVISIBLE);
   }
 }

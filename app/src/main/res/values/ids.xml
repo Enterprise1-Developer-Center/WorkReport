@@ -55,4 +55,5 @@
   <item name="action_ratio" type="id"/>
   <item name="action_graph" type="id"/>
   <item name="action_total" type="id"/>
+  <item name="bottom_navigation_view" type="id"/>
 </resources>

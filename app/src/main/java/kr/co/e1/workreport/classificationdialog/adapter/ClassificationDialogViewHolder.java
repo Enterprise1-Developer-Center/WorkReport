@@ -5,7 +5,6 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
-import hugo.weaving.DebugLog;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
@@ -27,7 +26,7 @@ public class ClassificationDialogViewHolder extends BaseRecyclerAdapter.BaseView
     super(itemView);
   }
 
-  @DebugLog @OnClick(R.id.recyclerview_item_container) void onItemClick() {
+  @OnClick(R.id.recyclerview_item_container) void onItemClick() {
     checkBox.setChecked(!checkBox.isChecked());
     if (checkBox.isChecked()) onRecyclerItemClickListener.onItemClick(selectableItem);
   }

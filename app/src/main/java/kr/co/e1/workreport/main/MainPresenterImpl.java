@@ -27,11 +27,11 @@ public class MainPresenterImpl implements MainPresenter {
     if (itemId == R.id.nav_statistics) {
       view.navigateToStatistics();
     } else if (itemId == R.id.nav_team_report) {
-
+      view.navigateToTeamReport();
     } else if (itemId == R.id.nav_password) {
       view.showPasswordChangeDialog();
     } else if (itemId == R.id.nav_review) {
-
+      view.navigateToReview();
     }
   }
 

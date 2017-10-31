@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
@@ -20,6 +21,7 @@ import kr.co.e1.workreport.login.LoginFragment;
 import kr.co.e1.workreport.password.PasswordDialog;
 import kr.co.e1.workreport.report.ReportFragment;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
+import kr.co.e1.workreport.teamreport.TeamReportActivity;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
@@ -103,6 +105,15 @@ public class MainActivity extends BaseActivity
   @Override public void navigateToStatistics() {
     Intent intent = new Intent(getApplicationContext(), StatisticsActivity.class);
     startActivity(intent);
+  }
+
+  @Override public void navigateToTeamReport() {
+    Intent intent = new Intent(getApplicationContext(), TeamReportActivity.class);
+    startActivity(intent);
+  }
+
+  @Override public void navigateToReview() {
+    new AlertDialog.Builder(this).setTitle("Review").setMessage("Please write review").show();
   }
 
   @DebugLog @Override public boolean onNavigationItemSelected(MenuItem item) {

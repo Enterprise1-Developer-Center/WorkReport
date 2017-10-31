@@ -33,5 +33,9 @@ public interface MainPresenter {
     void popBackStack(String name);
 
     void navigateToStatistics();
+
+    void navigateToTeamReport();
+
+    void navigateToReview();
   }
 }

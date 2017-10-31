@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorIndigo_100"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:gravity="center"
@@ -13,11 +13,9 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="kr.co.e1.workreport.main.MainActivity"
     >
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:gravity="center"
-      android:text="Graph"
-      tools:text="Graph"
-      android:background="@color/colorIndigo_100"/>
+  <ImageView
+      android:layout_width="?actionBarSize"
+      android:layout_height="?actionBarSize"
+      app:srcCompat = "@drawable/ic_bubble_chart"
+      />
 </LinearLayout>

@@ -11,7 +11,6 @@ import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.graph.GraphFragment;
 import kr.co.e1.workreport.operation.OperationFragment;
 import kr.co.e1.workreport.total.TotalFragment;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -43,25 +42,16 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
-    onBackPressed();
+    finish();
     return super.onOptionsItemSelected(item);
   }
-
-  @Override public void onBackPressed() {
-    //super.onBackPressed();
-    Timber.d("stackCount = " + getSupportFragmentManager().getBackStackEntryCount());
-  }
-
-  private OperationFragment of = OperationFragment.newInstance();
-  private GraphFragment gf = GraphFragment.newInstance();
-  private TotalFragment tf = TotalFragment.newInstance();
 
   @Override public void showOperationFragment() {
     bottomNavigationView.getMenu().getItem(POSITION_NAVI_RATIO).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.fade_in_animation, R.animator.fade_out_animation,
             R.animator.fade_in_animation, R.animator.fade_out_animation)
-        .replace(R.id.fragment_container, of)
+        .replace(R.id.fragment_container, OperationFragment.newInstance())
         .commit();
   }
 
@@ -70,7 +60,7 @@ public class StatisticsActivity extends BaseActivity
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.fade_in_animation, R.animator.fade_out_animation,
             R.animator.fade_in_animation, R.animator.fade_out_animation)
-        .replace(R.id.fragment_container, gf)
+        .replace(R.id.fragment_container, GraphFragment.newInstance())
         .commit();
   }
 
@@ -79,7 +69,7 @@ public class StatisticsActivity extends BaseActivity
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.fade_in_animation, R.animator.fade_out_animation,
             R.animator.fade_in_animation, R.animator.fade_out_animation)
-        .replace(R.id.fragment_container, tf)
+        .replace(R.id.fragment_container, TotalFragment.newInstance())
         .commit();
   }
 

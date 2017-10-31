@@ -52,4 +52,7 @@
   <item name="new_confirm_text_input_layout" type="id"/>
   <item name="progressbar" type="id"/>
   <item name="password_dialog_container" type="id"/>
+  <item name="action_ratio" type="id"/>
+  <item name="action_graph" type="id"/>
+  <item name="action_total" type="id"/>
 </resources>

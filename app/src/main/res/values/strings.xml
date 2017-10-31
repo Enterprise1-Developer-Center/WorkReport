@@ -27,4 +27,7 @@
   <string name="new_password">새로운 비밀번호</string>
   <string name="new_password_confirm">새로운 비밀번호 확인</string>
   <string name="input_invalid_value">입력 값이 이상해요.</string>
+  <string name="operation_ratio">가동률</string>
+  <string name="graph">그래프</string>
+  <string name="total">집계</string>
 </resources>

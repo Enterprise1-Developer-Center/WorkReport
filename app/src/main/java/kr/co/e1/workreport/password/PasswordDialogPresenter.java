@@ -12,7 +12,18 @@ public interface PasswordDialogPresenter {
 
   void onOkClick();
 
+  void onRefresh();
+
   interface View {
 
+    void dismiss();
+
+    void clear();
+
+    void showProgress();
+
+    void hideProgress();
+
+    void setListener();
   }
 }

@@ -150,8 +150,8 @@
   <style name="BasePwChangeTextInputLayout">
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">wrap_content</item>
-    <item name="android:layout_marginStart">@dimen/dp_10</item>
-    <item name="android:layout_marginEnd">@dimen/dp_10</item>
+    <item name="android:layout_marginStart">@dimen/dp_20</item>
+    <item name="android:layout_marginEnd">@dimen/dp_20</item>
   </style>
 
   <style name="NowPwChangeTextInputLayout" parent="BasePwChangeTextInputLayout">

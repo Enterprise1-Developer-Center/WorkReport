@@ -44,12 +44,15 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
   }
 
   @Override public void onAttach(Context context) {
-    AndroidSupportInjection.inject(this);
+    if (isDagger()) AndroidSupportInjection.inject(this);
     super.onAttach(context);
   }
 
+  protected abstract boolean isDagger();
+
   protected AlertDialog alertDialog;
   protected View contentView;
+
   @Override public void onStart() {
     super.onStart();
     alertDialog = (AlertDialog) getDialog();

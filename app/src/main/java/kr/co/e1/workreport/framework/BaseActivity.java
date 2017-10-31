@@ -28,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    AndroidInjection.inject(this);
+    if (isDagger()) AndroidInjection.inject(this);
     setContentView(getLayoutResID());
     unbinder = ButterKnife.bind(this);
     toolbar.setTitle(getTitleResId());
@@ -56,4 +56,6 @@ public abstract class BaseActivity extends AppCompatActivity {
   protected abstract @StringRes int getTitleResId();
 
   protected abstract boolean isDisplayHomeAsUpEnabled();
+
+  protected abstract boolean isDagger();
 }

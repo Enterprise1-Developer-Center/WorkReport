@@ -34,6 +34,10 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     return this;
   }
 
+  @Override protected boolean isDagger() {
+    return true;
+  }
+
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     presenter.onActivityCreate(savedInstanceState);
   }

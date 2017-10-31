@@ -38,6 +38,10 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
     presenter.onActivityCreate(savedInstanceState);
   }
 
+  @Override protected boolean isDagger() {
+    return true;
+  }
+
   public static ReportFragment newInstance(Bundle args) {
     ReportFragment f = new ReportFragment();
     f.setArguments(args);

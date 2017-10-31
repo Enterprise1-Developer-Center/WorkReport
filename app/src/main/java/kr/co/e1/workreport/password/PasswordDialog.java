@@ -64,6 +64,10 @@ public class PasswordDialog extends BaseAlertDialogFragment
     return null;
   }
 
+  @Override protected boolean isDagger() {
+    return true;
+  }
+
   @Override public void onStart() {
     super.onStart();
     if (alertDialog != null) {

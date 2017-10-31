@@ -46,6 +46,8 @@ public abstract class BaseFragment extends Fragment {
 
   @Override public void onAttach(Context context) {
     super.onAttach(context);
-    AndroidSupportInjection.inject(this);
+    if(isDagger())AndroidSupportInjection.inject(this);
   }
+
+  protected abstract boolean isDagger();
 }

@@ -38,6 +38,10 @@ public class LoginFragment extends BaseFragment implements LoginFragmentPresente
     presenter.onActivityCreate(savedInstanceState);
   }
 
+  @Override protected boolean isDagger() {
+    return true;
+  }
+
   public static Fragment newInstance(Bundle args) {
     LoginFragment f = new LoginFragment();
     f.setArguments(args);

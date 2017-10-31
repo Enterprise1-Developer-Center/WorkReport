@@ -43,6 +43,10 @@ public class ClassificationCodeActivity extends BaseActivity
     return true;
   }
 
+  @Override protected boolean isDagger() {
+    return true;
+  }
+
   @Inject ClassificationAdapter adapter;
   @Inject BaseAdapterView adapterView;
 

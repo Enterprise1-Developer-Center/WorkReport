@@ -28,6 +28,10 @@
         android:name=".classificationcode.ClassificationCodeActivity"
         android:screenOrientation="portrait"
         android:windowSoftInputMode="adjustResize"/>
+    <activity
+        android:name=".statistics.StatisticsActivity"
+        android:screenOrientation="portrait"
+        android:windowSoftInputMode="adjustResize"/>
     <activity android:name="com.worklight.wlclient.ui.UIActivity"/>
   </application>
 

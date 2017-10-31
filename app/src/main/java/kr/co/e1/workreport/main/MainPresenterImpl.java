@@ -25,7 +25,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void onNavigationItemSelected(int itemId) {
     if (itemId == R.id.nav_statistics) {
-      // Handle the camera action
+      view.navigateToStatistics();
     } else if (itemId == R.id.nav_team_report) {
 
     } else if (itemId == R.id.nav_password) {

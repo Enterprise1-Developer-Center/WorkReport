@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.login.LoginFragment;
 import kr.co.e1.workreport.password.PasswordDialog;
 import kr.co.e1.workreport.report.ReportFragment;
+import kr.co.e1.workreport.statistics.StatisticsActivity;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
@@ -78,6 +80,10 @@ public class MainActivity extends BaseActivity
     return false;
   }
 
+  @Override protected boolean isDagger() {
+    return true;
+  }
+
   @Override public void onBackPressed() {
     int stackCount = getSupportFragmentManager().getBackStackEntryCount();
     if (stackCount > 0) {
@@ -92,6 +98,11 @@ public class MainActivity extends BaseActivity
 
   @Override public void popBackStack(String name) {
     getSupportFragmentManager().popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+  }
+
+  @Override public void navigateToStatistics() {
+    Intent intent = new Intent(getApplicationContext(), StatisticsActivity.class);
+    startActivity(intent);
   }
 
   @DebugLog @Override public boolean onNavigationItemSelected(MenuItem item) {

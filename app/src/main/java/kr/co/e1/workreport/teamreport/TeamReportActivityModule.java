@@ -5,11 +5,12 @@ import dagger.Provides;
 import hugo.weaving.DebugLog;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
+import kr.co.e1.workreport.teamreportdialog.TeamReportDialogComponent;
 
 /**
  * Created by jaeho on 2017. 9. 25
  */
-@Module public class TeamReportActivityModule {
+@Module(subcomponents = { TeamReportDialogComponent.class}) public class TeamReportActivityModule {
 
   @DebugLog @Provides TeamReportPresenter.View provideTeamReportView(TeamReportActivity TeamReportActivity) {
     return TeamReportActivity;

@@ -6,13 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import butterknife.BindView;
+import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
+import timber.log.Timber;
 
 /**
- * Created by jaeho on 2017. 11. 1a
+ * Created by jaeho on 2017. 11. 1
  */
-public class TeamReportDialog extends BaseAlertDialogFragment {
+public class TeamReportDialog extends BaseAlertDialogFragment
+    implements TeamReportDialogPresenter.View {
   @BindView(R.id.save_button) ImageView saveButton;
 
   @Override protected boolean isNegativeButton() {
@@ -24,10 +27,13 @@ public class TeamReportDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected boolean isDagger() {
-    return false;
+    return true;
   }
 
+  @Inject TeamReportDialogPresenter presenter;
+
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
+    Timber.d("presenter = " + presenter);
     saveButton.setVisibility(View.GONE);
   }
 

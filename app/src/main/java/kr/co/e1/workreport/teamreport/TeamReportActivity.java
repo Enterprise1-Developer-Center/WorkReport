@@ -1,10 +1,14 @@
 package kr.co.e1.workreport.teamreport;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import butterknife.BindView;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -20,7 +24,8 @@ import kr.co.e1.workreport.teamreportdialog.TeamReportDialog;
  */
 
 public class TeamReportActivity extends BaseActivity
-    implements TeamReportPresenter.View, OnRecyclerItemClickListener<TeamReport> {
+    implements TeamReportPresenter.View, OnRecyclerItemClickListener<TeamReport>,
+    HasSupportFragmentInjector {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
 
@@ -64,6 +69,13 @@ public class TeamReportActivity extends BaseActivity
   }
 
   @DebugLog @Override public void onItemClick(TeamReport item) {
-    new TeamReportDialog().show(getSupportFragmentManager(),TeamReportDialog.class.getSimpleName());
+    new TeamReportDialog().show(getSupportFragmentManager(),
+        TeamReportDialog.class.getSimpleName());
+  }
+
+  @Inject DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
+
+  @Override public AndroidInjector<Fragment> supportFragmentInjector() {
+    return fragmentDispatchingAndroidInjector;
   }
 }

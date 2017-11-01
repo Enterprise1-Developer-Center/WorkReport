@@ -41,6 +41,14 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
     view.showProgress();
     new Handler().postDelayed(() -> {
       view.hideProgress();
+      view.setGroup("BS");
+      view.setPerson("jaeho");
+      view.setStartTime("19:00");
+      view.setEndTime("22:00");
+      view.setCode("11 | show me the money");
+      view.setProject("show me the mory");
+      view.setLastEditDateTime("2017-10-23(수) 14:12");
+      view.setWorkTime("03:00");
     }, 2000);
   }
 }

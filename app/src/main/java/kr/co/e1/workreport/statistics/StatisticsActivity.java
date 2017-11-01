@@ -3,8 +3,10 @@ package kr.co.e1.workreport.statistics;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 import butterknife.BindView;
+import dagger.android.AndroidInjector;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
@@ -79,5 +81,9 @@ public class StatisticsActivity extends BaseActivity
 
   @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     return presenter.onBottomNavigationItemSelected(item.getItemId());
+  }
+
+  @Override public AndroidInjector<Fragment> supportFragmentInjector() {
+    return null;
   }
 }

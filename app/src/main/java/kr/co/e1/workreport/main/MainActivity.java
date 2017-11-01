@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -25,7 +24,7 @@ import kr.co.e1.workreport.teamreport.TeamReportActivity;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
-    HasSupportFragmentInjector, LoginCommunicationListener {
+    LoginCommunicationListener {
 
   @Inject MainPresenter presenter;
   @BindView(R.id.navigation_view) NavigationView navigationView;

@@ -13,13 +13,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
+import dagger.android.support.HasSupportFragmentInjector;
 import kr.co.e1.workreport.R;
 
 /**
  * Created by jaeho on 2017. 9. 25
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements HasSupportFragmentInjector {
 
   private Unbinder unbinder;
   protected @BindView(R.id.toolbar) Toolbar toolbar;

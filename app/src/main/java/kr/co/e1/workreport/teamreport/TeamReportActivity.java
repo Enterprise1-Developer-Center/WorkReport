@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -24,8 +23,7 @@ import kr.co.e1.workreport.teamreportdialog.TeamReportDialog;
  */
 
 public class TeamReportActivity extends BaseActivity
-    implements TeamReportPresenter.View, OnRecyclerItemClickListener<TeamReport>,
-    HasSupportFragmentInjector {
+    implements TeamReportPresenter.View, OnRecyclerItemClickListener<TeamReport> {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
 

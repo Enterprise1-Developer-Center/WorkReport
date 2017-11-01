@@ -11,7 +11,7 @@ public interface LoginFragmentPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
-  void onLoginClick(String id, String pw, LoginCommunicationListener listener);
+  void onPositiveClick(String id, String pw, LoginCommunicationListener listener);
 
   interface View {
 
@@ -22,5 +22,11 @@ public interface LoginFragmentPresenter {
     void showPWError(String msg);
 
     void hideKeyboard();
+
+    void dismiss();
+
+    void showProgress();
+
+    void hideProgress();
   }
 }

@@ -11,9 +11,9 @@ public interface PasswordDialogPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
-  void onOkClick();
-
   void onRefresh();
+
+  void onPositiveClick();
 
   interface View {
 

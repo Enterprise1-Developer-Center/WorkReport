@@ -3,7 +3,6 @@ package kr.co.e1.workreport.report;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
-import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -29,7 +27,17 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   @Inject ReportFragmentPresenter presenter;
 
   @BindView(R.id.save_button) ImageView saveButton;
-  @BindView(R.id.progressbar) ProgressBar progressBar;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
+  @BindView(R.id.root_view) View rootView;
+  @BindView(R.id.date_textview) TextView dateTextView;
+  @BindView(R.id.start_time_textview) TextView startTimeTextView;
+  @BindView(R.id.end_time_textview) TextView endTimeTextView;
+  @BindView(R.id.group_textview) TextView groupTextView;
+  @BindView(R.id.person_textview) TextView personTextView;
+  @BindView(R.id.code_textview) TextView codeTextView;
+  @BindView(R.id.project_textview) TextView projectTextView;
+  @BindView(R.id.last_edit_textview) TextView lastEditTextView;
+  @BindView(R.id.work_time_textview) TextView workTimeTextView;
 
   @Override protected int getLayoutResID() {
     return R.layout.fragment_report;
@@ -67,8 +75,6 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
       presenter.onReportDateSet(year, month, dayOfMonth);
     }, cYear, cMonth, cDayOfMonth).show();
   }
-
-  @BindView(R.id.date_textview) TextView dateTextView;
 
   @Override public void setReportDate(String date) {
     dateTextView.setText(date);
@@ -117,49 +123,33 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
     }, cHourOfDay, cMinute, true).show();
   }
 
-  @BindView(R.id.start_time_textview) TextView startTimeTextView;
-
-  @DebugLog @Override public void setStartTime(String startTime) {
+  @Override public void setStartTime(String startTime) {
     startTimeTextView.setText(startTime);
   }
 
-  @BindView(R.id.end_time_textview) TextView endTimeTextView;
-
-  @DebugLog @Override public void setEndTime(String endTime) {
+  @Override public void setEndTime(String endTime) {
     endTimeTextView.setText(endTime);
   }
-
-  @BindView(R.id.group_textview) TextView groupTextView;
 
   @Override public void setGroup(String group) {
     groupTextView.setText(group);
   }
 
-  @BindView(R.id.person_textview) TextView personTextView;
-
   @Override public void setPerson(String person) {
     personTextView.setText(person);
   }
-
-  @BindView(R.id.code_textview) TextView codeTextView;
 
   @Override public void setCode(String code) {
     codeTextView.setText(code);
   }
 
-  @BindView(R.id.project_textview) TextView projectTextView;
-
   @Override public void setProject(String project) {
     projectTextView.setText(project);
   }
 
-  @BindView(R.id.last_edit_textview) TextView lastEditTextView;
-
   @Override public void setLastEditDateTime(String lastEditDateTime) {
     lastEditTextView.setText(lastEditDateTime);
   }
-
-  @Nullable @BindView(R.id.work_time_textview) TextView workTimeTextView;
 
   @Override public void setWorkTime(String workTime) {
     workTimeTextView.setText(workTime);
@@ -175,7 +165,7 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
     new ProjectDialog().setOnDialogClickListener(o -> projectTextView.setText(o.getString("name")))
         .show(getFragmentManager(), ProjectDialog.class.getSimpleName());
   }
-  @BindView(R.id.root_view) View rootView;
+
   @Override public void showSnakeBar(int resId) {
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }

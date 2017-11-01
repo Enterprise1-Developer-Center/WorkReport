@@ -26,12 +26,11 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(getTitle());
     if (isPositiveButton()) {
-      builder.setPositiveButton(android.R.string.ok, getOkOnClickListener());
+      builder.setPositiveButton(android.R.string.ok, null);
     }
     if (isNegativeButton()) {
-      builder.setNegativeButton(android.R.string.cancel, getCancelOnClickListener());
+      builder.setNegativeButton(android.R.string.cancel, null);
     }
-    builder.setCancelable(isDialogCancelable());
     builder.setView(getContentView());
     builder.create();
     return builder.create();
@@ -43,7 +42,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   private View getContentView() {
     View view =
-        LayoutInflater.from(getContext()).inflate(getLayoutRes(), getRoot(), getAttatchRoot());
+        LayoutInflater.from(getContext()).inflate(getLayoutResId(), getRoot(), getAttatchRoot());
     ButterKnife.bind(this, view);
     return view;
   }
@@ -69,6 +68,10 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
     if (alertDialog != null) {
       contentView = alertDialog.findViewById(R.id.password_dialog_container);
       setCancelable(isDialogCancelable());
+      alertDialog.getButton(DialogInterface.BUTTON_POSITIVE)
+          .setOnClickListener(onPositiveClickListener());
+      alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+          .setOnClickListener(onNegativeClickListener());
     }
   }
 
@@ -76,7 +79,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   protected abstract boolean getAttatchRoot();
 
-  protected abstract @LayoutRes int getLayoutRes();
+  protected abstract @LayoutRes int getLayoutResId();
 
   protected abstract ViewGroup getRoot();
 
@@ -84,7 +87,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   protected abstract @StringRes int getTitle();
 
-  protected abstract DialogInterface.OnClickListener getOkOnClickListener();
+  protected abstract View.OnClickListener onPositiveClickListener();
 
-  protected abstract DialogInterface.OnClickListener getCancelOnClickListener();
+  protected abstract View.OnClickListener onNegativeClickListener();
 }

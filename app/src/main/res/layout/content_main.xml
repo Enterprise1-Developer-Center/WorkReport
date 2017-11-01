@@ -2,8 +2,44 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@id/fragment_report_container"
+    android:id="@id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    />
+    >
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+      <include layout="@layout/main_item_date"/>
+      <include layout="@layout/main_item_group"/>
+      <include layout="@layout/main_item_person"/>
+      <include layout="@layout/main_item_start_time"/>
+      <include layout="@layout/main_item_end_time"/>
+      <include layout="@layout/main_item_work_time"/>
+      <include layout="@layout/main_item_code"/>
+      <include layout="@layout/main_item_project"/>
+      <include layout="@layout/main_item_last_edit"/>
+      <ProgressBar
+          android:id="@id/progress_bar"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:visibility="invisible"
+          />
+      <ImageView
+          android:id="@id/save_button"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/dp_44"
+          android:clickable="true"
+          android:src="@drawable/ic_save"
+          />
+    </LinearLayout>
+  </ScrollView>
+
+
+</FrameLayout>

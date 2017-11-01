@@ -10,7 +10,6 @@
   <item name="project_container" type="id"/>
   <item name="last_edit_container" type="id"/>
   <item name="date_textview" type="id"/>
-  <item name="login_button" type="id"/>
   <item name="id_edittext" type="id"/>
   <item name="pw_edittext" type="id"/>
   <item name="id_edittext_layout" type="id"/>
@@ -50,7 +49,7 @@
   <item name="now_text_input_layout" type="id"/>
   <item name="new_text_input_layout" type="id"/>
   <item name="new_confirm_text_input_layout" type="id"/>
-  <item name="progressbar" type="id"/>
+  <item name="progress_bar" type="id"/>
   <item name="password_dialog_container" type="id"/>
   <item name="action_ratio" type="id"/>
   <item name="action_graph" type="id"/>

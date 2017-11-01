@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.password;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -40,7 +39,7 @@ public class PasswordDialog extends BaseAlertDialogFragment
     return false;
   }
 
-  @Override protected int getLayoutRes() {
+  @Override protected int getLayoutResId() {
     return R.layout.dialog_password;
   }
 
@@ -56,12 +55,16 @@ public class PasswordDialog extends BaseAlertDialogFragment
     return R.string.change_pw;
   }
 
-  @Override protected DialogInterface.OnClickListener getOkOnClickListener() {
-    return null;
+  @Override protected View.OnClickListener onPositiveClickListener() {
+    return view -> {
+      presenter.onPositiveClick();
+    };
   }
 
-  @Override protected DialogInterface.OnClickListener getCancelOnClickListener() {
-    return null;
+  @Override protected View.OnClickListener onNegativeClickListener() {
+    return view -> {
+      dismiss();
+    };
   }
 
   @Override protected boolean isNegativeButton() {
@@ -76,15 +79,6 @@ public class PasswordDialog extends BaseAlertDialogFragment
     return true;
   }
 
-  @Override public void onStart() {
-    super.onStart();
-    if (alertDialog != null) {
-      alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(view -> {
-        presenter.onOkClick();
-      });
-    }
-  }
-
   @BindView(R.id.now_edit_text) TextInputEditText nowTextInputEditText;
   @BindView(R.id.new_edit_text) TextInputEditText newTextInputEditText;
   @BindView(R.id.new_confirm_edit_text) TextInputEditText newConfirmTextInputEditText;
@@ -95,7 +89,7 @@ public class PasswordDialog extends BaseAlertDialogFragment
     newConfirmTextInputEditText.setText("");
   }
 
-  @BindView(R.id.progressbar) ProgressBar progressBar;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
 
   @Override public void showProgress() {
     progressBar.setVisibility(View.VISIBLE);

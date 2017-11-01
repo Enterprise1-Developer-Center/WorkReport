@@ -1,7 +1,6 @@
 package kr.co.e1.workreport.teamreportdialog;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +44,7 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     return false;
   }
 
-  @Override protected int getLayoutRes() {
+  @Override protected int getLayoutResId() {
     return R.layout.fragment_report;
   }
 
@@ -61,12 +60,16 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     return R.string.empty_text;
   }
 
-  @Override protected DialogInterface.OnClickListener getOkOnClickListener() {
-    return null;
+  @Override protected View.OnClickListener onPositiveClickListener() {
+    return view -> {
+      dismiss();
+    };
   }
 
-  @Override protected DialogInterface.OnClickListener getCancelOnClickListener() {
-    return null;
+  @Override protected View.OnClickListener onNegativeClickListener() {
+    return view -> {
+
+    };
   }
 
   @Override public void hideSaveButton() {
@@ -91,7 +94,7 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     dateTextView.setText(date);
   }
 
-  @BindView(R.id.progressbar) ProgressBar progressBar;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
 
   @Override public void showProgress() {
     progressBar.setVisibility(View.VISIBLE);

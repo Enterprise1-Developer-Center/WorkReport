@@ -1,11 +1,11 @@
 package kr.co.e1.workreport.classificationdialog;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.ViewGroup;
 import butterknife.BindView;
 import javax.inject.Inject;
@@ -58,7 +58,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     return false;
   }
 
-  @Override protected int getLayoutRes() {
+  @Override protected int getLayoutResId() {
     return R.layout.dialog_classification;
   }
 
@@ -76,16 +76,17 @@ public class ClassificationDialog extends BaseAlertDialogFragment
 
   private Bundle bundle = new Bundle();
 
-  @Override protected DialogInterface.OnClickListener getOkOnClickListener() {
-    return (dialogInterface, witch) -> {
+  @Override protected View.OnClickListener onPositiveClickListener() {
+    return view -> {
       bundle.putString("work", workTextInputEditText.getText().toString().trim());
       if (TextUtils.isEmpty(bundle.getString("code"))) bundle.putString("code", "");
       onDialogClickListener.onDialogClick(bundle);
+      dismiss();
     };
   }
 
-  @Override protected DialogInterface.OnClickListener getCancelOnClickListener() {
-    return null;
+  @Override protected View.OnClickListener onNegativeClickListener() {
+    return view -> dismiss();
   }
 
   @Override public void setRecyclerView() {

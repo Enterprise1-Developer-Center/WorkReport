@@ -2,18 +2,18 @@ package kr.co.e1.workreport.login;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import butterknife.BindView;
-import butterknife.OnClick;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.framework.BaseFragment;
+import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.SystemUtility;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
 
@@ -21,38 +21,63 @@ import kr.co.e1.workreport.main.LoginCommunicationListener;
  * Created by jaeho on 2017. 9. 25
  */
 
-public class LoginFragment extends BaseFragment implements LoginFragmentPresenter.View {
+public class LoginFragment extends BaseAlertDialogFragment implements LoginFragmentPresenter.View {
 
   @Inject LoginFragmentPresenter presenter;
   @BindView(R.id.id_edittext) EditText idEdittext;
   @BindView(R.id.pw_edittext) EditText pwEdittext;
-  @BindView(R.id.login_button) ImageView loginButton;
   @BindView(R.id.id_edittext_layout) TextInputLayout idEdittextLayout;
   @BindView(R.id.pw_edittext_layout) TextInputLayout pwEdittextLayout;
-
-  @Override protected int getLayoutResID() {
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
+  @Override protected int getLayoutResId() {
     return R.layout.fragment_login;
+  }
+
+  @Override protected ViewGroup getRoot() {
+    return null;
+  }
+
+  @Override protected boolean isDialogCancelable() {
+    return false;
+  }
+
+  @Override protected int getTitle() {
+    return R.string.login;
+  }
+
+  @Override protected View.OnClickListener onPositiveClickListener() {
+    return view -> {
+      String id = idEdittext.getText().toString().trim();
+      String pw = pwEdittext.getText().toString().trim();
+      LoginCommunicationListener listener = (LoginCommunicationListener) getActivity();
+      presenter.onPositiveClick(id, pw, listener);
+    };
+  }
+
+  @Override protected View.OnClickListener onNegativeClickListener() {
+    return view -> {
+      getActivity().finish();
+    };
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     presenter.onActivityCreate(savedInstanceState);
   }
 
-  @Override protected boolean isDagger() {
+  @Override protected boolean getAttatchRoot() {
+    return false;
+  }
+
+  @Override protected boolean isNegativeButton() {
     return true;
   }
 
-  public static Fragment newInstance(Bundle args) {
-    LoginFragment f = new LoginFragment();
-    f.setArguments(args);
-    return f;
+  @Override protected boolean isPositiveButton() {
+    return true;
   }
 
-  @OnClick(R.id.login_button) void onLoginClick() {
-    String id = idEdittext.getText().toString().trim();
-    String pw = pwEdittext.getText().toString().trim();
-    LoginCommunicationListener listener = (LoginCommunicationListener) getActivity();
-    presenter.onLoginClick(id, pw, listener);
+  @Override protected boolean isDagger() {
+    return true;
   }
 
   @Override public void onDestroyView() {
@@ -88,5 +113,13 @@ public class LoginFragment extends BaseFragment implements LoginFragmentPresente
   @Override public void hideKeyboard() {
     SystemUtility.hideKeyboard(getContext(), idEdittext);
     SystemUtility.hideKeyboard(getContext(), pwEdittext);
+  }
+
+  @Override public void showProgress() {
+    progressBar.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void hideProgress() {
+    progressBar.setVisibility(View.INVISIBLE);
   }
 }

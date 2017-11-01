@@ -1,9 +1,9 @@
 package kr.co.e1.workreport.project;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
@@ -54,7 +54,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
     return false;
   }
 
-  @Override protected int getLayoutRes() {
+  @Override protected int getLayoutResId() {
     return R.layout.dialog_project;
   }
 
@@ -70,12 +70,17 @@ public class ProjectDialog extends BaseAlertDialogFragment
     return R.string.project_name;
   }
 
-  @Override protected DialogInterface.OnClickListener getOkOnClickListener() {
-    return (dialogInterface, which) -> onDialogClickListener.onDialogClick(bundle);
+  @Override protected View.OnClickListener onPositiveClickListener() {
+    return view -> {
+      onDialogClickListener.onDialogClick(bundle);
+      dismiss();
+    };
   }
 
-  @Override protected DialogInterface.OnClickListener getCancelOnClickListener() {
-    return null;
+  @Override protected View.OnClickListener onNegativeClickListener() {
+    return view -> {
+      dismiss();
+    };
   }
 
   private Bundle bundle = new Bundle();
@@ -85,7 +90,6 @@ public class ProjectDialog extends BaseAlertDialogFragment
   }
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
-
 
   @Override public void setRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

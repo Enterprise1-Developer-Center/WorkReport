@@ -3,7 +3,6 @@ package kr.co.e1.workreport.password;
 import android.os.Bundle;
 import android.os.Handler;
 import hugo.weaving.DebugLog;
-import kr.co.e1.workreport.R;
 
 /**
  * Created by jaeho on 2017. 10. 30
@@ -20,12 +19,12 @@ public class PasswordDialogPresenterImpl implements PasswordDialogPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
   }
 
-  @DebugLog @Override public void onOkClick() {
+  @DebugLog @Override public void onPositiveClick() {
     view.showProgress();
     new Handler().postDelayed(() -> {
       view.hideProgress();
-      //view.dismiss();
-      view.showSnackBar(R.string.input_invalid_value);
+      view.dismiss();
+      //view.showSnackBar(R.string.input_invalid_value);
     }, 2000);
   }
 

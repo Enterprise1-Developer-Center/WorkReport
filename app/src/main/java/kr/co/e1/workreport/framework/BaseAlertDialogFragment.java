@@ -23,13 +23,23 @@ import kr.co.e1.workreport.R;
 public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   @NonNull @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
-    return new AlertDialog.Builder(getActivity()).setTitle(getTitle())
-        .setPositiveButton(android.R.string.ok, getOkOnClickListener())
-        .setNegativeButton(android.R.string.cancel, getCancelOnClickListener())
-        .setCancelable(isDialogCancelable())
-        .setView(getContentView())
-        .create();
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    builder.setTitle(getTitle());
+    if (isPositiveButton()) {
+      builder.setPositiveButton(android.R.string.ok, getOkOnClickListener());
+    }
+    if (isNegativeButton()) {
+      builder.setNegativeButton(android.R.string.cancel, getCancelOnClickListener());
+    }
+    builder.setCancelable(isDialogCancelable());
+    builder.setView(getContentView());
+    builder.create();
+    return builder.create();
   }
+
+  protected abstract boolean isNegativeButton();
+
+  protected abstract boolean isPositiveButton();
 
   private View getContentView() {
     View view =

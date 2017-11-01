@@ -8,9 +8,9 @@ import butterknife.BindView;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
-import kr.co.e1.workreport.graph.GraphFragment;
-import kr.co.e1.workreport.operation.OperationFragment;
-import kr.co.e1.workreport.total.TotalFragment;
+import kr.co.e1.workreport.statisticsgraph.GraphFragment;
+import kr.co.e1.workreport.statisticsoperation.OperationFragment;
+import kr.co.e1.workreport.statisticstotal.TotalFragment;
 
 /**
  * Created by jaeho on 2017. 10. 31

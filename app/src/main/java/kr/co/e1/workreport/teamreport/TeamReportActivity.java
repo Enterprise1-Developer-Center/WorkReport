@@ -1,11 +1,9 @@
 package kr.co.e1.workreport.teamreport;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
@@ -15,6 +13,7 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
 import kr.co.e1.workreport.teamreport.vo.TeamReport;
+import kr.co.e1.workreport.teamreportdialog.TeamReportDialog;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -65,15 +64,6 @@ public class TeamReportActivity extends BaseActivity
   }
 
   @DebugLog @Override public void onItemClick(TeamReport item) {
-    View view = getLayoutInflater().inflate(R.layout.fragment_report, null);
-    AlertDialog dialog = new AlertDialog.Builder(this).setTitle("홍승연")
-        .setView(view)
-        .setPositiveButton(android.R.string.ok, (dialogInterface, which) -> {
-
-        })
-        .setNegativeButton(android.R.string.cancel, (dialogInterface, which) -> {
-
-        })
-        .show();
+    new TeamReportDialog().show(getSupportFragmentManager(),TeamReportDialog.class.getSimpleName());
   }
 }

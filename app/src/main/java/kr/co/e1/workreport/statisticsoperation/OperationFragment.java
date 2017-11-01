@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.total;
+package kr.co.e1.workreport.statisticsoperation;
 
 import android.os.Bundle;
 import kr.co.e1.workreport.R;
@@ -8,18 +8,16 @@ import kr.co.e1.workreport.framework.BaseFragment;
  * Created by jaeho on 2017. 10. 31
  */
 
-public class TotalFragment extends BaseFragment {
-
-  public static TotalFragment newInstance() {
-    return new TotalFragment();
+public class OperationFragment extends BaseFragment {
+  public static OperationFragment newInstance() {
+    return new OperationFragment();
   }
 
   @Override protected int getLayoutResID() {
-    return R.layout.fragment_total;
+    return R.layout.fragment_operation_ratio;
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-
   }
 
   @Override protected boolean isDagger() {

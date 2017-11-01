@@ -64,6 +64,14 @@ public class PasswordDialog extends BaseAlertDialogFragment
     return null;
   }
 
+  @Override protected boolean isNegativeButton() {
+    return true;
+  }
+
+  @Override protected boolean isPositiveButton() {
+    return true;
+  }
+
   @Override protected boolean isDagger() {
     return true;
   }

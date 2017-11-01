@@ -38,6 +38,14 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     return this;
   }
 
+  @Override protected boolean isNegativeButton() {
+    return true;
+  }
+
+  @Override protected boolean isPositiveButton() {
+    return true;
+  }
+
   @Override protected boolean isDagger() {
     return true;
   }

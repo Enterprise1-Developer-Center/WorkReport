@@ -1,20 +1,21 @@
-package kr.co.e1.workreport.graph;
+package kr.co.e1.workreport.statisticstotal;
 
 import android.os.Bundle;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseFragment;
 
 /**
- * Created by jaeho on 2017. 10. 31..
+ * Created by jaeho on 2017. 10. 31
  */
 
-public class GraphFragment extends BaseFragment {
-  public static GraphFragment newInstance() {
-    return new GraphFragment();
+public class TotalFragment extends BaseFragment {
+
+  public static TotalFragment newInstance() {
+    return new TotalFragment();
   }
 
   @Override protected int getLayoutResID() {
-    return R.layout.fragment_graph;
+    return R.layout.fragment_total;
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {

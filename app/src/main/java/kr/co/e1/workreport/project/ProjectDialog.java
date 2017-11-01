@@ -25,6 +25,14 @@ public class ProjectDialog extends BaseAlertDialogFragment
 
   @Inject ProjectDialogPresenter presenter;
 
+  @Override protected boolean isNegativeButton() {
+    return true;
+  }
+
+  @Override protected boolean isPositiveButton() {
+    return true;
+  }
+
   @Override protected boolean isDagger() {
     return true;
   }

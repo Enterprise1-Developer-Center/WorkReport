@@ -89,8 +89,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   }
 
   @Override public void setRecyclerView() {
-    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     recyclerView.setAdapter(adapter);
   }
 

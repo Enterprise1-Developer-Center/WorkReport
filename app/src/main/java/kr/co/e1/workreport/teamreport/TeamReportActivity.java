@@ -57,8 +57,7 @@ public class TeamReportActivity extends BaseActivity
   }
 
   @Override public void setRecyclerView() {
-    LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);
   }
 

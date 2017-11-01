@@ -30,7 +30,6 @@ import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.login.LoginFragment;
 import kr.co.e1.workreport.password.PasswordDialog;
 import kr.co.e1.workreport.project.ProjectDialog;
-import kr.co.e1.workreport.report.ReportFragment;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
 import timber.log.Timber;
@@ -71,13 +70,6 @@ public class MainActivity extends BaseActivity
 
   @DebugLog @Override public void showLoginFragment(Bundle savedInstanceState) {
     new LoginFragment().show(getSupportFragmentManager(), LoginFragment.class.getSimpleName());
-  }
-
-  @DebugLog @Override public void showReportFragment() {
-    getSupportFragmentManager().beginTransaction()
-        .replace(R.id.fragment_report_container, ReportFragment.newInstance(null))
-        .addToBackStack(ReportFragment.class.getSimpleName())
-        .commit();
   }
 
   @Override public void showPasswordChangeDialog() {

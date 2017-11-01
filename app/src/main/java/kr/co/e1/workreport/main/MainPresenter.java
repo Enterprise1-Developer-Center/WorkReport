@@ -35,8 +35,6 @@ public interface MainPresenter {
 
     void changeTheme();
 
-    void showReportFragment();
-
     void closeDrawer();
 
     void finish();

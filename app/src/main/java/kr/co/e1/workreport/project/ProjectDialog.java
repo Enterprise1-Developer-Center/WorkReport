@@ -23,7 +23,9 @@ import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 public class ProjectDialog extends BaseAlertDialogFragment
     implements ProjectDialogPresenter.View, OnRecyclerItemClickListener<ProjectSelectableItem> {
 
+  @Inject ProjectDialogAdapter adapter;
   @Inject ProjectDialogPresenter presenter;
+  @Inject BaseAdapterView adapterView;
 
   @Override protected boolean isNegativeButton() {
     return true;
@@ -87,13 +89,9 @@ public class ProjectDialog extends BaseAlertDialogFragment
   }
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
-  BaseAdapterView adapterView;
 
-  @Inject ProjectDialogAdapter adapter;
 
   @Override public void setRecyclerView() {
-    presenter.setAdapterDataModel(adapter);
-    adapterView = adapter;
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     recyclerView.setAdapter(adapter);
   }

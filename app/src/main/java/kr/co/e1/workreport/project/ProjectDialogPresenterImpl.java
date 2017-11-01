@@ -14,8 +14,10 @@ public class ProjectDialogPresenterImpl implements ProjectDialogPresenter {
   private ProjectDialogPresenter.View view;
   private BaseAdapterDataModel<Project> adapterDataModel;
 
-  @Inject ProjectDialogPresenterImpl(ProjectDialogPresenter.View view) {
+  @Inject ProjectDialogPresenterImpl(ProjectDialogPresenter.View view,
+      BaseAdapterDataModel<Project> adapterDataModel) {
     this.view = view;
+    this.adapterDataModel = adapterDataModel;
   }
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
@@ -39,9 +41,5 @@ public class ProjectDialogPresenterImpl implements ProjectDialogPresenter {
     adapterDataModel.add(new Project(15, "김수환"));
 
     view.refresh();
-  }
-
-  @Override public void setAdapterDataModel(BaseAdapterDataModel<Project> adapterDataModel) {
-    this.adapterDataModel = adapterDataModel;
   }
 }

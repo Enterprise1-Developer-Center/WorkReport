@@ -2,6 +2,7 @@ package kr.co.e1.workreport.project;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
@@ -25,7 +26,12 @@ import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
     return new ProjectDialogAdapter(dialog);
   }
 
-  @Provides ProjectDialogPresenter provideProjectDialogPresenter(ProjectDialogPresenter.View view) {
-    return new ProjectDialogPresenterImpl(view);
+  @Provides ProjectDialogPresenter provideProjectDialogPresenter(ProjectDialogPresenter.View view,
+      ProjectDialog dialog) {
+    return new ProjectDialogPresenterImpl(view, dialog.adapter);
+  }
+
+  @Provides BaseAdapterView provideProjectDialogAdapterView(ProjectDialog dialog) {
+    return dialog.adapter;
   }
 }

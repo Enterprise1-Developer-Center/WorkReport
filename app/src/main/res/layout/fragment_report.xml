@@ -2,47 +2,44 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     >
-  <android.support.v4.widget.SwipeRefreshLayout
-      android:id="@id/swipe_refresh"
+  <ScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       >
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         >
-      <LinearLayout
+      <include layout="@layout/main_item_date"/>
+      <include layout="@layout/main_item_group"/>
+      <include layout="@layout/main_item_person"/>
+      <include layout="@layout/main_item_start_time"/>
+      <include layout="@layout/main_item_end_time"/>
+      <include layout="@layout/main_item_work_time"/>
+      <include layout="@layout/main_item_code"/>
+      <include layout="@layout/main_item_project"/>
+      <include layout="@layout/main_item_last_edit"/>
+      <ProgressBar
+          android:id="@id/progressbar"
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical"
-          >
-        <include layout="@layout/main_item_date"/>
-        <include layout="@layout/main_item_group"/>
-        <include layout="@layout/main_item_person"/>
-        <include layout="@layout/main_item_start_time"/>
-        <include layout="@layout/main_item_end_time"/>
-        <include layout="@layout/main_item_work_time"/>
-        <include layout="@layout/main_item_code"/>
-        <include layout="@layout/main_item_project"/>
-        <include layout="@layout/main_item_last_edit"/>
+          android:layout_height="wrap_content"
+          android:visibility="invisible"
+          />
+      <ImageView
+          android:id="@id/save_button"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/dp_44"
+          android:clickable="true"
+          android:src="@drawable/ic_save"
+          />
+    </LinearLayout>
+  </ScrollView>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/save_button"
-            android:layout_width="@dimen/dp_70"
-            android:layout_height="@dimen/dp_70"
-            android:layout_margin="@dimen/dp_16"
-            android:layout_marginTop="@dimen/dp_30"
-            app:backgroundTint="@color/colorLight"
-            app:srcCompat="@drawable/ic_save"
-            />
-
-      </LinearLayout>
-    </ScrollView>
-
-  </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

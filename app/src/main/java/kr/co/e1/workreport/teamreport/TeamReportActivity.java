@@ -1,9 +1,11 @@
 package kr.co.e1.workreport.teamreport;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
@@ -63,6 +65,15 @@ public class TeamReportActivity extends BaseActivity
   }
 
   @DebugLog @Override public void onItemClick(TeamReport item) {
+    View view = getLayoutInflater().inflate(R.layout.fragment_report, null);
+    AlertDialog dialog = new AlertDialog.Builder(this).setTitle("홍승연")
+        .setView(view)
+        .setPositiveButton(android.R.string.ok, (dialogInterface, which) -> {
 
+        })
+        .setNegativeButton(android.R.string.cancel, (dialogInterface, which) -> {
+
+        })
+        .show();
   }
 }

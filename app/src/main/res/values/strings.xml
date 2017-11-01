@@ -31,4 +31,6 @@
   <string name="graph">그래프</string>
   <string name="total">집계</string>
   <string name="team_members">팀원 업무보고(팀 구성원)</string>
+  <string name="save">저장</string>
+  <string name="save_completed">저장되었습니다.</string>
 </resources>

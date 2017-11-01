@@ -4,10 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,8 +28,8 @@ import timber.log.Timber;
 public class ReportFragment extends BaseFragment implements ReportFragmentPresenter.View {
   @Inject ReportFragmentPresenter presenter;
 
-  @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipeRefresh;
-  @BindView(R.id.save_button) FloatingActionButton saveButton;
+  @BindView(R.id.save_button) ImageView saveButton;
+  @BindView(R.id.progressbar) ProgressBar progressBar;
 
   @Override protected int getLayoutResID() {
     return R.layout.fragment_report;
@@ -74,22 +75,24 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
   }
 
   @Override public void setListener() {
-    swipeRefresh.setOnRefreshListener(() -> {
-      presenter.onRefresh();
-    });
   }
 
   @Override public void showProgress() {
-    swipeRefresh.setRefreshing(true);
+    progressBar.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideProgress() {
-    swipeRefresh.setRefreshing(false);
+    progressBar.setVisibility(View.INVISIBLE);
   }
 
   @Override public void enableSaveButton() {
     saveButton.setEnabled(true);
     saveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+  }
+
+  @Override public void disableSaveButton() {
+    saveButton.setEnabled(false);
+    saveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorIndigo_100));
   }
 
   @Override public void showStartTimePickerDialog() {
@@ -172,9 +175,8 @@ public class ReportFragment extends BaseFragment implements ReportFragmentPresen
     new ProjectDialog().setOnDialogClickListener(o -> projectTextView.setText(o.getString("name")))
         .show(getFragmentManager(), ProjectDialog.class.getSimpleName());
   }
-
-  @Override public void disableSaveButton() {
-    saveButton.setEnabled(false);
-    saveButton.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.white));
+  @BindView(R.id.root_view) View rootView;
+  @Override public void showSnakeBar(int resId) {
+    Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 }

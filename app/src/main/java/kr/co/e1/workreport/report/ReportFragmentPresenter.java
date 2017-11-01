@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.report;
 
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 
 /**
  * Created by jaeho on 2017. 10. 19
@@ -17,8 +18,6 @@ public interface ReportFragmentPresenter {
   void onStartTimeSet(int hourOfDay, int minute);
 
   void onEndTimeSet(int hourOfDay, int minute);
-
-  void onRefresh();
 
   interface View {
 
@@ -59,5 +58,7 @@ public interface ReportFragmentPresenter {
     void showCodeDialogFragment();
 
     void showProjectChoiceDialog();
+
+    void showSnakeBar(@StringRes int resId);
   }
 }

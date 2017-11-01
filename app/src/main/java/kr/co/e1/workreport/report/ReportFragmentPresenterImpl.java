@@ -64,11 +64,8 @@ public class ReportFragmentPresenterImpl implements ReportFragmentPresenter {
     new Handler().postDelayed(() -> {
       view.hideProgress();
       view.enableSaveButton();
+      view.showSnakeBar(R.string.save_completed);
     }, 2000);
-  }
-
-  @Override public void onRefresh() {
-    testPost();
   }
 
   @DebugLog @Override public void onReportDateSet(int year, int month, int dayOfMonth) {

@@ -22,12 +22,16 @@ import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
  */
 
 public class ClassificationDialog extends BaseAlertDialogFragment
-    implements ClassificationDialogPresenter.View, OnRecyclerItemClickListener<ClassificationSelectableItem> {
+    implements ClassificationDialogPresenter.View,
+    OnRecyclerItemClickListener<ClassificationSelectableItem> {
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.text_input_edittext) TextInputEditText workTextInputEditText;
-  @Inject ClassificationDialogPresenter presenter;
 
-  OnDialogClickListener<Bundle> onDialogClickListener;
+  @Inject ClassificationDialogAdapter adapter;
+  @Inject ClassificationDialogPresenter presenter;
+  @Inject BaseAdapterView adapterView;
+
+  private OnDialogClickListener<Bundle> onDialogClickListener;
 
   public ClassificationDialog setOnDialogClickListener(OnDialogClickListener<Bundle> listener) {
     onDialogClickListener = listener;
@@ -76,12 +80,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     return null;
   }
 
-  @Inject ClassificationDialogAdapter adapter;
-  private BaseAdapterView adapterView;
-
   @Override public void setRecyclerView() {
-    presenter.setAdapterDataModel(adapter);
-    adapterView = adapter;
     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(adapter);

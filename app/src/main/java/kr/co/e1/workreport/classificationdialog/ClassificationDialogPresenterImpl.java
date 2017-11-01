@@ -14,8 +14,9 @@ public class ClassificationDialogPresenterImpl implements ClassificationDialogPr
   private ClassificationDialogPresenter.View view;
   private BaseAdapterDataModel<ClassificationCode> adapterDataModel;
 
-  @Inject ClassificationDialogPresenterImpl(View view) {
+  @Inject ClassificationDialogPresenterImpl(View view, BaseAdapterDataModel<ClassificationCode> adapterDataModel) {
     this.view = view;
+    this.adapterDataModel = adapterDataModel;
   }
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {

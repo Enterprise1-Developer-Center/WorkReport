@@ -73,6 +73,9 @@ dependencies {
   annotationProcessor "org.projectlombok:lombok:$lombok_version"
   provided "javax.annotation:jsr250-api:$jsr_version"
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+  debugCompile "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+  releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
 }
 repositories {
   mavenCentral()

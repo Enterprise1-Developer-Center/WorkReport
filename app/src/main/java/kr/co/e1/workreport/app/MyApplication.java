@@ -2,6 +2,7 @@ package kr.co.e1.workreport.app;
 
 import android.app.Activity;
 import android.app.Application;
+import com.squareup.leakcanary.LeakCanary;
 import com.worklight.wlclient.api.WLClient;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -23,9 +24,28 @@ public class MyApplication extends Application implements HasActivityInjector {
   @Override public void onCreate() {
     super.onCreate();
     instance = this;
+    initLeakCanary();
     initTimber();
-    WLClient.createInstance(this);
+    initWLClient();
+    initDagger();
+  }
+
+  private void initDagger() {
     DaggerAppComponent.builder().application(this).build().inject(this);
+  }
+
+  private void initWLClient() {
+    WLClient.createInstance(this);
+  }
+
+  private void initLeakCanary() {
+    if (LeakCanary.isInAnalyzerProcess(this)) {
+      // This process is dedicated to LeakCanary for heap analysis.
+      // You should not init your app in this process.
+      return;
+    }
+    LeakCanary.install(this);
+    // Normal app init code...
   }
 
   private void initTimber() {

@@ -51,8 +51,8 @@ public class StatisticsActivity extends BaseActivity
   @Override public void showOperationFragment() {
     bottomNavigationView.getMenu().getItem(POSITION_NAVI_RATIO).setChecked(true);
     getSupportFragmentManager().beginTransaction()
-        .setCustomAnimations(R.animator.fade_in_animation, R.animator.fade_out_animation,
-            R.animator.fade_in_animation, R.animator.fade_out_animation)
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
         .replace(R.id.fragment_container, OperationFragment.newInstance())
         .commit();
   }
@@ -60,8 +60,8 @@ public class StatisticsActivity extends BaseActivity
   @Override public void showGraphFragment() {
     bottomNavigationView.getMenu().getItem(POSITION_NAVI_GRAPH).setChecked(true);
     getSupportFragmentManager().beginTransaction()
-        .setCustomAnimations(R.animator.fade_in_animation, R.animator.fade_out_animation,
-            R.animator.fade_in_animation, R.animator.fade_out_animation)
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
         .replace(R.id.fragment_container, GraphFragment.newInstance())
         .commit();
   }
@@ -69,8 +69,8 @@ public class StatisticsActivity extends BaseActivity
   @Override public void showTotalFragment() {
     bottomNavigationView.getMenu().getItem(POSITION_NAVI_TOTAL).setChecked(true);
     getSupportFragmentManager().beginTransaction()
-        .setCustomAnimations(R.animator.fade_in_animation, R.animator.fade_out_animation,
-            R.animator.fade_in_animation, R.animator.fade_out_animation)
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
         .replace(R.id.fragment_container, TotalFragment.newInstance())
         .commit();
   }

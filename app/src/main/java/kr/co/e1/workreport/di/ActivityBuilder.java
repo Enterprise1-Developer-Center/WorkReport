@@ -19,14 +19,14 @@ import kr.co.e1.workreport.teamreport.TeamReportActivityComponent;
 @Module public abstract class ActivityBuilder {
 
   @Binds @IntoMap @ActivityKey(MainActivity.class)
-  abstract AndroidInjector.Factory<? extends Activity> bindMainActivity(
+  abstract AndroidInjector.Factory<? extends Activity> bindMainActivityInjectorFactory(
       MainActivityComponent.Builder builder);
 
   @Binds @IntoMap @ActivityKey(StatisticsActivity.class)
-  abstract AndroidInjector.Factory<? extends Activity> bindStatisticsActivity(
+  abstract AndroidInjector.Factory<? extends Activity> bindStatisticsActivityInjectorFactory(
       StatisticsActivityComponent.Builder builder);
 
   @Binds @IntoMap @ActivityKey(TeamReportActivity.class)
-  abstract AndroidInjector.Factory<? extends Activity> bindTeamReportActivity(
+  abstract AndroidInjector.Factory<? extends Activity> bindTeamReportActivityInjectorFactory(
       TeamReportActivityComponent.Builder builder);
 }

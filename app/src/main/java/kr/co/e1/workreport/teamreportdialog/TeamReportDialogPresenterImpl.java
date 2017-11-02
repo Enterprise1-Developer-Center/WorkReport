@@ -21,6 +21,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.hideSaveButton();
+    test();
   }
 
   @Override public void onClick(int id) {
@@ -30,14 +31,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
         break;
     }
   }
-
-  @Override public void onDateSet(int year, int month, int dayOfMonth) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd (EE)");
-    Calendar calendar = Calendar.getInstance();
-    calendar.set(year, month, dayOfMonth);
-    Date d = new Date(calendar.getTimeInMillis());
-    String reportDate = dateFormat.format(d);
-    view.setDate(reportDate);
+  private void test() {
     view.showProgress();
     new Handler().postDelayed(() -> {
       view.hideProgress();
@@ -50,5 +44,15 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
       view.setLastEditDateTime("2017-10-23(수) 14:12");
       view.setWorkTime("03:00");
     }, 2000);
+
+  }
+  @Override public void onDateSet(int year, int month, int dayOfMonth) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd (EE)");
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(year, month, dayOfMonth);
+    Date d = new Date(calendar.getTimeInMillis());
+    String reportDate = dateFormat.format(d);
+    view.setDate(reportDate);
+    test();
   }
 }

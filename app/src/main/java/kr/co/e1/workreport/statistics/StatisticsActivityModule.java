@@ -2,11 +2,16 @@ package kr.co.e1.workreport.statistics;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.statisticsgraph.GraphFragmentComponent;
+import kr.co.e1.workreport.statisticsoperation.OperationFragmentComponent;
+import kr.co.e1.workreport.statisticstotal.TotalFragmentComponent;
 
 /**
  * Created by jaeho on 2017. 9. 25
  */
-@Module public class StatisticsActivityModule {
+@Module(subcomponents = {
+    OperationFragmentComponent.class, GraphFragmentComponent.class, TotalFragmentComponent.class
+}) public class StatisticsActivityModule {
 
   @Provides StatisticsPresenter.View provideStatisticsView(StatisticsActivity statisticsActivity) {
     return statisticsActivity;

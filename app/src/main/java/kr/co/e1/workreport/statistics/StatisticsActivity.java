@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
@@ -83,7 +84,9 @@ public class StatisticsActivity extends BaseActivity
     return presenter.onBottomNavigationItemSelected(item.getItemId());
   }
 
+  @Inject DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
+
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {
-    return null;
+    return fragmentDispatchingAndroidInjector;
   }
 }

@@ -15,6 +15,7 @@ buildscript {
     mfp_version = '8.0.2017062702'
     support_version = '26.1.0'
     leakcanary_version = '1.5.4'
+    MPAndroidChart_version = 'v3.0.2'
   }
   repositories {
     jcenter()
@@ -31,6 +32,7 @@ buildscript {
 allprojects {
   repositories {
     jcenter()
+    maven { url "https://jitpack.io" }
   }
 }
 

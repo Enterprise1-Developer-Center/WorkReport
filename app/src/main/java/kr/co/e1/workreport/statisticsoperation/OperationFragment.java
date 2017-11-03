@@ -1,6 +1,8 @@
 package kr.co.e1.workreport.statisticsoperation;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import butterknife.BindView;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -100,11 +102,34 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     entries.add(new Entry(11f, 30.4f));
 
     LineDataSet dataSet = new LineDataSet(entries, "BS OP Ratio");
+    dataSet.setLineWidth(2.0f);
+    dataSet.setCircleRadius(3.5f);
+    dataSet.setHighLightColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+    dataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+    dataSet.setDrawValues(true);
+    dataSet.setValueTextSize(12f);
+    List<Entry> values = new ArrayList<>();
+    values.add(new Entry(0f, 30f));
+    values.add(new Entry(1f, 40f));
+    values.add(new Entry(2f, 80f));
+    values.add(new Entry(3f, 60f));
+    values.add(new Entry(4f, 10f));
+    values.add(new Entry(5f, 15f));
+    values.add(new Entry(6f, 30f));
+    values.add(new Entry(7f, 40f));
+    values.add(new Entry(8f, 60f));
+    values.add(new Entry(9f, 90f));
+    values.add(new Entry(10f, 100f));
+    values.add(new Entry(11f, 30.4f));
+
+    dataSet.setValues(values);
+
     dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
 
     List<ILineDataSet> dataSets = new ArrayList<>();
     dataSets.add(dataSet);
     LineData lineData = new LineData(dataSets);
+    lineData.setValueTextColor(Color.BLACK);
     lineChart.animateXY(2000, 2000);
     lineChart.setData(lineData);
     lineChart.invalidate();
@@ -114,6 +139,8 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     };
 
     XAxis xAxis = lineChart.getXAxis();
+    xAxis.setDrawGridLines(false);
+    xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
     xAxis.setGranularity(1f);
     xAxis.setValueFormatter((value, axis) -> {

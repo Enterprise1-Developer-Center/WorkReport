@@ -57,4 +57,7 @@
   <item name="bottom_navigation_view" type="id"/>
   <item name="root_view" type="id"/>
   <item name="chart" type="id"/>
+  <item name="line_chart" type="id"/>
+  <item name="bar_chart" type="id"/>
+  <item name="bar_line_chart" type="id"/>
 </resources>

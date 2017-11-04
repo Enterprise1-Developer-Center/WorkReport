@@ -197,7 +197,7 @@
 
   <style name="BaseOperationRatioItemTextView">
     <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
-    <item name="android:background">@drawable/border</item>
+    <item name="android:background">@drawable/rectangle_solid_border_2</item>
   </style>
   <style name="OperationRatioItemTitleTextView" parent="BaseOperationRatioItemTextView">
     <item name="android:layout_width">@dimen/dp_80</item>

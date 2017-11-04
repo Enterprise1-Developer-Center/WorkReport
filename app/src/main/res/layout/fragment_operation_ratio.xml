@@ -28,7 +28,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center"
+        >
       <GridLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -40,9 +41,10 @@
             android:layout_height="@dimen/dp_40"
             android:layout_rowSpan="2"
             android:layout_rowWeight="1"
-            android:background="@color/colorIndigo_300"
+            android:background="@drawable/rectangle_solid_border_1"
             android:gravity="center"
             android:text="@string/technology_research_center"
+            style="@style/TextAppearance.AppCompat.Body1"
             />
         <TextView
             android:text="@string/profits"

@@ -3,6 +3,9 @@ package kr.co.e1.workreport.statisticsoperation;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import butterknife.BindView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -24,6 +27,15 @@ import timber.log.Timber;
 public class OperationFragment extends BaseFragment implements OperationFragmentPresenter.View {
 
   @BindView(R.id.line_chart) LineChart lineChart;
+  @BindView(R.id.profits_textview) TextView profitsTextview;
+  @BindView(R.id.invest_textview) TextView investTextview;
+  @BindView(R.id.loss_textview) TextView lossTextview;
+  @BindView(R.id.support_textview) TextView supportTextview;
+  @BindView(R.id.educate_textview) TextView educateTextview;
+  @BindView(R.id.vacation_textview) TextView vacationTextview;
+  @BindView(R.id.sum_textview) TextView sumTextview;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
+
   @Inject OperationFragmentPresenter presenter;
 
   public static OperationFragment newInstance() {
@@ -36,8 +48,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     Timber.d("presenter = " + presenter);
-
-    setLineData();
+    presenter.onActivityCreate(savedInstanceState);
   }
 
   private void setLineData() {
@@ -86,7 +97,8 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     dataSets.add(dataSet);
     LineData lineData = new LineData(dataSets);
     lineData.setValueTextColor(Color.BLACK);
-    lineChart.animateXY(2000, 2000);
+    //lineChart.animateXY(2000, 2000);
+    lineChart.animateY(2000);
     lineChart.setData(lineData);
     lineChart.invalidate();
 
@@ -110,5 +122,45 @@ public class OperationFragment extends BaseFragment implements OperationFragment
 
   @Override protected boolean isDagger() {
     return true;
+  }
+
+  @Override public void showProgress() {
+    progressBar.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void hideProgress() {
+    progressBar.setVisibility(View.INVISIBLE);
+  }
+
+  @Override public void setChart() {
+    setLineData();
+  }
+
+  @Override public void setProfits(String value) {
+    profitsTextview.setText(value);
+  }
+
+  @Override public void setInvest(String value) {
+    investTextview.setText(value);
+  }
+
+  @Override public void setLoss(String value) {
+    lossTextview.setText(value);
+  }
+
+  @Override public void setSupport(String value) {
+    supportTextview.setText(value);
+  }
+
+  @Override public void setEducate(String value) {
+    educateTextview.setText(value);
+  }
+
+  @Override public void setVacation(String value) {
+    vacationTextview.setText(value);
+  }
+
+  @Override public void setSum(String value) {
+    sumTextview.setText(value);
   }
 }

@@ -20,6 +20,11 @@
       android:layout_height="0dp"
       android:layout_weight="3"
       />
+  <ProgressBar
+      android:id="@id/progress_bar"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/dp_30"
+      android:visibility="invisible"/>
   <HorizontalScrollView
       android:layout_width="match_parent"
       android:layout_height="0dp"
@@ -51,43 +56,57 @@
             style="@style/OperationRatioItemTitleTextView"
             />
         <TextView
-            style="@style/OperationRatioItemValueTextView"/>
+            android:id="@+id/profits_textview"
+            style="@style/OperationRatioItemValueTextView"
+            />
         <TextView
             android:text="@string/invest"
             style="@style/OperationRatioItemTitleTextView"
             />
         <TextView
-            style="@style/OperationRatioItemValueTextView"/>
+            android:id="@+id/invest_textview"
+            style="@style/OperationRatioItemValueTextView"
+            />
         <TextView
             android:text="@string/loss"
             style="@style/OperationRatioItemTitleTextView"
             />
         <TextView
-            style="@style/OperationRatioItemValueTextView"/>
+            android:id="@+id/loss_textview"
+            style="@style/OperationRatioItemValueTextView"
+            />
         <TextView
             android:text="@string/support"
             style="@style/OperationRatioItemTitleTextView"
             />
         <TextView
-            style="@style/OperationRatioItemValueTextView"/>
+            android:id="@+id/support_textview"
+            style="@style/OperationRatioItemValueTextView"
+            />
         <TextView
             android:text="@string/educate_proposal"
             style="@style/OperationRatioItemTitleTextView"
             />
         <TextView
-            style="@style/OperationRatioItemValueTextView"/>
+            android:id="@+id/educate_textview"
+            style="@style/OperationRatioItemValueTextView"
+            />
         <TextView
             android:text="@string/vacation_etc"
             style="@style/OperationRatioItemTitleTextView"
             />
         <TextView
-            style="@style/OperationRatioItemValueTextView"/>
+            android:id="@+id/vacation_textview"
+            style="@style/OperationRatioItemValueTextView"
+            />
         <TextView
             android:text="@string/sum"
             style="@style/OperationRatioItemTitleTextView"
             />
         <TextView
-            style="@style/OperationRatioItemValueTextView"/>
+            android:id="@+id/sum_textview"
+            style="@style/OperationRatioItemValueTextView"
+            />
       </GridLayout>
     </LinearLayout>
   </HorizontalScrollView>

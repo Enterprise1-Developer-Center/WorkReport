@@ -63,6 +63,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     dataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
     dataSet.setDrawValues(true);
     dataSet.setValueTextSize(12f);
+    dataSet.setColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
     List<Entry> values = new ArrayList<>();
     values.add(new Entry(0f, 30f));
     values.add(new Entry(1f, 40f));

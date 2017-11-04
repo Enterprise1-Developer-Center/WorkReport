@@ -4,13 +4,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import butterknife.BindView;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -28,7 +24,6 @@ import timber.log.Timber;
 public class OperationFragment extends BaseFragment implements OperationFragmentPresenter.View {
 
   @BindView(R.id.line_chart) LineChart lineChart;
-  @BindView(R.id.bar_chart) BarChart barChart;
   @Inject OperationFragmentPresenter presenter;
 
   public static OperationFragment newInstance() {
@@ -43,46 +38,6 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     Timber.d("presenter = " + presenter);
 
     setLineData();
-    setBarData();
-    setBarLineData();
-  }
-
-  private void setBarLineData() {
-
-  }
-
-  private void setBarData() {
-    List<BarEntry> entries = new ArrayList<>();
-    entries.add(new BarEntry(0f, 30f));
-    entries.add(new BarEntry(1f, 80f));
-    entries.add(new BarEntry(2f, 60f));
-    entries.add(new BarEntry(3f, 50f));
-    // gap of 2f
-    entries.add(new BarEntry(5f, 70f));
-    entries.add(new BarEntry(6f, 60f));
-
-    BarDataSet set = new BarDataSet(entries, "BarDataSet");
-
-    BarData data = new BarData(set);
-    data.setBarWidth(0.9f); // set custom bar width
-    barChart.setData(data);
-    barChart.animateXY(2000, 2000);
-    barChart.setFitBars(true); // make the x-axis fit exactly all bars
-    barChart.invalidate(); // refresh
-
-    final String[] quarters = new String[] { "01월", "02월", "03월", "04월", "05월", "06월", "07월" };
-
-    XAxis xAxis = barChart.getXAxis();
-    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-    xAxis.setGranularity(1f);
-    xAxis.setValueFormatter((value, axis) -> {
-      Timber.d("value = " + value);
-      try {
-        return quarters[(int) value];
-      } catch (ArrayIndexOutOfBoundsException e) {
-        return quarters[0];
-      }
-    });
   }
 
   private void setLineData() {
@@ -144,7 +99,6 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
     xAxis.setGranularity(1f);
     xAxis.setValueFormatter((value, axis) -> {
-      Timber.d("value = " + value);
       try {
         return quarters[(int) value];
       } catch (ArrayIndexOutOfBoundsException e) {

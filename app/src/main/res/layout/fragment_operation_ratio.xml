@@ -14,18 +14,106 @@
     tools:context="kr.co.e1.workreport.main.MainActivity"
     >
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@id/line_chart"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
-  <com.github.mikephil.charting.charts.BarChart
-      android:id="@id/bar_chart"
+  <com.github.mikephil.charting.charts.LineChart
+      android:id="@id/line_chart"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1"
       />
+  <HorizontalScrollView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+      <GridLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:rowCount="2"
+          >
+        <TextView
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_40"
+            android:layout_rowSpan="2"
+            android:layout_rowWeight="1"
+            android:background="@color/colorIndigo_300"
+            android:gravity="center"
+            android:text="@string/technology_research_center"
+            />
+        <TextView
+            android:text="@string/profits"
+            style="@style/OperationRatioItemTitleTextView"
+            />
+        <TextView
+            style="@style/OperationRatioItemValueTextView"/>
+        <TextView
+            android:text="@string/invest"
+            style="@style/OperationRatioItemTitleTextView"
+            />
+        <TextView
+            style="@style/OperationRatioItemValueTextView"/>
+        <TextView
+            android:text="@string/loss"
+            style="@style/OperationRatioItemTitleTextView"
+            />
+        <TextView
+            style="@style/OperationRatioItemValueTextView"/>
+        <TextView
+            android:text="@string/support"
+            style="@style/OperationRatioItemTitleTextView"
+            />
+        <TextView
+            style="@style/OperationRatioItemValueTextView"/>
+        <TextView
+            android:text="@string/educate_proposal"
+            style="@style/OperationRatioItemTitleTextView"
+            />
+        <TextView
+            style="@style/OperationRatioItemValueTextView"/>
+        <TextView
+            android:text="@string/vacation_etc"
+            style="@style/OperationRatioItemTitleTextView"
+            />
+        <TextView
+            style="@style/OperationRatioItemValueTextView"/>
+        <TextView
+            android:text="@string/sum"
+            style="@style/OperationRatioItemTitleTextView"
+            />
+        <TextView
+            style="@style/OperationRatioItemValueTextView"/>
+      </GridLayout>
+    </LinearLayout>
 
+  </HorizontalScrollView>
+  <HorizontalScrollView
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/dp_80"
+      android:layout_marginBottom="@dimen/dp_20"
+      android:layout_marginTop="@dimen/dp_20"
+      >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+      <TextView
+          android:layout_width="84dp"
+          android:layout_height="@dimen/dp_80"
+          android:gravity="center"
+          android:text="@string/technology_research_center"
+          />
+      <include layout="@layout/fragment_operation_ratio_item"/>
+      <include layout="@layout/fragment_operation_ratio_item"/>
+      <include layout="@layout/fragment_operation_ratio_item"/>
+      <include layout="@layout/fragment_operation_ratio_item"/>
+      <include layout="@layout/fragment_operation_ratio_item"/>
+      <include layout="@layout/fragment_operation_ratio_item"/>
+      <include layout="@layout/fragment_operation_ratio_item"/>
+    </LinearLayout>
+  </HorizontalScrollView>
 </LinearLayout>

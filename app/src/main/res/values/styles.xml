@@ -195,6 +195,21 @@
     <item name="android:imeOptions">actionDone</item>
   </style>
 
+  <style name="BaseOperationRatioItemTextView">
+    <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
+  </style>
+  <style name="OperationRatioItemTitleTextView" parent="BaseOperationRatioItemTextView">
+    <item name="android:layout_width">@dimen/dp_80</item>
+    <item name="android:layout_height">@dimen/dp_40</item>
+    <item name="android:background">@color/colorIndigo_100</item>
+    <item name="android:gravity">top|center_horizontal</item>
+  </style>
+  <style name="OperationRatioItemValueTextView" parent="BaseOperationRatioItemTextView">
+    <item name="android:layout_width">@dimen/dp_80</item>
+    <item name="android:layout_height">@dimen/dp_40</item>
+    <item name="android:background">@color/colorIndigo_50</item>
+  </style>
+
   <!-- Splash Screen theme. -->
   <style name="SplashTheme" parent="AppTheme.NoActionBar">
     <item name="android:windowBackground">@drawable/splash_background</item>

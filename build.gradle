@@ -13,10 +13,9 @@ buildscript {
     dagger_version = '2.12'
     butterknife_version = '8.8.1'
     mfp_version = '8.0.2017062702'
-    support_version = '26.1.0'
+    support_version = '27.0.0'
     leakcanary_version = '1.5.4'
     MPAndroidChart_version = 'v3.0.2'
-    //MPAndroidChart_version = 'v2.2.4'
   }
   repositories {
     jcenter()

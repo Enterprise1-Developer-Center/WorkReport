@@ -35,4 +35,12 @@
   <string name="save_completed">저장되었습니다.</string>
   <string name="empty_text"/>
   <string name="login">로그인</string>
+  <string name="technology_research_center">기술연구소</string>
+  <string name="profits">Profits</string>
+  <string name="invest">Invest</string>
+  <string name="loss">Loss</string>
+  <string name="support">Support</string>
+  <string name="educate_proposal"><![CDATA[Educate & Proposal]]></string>
+  <string name="vacation_etc"><![CDATA[Vacation & Etc]]></string>
+  <string name="sum">계</string>
 </resources>

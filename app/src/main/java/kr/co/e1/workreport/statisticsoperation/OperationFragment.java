@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.BindView;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -67,7 +68,8 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     entries.add(new Entry(10f, 100f));
     entries.add(new Entry(11f, 30.4f));
 
-    LineDataSet dataSet = new LineDataSet(entries, "BS OP Ratio");
+    LineDataSet dataSet = new LineDataSet(entries, "가동률");
+
     dataSet.setLineWidth(2.0f);
     dataSet.setCircleRadius(3.5f);
     dataSet.setHighLightColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
@@ -98,13 +100,17 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     LineData lineData = new LineData(dataSets);
     lineData.setValueTextColor(Color.BLACK);
     //lineChart.animateXY(2000, 2000);
-    lineChart.animateY(2000);
+    lineChart.animateY(1000);
     lineChart.setData(lineData);
     lineChart.invalidate();
-
     final String[] quarters = new String[] {
         "01월", "02월", "03월", "04월", "05월", "06월", "07월", "08월", "09월", "10월", "11월", "12월"
     };
+
+    Description description = lineChart.getDescription();
+    description.setTextSize(13);
+    description.setText("연간 가동율 : 40.9");
+    description.setTextColor(ContextCompat.getColor(getContext(),R.color.colorAccent));
 
     XAxis xAxis = lineChart.getXAxis();
     xAxis.setDrawGridLines(false);

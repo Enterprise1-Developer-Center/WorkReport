@@ -132,35 +132,35 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     progressBar.setVisibility(View.INVISIBLE);
   }
 
-  @Override public void setChart() {
+  @Override public void showChart() {
     setLineData();
   }
 
-  @Override public void setProfits(String value) {
+  @Override public void showProfits(String value) {
     profitsTextview.setText(value);
   }
 
-  @Override public void setInvest(String value) {
+  @Override public void showInvest(String value) {
     investTextview.setText(value);
   }
 
-  @Override public void setLoss(String value) {
+  @Override public void showLoss(String value) {
     lossTextview.setText(value);
   }
 
-  @Override public void setSupport(String value) {
+  @Override public void showSupport(String value) {
     supportTextview.setText(value);
   }
 
-  @Override public void setEducate(String value) {
+  @Override public void showEducate(String value) {
     educateTextview.setText(value);
   }
 
-  @Override public void setVacation(String value) {
+  @Override public void showVacation(String value) {
     vacationTextview.setText(value);
   }
 
-  @Override public void setSum(String value) {
+  @Override public void showSum(String value) {
     sumTextview.setText(value);
   }
 }

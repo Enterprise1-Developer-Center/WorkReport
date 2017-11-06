@@ -42,15 +42,15 @@ public class MainPresenterImpl implements MainPresenter {
   @Override public void loginComplete() {
     //view.showReportFragment();
     view.setListener();
-    view.setReportDate("2017-01-31 (목)");
-    view.setGroup("BS");
-    view.setPerson("오재호");
-    view.setCode("42/개인학습");
-    view.setProject("현대오토넷 오토시스템");
-    view.setStartTime("19:00");
-    view.setEndTime("23:00");
-    view.setWorkTime("04:00");
-    view.setLastEditDateTime("2017-10-23 (수) 14:12");
+    view.showReportDate("2017-01-31 (목)");
+    view.showGroup("BS");
+    view.showPerson("오재호");
+    view.showCode("42/개인학습");
+    view.showProject("현대오토넷 오토시스템");
+    view.showStartTime("19:00");
+    view.showEndTime("23:00");
+    view.showWorkTime("04:00");
+    view.showLastEditDateTime("2017-10-23 (수) 14:12");
   }
 
   @Override public void onBackPressed(boolean isDrawerOpen) {
@@ -104,7 +104,7 @@ public class MainPresenterImpl implements MainPresenter {
     calendar.set(year, month, dayOfMonth);
     Date d = new Date(calendar.getTimeInMillis());
     String reportDate = dateFormat.format(d);
-    view.setReportDate(reportDate);
+    view.showReportDate(reportDate);
   }
 
   @DebugLog @Override public void onStartTimeSet(int hourOfDay, int minute) {
@@ -114,7 +114,7 @@ public class MainPresenterImpl implements MainPresenter {
     Date date = new Date(calendar.getTimeInMillis());
 
     String startTime = new SimpleDateFormat("HH:mm", Locale.KOREA).format(date);
-    view.setStartTime(startTime);
+    view.showStartTime(startTime);
   }
 
   @DebugLog @Override public void onEndTimeSet(int hourOfDay, int minute) {
@@ -124,6 +124,6 @@ public class MainPresenterImpl implements MainPresenter {
     Date date = new Date(calendar.getTimeInMillis());
 
     String endTime = new SimpleDateFormat("HH:mm", Locale.KOREA).format(date);
-    view.setEndTime(endTime);
+    view.showEndTime(endTime);
   }
 }

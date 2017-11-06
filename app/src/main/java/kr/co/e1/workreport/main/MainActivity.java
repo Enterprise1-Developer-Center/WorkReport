@@ -137,7 +137,7 @@ public class MainActivity extends BaseActivity
     }, cYear, cMonth, cDayOfMonth).show();
   }
 
-  @Override public void setReportDate(String date) {
+  @Override public void showReportDate(String date) {
     dateTextView.setText(date);
   }
 
@@ -183,35 +183,35 @@ public class MainActivity extends BaseActivity
     }, cHourOfDay, cMinute, true).show();
   }
 
-  @Override public void setStartTime(String startTime) {
+  @Override public void showStartTime(String startTime) {
     startTimeTextView.setText(startTime);
   }
 
-  @Override public void setEndTime(String endTime) {
+  @Override public void showEndTime(String endTime) {
     endTimeTextView.setText(endTime);
   }
 
-  @Override public void setGroup(String group) {
+  @Override public void showGroup(String group) {
     groupTextView.setText(group);
   }
 
-  @Override public void setPerson(String person) {
+  @Override public void showPerson(String person) {
     personTextView.setText(person);
   }
 
-  @Override public void setCode(String code) {
+  @Override public void showCode(String code) {
     codeTextView.setText(code);
   }
 
-  @Override public void setProject(String project) {
+  @Override public void showProject(String project) {
     projectTextView.setText(project);
   }
 
-  @Override public void setLastEditDateTime(String lastEditDateTime) {
+  @Override public void showLastEditDateTime(String lastEditDateTime) {
     lastEditTextView.setText(lastEditDateTime);
   }
 
-  @Override public void setWorkTime(String workTime) {
+  @Override public void showWorkTime(String workTime) {
     workTimeTextView.setText(workTime);
   }
 

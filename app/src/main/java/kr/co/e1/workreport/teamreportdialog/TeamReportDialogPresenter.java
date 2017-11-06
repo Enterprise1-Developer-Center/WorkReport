@@ -20,27 +20,27 @@ public interface TeamReportDialogPresenter {
 
     void showDatePickerDialog();
 
-    void setDate(String date);
+    void showDate(String date);
 
     void showProgress();
 
     void hideProgress();
 
-    void setStartTime(String startTime);
+    void showStartTime(String startTime);
 
-    void setEndTime(String endTime);
+    void showEndTime(String endTime);
 
-    void setGroup(String group);
+    void showGroup(String group);
 
-    void setPerson(String person);
+    void showPerson(String person);
 
-    void setCode(String code);
+    void showCode(String code);
 
-    void setProject(String project);
+    void showProject(String project);
 
-    void setLastEditDateTime(String lastEditDateTime);
+    void showLastEditDateTime(String lastEditDateTime);
 
-    void setWorkTime(String workTime);
+    void showWorkTime(String workTime);
 
   }
 }

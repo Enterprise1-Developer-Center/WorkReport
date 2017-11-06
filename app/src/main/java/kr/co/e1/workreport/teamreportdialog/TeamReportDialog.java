@@ -90,7 +90,7 @@ public class TeamReportDialog extends BaseAlertDialogFragment
 
   @BindView(R.id.date_textview) TextView dateTextView;
 
-  @Override public void setDate(String date) {
+  @Override public void showDate(String date) {
     dateTextView.setText(date);
   }
 
@@ -106,49 +106,49 @@ public class TeamReportDialog extends BaseAlertDialogFragment
 
   @BindView(R.id.start_time_textview) TextView startTimeTextview;
 
-  @Override public void setStartTime(String startTime) {
+  @Override public void showStartTime(String startTime) {
     startTimeTextview.setText(startTime);
   }
 
   @BindView(R.id.end_time_textview) TextView endTimeTextview;
 
-  @Override public void setEndTime(String endTime) {
+  @Override public void showEndTime(String endTime) {
     endTimeTextview.setText(endTime);
   }
 
   @BindView(R.id.group_textview) TextView groupTextView;
 
-  @Override public void setGroup(String group) {
+  @Override public void showGroup(String group) {
     groupTextView.setText(group);
   }
 
   @BindView(R.id.person_textview) TextView personTextView;
 
-  @Override public void setPerson(String person) {
+  @Override public void showPerson(String person) {
     personTextView.setText(person);
   }
 
   @BindView(R.id.code_textview) TextView codeTextview;
 
-  @Override public void setCode(String code) {
+  @Override public void showCode(String code) {
     codeTextview.setText(code);
   }
 
   @BindView(R.id.project_textview) TextView projectTextView;
 
-  @Override public void setProject(String project) {
+  @Override public void showProject(String project) {
     projectTextView.setText(project);
   }
 
   @BindView(R.id.last_edit_textview) TextView lastEditTextView;
 
-  @Override public void setLastEditDateTime(String lastEditDateTime) {
+  @Override public void showLastEditDateTime(String lastEditDateTime) {
     lastEditTextView.setText(lastEditDateTime);
   }
 
   @BindView(R.id.work_time_textview) TextView workTimeTextView;
 
-  @Override public void setWorkTime(String workTime) {
+  @Override public void showWorkTime(String workTime) {
     workTimeTextView.setText(workTime);
   }
 

@@ -35,14 +35,14 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
     view.showProgress();
     new Handler().postDelayed(() -> {
       view.hideProgress();
-      view.setGroup("BS");
-      view.setPerson("jaeho");
-      view.setStartTime("19:00");
-      view.setEndTime("22:00");
-      view.setCode("11 | show me the money");
-      view.setProject("show me the mory");
-      view.setLastEditDateTime("2017-10-23(수) 14:12");
-      view.setWorkTime("03:00");
+      view.showGroup("BS");
+      view.showPerson("jaeho");
+      view.showStartTime("19:00");
+      view.showEndTime("22:00");
+      view.showCode("11 | show me the money");
+      view.showProject("show me the mory");
+      view.showLastEditDateTime("2017-10-23(수) 14:12");
+      view.showWorkTime("03:00");
     }, 2000);
 
   }
@@ -52,7 +52,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
     calendar.set(year, month, dayOfMonth);
     Date d = new Date(calendar.getTimeInMillis());
     String reportDate = dateFormat.format(d);
-    view.setDate(reportDate);
+    view.showDate(reportDate);
     test();
   }
 }

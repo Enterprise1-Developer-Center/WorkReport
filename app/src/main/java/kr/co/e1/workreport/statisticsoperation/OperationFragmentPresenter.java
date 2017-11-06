@@ -16,20 +16,20 @@ public interface OperationFragmentPresenter {
 
     void hideProgress();
 
-    void setChart();
+    void showChart();
 
-    void setProfits(String value);
+    void showProfits(String value);
 
-    void setInvest(String value);
+    void showInvest(String value);
 
-    void setLoss(String value);
+    void showLoss(String value);
 
-    void setSupport(String value);
+    void showSupport(String value);
 
-    void setEducate(String value);
+    void showEducate(String value);
 
-    void setVacation(String value);
+    void showVacation(String value);
 
-    void setSum(String value);
+    void showSum(String value);
   }
 }

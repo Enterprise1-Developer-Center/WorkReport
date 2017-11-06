@@ -17,14 +17,14 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.showProgress();
     new Handler().postDelayed(() -> {
-      view.setChart();
-      view.setProfits("1197");
-      view.setInvest("340");
-      view.setLoss("0");
-      view.setSupport("8");
-      view.setEducate("138");
-      view.setVacation("71");
-      view.setSum("1414");
+      view.showChart();
+      view.showProfits("1197");
+      view.showInvest("340");
+      view.showLoss("0");
+      view.showSupport("8");
+      view.showEducate("138");
+      view.showVacation("71");
+      view.showSum("1414");
 
       view.hideProgress();
     }, 1000);

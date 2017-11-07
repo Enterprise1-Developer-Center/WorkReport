@@ -1,7 +1,6 @@
 package kr.co.e1.workreport.login;
 
 import android.os.Bundle;
-import android.os.Handler;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
@@ -22,15 +21,21 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
   }
 
   @Override public void onPositiveClick(String id, String pw, LoginCommunicationListener listener) {
-    view.showProgress();
-    view.showIDError("");
-    view.showPWError("");
+    //view.showProgress();
+    //view.showIDError("");
+    //view.showPWError("");
     //new LoginNetworking().doLogin(id, pw);
+
+    new LoginNetworking("login").doLogin(id, pw);
+    //new LoginNetworking("", "");
+
+    /*
     new Handler().postDelayed(() -> {
       view.hideProgress();
       view.dismiss();
       listener.loginComplete();
     }, 2000);
+    */
 
   }
 

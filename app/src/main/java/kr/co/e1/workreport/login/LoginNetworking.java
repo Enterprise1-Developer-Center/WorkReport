@@ -4,40 +4,37 @@ import com.worklight.wlclient.api.WLFailResponse;
 import com.worklight.wlclient.api.WLResourceRequest;
 import com.worklight.wlclient.api.WLResponse;
 import com.worklight.wlclient.api.WLResponseListener;
+import hugo.weaving.DebugLog;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import kr.co.e1.workreport.network.Network;
 import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 13
  */
 
-public class LoginNetworking {
-  private final static String BASE_URL = "/adapters/WorkReportSQL/";
-  private final static String LOGIN_PATH = "login/";
-
-  public void doLogin(String id, String pw) {
-    check();
+public class LoginNetworking extends Network {
+  public LoginNetworking(String url) {
+    super(url);
   }
+  //private final static String BASE_URL = "/adapters/WorkReportSQL/";
+  //private final static String LOGIN_PATH = "login/";
 
-  private void check() {
+  @DebugLog public void doLogin(String id, String pw) {
     try {
-      URI adapterPath = new URI(BASE_URL + LOGIN_PATH + "jhoh" +"/" + "2222");
+      URI adapterPath = new URI(getUrl());
       WLResourceRequest request = new WLResourceRequest(adapterPath, WLResourceRequest.GET);
       // Query Parameters
-      //request.setQueryParameter("age", "36");
-
-      // Header Parameters
-      //request.addHeader("birthdate", "820601");
-
-      // Form Parameters
-      //HashMap<String, String> formParams = new HashMap<>();
-      //formParams.put("userId", "jhoh");
-      //formParams.put("userPw", "1111");
+      HashMap<String, String> parameters = new HashMap<>();
+      parameters.put("userId", id);
+      parameters.put("userPw", pw);
+      request.setQueryParameters(parameters);
       // Send
       request.send(new WLResponseListener() {
-        public void onSuccess(WLResponse response) {
-          if(response != null) {
+        @DebugLog public void onSuccess(WLResponse response) {
+          if (response != null) {
             String responseText = response.getResponseText();
             String jsonString = response.getResponseJSON().toString();
             Timber.d("success text = " + responseText);
@@ -47,13 +44,18 @@ public class LoginNetworking {
           }
         }
 
-        public void onFailure(WLFailResponse response) {
+        @DebugLog public void onFailure(WLFailResponse response) {
           String errorMsg = response.getErrorMsg();
           Timber.d("code = " + response.getErrorStatusCode());
         }
       });
     } catch (URISyntaxException e) {
       e.printStackTrace();
+      Timber.d(e.getMessage());
     }
+  }
+
+  private void check() {
+
   }
 }

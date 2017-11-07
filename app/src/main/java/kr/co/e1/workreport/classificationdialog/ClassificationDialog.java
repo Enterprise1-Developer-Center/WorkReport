@@ -62,7 +62,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     return R.layout.dialog_classification;
   }
 
-  @Override protected ViewGroup getRoot() {
+  @Override protected ViewGroup getInflateRoot() {
     return null;
   }
 

@@ -43,7 +43,7 @@ public class PasswordDialog extends BaseAlertDialogFragment
     return R.layout.dialog_password;
   }
 
-  @Override protected ViewGroup getRoot() {
+  @Override protected ViewGroup getInflateRoot() {
     return null;
   }
 

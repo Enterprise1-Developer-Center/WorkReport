@@ -42,7 +42,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   private View getContentView() {
     View view =
-        LayoutInflater.from(getContext()).inflate(getLayoutResId(), getRoot(), getAttatchRoot());
+        LayoutInflater.from(getContext()).inflate(getLayoutResId(), getInflateRoot(), getAttatchRoot());
     ButterKnife.bind(this, view);
     return view;
   }
@@ -81,7 +81,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   protected abstract @LayoutRes int getLayoutResId();
 
-  protected abstract ViewGroup getRoot();
+  protected abstract ViewGroup getInflateRoot();
 
   protected abstract boolean isDialogCancelable();
 

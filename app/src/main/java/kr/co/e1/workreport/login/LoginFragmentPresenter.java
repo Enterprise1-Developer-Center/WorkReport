@@ -28,5 +28,7 @@ public interface LoginFragmentPresenter {
     void showProgress();
 
     void hideProgress();
+
+    void showMessage(String msg);
   }
 }

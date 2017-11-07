@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.login;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.text.InputFilter;
 import android.util.Log;
@@ -16,6 +17,8 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.SystemUtility;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -29,11 +32,14 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
   @BindView(R.id.id_edittext_layout) TextInputLayout idEdittextLayout;
   @BindView(R.id.pw_edittext_layout) TextInputLayout pwEdittextLayout;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
+  @BindView(R.id.root_view) View rootView;
+  @Accessors(chain = true) @Setter LoginCommunicationListener loginCommunicationListener;
+
   @Override protected int getLayoutResId() {
     return R.layout.fragment_login;
   }
 
-  @Override protected ViewGroup getRoot() {
+  @Override protected ViewGroup getInflateRoot() {
     return null;
   }
 
@@ -121,5 +127,9 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
 
   @Override public void hideProgress() {
     progressBar.setVisibility(View.INVISIBLE);
+  }
+
+  @Override public void showMessage(String msg) {
+    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
 }

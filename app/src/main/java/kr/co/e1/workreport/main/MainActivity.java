@@ -69,7 +69,8 @@ public class MainActivity extends BaseActivity
   }
 
   @DebugLog @Override public void showLoginFragment(Bundle savedInstanceState) {
-    new LoginFragment().show(getSupportFragmentManager(), LoginFragment.class.getSimpleName());
+    new LoginFragment().setLoginCommunicationListener(this)
+        .show(getSupportFragmentManager(), LoginFragment.class.getSimpleName());
   }
 
   @Override public void showPasswordChangeDialog() {

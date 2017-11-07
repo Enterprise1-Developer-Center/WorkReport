@@ -79,6 +79,8 @@ dependencies {
   releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
 
   compile "com.github.PhilJay:MPAndroidChart:$MPAndroidChart_version"
+
+  compile "com.google.code.gson:gson:$gson_version"
 }
 repositories {
   mavenCentral()

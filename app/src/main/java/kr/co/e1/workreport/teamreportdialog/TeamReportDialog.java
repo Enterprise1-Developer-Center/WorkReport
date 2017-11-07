@@ -48,7 +48,7 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     return R.layout.fragment_report;
   }
 
-  @Override protected ViewGroup getRoot() {
+  @Override protected ViewGroup getInflateRoot() {
     return null;
   }
 

@@ -2,7 +2,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -11,8 +10,7 @@
     android:gravity="center"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="kr.co.e1.workreport.main.MainActivity"
-    >
+    android:id="@id/root_view">
   <android.support.design.widget.TextInputLayout
       android:id="@id/id_edittext_layout"
       android:layout_width="match_parent"

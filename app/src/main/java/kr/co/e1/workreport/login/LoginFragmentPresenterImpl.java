@@ -4,6 +4,8 @@ import android.os.Bundle;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
+import kr.co.e1.workreport.network.OnWLResultListener;
+import kr.co.e1.workreport.network.WLResult;
 
 /**
  * Created by jaeho on 2017. 9. 27
@@ -11,52 +13,43 @@ import kr.co.e1.workreport.main.LoginCommunicationListener;
 
 public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
 
-  LoginFragmentPresenter.View view;
+  private LoginFragmentPresenter.View view;
+  private LoginNetworking networking;
+  private LoginCommunicationListener loginListener;
 
-  @Inject LoginFragmentPresenterImpl(LoginFragmentPresenter.View view) {
+  @Inject LoginFragmentPresenterImpl(LoginFragmentPresenter.View view, LoginNetworking networking,
+      LoginCommunicationListener loginListener) {
     this.view = view;
+    this.networking = networking;
+    this.loginListener = loginListener;
   }
 
   @DebugLog @Override public void onActivityCreate(Bundle savedInstanceState) {
   }
 
   @Override public void onPositiveClick(String id, String pw, LoginCommunicationListener listener) {
-    //view.showProgress();
-    //view.showIDError("");
-    //view.showPWError("");
-    //new LoginNetworking().doLogin(id, pw);
 
-    new LoginNetworking("login").doLogin(id, pw);
-    //new LoginNetworking("", "");
+    networking.setUser(id, pw).setOnWLResultListener(new OnWLResultListener<WLResult>() {
+      @Override public void onPre() {
+        view.showProgress();
+      }
 
-    /*
-    new Handler().postDelayed(() -> {
-      view.hideProgress();
-      view.dismiss();
-      listener.loginComplete();
-    }, 2000);
-    */
+      @DebugLog @Override public void onResultSuccess(WLResult result) {
+        loginListener.loginComplete();
+        view.dismiss();
+      }
 
+      @DebugLog @Override public void onResultFailure(WLResult result) {
+        view.showMessage(result.getMsg());
+      }
+
+      @DebugLog @Override public void onServerError(String msg) {
+        view.showMessage(msg);
+      }
+
+      @Override public void onPost() {
+        view.hideProgress();
+      }
+    }).execute();
   }
-
-  /*
-  private void validate() {
-    Resources res = MyApplication.getInstance().getResources();
-    LoginValidation.Validate2Result validate2Result = LoginValidation.validate2(id, pw, res);
-    String msg = validate2Result.getMessage();
-    switch (validate2Result.getErrorType()) {
-      case ID:
-        view.showIDError(msg);
-        break;
-      case PW:
-        view.showPWError(msg);
-        break;
-      case PASS:
-        view.hideKeyboard();
-        listener.startMain();
-        break;
-    }
-    Timber.i(validate2Result.toString());
-  }
-  */
 }

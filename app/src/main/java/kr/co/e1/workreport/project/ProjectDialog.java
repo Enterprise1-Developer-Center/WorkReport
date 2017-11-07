@@ -58,7 +58,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
     return R.layout.dialog_project;
   }
 
-  @Override protected ViewGroup getRoot() {
+  @Override protected ViewGroup getInflateRoot() {
     return null;
   }
 

@@ -18,9 +18,8 @@ android {
       minifyEnabled false
       proguardFile getDefaultProguardFile('proguard-android.txt')
       proguardFile 'proguard-rules.pro'
-      proguardFile 'proguard-retrolambda.pro'
-      proguardFile 'proguard-dagger.pro'
       proguardFile 'proguard-butterknife.pro'
+      proguardFile 'proguard-retrofit.pro'
     }
   }
   packagingOptions {
@@ -81,6 +80,8 @@ dependencies {
   compile "com.github.PhilJay:MPAndroidChart:$MPAndroidChart_version"
 
   compile "com.google.code.gson:gson:$gson_version"
+
+  compile "com.squareup.retrofit2:retrofit:$retrofit_version"
 }
 repositories {
   mavenCentral()

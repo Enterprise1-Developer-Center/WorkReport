@@ -2,8 +2,6 @@ package kr.co.e1.workreport.login;
 
 import com.worklight.wlclient.api.WLResourceRequest;
 import com.worklight.wlclient.api.WLResponse;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
 import java.util.HashMap;
 import kr.co.e1.workreport.network.Network;
 import kr.co.e1.workreport.network.OnWLResultListener;
@@ -17,16 +15,12 @@ import lombok.experimental.Accessors;
 
 public class LoginNetworking extends Network {
 
-  public static Observable<String> request() {
-    return new Observable<String>() {
-      @Override protected void subscribeActual(Observer<? super String> observer) {
-          
-      }
-    };
-  }
-
   public LoginNetworking(String url) {
     super(url);
+  }
+
+  @Override protected int getTimeOut() {
+    return 1000 * 5;
   }
 
   @Override protected void onPre() {

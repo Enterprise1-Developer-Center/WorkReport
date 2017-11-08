@@ -32,6 +32,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
     networking.setUser(id, pw).setOnWLResultListener(new OnWLResultListener<WLResult>() {
       @Override public void onPre() {
         view.showProgress();
+        view.setButtonEnabled(false);
       }
 
       @DebugLog @Override public void onResultSuccess(WLResult result) {
@@ -49,7 +50,12 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
 
       @Override public void onPost() {
         view.hideProgress();
+        view.setButtonEnabled(true);
       }
     }).execute();
+  }
+
+  @DebugLog @Override public void onDetach() {
+    networking.cancel();
   }
 }

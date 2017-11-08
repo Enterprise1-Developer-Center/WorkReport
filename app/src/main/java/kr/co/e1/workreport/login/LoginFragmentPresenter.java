@@ -13,6 +13,8 @@ public interface LoginFragmentPresenter {
 
   void onPositiveClick(String id, String pw, LoginCommunicationListener listener);
 
+  void onDetach();
+
   interface View {
 
     void setEditTextFilter();
@@ -30,5 +32,7 @@ public interface LoginFragmentPresenter {
     void hideProgress();
 
     void showMessage(String msg);
+
+    void setButtonEnabled(boolean enable);
   }
 }

@@ -20,7 +20,7 @@ import org.json.JSONException;
 public abstract class Network {
   private final static int RESULT_SUCCESS = 1;
   private final static int RESULT_FAILURE = 0;
-
+  private boolean isRunning = false;
   private String url;
   protected Gson gson;
 
@@ -30,16 +30,20 @@ public abstract class Network {
   }
 
   public void execute() {
+    isRunning = true;
     onPre();
     try {
       URI adapterPath = new URI(url);
-      WLResourceRequest request = new WLResourceRequest(adapterPath, getMethod());
+      WLResourceRequest request = new WLResourceRequest(adapterPath, getMethod(), getTimeOut());
       // Query Parameters
       request.setQueryParameters(getParameters());
 
       // Send
       request.send(new WLResponseListener() {
         @DebugLog public void onSuccess(WLResponse response) {
+          if(!isRunning) {
+            return;
+          }
           int result = 0;
           try {
             result = response.getResponseJSON().getInt("result");
@@ -54,27 +58,34 @@ public abstract class Network {
               onResultFailure(response);
               onPost();
               break;
-            default:
-              //..
           }
+
+          isRunning = false;
         }
 
         @DebugLog public void onFailure(WLFailResponse response) {
           String errorMsg = MyApplication.getInstance().getString(R.string.error_server_error);
           onServerError(errorMsg);
           onPost();
+          isRunning = false;
         }
       });
     } catch (URISyntaxException e) {
       e.printStackTrace();
       onServerError(null);
       onPost();
+      isRunning = false;
     } catch (Exception e) {
       e.printStackTrace();
       onServerError(null);
       onPost();
+      isRunning = false;
     }
   }
+  public void cancel() {
+    isRunning = false;
+  }
+  protected abstract int getTimeOut();
 
   protected abstract void onPre();
 

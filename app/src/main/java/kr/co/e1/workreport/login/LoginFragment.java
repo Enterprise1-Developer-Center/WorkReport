@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.login;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -131,5 +132,14 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
 
   @Override public void showMessage(String msg) {
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void setButtonEnabled(boolean enable) {
+    alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(enable);
+  }
+
+  @Override public void onDetach() {
+    super.onDetach();
+    presenter.onDetach();
   }
 }

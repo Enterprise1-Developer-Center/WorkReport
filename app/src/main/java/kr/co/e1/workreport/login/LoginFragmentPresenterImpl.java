@@ -4,8 +4,7 @@ import android.os.Bundle;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
-import kr.co.e1.workreport.network.OnWLResultListener;
-import kr.co.e1.workreport.network.WLResult;
+import kr.co.e1.workreport.network.Networking;
 
 /**
  * Created by jaeho on 2017. 9. 27
@@ -24,11 +23,13 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
     this.loginListener = loginListener;
   }
 
-  @DebugLog @Override public void onActivityCreate(Bundle savedInstanceState) {
+  @Override public void onActivityCreate(Bundle savedInstanceState) {
   }
 
-  @Override public void onPositiveClick(String id, String pw, LoginCommunicationListener listener) {
-
+  @DebugLog @Override public void onPositiveClick(String id, String pw, LoginCommunicationListener listener) {
+    //Networking.req();
+    Networking.getToken();
+    /*
     networking.setUser(id, pw).setOnWLResultListener(new OnWLResultListener<WLResult>() {
       @Override public void onPre() {
         view.showProgress();
@@ -53,6 +54,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
         view.setButtonEnabled(true);
       }
     }).execute();
+    */
   }
 
   @DebugLog @Override public void onDetach() {

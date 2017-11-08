@@ -20,6 +20,7 @@ android {
       proguardFile 'proguard-rules.pro'
       proguardFile 'proguard-butterknife.pro'
       proguardFile 'proguard-retrofit.pro'
+      proguardFile 'proguard-okhttp.pro'
     }
   }
   packagingOptions {
@@ -64,7 +65,7 @@ dependencies {
 
   compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
   compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
-  compile "com.jakewharton.rxbinding2:rxbinding:$rxbinding_version"
+  //compile "com.jakewharton.rxbinding2:rxbinding:$rxbinding_version"
 
   compile "com.jakewharton.timber:timber:$timber_version"
 
@@ -82,6 +83,9 @@ dependencies {
   compile "com.google.code.gson:gson:$gson_version"
 
   compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+  compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+  compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+  compile 'com.squareup.okhttp3:okhttp:3.9.0'
 }
 repositories {
   mavenCentral()

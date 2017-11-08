@@ -15,7 +15,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
   private LoginFragmentPresenter.View view;
   private LoginNetworking networking;
   private LoginCommunicationListener loginListener;
-
+  private Networking req = new Networking();
   @Inject LoginFragmentPresenterImpl(LoginFragmentPresenter.View view, LoginNetworking networking,
       LoginCommunicationListener loginListener) {
     this.view = view;
@@ -24,11 +24,13 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
   }
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
+    req.getToken();
   }
 
   @DebugLog @Override public void onPositiveClick(String id, String pw, LoginCommunicationListener listener) {
+    req.req();
     //Networking.req();
-    Networking.getToken();
+    //new Networking().getToken();
     /*
     networking.setUser(id, pw).setOnWLResultListener(new OnWLResultListener<WLResult>() {
       @Override public void onPre() {

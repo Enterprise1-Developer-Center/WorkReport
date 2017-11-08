@@ -2,6 +2,9 @@ package kr.co.e1.workreport.app;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import com.squareup.leakcanary.LeakCanary;
 import com.worklight.wlclient.api.WLClient;
 import dagger.android.AndroidInjector;
@@ -21,6 +24,8 @@ public class MyApplication extends Application implements HasActivityInjector {
   @Getter private static Application instance;
   @Inject DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
+  public static boolean DEBUG = false;
+
   @Override public void onCreate() {
     super.onCreate();
     instance = this;
@@ -28,6 +33,21 @@ public class MyApplication extends Application implements HasActivityInjector {
     initTimber();
     initWLClient();
     initDagger();
+    this.DEBUG = isDebuggable(this);
+  }
+
+  private boolean isDebuggable(Context context) {
+    boolean debuggable = false;
+
+    PackageManager pm = context.getPackageManager();
+    try {
+      ApplicationInfo appinfo = pm.getApplicationInfo(context.getPackageName(), 0);
+      debuggable = (0 != (appinfo.flags & ApplicationInfo.FLAG_DEBUGGABLE));
+    } catch (PackageManager.NameNotFoundException e) {
+      /* debuggable variable will remain false */
+    }
+
+    return debuggable;
   }
 
   private void initDagger() {

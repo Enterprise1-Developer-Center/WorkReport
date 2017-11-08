@@ -7,7 +7,7 @@ import lombok.ToString;
  * Created by jaeho on 2017. 11. 8
  */
 
-@ToString @Getter public class MFPToken {
+@ToString @Getter public class TokenResult {
   private String access_token;
   private String token_type;
   private int expires_in;

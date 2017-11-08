@@ -75,17 +75,19 @@ dependencies {
 
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-  debugCompile "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
-  releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
-
   compile "com.github.PhilJay:MPAndroidChart:$MPAndroidChart_version"
 
   compile "com.google.code.gson:gson:$gson_version"
 
+  debugCompile "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+  releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
   compile "com.squareup.retrofit2:retrofit:$retrofit_version"
   compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
-  compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
-  compile 'com.squareup.okhttp3:okhttp:3.9.0'
+  compile "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+  compile "com.squareup.okhttp3:okhttp:$okhttp3_version"
+
+  compile "com.pixplicity.easyprefs:library:$easyprefs_version"
+
 }
 repositories {
   mavenCentral()

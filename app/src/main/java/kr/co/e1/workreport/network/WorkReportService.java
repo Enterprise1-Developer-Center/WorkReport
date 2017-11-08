@@ -15,10 +15,11 @@ import retrofit2.http.QueryMap;
 
 public interface WorkReportService {
 
-  @GET("/mfp/api/adapters/WorkReportSQL/login") Call<WLResult> getLoginResult(
+  @GET("api/adapters/WorkReportSQL/login") Call<WLResult> getLoginResult(@Header("Authorization") String header,
       @QueryMap Map<String, String> queryMap);
 
-  @FormUrlEncoded
-  @POST("/mfp/api/az/v1/token") Call<MFPToken> generateToken(@Header("Authorization") String header,
-      @Field("grant_type") String grantTYpe, @Field("scope") String scope);
+  @FormUrlEncoded @POST("api/az/v1/token") Call<TokenResult> generateToken(
+      @Header("Authorization") String header, @Field("grant_type") String grantTYpe,
+      @Field("scope") String scope);
+
 }

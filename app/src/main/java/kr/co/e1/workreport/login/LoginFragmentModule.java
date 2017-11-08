@@ -2,6 +2,7 @@ package kr.co.e1.workreport.login;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
 
 /**
@@ -9,7 +10,6 @@ import kr.co.e1.workreport.main.LoginCommunicationListener;
  */
 
 @Module public class LoginFragmentModule {
-  private final static String BASE_URL = "/adapters/WorkReportSQL/";
   @Provides LoginFragmentPresenter.View provideLoginView(LoginFragment loginFragment) {
     return loginFragment;
   }
@@ -18,7 +18,11 @@ import kr.co.e1.workreport.main.LoginCommunicationListener;
   }
 
   @Provides String provideLoginUrl() {
-    return BASE_URL + "login";
+    if (MyApplication.DEBUG) {
+      return "http://192.168.1.99:9080/mfp/";
+    } else {
+      return "http://211.219.71.228:9080/mfp/";
+    }
   }
   @Provides LoginCommunicationListener provideLoginCommunicationListener(LoginFragment loginFragment) {
     return loginFragment.loginCommunicationListener;

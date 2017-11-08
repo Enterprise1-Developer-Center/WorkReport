@@ -88,6 +88,8 @@ dependencies {
 
   compile "com.pixplicity.easyprefs:library:$easyprefs_version"
 
+  compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
 }
 repositories {
   mavenCentral()

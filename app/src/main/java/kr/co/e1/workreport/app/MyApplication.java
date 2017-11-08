@@ -3,8 +3,10 @@ package kr.co.e1.workreport.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.worklight.wlclient.api.WLClient;
 import dagger.android.AndroidInjector;
@@ -33,7 +35,16 @@ public class MyApplication extends Application implements HasActivityInjector {
     initTimber();
     initWLClient();
     initDagger();
+    initEasyPrefs();
     this.DEBUG = isDebuggable(this);
+  }
+
+  private void initEasyPrefs() {
+    new Prefs.Builder().setContext(this)
+        .setMode(ContextWrapper.MODE_PRIVATE)
+        .setPrefsName(getPackageName())
+        .setUseDefaultSharedPreference(true)
+        .build();
   }
 
   private boolean isDebuggable(Context context) {

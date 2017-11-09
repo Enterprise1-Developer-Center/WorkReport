@@ -2,7 +2,9 @@ package kr.co.e1.workreport.statisticsopdetail;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.MenuItem;
 import dagger.android.AndroidInjector;
+import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
 
 /**
@@ -15,15 +17,20 @@ public class OpDetailActivity extends BaseActivity {
   }
 
   @Override protected int getLayoutResID() {
-    return 0;
+    return R.layout.activity_statistics_op_detail;
   }
 
   @Override protected int getTitleResId() {
-    return 0;
+    return R.string.operation_ration_table;
   }
 
   @Override protected boolean isDisplayHomeAsUpEnabled() {
-    return false;
+    return true;
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    finish();
+    return super.onOptionsItemSelected(item);
   }
 
   @Override protected boolean isDagger() {

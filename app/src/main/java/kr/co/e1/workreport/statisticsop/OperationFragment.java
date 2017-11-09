@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.statisticsop;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import butterknife.BindView;
+import butterknife.OnClick;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -25,6 +27,7 @@ import java.util.List;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseFragment;
+import kr.co.e1.workreport.statisticsopdetail.OpDetailActivity;
 import timber.log.Timber;
 
 /**
@@ -146,6 +149,11 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     detailButton.setEnabled(enabled);
   }
 
+  @Override public void navigateToOpDetail() {
+    Intent intent = new Intent(getContext(), OpDetailActivity.class);
+    startActivity(intent);
+  }
+
   private void setMemberData() {
     List<BarEntry> entries = new ArrayList<>();
 
@@ -217,5 +225,9 @@ public class OperationFragment extends BaseFragment implements OperationFragment
         return quarters[0];
       }
     });
+  }
+
+  @OnClick(R.id.detail_button) void onClick(View view) {
+    presenter.onClick(view.getId());
   }
 }

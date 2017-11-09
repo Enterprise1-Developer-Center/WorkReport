@@ -10,6 +10,8 @@ public interface OperationFragmentPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
+  void onClick(int id);
+
   interface View {
 
     void showProgress();
@@ -19,5 +21,7 @@ public interface OperationFragmentPresenter {
     void showChart();
 
     void detailButtonEnabled(boolean enabled);
+
+    void navigateToOpDetail();
   }
 }

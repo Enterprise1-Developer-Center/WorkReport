@@ -44,4 +44,5 @@
   <string name="vacation_etc"><![CDATA[Vacation & Etc]]></string>
   <string name="sum">계</string>
   <string name="login_complete">로그인 성공</string>
+  <string name="operation_ration_table">가동률 표</string>
 </resources>

@@ -38,7 +38,6 @@
         android:text="가동률 상세보기"
         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
         android:textColor="@color/colorAccent"
-        android:gravity="right"
         style="@style/Base.Widget.AppCompat.Button.Borderless"
         />
   </LinearLayout>

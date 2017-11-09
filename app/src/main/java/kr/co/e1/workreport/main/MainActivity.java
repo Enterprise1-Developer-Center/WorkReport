@@ -227,7 +227,7 @@ public class MainActivity extends BaseActivity
         .show(getSupportFragmentManager(), ProjectDialog.class.getSimpleName());
   }
 
-  @Override public void showSnakeBar(int resId) {
+  @Override public void showMessage(int resId) {
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 

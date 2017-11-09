@@ -81,6 +81,6 @@ public interface MainPresenter {
 
     void showProjectChoiceDialog();
 
-    void showSnakeBar(@StringRes int resId);
+    void showMessage(@StringRes int resId);
   }
 }

@@ -41,6 +41,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void loginComplete() {
     //view.showReportFragment();
+    view.showMessage(R.string.login_complete);
     view.setListener();
     view.showReportDate("2017-01-31 (목)");
     view.showGroup("BS");
@@ -94,7 +95,7 @@ public class MainPresenterImpl implements MainPresenter {
     new Handler().postDelayed(() -> {
       view.hideProgress();
       view.enableSaveButton();
-      view.showSnakeBar(R.string.save_completed);
+      view.showMessage(R.string.save_completed);
     }, 2000);
   }
 

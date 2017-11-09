@@ -2,7 +2,7 @@ package kr.co.e1.workreport.statistics;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.statisticsoperation.OperationFragmentComponent;
+import kr.co.e1.workreport.statisticsop.OperationFragmentComponent;
 import kr.co.e1.workreport.statisticstotal.TotalFragmentComponent;
 
 /**

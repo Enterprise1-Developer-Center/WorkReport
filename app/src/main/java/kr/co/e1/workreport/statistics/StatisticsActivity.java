@@ -11,7 +11,7 @@ import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
-import kr.co.e1.workreport.statisticsoperation.OperationFragment;
+import kr.co.e1.workreport.statisticsop.OperationFragment;
 import kr.co.e1.workreport.statisticstotal.TotalFragment;
 
 import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_RATIO;

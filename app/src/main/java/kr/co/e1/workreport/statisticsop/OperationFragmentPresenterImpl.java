@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statisticsoperation;
+package kr.co.e1.workreport.statisticsop;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,9 +9,9 @@ import android.os.Handler;
 
 public class OperationFragmentPresenterImpl implements OperationFragmentPresenter {
 
-  private OperationFragmentPresenter.View view;
+  private View view;
 
-  OperationFragmentPresenterImpl(OperationFragmentPresenter.View view) {
+  OperationFragmentPresenterImpl(View view) {
     this.view = view;
   }
 

@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statisticsoperation;
+package kr.co.e1.workreport.statisticsop;
 
 import android.support.v4.app.Fragment;
 import dagger.Binds;

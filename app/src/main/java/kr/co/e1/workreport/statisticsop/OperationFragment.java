@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statisticsoperation;
+package kr.co.e1.workreport.statisticsop;
 
 import android.graphics.Color;
 import android.os.Bundle;

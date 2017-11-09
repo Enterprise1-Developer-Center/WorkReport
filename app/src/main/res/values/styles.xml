@@ -195,18 +195,18 @@
     <item name="android:imeOptions">actionDone</item>
   </style>
 
-  <style name="BaseOperationRatioItemTextView">
+  <style name="BaseStatisticsTotalTextView">
     <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
     <item name="android:background">@drawable/rectangle_solid_border_2</item>
   </style>
 
-  <style name="OperationRatioItemTitleTextView" parent="BaseOperationRatioItemTextView">
+  <style name="StatisticsTotalItemTitleTextView" parent="BaseStatisticsTotalTextView">
     <item name="android:layout_width">@dimen/dp_80</item>
     <item name="android:layout_height">@dimen/dp_40</item>
     <item name="android:gravity">top|center_horizontal</item>
   </style>
 
-  <style name="OperationRatioItemValueTextView" parent="BaseOperationRatioItemTextView">
+  <style name="StatisticsTotalItemValueTextView" parent="BaseStatisticsTotalTextView">
     <item name="android:layout_width">@dimen/dp_80</item>
     <item name="android:layout_height">@dimen/dp_40</item>
   </style>

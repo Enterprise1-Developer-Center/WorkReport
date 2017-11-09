@@ -45,59 +45,59 @@
                     />
                 <TextView
                     android:text="@string/profits"
-                    style="@style/OperationRatioItemTitleTextView"
+                    style="@style/StatisticsTotalItemTitleTextView"
                     />
                 <TextView
                     android:id="@+id/profits_textview"
-                    style="@style/OperationRatioItemValueTextView"
+                    style="@style/StatisticsTotalItemValueTextView"
                     />
                 <TextView
                     android:text="@string/invest"
-                    style="@style/OperationRatioItemTitleTextView"
+                    style="@style/StatisticsTotalItemTitleTextView"
                     />
                 <TextView
                     android:id="@+id/invest_textview"
-                    style="@style/OperationRatioItemValueTextView"
+                    style="@style/StatisticsTotalItemValueTextView"
                     />
                 <TextView
                     android:text="@string/loss"
-                    style="@style/OperationRatioItemTitleTextView"
+                    style="@style/StatisticsTotalItemTitleTextView"
                     />
                 <TextView
                     android:id="@+id/loss_textview"
-                    style="@style/OperationRatioItemValueTextView"
+                    style="@style/StatisticsTotalItemValueTextView"
                     />
                 <TextView
                     android:text="@string/support"
-                    style="@style/OperationRatioItemTitleTextView"
+                    style="@style/StatisticsTotalItemTitleTextView"
                     />
                 <TextView
                     android:id="@+id/support_textview"
-                    style="@style/OperationRatioItemValueTextView"
+                    style="@style/StatisticsTotalItemValueTextView"
                     />
                 <TextView
                     android:text="@string/educate_proposal"
-                    style="@style/OperationRatioItemTitleTextView"
+                    style="@style/StatisticsTotalItemTitleTextView"
                     />
                 <TextView
                     android:id="@+id/educate_textview"
-                    style="@style/OperationRatioItemValueTextView"
+                    style="@style/StatisticsTotalItemValueTextView"
                     />
                 <TextView
                     android:text="@string/vacation_etc"
-                    style="@style/OperationRatioItemTitleTextView"
+                    style="@style/StatisticsTotalItemTitleTextView"
                     />
                 <TextView
                     android:id="@+id/vacation_textview"
-                    style="@style/OperationRatioItemValueTextView"
+                    style="@style/StatisticsTotalItemValueTextView"
                     />
                 <TextView
                     android:text="@string/sum"
-                    style="@style/OperationRatioItemTitleTextView"
+                    style="@style/StatisticsTotalItemTitleTextView"
                     />
                 <TextView
                     android:id="@+id/sum_textview"
-                    style="@style/OperationRatioItemValueTextView"
+                    style="@style/StatisticsTotalItemValueTextView"
                     />
             </GridLayout>
         </LinearLayout>

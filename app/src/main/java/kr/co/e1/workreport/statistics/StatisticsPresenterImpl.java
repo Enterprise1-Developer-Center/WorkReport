@@ -27,9 +27,6 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
       case R.id.action_ratio:
         view.showOperationFragment();
         break;
-      case R.id.action_graph:
-        view.showGraphFragment();
-        break;
       case R.id.action_total:
         view.showTotalFragment();
         break;

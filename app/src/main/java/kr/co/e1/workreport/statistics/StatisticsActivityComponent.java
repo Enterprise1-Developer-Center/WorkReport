@@ -2,7 +2,6 @@ package kr.co.e1.workreport.statistics;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
-import kr.co.e1.workreport.statisticsgraph.GraphFragmentProvider;
 import kr.co.e1.workreport.statisticsoperation.OperationFragmentProvider;
 import kr.co.e1.workreport.statisticstotal.TotalFragmentProvider;
 
@@ -11,8 +10,7 @@ import kr.co.e1.workreport.statisticstotal.TotalFragmentProvider;
  */
 
 @Subcomponent(modules = {
-    StatisticsActivityModule.class, OperationFragmentProvider.class, GraphFragmentProvider.class,
-    TotalFragmentProvider.class
+    StatisticsActivityModule.class, OperationFragmentProvider.class, TotalFragmentProvider.class
 }) public interface StatisticsActivityComponent extends AndroidInjector<StatisticsActivity> {
   @Subcomponent.Builder abstract class Builder extends AndroidInjector.Builder<StatisticsActivity> {
 

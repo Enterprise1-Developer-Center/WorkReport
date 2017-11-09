@@ -8,19 +8,17 @@ import android.os.Bundle;
 
 public interface StatisticsPresenter {
 
+  public final static int POSITION_NAVI_RATIO = 0;
+  public final static int POSITION_NAVI_TOTAL = 1;
+
+
   void onCreated(Bundle savedInstanceState);
 
   boolean onBottomNavigationItemSelected(int itemId);
 
   interface View {
 
-    final static int POSITION_NAVI_RATIO = 0;
-    final static int POSITION_NAVI_GRAPH = 1;
-    final static int POSITION_NAVI_TOTAL = 2;
-
     void showOperationFragment();
-
-    void showGraphFragment();
 
     void showTotalFragment();
 

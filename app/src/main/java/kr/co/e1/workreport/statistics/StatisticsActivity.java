@@ -11,9 +11,11 @@ import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
-import kr.co.e1.workreport.statisticsgraph.GraphFragment;
 import kr.co.e1.workreport.statisticsoperation.OperationFragment;
 import kr.co.e1.workreport.statisticstotal.TotalFragment;
+
+import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_RATIO;
+import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_TOTAL;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -55,15 +57,6 @@ public class StatisticsActivity extends BaseActivity
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
         .replace(R.id.fragment_container, OperationFragment.newInstance())
-        .commit();
-  }
-
-  @Override public void showGraphFragment() {
-    bottomNavigationView.getMenu().getItem(POSITION_NAVI_GRAPH).setChecked(true);
-    getSupportFragmentManager().beginTransaction()
-        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
-            R.animator.enter_animation, R.animator.exit_animation)
-        .replace(R.id.fragment_container, GraphFragment.newInstance())
         .commit();
   }
 

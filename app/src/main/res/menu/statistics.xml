@@ -3,9 +3,6 @@
   <item android:id="@id/action_ratio"
       android:title="@string/operation_ratio"
       android:icon="@drawable/ic_trending_up" />
-  <item android:id="@id/action_graph"
-      android:title="@string/graph"
-      android:icon="@drawable/ic_bubble_chart" />
   <item android:id="@id/action_total"
       android:title="@string/total"
       android:icon="@drawable/ic_border_all" />

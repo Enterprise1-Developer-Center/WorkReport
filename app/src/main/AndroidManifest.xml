@@ -30,7 +30,7 @@
         android:windowSoftInputMode="adjustResize"/>
     <activity
         android:name=".statisticsopdetail.OpDetailActivity"
-        android:screenOrientation="portrait"
+        android:screenOrientation="landscape"
         android:windowSoftInputMode="adjustResize"/>
     <activity
         android:name=".teamreport.TeamReportActivity"

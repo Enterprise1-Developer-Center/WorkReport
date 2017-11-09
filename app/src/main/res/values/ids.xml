@@ -65,4 +65,19 @@
   <item name="toolbar" type="id"/>
   <item name="member_chart" type="id"/>
   <item name="detail_button" type="id"/>
+  <item name="name_textview" type="id"/>
+  <item name="jan_textview" type="id"/>
+  <item name="feb_textview" type="id"/>
+  <item name="mar_textview" type="id"/>
+  <item name="apr_textview" type="id"/>
+  <item name="may_textview" type="id"/>
+  <item name="jun_textview" type="id"/>
+  <item name="jul_textview" type="id"/>
+  <item name="aug_textview" type="id"/>
+  <item name="sep_textview" type="id"/>
+  <item name="oct_textview" type="id"/>
+  <item name="nov_textview" type="id"/>
+  <item name="dec_textview" type="id"/>
+  <item name="now_op_ratio_textview" type="id"/>
+  <item name="year_op_ratio_textview" type="id"/>
 </resources>

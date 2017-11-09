@@ -2,12 +2,15 @@ package kr.co.e1.workreport.statisticsopdetail;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
-import timber.log.Timber;
+import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapter;
 
 /**
  * Created by jaeho on 2017. 11. 9
@@ -15,10 +18,13 @@ import timber.log.Timber;
 
 public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.View {
 
+  @BindView(R.id.recyclerview) RecyclerView recyclerView;
+
+  @Inject OpDetailAdapter adapter;
   @Inject OpDetailPresenter presenter;
 
   @Override protected void onCreated(Bundle savedInstanceState) {
-    Timber.d("presenter = " + presenter);
+    presenter.onCreated(savedInstanceState);
   }
 
   @Override protected int getLayoutResID() {
@@ -44,5 +50,17 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
 
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {
     return null;
+  }
+
+
+
+  @Override public void setRecyclerView() {
+    LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
+    recyclerView.setLayoutManager(manager);
+    recyclerView.setAdapter(adapter);
+  }
+
+  @Override public void refresh() {
+    adapter.refresh();
   }
 }

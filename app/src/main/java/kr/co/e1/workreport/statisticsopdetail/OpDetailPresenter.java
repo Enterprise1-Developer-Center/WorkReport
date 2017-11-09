@@ -13,5 +13,8 @@ public interface OpDetailPresenter {
 
   interface View {
 
+    void setRecyclerView();
+
+    void refresh();
   }
 }

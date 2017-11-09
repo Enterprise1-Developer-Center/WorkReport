@@ -12,7 +12,7 @@
     >
 
   <TextView
-      android:id="@+id/name_textview"
+      android:id="@id/name_textview"
       android:layout_width="wrap_content"
       android:layout_height="30dp"
       android:layout_marginStart="8dp"
@@ -39,7 +39,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/name_textview"
+      app:layout_constraintTop_toBottomOf="@id/name_textview"
       tools:text="동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무 궁화 삼천리 화려강산 "
       />
 </android.support.constraint.ConstraintLayout>

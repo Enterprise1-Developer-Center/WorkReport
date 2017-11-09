@@ -4,16 +4,21 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 import dagger.android.AndroidInjector;
+import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 9
  */
 
-public class OpDetailActivity extends BaseActivity {
-  @Override protected void onCreated(Bundle savedInstanceState) {
+public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.View {
 
+  @Inject OpDetailPresenter presenter;
+
+  @Override protected void onCreated(Bundle savedInstanceState) {
+    Timber.d("presenter = " + presenter);
   }
 
   @Override protected int getLayoutResID() {
@@ -34,7 +39,7 @@ public class OpDetailActivity extends BaseActivity {
   }
 
   @Override protected boolean isDagger() {
-    return false;
+    return true;
   }
 
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {

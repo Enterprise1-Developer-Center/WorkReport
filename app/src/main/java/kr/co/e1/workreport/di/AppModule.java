@@ -7,6 +7,7 @@ import dagger.Provides;
 import javax.inject.Singleton;
 import kr.co.e1.workreport.main.MainActivityComponent;
 import kr.co.e1.workreport.statistics.StatisticsActivityComponent;
+import kr.co.e1.workreport.statisticsopdetail.OpDetailActivityComponent;
 import kr.co.e1.workreport.teamreport.TeamReportActivityComponent;
 
 /**
@@ -14,7 +15,7 @@ import kr.co.e1.workreport.teamreport.TeamReportActivityComponent;
  */
 @Module(subcomponents = {
     MainActivityComponent.class, StatisticsActivityComponent.class,
-    TeamReportActivityComponent.class
+    TeamReportActivityComponent.class, OpDetailActivityComponent.class
 }) public class AppModule {
   @Provides @Singleton Context provideContext(Application application) {
     return application;

@@ -10,6 +10,8 @@ import kr.co.e1.workreport.main.MainActivity;
 import kr.co.e1.workreport.main.MainActivityComponent;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.statistics.StatisticsActivityComponent;
+import kr.co.e1.workreport.statisticsopdetail.OpDetailActivity;
+import kr.co.e1.workreport.statisticsopdetail.OpDetailActivityComponent;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
 import kr.co.e1.workreport.teamreport.TeamReportActivityComponent;
 
@@ -29,4 +31,8 @@ import kr.co.e1.workreport.teamreport.TeamReportActivityComponent;
   @Binds @IntoMap @ActivityKey(TeamReportActivity.class)
   abstract AndroidInjector.Factory<? extends Activity> bindTeamReportActivityInjectorFactory(
       TeamReportActivityComponent.Builder builder);
+
+  @Binds @IntoMap @ActivityKey(OpDetailActivity.class)
+  abstract AndroidInjector.Factory<? extends Activity> bindOpDetailActivityInjectorFactory(
+      OpDetailActivityComponent.Builder builder);
 }

@@ -38,6 +38,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
   }
 
   @Override public void onPositiveClick(String id, String pw) {
+    view.showProgress();
     String confidentialsClient = networkHelper.getConfidentialsClient();
     String grantType = networkHelper.getGrantType();
     String scope = networkHelper.getScope();
@@ -59,7 +60,11 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
                 } else {
                   view.showMessage(wlResult.getMsg());
                 }
-              }, throwable -> view.showMessage(R.string.error_server_error));
+                view.hideProgress();
+              }, throwable -> {
+                view.hideProgress();
+                view.showMessage(R.string.error_server_error);
+              });
         }));
   }
 

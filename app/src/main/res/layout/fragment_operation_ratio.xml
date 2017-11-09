@@ -5,36 +5,42 @@
     android:layout_height="match_parent"
     android:background="@color/colorLight"
     >
-  <ScrollView
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:fillViewport="true"
+      android:orientation="vertical"
       >
-    <LinearLayout
+    <TextView
+        android:text="월별 가동률"
+        style="@style/OperationRatioSubjectTextView"
+        />
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@id/year_line_chart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:orientation="vertical"
-        >
-      <TextView
-          android:text="연간 가동률"
-          style="@style/OperationRatioSubjectTextView"
-          />
-      <com.github.mikephil.charting.charts.LineChart
-          android:id="@id/year_line_chart"
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/dp_200"
-          />
-      <TextView
-          android:text="팀원별 현재 가동률"
-          style="@style/OperationRatioSubjectTextView"
-          />
-      <com.github.mikephil.charting.charts.BarChart
-          android:id="@id/member_chart"
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/dp_200"
-          />
-    </LinearLayout>
-  </ScrollView>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:text="팀원별 현재 가동률"
+        style="@style/OperationRatioSubjectTextView"
+        />
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@id/member_chart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <Button
+        android:id="@id/oper_ratio_detail_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="가동률 상세보기"
+        android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+        android:textColor="@color/colorAccent"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        />
+  </LinearLayout>
   <ProgressBar
       android:id="@id/progress_bar"
       android:layout_width="?attr/actionBarSize"

@@ -64,4 +64,5 @@
   <item name="team_line_chart" type="id"/>
   <item name="toolbar" type="id"/>
   <item name="member_chart" type="id"/>
+  <item name="oper_ratio_detail_button" type="id"/>
 </resources>

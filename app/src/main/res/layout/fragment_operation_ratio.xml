@@ -32,7 +32,7 @@
         android:layout_weight="1"
         />
     <Button
-        android:id="@id/oper_ratio_detail_button"
+        android:id="@id/detail_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="가동률 상세보기"

@@ -17,9 +17,11 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.showProgress();
+    view.detailButtonEnabled(false);
     new Handler().postDelayed(() -> {
       view.showChart();
       view.hideProgress();
+      view.detailButtonEnabled(true);
     }, 1000);
   }
 }

@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import butterknife.BindView;
 import com.github.mikephil.charting.charts.BarChart;
@@ -34,6 +35,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
   @BindView(R.id.year_line_chart) LineChart teamChart;
   @BindView(R.id.member_chart) BarChart memberChart;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
+  @BindView(R.id.detail_button) Button detailButton;
   @Inject OperationFragmentPresenter presenter;
 
   public static OperationFragment newInstance() {
@@ -140,6 +142,10 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     setMemberData();
   }
 
+  @Override public void detailButtonEnabled(boolean enabled) {
+    detailButton.setEnabled(enabled);
+  }
+
   private void setMemberData() {
     List<BarEntry> entries = new ArrayList<>();
 
@@ -158,8 +164,6 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     entries.add(new BarEntry(11f, 30.4f));
 
     BarDataSet dataSet = new BarDataSet(entries, "팀원별");
-
-
 
     dataSet.setHighLightColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
     dataSet.setDrawValues(true);
@@ -214,5 +218,4 @@ public class OperationFragment extends BaseFragment implements OperationFragment
       }
     });
   }
-
 }

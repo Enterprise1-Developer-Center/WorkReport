@@ -10,6 +10,7 @@ import android.os.Handler;
 public class OperationFragmentPresenterImpl implements OperationFragmentPresenter {
 
   private OperationFragmentPresenter.View view;
+
   OperationFragmentPresenterImpl(OperationFragmentPresenter.View view) {
     this.view = view;
   }
@@ -20,6 +21,5 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
       view.showChart();
       view.hideProgress();
     }, 1000);
-
   }
 }

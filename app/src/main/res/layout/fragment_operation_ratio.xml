@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLight"
     >
-  <LinearLayout
+  <ScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:fillViewport="true"
-      android:orientation="vertical"
       >
-    <TextView
-        style="@style/OperationRatioSubjectTextView"
-        android:text="팀 가동률"
-        />
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@id/year_line_chart"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_200"
-        />
-    <TextView
-        style="@style/OperationRatioSubjectTextView"
-        android:text="팀원 가동률"
-        />
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@id/team_line_chart"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_200"
-        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_200"
-        android:background="@color/colorIndigo_100"
-        />
-    <ProgressBar
-        android:id="@id/progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_20"
-        android:visibility="invisible"
-        />
-  </LinearLayout>
-</ScrollView>
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        >
+      <TextView
+          android:text="연간 가동률"
+          style="@style/OperationRatioSubjectTextView"
+          />
+      <com.github.mikephil.charting.charts.LineChart
+          android:id="@id/year_line_chart"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/dp_200"
+          />
+      <TextView
+          android:text="팀원별 현재 가동률"
+          style="@style/OperationRatioSubjectTextView"
+          />
+      <com.github.mikephil.charting.charts.BarChart
+          android:id="@id/member_chart"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/dp_200"
+          />
+    </LinearLayout>
+  </ScrollView>
+  <ProgressBar
+      android:id="@id/progress_bar"
+      android:layout_width="?attr/actionBarSize"
+      android:layout_height="?attr/actionBarSize"
+      android:layout_gravity="center"
+      android:visibility="gone"
+      />
+</FrameLayout>

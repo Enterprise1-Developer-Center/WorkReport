@@ -230,6 +230,9 @@
   <style name="OpDetailItemSubjectTextView" parent="BaseOpDetailItemTextView">
     <item name="android:background">@color/colorIndigo_200</item>
   </style>
+  <style name="OpDetailItemTotalTextView" parent="BaseOpDetailItemTextView">
+    <!--<item name="android:background">@color/colorIndigo_200</item>-->
+  </style>
 
   <!-- Splash Screen theme. -->
   <style name="SplashTheme" parent="AppTheme.NoActionBar">

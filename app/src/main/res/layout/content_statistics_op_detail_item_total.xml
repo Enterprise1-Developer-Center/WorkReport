@@ -9,78 +9,82 @@
   <TextView
       android:id="@id/name_textview"
       android:text="@string/total"
+      android:layout_width="0dp"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight="1.2"
       android:background="@color/colorIndigo_200"
-      style="@style/BaseOpDetailItemTextView"
+      android:gravity="center"
+      android:textAppearance="@style/TextAppearance.AppCompat.Small"
       />
   <TextView
       android:id="@id/jan_textview"
       tools:text="100.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/feb_textview"
       tools:text="100.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/mar_textview"
       tools:text="100.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/apr_textview"
       tools:text="40.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/may_textview"
       tools:text="10.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/jun_textview"
       tools:text="20.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/jul_textview"
       tools:text="40.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/aug_textview"
       tools:text="50.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/sep_textview"
       tools:text="60.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/oct_textview"
       tools:text="35.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/nov_textview"
       tools:text="25.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/dec_textview"
       tools:text="15.5"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/now_op_ratio_textview"
       tools:text="11.9"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
   <TextView
       android:id="@id/year_op_ratio_textview"
       tools:text="97.0"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemTotalTextView"
       />
 
 </LinearLayout>

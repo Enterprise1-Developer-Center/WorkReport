@@ -8,7 +8,12 @@
     >
   <TextView
       android:id="@id/name_textview"
-      style="@style/OpDetailItemSubjectTextView"
+      android:layout_width="0dp"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight="1.2"
+      android:background="@color/colorIndigo_200"
+      android:gravity="center"
+      android:textAppearance="@style/TextAppearance.AppCompat.Small"
       />
   <TextView
       android:id="@id/jan_textview"

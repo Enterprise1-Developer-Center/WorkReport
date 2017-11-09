@@ -8,9 +8,13 @@
     >
   <TextView
       android:id="@id/name_textview"
-      tools:text="오재호"
+      android:layout_width="0dp"
+      android:layout_height="@dimen/dp_40"
+      android:layout_weight="1.2"
       android:background="@color/colorIndigo_200"
-      style="@style/BaseOpDetailItemTextView"
+      android:gravity="center"
+      android:textAppearance="@style/TextAppearance.AppCompat.Small"
+      tools:text="오재호"
       />
   <TextView
       android:id="@id/jan_textview"

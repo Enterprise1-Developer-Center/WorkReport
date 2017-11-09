@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.network;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import java.util.Map;
 import retrofit2.http.Field;
@@ -14,12 +13,12 @@ import retrofit2.http.QueryMap;
  * Created by jaeho on 2017. 11. 8
  */
 
-public interface WorkReportService {
+public interface WorkReportApi {
 
   @GET("api/adapters/WorkReportSQL/login") Single<WLResult> getLoginResult(@Header("Authorization") String header,
       @QueryMap Map<String, String> queryMap);
 
-  @FormUrlEncoded @POST("api/az/v1/token") Observable<TokenResult> generateToken(
+  @FormUrlEncoded @POST("api/az/v1/token") Single<TokenResult> generateToken(
       @Header("Authorization") String header, @Field("grant_type") String grantTYpe,
       @Field("scope") String scope);
 

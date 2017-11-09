@@ -1,5 +1,7 @@
 package kr.co.e1.workreport.network;
 
+import lombok.Getter;
+import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -12,18 +14,33 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class NetworkHelper {
+  public final static int RESULT_SUCCESS = 1;
+  public final static int RESULT_FAILURE = 0;
+  private String baseUrl;
 
-  public WorkReportService getWorkReportService() {
-    final Retrofit retrofit = createRetrofit();
-    return retrofit.create(WorkReportService.class);
+  @Getter private String confidentialsClient;
+  @Getter private String grantType;
+  @Getter private String scope;
+
+  public NetworkHelper(String baseUrl) {
+    this.baseUrl = baseUrl;
+    confidentialsClient = Credentials.basic("test", "test");
+    grantType = "client_credentials";
+    scope = "RegisteredClient"; // Default
   }
 
-  public Retrofit createRetrofit() {
-    Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.99:9080/mfp/")
+  public WorkReportApi getWorkReportApi() {
+    final Retrofit retrofit = createRetrofit();
+    return retrofit.create(WorkReportApi.class);
+  }
+
+  private Retrofit createRetrofit() {
+    Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .client(createClient())
         .build();
+
     return retrofit;
   }
 

@@ -2,6 +2,7 @@ package kr.co.e1.workreport.login;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.text.InputFilter;
@@ -56,8 +57,7 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
     return view -> {
       String id = idEdittext.getText().toString().trim();
       String pw = pwEdittext.getText().toString().trim();
-      LoginCommunicationListener listener = (LoginCommunicationListener) getActivity();
-      presenter.onPositiveClick(id, pw, listener);
+      presenter.onPositiveClick(id, pw);
     };
   }
 
@@ -132,6 +132,10 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
 
   @Override public void showMessage(String msg) {
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showMessage(@StringRes int resId) {
+    Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override public void setButtonEnabled(boolean enable) {

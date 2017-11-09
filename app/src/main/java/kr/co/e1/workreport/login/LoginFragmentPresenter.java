@@ -1,7 +1,7 @@
 package kr.co.e1.workreport.login;
 
 import android.os.Bundle;
-import kr.co.e1.workreport.main.LoginCommunicationListener;
+import android.support.annotation.StringRes;
 
 /**
  * Created by jaeho on 2017. 9. 27
@@ -11,7 +11,7 @@ public interface LoginFragmentPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
-  void onPositiveClick(String id, String pw, LoginCommunicationListener listener);
+  void onPositiveClick(String id, String pw);
 
   void onDetach();
 
@@ -32,6 +32,7 @@ public interface LoginFragmentPresenter {
     void hideProgress();
 
     void showMessage(String msg);
+    void showMessage(@StringRes int resId);
 
     void setButtonEnabled(boolean enable);
   }

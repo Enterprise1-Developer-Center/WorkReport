@@ -18,14 +18,6 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
     view.showProgress();
     new Handler().postDelayed(() -> {
       view.showChart();
-      view.showProfits("1197");
-      view.showInvest("340");
-      view.showLoss("0");
-      view.showSupport("8");
-      view.showEducate("138");
-      view.showVacation("71");
-      view.showSum("1414");
-
       view.hideProgress();
     }, 1000);
 

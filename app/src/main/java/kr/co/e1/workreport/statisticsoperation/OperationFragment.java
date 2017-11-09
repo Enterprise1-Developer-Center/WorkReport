@@ -28,13 +28,6 @@ import timber.log.Timber;
 public class OperationFragment extends BaseFragment implements OperationFragmentPresenter.View {
 
   @BindView(R.id.line_chart) LineChart lineChart;
-  @BindView(R.id.profits_textview) TextView profitsTextview;
-  @BindView(R.id.invest_textview) TextView investTextview;
-  @BindView(R.id.loss_textview) TextView lossTextview;
-  @BindView(R.id.support_textview) TextView supportTextview;
-  @BindView(R.id.educate_textview) TextView educateTextview;
-  @BindView(R.id.vacation_textview) TextView vacationTextview;
-  @BindView(R.id.sum_textview) TextView sumTextview;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
 
   @Inject OperationFragmentPresenter presenter;
@@ -142,31 +135,4 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     setLineData();
   }
 
-  @Override public void showProfits(String value) {
-    profitsTextview.setText(value);
-  }
-
-  @Override public void showInvest(String value) {
-    investTextview.setText(value);
-  }
-
-  @Override public void showLoss(String value) {
-    lossTextview.setText(value);
-  }
-
-  @Override public void showSupport(String value) {
-    supportTextview.setText(value);
-  }
-
-  @Override public void showEducate(String value) {
-    educateTextview.setText(value);
-  }
-
-  @Override public void showVacation(String value) {
-    vacationTextview.setText(value);
-  }
-
-  @Override public void showSum(String value) {
-    sumTextview.setText(value);
-  }
 }

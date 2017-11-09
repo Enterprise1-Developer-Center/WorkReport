@@ -18,18 +18,5 @@ public interface OperationFragmentPresenter {
 
     void showChart();
 
-    void showProfits(String value);
-
-    void showInvest(String value);
-
-    void showLoss(String value);
-
-    void showSupport(String value);
-
-    void showEducate(String value);
-
-    void showVacation(String value);
-
-    void showSum(String value);
   }
 }

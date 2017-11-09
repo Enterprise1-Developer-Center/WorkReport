@@ -28,8 +28,4 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
       view.hideProgress();
     }, 1000);
   }
-
-  /*
-
-   */
 }

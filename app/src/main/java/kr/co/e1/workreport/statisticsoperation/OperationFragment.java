@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import butterknife.BindView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -27,7 +26,8 @@ import timber.log.Timber;
  */
 public class OperationFragment extends BaseFragment implements OperationFragmentPresenter.View {
 
-  @BindView(R.id.line_chart) LineChart lineChart;
+  @BindView(R.id.year_line_chart) LineChart yearLineChart;
+  @BindView(R.id.team_line_chart) LineChart teamLineChart;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
 
   @Inject OperationFragmentPresenter presenter;
@@ -61,7 +61,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     entries.add(new Entry(10f, 100f));
     entries.add(new Entry(11f, 30.4f));
 
-    LineDataSet dataSet = new LineDataSet(entries, "가동률");
+    LineDataSet dataSet = new LineDataSet(entries, "");
 
     dataSet.setLineWidth(2.0f);
     dataSet.setCircleRadius(3.5f);
@@ -93,19 +93,92 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     LineData lineData = new LineData(dataSets);
     lineData.setValueTextColor(Color.BLACK);
     //lineChart.animateXY(2000, 2000);
-    lineChart.animateY(1000);
-    lineChart.setData(lineData);
-    lineChart.invalidate();
+    yearLineChart.animateY(1000);
+    yearLineChart.setData(lineData);
+    yearLineChart.invalidate();
     final String[] quarters = new String[] {
         "01월", "02월", "03월", "04월", "05월", "06월", "07월", "08월", "09월", "10월", "11월", "12월"
     };
 
-    Description description = lineChart.getDescription();
+    Description description = yearLineChart.getDescription();
     description.setTextSize(13);
     description.setText("연간 가동율 : 40.9");
     description.setTextColor(ContextCompat.getColor(getContext(),R.color.colorAccent));
 
-    XAxis xAxis = lineChart.getXAxis();
+    XAxis xAxis = yearLineChart.getXAxis();
+    xAxis.setDrawGridLines(false);
+    xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+    xAxis.setGranularity(1f);
+    xAxis.setValueFormatter((value, axis) -> {
+      try {
+        return quarters[(int) value];
+      } catch (ArrayIndexOutOfBoundsException e) {
+        return quarters[0];
+      }
+    });
+  }
+  private void setTeamLineData() {
+    List<Entry> entries = new ArrayList<>();
+
+    entries.add(new Entry(0f, 30f));
+    entries.add(new Entry(1f, 40f));
+    entries.add(new Entry(2f, 80f));
+    entries.add(new Entry(3f, 60f));
+    entries.add(new Entry(4f, 10f));
+    entries.add(new Entry(5f, 15f));
+    entries.add(new Entry(6f, 30f));
+    entries.add(new Entry(7f, 40f));
+    entries.add(new Entry(8f, 60f));
+    entries.add(new Entry(9f, 90f));
+    entries.add(new Entry(10f, 100f));
+    entries.add(new Entry(11f, 30.4f));
+
+    LineDataSet dataSet = new LineDataSet(entries, "");
+
+    dataSet.setLineWidth(2.0f);
+    dataSet.setCircleRadius(3.5f);
+    dataSet.setHighLightColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+    dataSet.setCircleColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+    dataSet.setDrawValues(true);
+    dataSet.setValueTextSize(12f);
+    dataSet.setColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+    List<Entry> values = new ArrayList<>();
+    values.add(new Entry(0f, 30f));
+    values.add(new Entry(1f, 40f));
+    values.add(new Entry(2f, 80f));
+    values.add(new Entry(3f, 60f));
+    values.add(new Entry(4f, 10f));
+    values.add(new Entry(5f, 15f));
+    values.add(new Entry(6f, 30f));
+    values.add(new Entry(7f, 40f));
+    values.add(new Entry(8f, 60f));
+    values.add(new Entry(9f, 90f));
+    values.add(new Entry(10f, 100f));
+    values.add(new Entry(11f, 30.4f));
+
+    dataSet.setValues(values);
+
+    dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+
+    List<ILineDataSet> dataSets = new ArrayList<>();
+    dataSets.add(dataSet);
+    LineData lineData = new LineData(dataSets);
+    lineData.setValueTextColor(Color.BLACK);
+    //lineChart.animateXY(2000, 2000);
+    teamLineChart.animateY(1000);
+    teamLineChart.setData(lineData);
+    teamLineChart.invalidate();
+    final String[] quarters = new String[] {
+        "01월", "02월", "03월", "04월", "05월", "06월", "07월", "08월", "09월", "10월", "11월", "12월"
+    };
+
+    Description description = teamLineChart.getDescription();
+    description.setTextSize(13);
+    description.setText("연간 가동율 : 40.9");
+    description.setTextColor(ContextCompat.getColor(getContext(),R.color.colorAccent));
+
+    XAxis xAxis = teamLineChart.getXAxis();
     xAxis.setDrawGridLines(false);
     xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -133,6 +206,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
 
   @Override public void showChart() {
     setLineData();
+    setTeamLineData();
   }
 
 }

@@ -8,7 +8,8 @@
     >
   <TextView
       android:id="@id/name_textview"
-      tools:text="오재호"
+      android:text="@string/total"
+      android:background="@color/colorIndigo_200"
       style="@style/BaseOpDetailItemTextView"
       />
   <TextView

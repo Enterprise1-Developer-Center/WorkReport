@@ -45,4 +45,18 @@
   <string name="sum">계</string>
   <string name="login_complete">로그인 성공</string>
   <string name="operation_ration_table">가동률 표</string>
+  <string name="january">1월</string>
+  <string name="february">2월</string>
+  <string name="march">3월</string>
+  <string name="april">4월</string>
+  <string name="may">5월</string>
+  <string name="june">6월</string>
+  <string name="july">july</string>
+  <string name="august">8월</string>
+  <string name="september">9월</string>
+  <string name="october">10</string>
+  <string name="november">11월</string>
+  <string name="december">12월</string>
+  <string name="now">현재</string>
+  <string name="year">연간</string>
 </resources>

@@ -8,78 +8,78 @@
     >
   <TextView
       android:id="@id/name_textview"
-      tools:text="오재호"
-      style="@style/BaseOpDetailItemTextView"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/jan_textview"
-      tools:text="100.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/january"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/feb_textview"
-      tools:text="100.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/february"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/mar_textview"
-      tools:text="100.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/march"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/apr_textview"
-      tools:text="40.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/april"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/may_textview"
-      tools:text="10.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/may"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/jun_textview"
-      tools:text="20.0"
-      style="@style/BaseOpDetailItemTextView"
+      tools:text="@string/june"
+      android:text="@string/january"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/jul_textview"
-      tools:text="40.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/july"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/aug_textview"
-      tools:text="50.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/august"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/sep_textview"
-      tools:text="60.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/september"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/oct_textview"
-      tools:text="35.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/november"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/nov_textview"
-      tools:text="25.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/december"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/dec_textview"
-      tools:text="15.5"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/october"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/now_op_ratio_textview"
-      tools:text="11.9"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/now"
+      style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/year_op_ratio_textview"
-      tools:text="97.0"
-      style="@style/BaseOpDetailItemTextView"
+      android:text="@string/year"
+      style="@style/OpDetailItemSubjectTextView"
       />
 
 </LinearLayout>

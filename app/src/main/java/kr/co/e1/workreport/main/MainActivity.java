@@ -15,6 +15,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ProgressBar;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
@@ -196,10 +198,16 @@ public class MainActivity extends BaseActivity
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);
     recyclerView.setItemAnimator(new SlideInDownAnimator());
-    recyclerView.getItemAnimator().setAddDuration(200);
+    recyclerView.getItemAnimator().setAddDuration(300);
   }
 
   @Override public void refresh() {
+    final LayoutAnimationController controller =
+        AnimationUtils.loadLayoutAnimation(getApplicationContext(),
+            R.anim.layout_animation_fall_down);
+    recyclerView.setLayoutAnimation(controller);
+    adapterView.refresh();
+    recyclerView.scheduleLayoutAnimation();
     adapterView.refresh();
   }
 

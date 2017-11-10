@@ -16,14 +16,14 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:orientation="vertical"
-      android:layout_gravity="top|center_horizontal"
+      android:gravity="center_horizontal"
       >
 
     <TextView
         android:id="@id/subject_textview"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorIndigo_200"
+        android:background="@color/colorIndigo_100"
         android:gravity="center"
         android:text="@string/technology_research_center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"

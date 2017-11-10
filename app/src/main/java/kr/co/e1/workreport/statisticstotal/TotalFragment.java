@@ -5,6 +5,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -62,10 +64,12 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
   }
 
   @Override public void refresh() {
+    final LayoutAnimationController controller =
+        AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
+    recyclerView.setLayoutAnimation(controller);
     adapterView.refresh();
+    recyclerView.scheduleLayoutAnimation();
   }
-
-
 
   @OnClick({ R.id.detail_button }) void onClick(View view) {
     presenter.onClick(view.getId());

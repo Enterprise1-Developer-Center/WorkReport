@@ -26,7 +26,7 @@ import java.util.Calendar;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.adapter.ReportAdapter;
+import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseActivity;
@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
-  @Inject ReportAdapter adapter;
+  @Inject MainReportAdapter adapter;
   @Inject ReportAdapterView adapterView;
   @Inject MainPresenter presenter;
 

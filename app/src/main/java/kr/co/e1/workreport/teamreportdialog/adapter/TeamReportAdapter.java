@@ -1,9 +1,10 @@
-package kr.co.e1.workreport.common.adapter;
+package kr.co.e1.workreport.teamreportdialog.adapter;
 
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
@@ -13,12 +14,12 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
  * Created by jaeho on 2017. 11. 10
  */
 
-public class ReportAdapter extends BaseRecyclerAdapter
+public class TeamReportAdapter extends BaseRecyclerAdapter
     implements ReportAdapterView, BaseAdapterDataModel<ReportEntry> {
 
   private OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener;
 
-  public ReportAdapter(OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener) {
+  public TeamReportAdapter(OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener) {
     this.onRecyclerItemClickListener = onRecyclerItemClickListener;
   }
 
@@ -53,7 +54,7 @@ public class ReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
-    return new ReportViewHolder(view);
+    return new TeamReportViewHolder(view);
   }
 
   @Override public int getLayoutRes(int viewType) {
@@ -61,8 +62,8 @@ public class ReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
-    if (viewHolder instanceof ReportViewHolder) {
-      ReportViewHolder holder = (ReportViewHolder) viewHolder;
+    if (viewHolder instanceof TeamReportViewHolder) {
+      TeamReportViewHolder holder = (TeamReportViewHolder) viewHolder;
       ReportEntry entry = items.get(position);
       holder.iconImageView.setImageResource(entry.getEntry().getResId());
       holder.contentsTextView.setText(entry.getContents());

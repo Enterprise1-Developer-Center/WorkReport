@@ -5,7 +5,7 @@ import dagger.Provides;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
-import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
 /**
  * Created by jaeho on 2017. 10. 19
@@ -18,7 +18,8 @@ import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
     return dialog;
   }
 
-  @Provides OnRecyclerItemClickListener<ClassificationSelectableItem> provideOnRecyclerItemClickListener(
+  @Provides
+  OnRecyclerItemClickListener<ClassificationSelectableItem> provideOnRecyclerItemClickListener(
       ClassificationDialog dialog) {
     return dialog;
   }

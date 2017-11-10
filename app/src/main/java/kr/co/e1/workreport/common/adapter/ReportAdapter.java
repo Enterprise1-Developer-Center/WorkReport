@@ -7,6 +7,7 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
 /**
  * Created by jaeho on 2017. 11. 10
@@ -14,6 +15,13 @@ import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 
 public class ReportAdapter extends BaseRecyclerAdapter
     implements ReportAdapterView, BaseAdapterDataModel<ReportEntry> {
+
+  private OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener;
+
+  public ReportAdapter(OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener) {
+    this.onRecyclerItemClickListener = onRecyclerItemClickListener;
+  }
+
   private List<ReportEntry> items = new ArrayList<>();
 
   @Override public void add(ReportEntry item) {
@@ -58,6 +66,7 @@ public class ReportAdapter extends BaseRecyclerAdapter
       ReportEntry entry = items.get(position);
       holder.iconImageView.setImageResource(entry.getEntry().getResId());
       holder.contentsTextView.setText(entry.getContents());
+      holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
     }
   }
 

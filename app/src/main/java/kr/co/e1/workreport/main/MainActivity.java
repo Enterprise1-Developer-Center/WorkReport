@@ -25,7 +25,9 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.adapter.ReportAdapter;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
+import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseActivity;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.login.LoginFragment;
 import kr.co.e1.workreport.password.PasswordDialog;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
@@ -34,7 +36,7 @@ import timber.log.Timber;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
-    LoginCommunicationListener {
+    LoginCommunicationListener, OnRecyclerItemClickListener<ReportEntry> {
 
   @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
   @BindView(R.id.navigation_view) NavigationView navigationView;
@@ -191,9 +193,15 @@ public class MainActivity extends BaseActivity
 
   @Override public void setRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+    recyclerView.setAdapter(adapter);
   }
 
   @Override public void refresh() {
+    adapterView.refresh();
+  }
+
+  @Override public void refresh(int position) {
+    adapterView.refresh(position);
   }
 
   @Override public boolean onNavigationItemSelected(MenuItem item) {
@@ -210,5 +218,9 @@ public class MainActivity extends BaseActivity
 
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {
     return fragmentDispatchingAndroidInjector;
+  }
+
+  @DebugLog @Override public void onItemClick(ReportEntry item) {
+
   }
 }

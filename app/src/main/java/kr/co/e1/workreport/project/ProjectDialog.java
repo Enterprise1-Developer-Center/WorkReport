@@ -11,8 +11,8 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
-import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 

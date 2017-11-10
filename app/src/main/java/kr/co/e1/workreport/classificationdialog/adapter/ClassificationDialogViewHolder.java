@@ -7,7 +7,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
-import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
 /**
  * Created by jaeho on 2017. 10. 25

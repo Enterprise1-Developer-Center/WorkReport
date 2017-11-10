@@ -14,8 +14,8 @@ import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdap
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
-import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
 /**
  * Created by jaeho on 2017. 10. 26

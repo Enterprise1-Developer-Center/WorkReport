@@ -25,12 +25,11 @@ import kr.co.e1.workreport.project.ProjectDialogComponent;
     return new MainPresenterImpl(view, activity.adapter);
   }
 
-  @Provides ReportAdapter provideReportAdapter() {
-    return new ReportAdapter();
+  @Provides ReportAdapter provideReportAdapter(MainActivity activity) {
+    return new ReportAdapter(activity);
   }
 
   @Provides ReportAdapterView provideBaseAdapterView(MainActivity activity) {
     return activity.adapter;
   }
-
 }

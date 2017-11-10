@@ -68,5 +68,7 @@ public interface MainPresenter {
     void setRecyclerView();
 
     void refresh();
+
+    void refresh(int position);
   }
 }

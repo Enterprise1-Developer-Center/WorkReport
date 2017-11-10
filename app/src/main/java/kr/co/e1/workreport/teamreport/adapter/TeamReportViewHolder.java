@@ -5,7 +5,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
-import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.teamreport.vo.TeamReport;
 import lombok.Setter;
 

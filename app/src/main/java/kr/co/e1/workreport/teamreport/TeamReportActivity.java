@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
-import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
 import kr.co.e1.workreport.teamreport.vo.TeamReport;
 import kr.co.e1.workreport.teamreportdialog.TeamReportDialog;

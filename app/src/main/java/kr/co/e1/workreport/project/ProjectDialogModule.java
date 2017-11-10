@@ -3,7 +3,7 @@ package kr.co.e1.workreport.project;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
-import kr.co.e1.workreport.framework.adapter.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 

@@ -17,7 +17,7 @@ public enum Report {
   END_TIME(R.drawable.ic_timer_off, 4),
   WORKING_TIME(R.drawable.ic_timelapse, 5),
   DETAIL_WORK(R.drawable.ic_format_list_numbered, 6),
-  PROJECT(R.drawable.ic_trending_up, 7),
+  PROJECT(R.drawable.ic_flight_takeoff, 7),
   MODIFIED_TIME(R.drawable.ic_edit, 8);
 
   @Getter private @DrawableRes int resId;

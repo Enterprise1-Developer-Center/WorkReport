@@ -11,6 +11,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -21,6 +23,8 @@ import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.adapter.ReportAdapter;
+import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.login.LoginFragment;
 import kr.co.e1.workreport.password.PasswordDialog;
@@ -32,15 +36,19 @@ public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
     LoginCommunicationListener {
 
-  @Inject MainPresenter presenter;
   @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
   @BindView(R.id.navigation_view) NavigationView navigationView;
   //@BindView(R.id.save_button) ImageView saveButton;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
+  @BindView(R.id.recyclerview) RecyclerView recyclerView;
+  @Inject ReportAdapter adapter;
+  @Inject ReportAdapterView adapterView;
+  @Inject MainPresenter presenter;
 
   @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreate(savedInstanceState);
+    Timber.d("adapter = " + adapter);
   }
 
   @Override public void setListener() {
@@ -179,6 +187,13 @@ public class MainActivity extends BaseActivity
 
   @Override public void showMessage(int resId) {
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void setRecyclerView() {
+    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+  }
+
+  @Override public void refresh() {
   }
 
   @Override public boolean onNavigationItemSelected(MenuItem item) {

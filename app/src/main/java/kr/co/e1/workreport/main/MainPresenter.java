@@ -64,5 +64,9 @@ public interface MainPresenter {
     void showProjectChoiceDialog();
 
     void showMessage(@StringRes int resId);
+
+    void setRecyclerView();
+
+    void refresh();
   }
 }

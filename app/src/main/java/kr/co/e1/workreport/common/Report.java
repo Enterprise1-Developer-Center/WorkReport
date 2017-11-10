@@ -2,6 +2,7 @@ package kr.co.e1.workreport.common;
 
 import android.support.annotation.DrawableRes;
 import kr.co.e1.workreport.R;
+import lombok.Getter;
 
 /**
  * Created by jaeho on 2017. 11. 10
@@ -19,8 +20,8 @@ public enum Report {
   PROJECT(R.drawable.ic_trending_up, 7),
   MODIFIED_TIME(R.drawable.ic_edit, 8);
 
-  private @DrawableRes int resId;
-  private int position;
+  @Getter private @DrawableRes int resId;
+  @Getter private int position;
 
   private Report(@DrawableRes int resId, int position) {
     this.resId = resId;

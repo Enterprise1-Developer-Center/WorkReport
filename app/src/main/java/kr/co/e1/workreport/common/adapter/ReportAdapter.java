@@ -6,7 +6,6 @@ import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 
 /**
@@ -14,12 +13,8 @@ import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
  */
 
 public class ReportAdapter extends BaseRecyclerAdapter
-    implements BaseAdapterView, BaseAdapterDataModel<ReportEntry> {
+    implements ReportAdapterView, BaseAdapterDataModel<ReportEntry> {
   private List<ReportEntry> items = new ArrayList<>();
-
-  @Override public void refresh() {
-    notifyDataSetChanged();
-  }
 
   @Override public void add(ReportEntry item) {
     items.add(item);
@@ -58,12 +53,23 @@ public class ReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
-    if(viewHolder instanceof ReportViewHolder) {
+    if (viewHolder instanceof ReportViewHolder) {
       ReportViewHolder holder = (ReportViewHolder) viewHolder;
+      ReportEntry entry = items.get(position);
+      holder.iconImageView.setImageResource(entry.getEntry().getResId());
+      holder.contentsTextView.setText(entry.getContents());
     }
   }
 
   @Override public int getItemCount() {
     return getSize();
+  }
+
+  @Override public void refresh(int position) {
+    notifyItemChanged(position);
+  }
+
+  @Override public void refresh() {
+    notifyDataSetChanged();
   }
 }

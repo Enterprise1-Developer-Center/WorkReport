@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.Locale;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.model.ReportEntry;
+import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -17,9 +19,12 @@ import kr.co.e1.workreport.R;
 public class MainPresenterImpl implements MainPresenter {
 
   private MainPresenter.View view;
+  private BaseAdapterDataModel<ReportEntry> adapterDataModel;
 
-  @Inject public MainPresenterImpl(MainPresenter.View view) {
+  @Inject public MainPresenterImpl(MainPresenter.View view,
+      BaseAdapterDataModel<ReportEntry> adapterDataModel) {
     this.view = view;
+    this.adapterDataModel = adapterDataModel;
     view.changeTheme();
   }
 
@@ -54,7 +59,6 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
-
   }
 
   @Override public void onClick(int id) {

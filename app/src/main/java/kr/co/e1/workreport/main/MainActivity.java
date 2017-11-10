@@ -21,6 +21,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import hugo.weaving.DebugLog;
 import java.util.Calendar;
+import java.util.List;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
@@ -30,6 +31,7 @@ import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.login.LoginFragment;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
+import kr.co.e1.workreport.main.adapter.OnSaveButtonClickListener;
 import kr.co.e1.workreport.password.PasswordDialog;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
@@ -37,7 +39,8 @@ import timber.log.Timber;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
-    LoginCommunicationListener, OnRecyclerItemClickListener<ReportEntry> {
+    LoginCommunicationListener, OnRecyclerItemClickListener<ReportEntry>,
+    OnSaveButtonClickListener<List<ReportEntry>> {
 
   @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
   @BindView(R.id.navigation_view) NavigationView navigationView;
@@ -224,6 +227,10 @@ public class MainActivity extends BaseActivity
   }
 
   @DebugLog @Override public void onItemClick(ReportEntry item) {
+
+  }
+
+  @DebugLog @Override public void onSave(List<ReportEntry> items) {
 
   }
 }

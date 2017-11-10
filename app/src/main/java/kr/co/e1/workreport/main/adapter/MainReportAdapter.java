@@ -21,19 +21,22 @@ public class MainReportAdapter extends BaseRecyclerAdapter
     implements ReportAdapterView, BaseAdapterDataModel<ReportEntry> {
 
   private OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener;
-
-  public MainReportAdapter(OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener) {
+  private OnSaveButtonClickListener<List<ReportEntry>> onSaveButtonClickListener;
+  public MainReportAdapter(OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener, OnSaveButtonClickListener<List<ReportEntry>> onSaveButtonClickListener) {
     this.onRecyclerItemClickListener = onRecyclerItemClickListener;
+    this.onSaveButtonClickListener = onSaveButtonClickListener;
   }
 
   private List<ReportEntry> items = new ArrayList<>();
 
   @Override public void add(ReportEntry item) {
     items.add(item);
+    items.add(new ReportEntry(null, null));
   }
 
   @Override public void addAll(List<ReportEntry> items) {
     this.items.addAll(items);
+    this.items.add(new ReportEntry(null, null));
   }
 
   @Override public ReportEntry remove(int position) {
@@ -57,11 +60,27 @@ public class MainReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
-    return new MainReportViewHolder(view);
+    if (viewType == 0) {
+      return new MainReportViewHolder(view);
+    } else {
+      return new MainSaveViewHolder(view);
+    }
+  }
+
+  @Override public int getItemViewType(int position) {
+    if (position < items.size() - 1) {
+      return 0;
+    } else {
+      return 1;
+    }
   }
 
   @Override public int getLayoutRes(int viewType) {
-    return R.layout.content_main_report_item;
+    if (viewType == 0) {
+      return R.layout.content_main_report_item;
+    } else {
+      return R.layout.content_main_save_item;
+    }
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
@@ -72,6 +91,12 @@ public class MainReportAdapter extends BaseRecyclerAdapter
       holder.contentsTextView.setText(entry.getContents());
       holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
       holder.itemView.setBackgroundResource(getBackgroundRes(holder.iconImageView.getContext()));
+    } else {
+      MainSaveViewHolder holder = (MainSaveViewHolder) viewHolder;
+      holder.saveButton.setOnClickListener(view -> {
+        onSaveButtonClickListener.onSave(items);
+      });
+
     }
   }
 

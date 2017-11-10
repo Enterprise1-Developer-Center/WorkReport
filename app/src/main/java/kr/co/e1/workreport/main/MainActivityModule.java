@@ -26,7 +26,7 @@ import kr.co.e1.workreport.project.ProjectDialogComponent;
   }
 
   @Provides MainReportAdapter provideReportAdapter(MainActivity activity) {
-    return new MainReportAdapter(activity);
+    return new MainReportAdapter(activity, activity);
   }
 
   @Provides ReportAdapterView provideBaseAdapterView(MainActivity activity) {

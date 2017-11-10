@@ -31,8 +31,10 @@ public class MainPresenterImpl implements MainPresenter {
     view.changeTheme();
   }
 
-  @Override public void onCreate(Bundle savedInstanceState) {
+  @DebugLog @Override public void onCreate(Bundle savedInstanceState) {
     view.showLoginFragment(savedInstanceState);
+    view.setListener();
+    view.setRecyclerView();
   }
 
   @Override public void onNavigationItemSelected(int itemId) {
@@ -47,11 +49,9 @@ public class MainPresenterImpl implements MainPresenter {
     }
   }
 
-  @Override public void loginComplete() {
+  @DebugLog @Override public void loginComplete() {
     //view.showReportFragment();
     view.showMessage(R.string.login_complete);
-    view.setListener();
-    view.setRecyclerView();
 
     List<ReportEntry> items = new ArrayList<>();
     items.add(new ReportEntry(Report.DATE, "2017-11-10(금)"));
@@ -63,8 +63,13 @@ public class MainPresenterImpl implements MainPresenter {
     items.add(new ReportEntry(Report.DETAIL_WORK, "11, 구조설계"));
     items.add(new ReportEntry(Report.PROJECT, "설계개발공유체게"));
     items.add(new ReportEntry(Report.MODIFIED_TIME, "2017-11-10 22:05"));
-    adapterDataModel.addAll(items);
-    view.refresh();
+
+
+    for (int i = 0; i < items.size(); i++) {
+      adapterDataModel.add(items.get(i));
+      view.refresh(i);
+      //view.refresh(i);
+    }
   }
 
   @Override public void onBackPressed(boolean isDrawerOpen) {

@@ -89,6 +89,7 @@ dependencies {
   compile "com.pixplicity.easyprefs:library:$easyprefs_version"
 
   compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+  compile 'jp.wasabeef:recyclerview-animators:2.2.7'
 
 }
 repositories {

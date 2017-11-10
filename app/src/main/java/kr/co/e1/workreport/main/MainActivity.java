@@ -22,6 +22,7 @@ import dagger.android.DispatchingAndroidInjector;
 import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
+import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.adapter.ReportAdapter;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
@@ -194,6 +195,8 @@ public class MainActivity extends BaseActivity
   @Override public void setRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);
+    recyclerView.setItemAnimator(new SlideInDownAnimator());
+    recyclerView.getItemAnimator().setAddDuration(200);
   }
 
   @Override public void refresh() {

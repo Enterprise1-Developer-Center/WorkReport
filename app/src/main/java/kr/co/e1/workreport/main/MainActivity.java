@@ -15,8 +15,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.ProgressBar;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
@@ -26,12 +24,12 @@ import java.util.Calendar;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.login.LoginFragment;
+import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.password.PasswordDialog;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
@@ -202,12 +200,6 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void refresh() {
-    final LayoutAnimationController controller =
-        AnimationUtils.loadLayoutAnimation(getApplicationContext(),
-            R.anim.layout_animation_fall_down);
-    recyclerView.setLayoutAnimation(controller);
-    adapterView.refresh();
-    recyclerView.scheduleLayoutAnimation();
     adapterView.refresh();
   }
 

@@ -2,25 +2,36 @@ package kr.co.e1.workreport.teamreportdialog;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import butterknife.BindView;
-import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
+import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.adapter.ReportAdapterView;
+import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.teamreportdialog.adapter.TeamReportAdapter;
 import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 1
  */
 public class TeamReportDialog extends BaseAlertDialogFragment
-    implements TeamReportDialogPresenter.View {
-  @BindView(R.id.save_button) ImageView saveButton;
+    implements TeamReportDialogPresenter.View, OnRecyclerItemClickListener<ReportEntry> {
+
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
+  @BindView(R.id.recyclerview) RecyclerView recyclerView;
+
+  @Inject TeamReportAdapter adapter;
+  @Inject ReportAdapterView adapterView;
+  @Inject TeamReportDialogPresenter presenter;
 
   @Override protected boolean isNegativeButton() {
     return false;
@@ -33,8 +44,6 @@ public class TeamReportDialog extends BaseAlertDialogFragment
   @Override protected boolean isDagger() {
     return true;
   }
-
-  @Inject TeamReportDialogPresenter presenter;
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     presenter.onActivityCreate(savedInstanceState);
@@ -67,13 +76,7 @@ public class TeamReportDialog extends BaseAlertDialogFragment
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {
-    return view -> {
-
-    };
-  }
-
-  @Override public void hideSaveButton() {
-    saveButton.setVisibility(View.GONE);
+    return null;
   }
 
   @Override public void showDatePickerDialog() {
@@ -88,14 +91,6 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     }, cYear, cMonth, cDayOfMonth).show();
   }
 
-  @BindView(R.id.date_textview) TextView dateTextView;
-
-  @Override public void showDate(String date) {
-    dateTextView.setText(date);
-  }
-
-  @BindView(R.id.progress_bar) ProgressBar progressBar;
-
   @Override public void showProgress() {
     progressBar.setVisibility(View.VISIBLE);
   }
@@ -104,55 +99,18 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     progressBar.setVisibility(View.INVISIBLE);
   }
 
-  @BindView(R.id.start_time_textview) TextView startTimeTextview;
-
-  @Override public void showStartTime(String startTime) {
-    startTimeTextview.setText(startTime);
+  @Override public void setRecyclerView() {
+    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    recyclerView.setAdapter(adapter);
+    recyclerView.setItemAnimator(new SlideInDownAnimator());
+    recyclerView.getItemAnimator().setAddDuration(300);
   }
 
-  @BindView(R.id.end_time_textview) TextView endTimeTextview;
-
-  @Override public void showEndTime(String endTime) {
-    endTimeTextview.setText(endTime);
+  @Override public void refresh(int position) {
+    adapterView.refresh(position);
   }
 
-  @BindView(R.id.group_textview) TextView groupTextView;
+  @DebugLog @Override public void onItemClick(ReportEntry item) {
 
-  @Override public void showGroup(String group) {
-    groupTextView.setText(group);
-  }
-
-  @BindView(R.id.person_textview) TextView personTextView;
-
-  @Override public void showPerson(String person) {
-    personTextView.setText(person);
-  }
-
-  @BindView(R.id.code_textview) TextView codeTextview;
-
-  @Override public void showCode(String code) {
-    codeTextview.setText(code);
-  }
-
-  @BindView(R.id.project_textview) TextView projectTextView;
-
-  @Override public void showProject(String project) {
-    projectTextView.setText(project);
-  }
-
-  @BindView(R.id.last_edit_textview) TextView lastEditTextView;
-
-  @Override public void showLastEditDateTime(String lastEditDateTime) {
-    lastEditTextView.setText(lastEditDateTime);
-  }
-
-  @BindView(R.id.work_time_textview) TextView workTimeTextView;
-
-  @Override public void showWorkTime(String workTime) {
-    workTimeTextView.setText(workTime);
-  }
-
-  @OnClick(R.id.date_container) void onClick(View view) {
-    presenter.onClick(view.getId());
   }
 }

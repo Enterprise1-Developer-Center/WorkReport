@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.main.adapter;
 
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,10 +17,5 @@ public class MainReportViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
 
   public MainReportViewHolder(View itemView) {
     super(itemView);
-    TypedValue outValue = new TypedValue();
-    itemView.getContext()
-        .getTheme()
-        .resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-    itemView.setBackgroundResource(outValue.resourceId);
   }
 }

@@ -1,9 +1,13 @@
 package kr.co.e1.workreport.teamreportdialog.adapter;
 
+import android.content.Context;
+import android.support.annotation.DrawableRes;
+import android.util.TypedValue;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.Report;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
@@ -67,8 +71,17 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
       ReportEntry entry = items.get(position);
       holder.iconImageView.setImageResource(entry.getEntry().getResId());
       holder.contentsTextView.setText(entry.getContents());
-      holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
+      if (entry.getEntry() == Report.DATE) {
+        holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
+        holder.itemView.setBackgroundResource(getBackgroundRes(holder.iconImageView.getContext()));
+      }
     }
+  }
+
+  private @DrawableRes int getBackgroundRes(Context context) {
+    TypedValue outValue = new TypedValue();
+    context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+    return outValue.resourceId;
   }
 
   @Override public int getItemCount() {

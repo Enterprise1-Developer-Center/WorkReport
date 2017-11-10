@@ -1,5 +1,8 @@
 package kr.co.e1.workreport.main.adapter;
 
+import android.content.Context;
+import android.support.annotation.DrawableRes;
+import android.util.TypedValue;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +71,14 @@ public class MainReportAdapter extends BaseRecyclerAdapter
       holder.iconImageView.setImageResource(entry.getEntry().getResId());
       holder.contentsTextView.setText(entry.getContents());
       holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
+      holder.itemView.setBackgroundResource(getBackgroundRes(holder.iconImageView.getContext()));
     }
+  }
+
+  private @DrawableRes int getBackgroundRes(Context context) {
+    TypedValue outValue = new TypedValue();
+    context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+    return outValue.resourceId;
   }
 
   @Override public int getItemCount() {

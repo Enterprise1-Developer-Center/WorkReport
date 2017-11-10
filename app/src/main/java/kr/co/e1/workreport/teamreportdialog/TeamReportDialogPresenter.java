@@ -16,31 +16,14 @@ public interface TeamReportDialogPresenter {
 
   interface View {
 
-    void hideSaveButton();
-
     void showDatePickerDialog();
-
-    void showDate(String date);
 
     void showProgress();
 
     void hideProgress();
 
-    void showStartTime(String startTime);
+    void setRecyclerView();
 
-    void showEndTime(String endTime);
-
-    void showGroup(String group);
-
-    void showPerson(String person);
-
-    void showCode(String code);
-
-    void showProject(String project);
-
-    void showLastEditDateTime(String lastEditDateTime);
-
-    void showWorkTime(String workTime);
-
+    void refresh(int position);
   }
 }

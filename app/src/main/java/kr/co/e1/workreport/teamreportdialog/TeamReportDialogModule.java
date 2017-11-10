@@ -2,6 +2,8 @@ package kr.co.e1.workreport.teamreportdialog;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.common.adapter.ReportAdapterView;
+import kr.co.e1.workreport.teamreportdialog.adapter.TeamReportAdapter;
 
 /**
  * Created by jaeho on 2017. 10. 19
@@ -14,7 +16,14 @@ import dagger.Provides;
   }
 
   @Provides TeamReportDialogPresenter provideTeamReportDialogPresenter(
-      TeamReportDialogPresenter.View view) {
-    return new TeamReportDialogPresenterImpl(view);
+      TeamReportDialogPresenter.View view, TeamReportDialog dialog) {
+    return new TeamReportDialogPresenterImpl(view, dialog.adapter);
+  }
+
+  @Provides ReportAdapterView provideReportAdapterView(TeamReportDialog dialog) {
+    return dialog.adapter;
+  }
+  @Provides TeamReportAdapter provideTeamReportAdapter(TeamReportDialog dialog) {
+    return new TeamReportAdapter(dialog);
   }
 }

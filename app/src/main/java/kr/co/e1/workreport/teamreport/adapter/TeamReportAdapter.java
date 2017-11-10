@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.teamreport.vo.TeamReport;
@@ -15,7 +14,7 @@ import kr.co.e1.workreport.teamreport.vo.TeamReport;
  */
 
 public class TeamReportAdapter extends BaseRecyclerAdapter
-    implements BaseAdapterDataModel<TeamReport>, BaseAdapterView {
+    implements BaseAdapterDataModel<TeamReport>, TeamReportAdapterView {
   private ArrayList<TeamReport> items = new ArrayList<>();
 
   private OnRecyclerItemClickListener<TeamReport> onRecyclerItemClickListener;
@@ -47,10 +46,6 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
     return getSize();
   }
 
-  @Override public void refresh() {
-    notifyDataSetChanged();
-  }
-
   public void refresh(int position) {
     notifyItemChanged(position);
   }
@@ -60,7 +55,7 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void addAll(List<TeamReport> items) {
-    items.addAll(items);
+    this.items.addAll(items);
   }
 
   @Override public TeamReport remove(int position) {

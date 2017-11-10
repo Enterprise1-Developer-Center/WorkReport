@@ -14,6 +14,10 @@ public interface TeamReportPresenter {
 
     void setRecyclerView();
 
-    void refresh();
+    void refresh(int position);
+
+    void hideProgress();
+
+    void showProgress();
   }
 }

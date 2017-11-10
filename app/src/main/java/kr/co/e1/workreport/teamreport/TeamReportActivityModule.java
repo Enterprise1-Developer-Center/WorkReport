@@ -2,8 +2,8 @@ package kr.co.e1.workreport.teamreport;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
+import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapterView;
 import kr.co.e1.workreport.teamreportdialog.TeamReportDialogComponent;
 
 /**
@@ -24,7 +24,7 @@ import kr.co.e1.workreport.teamreportdialog.TeamReportDialogComponent;
     return new TeamReportAdapter(teamReportActivity);
   }
 
-  @Provides BaseAdapterView provideTeamReportAdapterView(TeamReportActivity teamReportActivity) {
+  @Provides TeamReportAdapterView provideTeamReportAdapterView(TeamReportActivity teamReportActivity) {
     return teamReportActivity.adapter;
   }
 }

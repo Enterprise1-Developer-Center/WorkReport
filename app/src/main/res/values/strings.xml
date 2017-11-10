@@ -59,4 +59,6 @@
   <string name="december">12월</string>
   <string name="now">현재</string>
   <string name="year">연간</string>
+  <string name="coming_soon">commin soon...</string>
+  <string name="total_detail">집계 상세보기</string>
 </resources>

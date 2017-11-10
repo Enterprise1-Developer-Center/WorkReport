@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLight"
@@ -11,140 +12,40 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="kr.co.e1.workreport.main.MainActivity"
     >
-  <android.support.constraint.ConstraintLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:gravity="center"
       android:orientation="vertical"
-      android:layout_gravity="center"
+      android:layout_gravity="top"
       >
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="@dimen/dp_300"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/rectangle_solid_border_1"
-        android:gravity="center"
-        android:text="@string/technology_research_center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/TextAppearance.AppCompat.Body1"
-        />
-    <TextView
-        android:id="@+id/textView2"
-        android:text="@string/profits"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        style="@style/StatisticsTotalItemTitleTextView"
-        />
-    <TextView
-        android:id="@+id/textView4"
-        android:text="@string/invest"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        style="@style/StatisticsTotalItemTitleTextView"
-        />
-    <TextView
-        android:id="@+id/textView5"
-        android:text="@string/loss"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        style="@style/StatisticsTotalItemTitleTextView"
-        />
-    <TextView
-        android:id="@+id/textView6"
-        android:text="@string/support"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        style="@style/StatisticsTotalItemTitleTextView"
-        />
-    <TextView
-        android:id="@+id/textView7"
-        android:text="@string/educate_proposal"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        style="@style/StatisticsTotalItemTitleTextView"
-        />
-    <TextView
-        android:id="@+id/textView8"
-        android:text="@string/vacation_etc"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        style="@style/StatisticsTotalItemTitleTextView"
-        />
-    <TextView
-        android:id="@+id/textView9"
-        android:text="@string/sum"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        style="@style/StatisticsTotalItemTitleTextView"
-        />
 
     <TextView
-        android:id="@+id/profits_textview"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        tools:text="profitvalue"
-        style="@style/StatisticsTotalItemValueTextView"
+        android:id="@id/subject_textview"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorIndigo_200"
+        android:gravity="center"
+        android:text="@string/technology_research_center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         />
-    <TextView
-        android:id="@+id/invest_textview"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/textView5"
-        tools:text="investvalue"
-        style="@style/StatisticsTotalItemValueTextView"
-        />
-    <TextView
-        android:id="@+id/loss_textview"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        tools:text="lossvalue"
-        style="@style/StatisticsTotalItemValueTextView"
-        />
-    <TextView
-        android:id="@+id/support_textview"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6"
-        tools:text="supportvalue"
-        style="@style/StatisticsTotalItemValueTextView"
-        />
-    <TextView
-        android:id="@+id/educate_textview"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        tools:text="eduvalue"
-        style="@style/StatisticsTotalItemValueTextView"
-        />
-    <TextView
-        android:id="@+id/vacation_textview"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
-        tools:text="vacationvalue"
-        style="@style/StatisticsTotalItemValueTextView"
-        />
-    <TextView
-        android:id="@+id/sum_textview"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/textView9"
-        tools:text="sumvalue"
-        style="@style/StatisticsTotalItemValueTextView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/fragment_total_recycler_item"
         />
     <Button
         android:id="@id/detail_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="집계 상세보기"
-        android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+        android:text="@string/total_detail"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="@+id/sum_textview"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/sum_textview"
         style="@style/Base.Widget.AppCompat.Button.Borderless"
         />
+  </LinearLayout>
 
-  </android.support.constraint.ConstraintLayout>
   <ProgressBar
       android:id="@id/progress_bar"
       android:layout_width="match_parent"

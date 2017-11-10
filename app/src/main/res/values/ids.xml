@@ -80,4 +80,6 @@
   <item name="dec_textview" type="id"/>
   <item name="now_op_ratio_textview" type="id"/>
   <item name="year_op_ratio_textview" type="id"/>
+  <item name="value_textview" type="id"/>
+  <item name="subject_textview" type="id"/>
 </resources>

@@ -50,7 +50,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
       }
 
       view.hideProgress();
-    }, 2000);
+    }, 1000);
   }
 
   @Override public void onClick(int id) {

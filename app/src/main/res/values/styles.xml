@@ -17,94 +17,21 @@
 
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-  <style name="BaseMainItemContainer">
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">?android:attr/actionBarSize</item>
-    <item name="android:orientation">horizontal</item>
-    <item name="android:background">?android:selectableItemBackground</item>
-  </style>
-
-  <style name="DateMainItemContainer" parent="BaseMainItemContainer">
-    <item name="android:id">@id/date_container</item>
-  </style>
-
-  <style name="GroupMainItemContainer" parent="BaseMainItemContainer">
-    <item name="android:id">@id/group_container</item>
-  </style>
-
-  <style name="PersonMainItemContainer" parent="BaseMainItemContainer">
-    <item name="android:id">@id/person_container</item>
-  </style>
-
-  <style name="StartTimeMainItemContainer" parent="BaseMainItemContainer">
-    <item name="android:id">@id/start_time_container</item>
-  </style>
-
-  <style name="EndTimeMainItemContainer" parent="BaseMainItemContainer">
-    <item name="android:id">@id/end_time_container</item>
-  </style>
-
-  <style name="WorkTimeMainItemContainer" parent="BaseMainItemContainer">
-    <item name="android:id">@id/work_time_container</item>
-  </style>
-
-  <style name="CodeMainItemContainer" parent="BaseMainItemContainer">
-    <item name="android:id">@id/code_container</item>
-  </style>
-
-  <style name="ProjectMainItemContainer" parent="BaseMainItemContainer">
-    <item name="android:id">@id/project_container</item>
-  </style>
-
-  <style name="LastEditMainItemContainer" parent="BaseMainItemContainer">
-    <item name="android:id">@id/last_edit_container</item>
-  </style>
-
   <style name="BaseMainItemImageView">
-    <item name="android:layout_width">?attr/actionBarSize</item>
-    <item name="android:layout_height">?attr/actionBarSize</item>
+    <item name="android:layout_width">@dimen/dp_30</item>
+    <item name="android:layout_height">@dimen/dp_30</item>
     <item name="android:scaleType">fitXY</item>
+    <item name="android:layout_marginStart">@dimen/dp_50</item>
     <item name="android:id">@id/imageview</item>
-  </style>
 
-  <style name="GroupMainItemImageView" parent="BaseMainItemImageView">
-    <item name="android:src">@drawable/ic_group</item>
-  </style>
-
-  <style name="PersonMainItemImageView" parent="BaseMainItemImageView">
-    <item name="android:src">@drawable/ic_person</item>
-  </style>
-
-  <style name="StartTimeMainItemImageView" parent="BaseMainItemImageView">
-    <item name="android:src">@drawable/ic_timer</item>
-  </style>
-
-  <style name="EndTimeMainItemImageView" parent="BaseMainItemImageView">
-    <item name="android:src">@drawable/ic_timer_off</item>
-  </style>
-
-  <style name="WorkTimeMainItemImageView" parent="BaseMainItemImageView">
-    <item name="android:src">@drawable/ic_timelapse</item>
-  </style>
-
-  <style name="CodeMainItemImageView" parent="BaseMainItemImageView">
-    <item name="android:src">@drawable/ic_format_list_numbered</item>
-  </style>
-
-  <style name="ProjectMainItemImageView" parent="BaseMainItemImageView">
-    <item name="android:src">@drawable/ic_flight_takeoff</item>
-  </style>
-
-  <style name="LastEditMainItemImageView" parent="BaseMainItemImageView">
-    <item name="android:src">@drawable/ic_edit</item>
   </style>
 
   <style name="BaseMainItemTextView">
-    <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">@dimen/dp_30</item>
     <item name="android:layout_marginLeft">@dimen/dp_10</item>
-    <item name="android:gravity">center_vertical</item>
-    <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
     <item name="android:id">@id/textview</item>
   </style>
 
@@ -228,6 +155,7 @@
   <style name="OpDetailItemSubjectTextView" parent="BaseOpDetailItemTextView">
     <item name="android:background">@color/colorIndigo_200</item>
   </style>
+
   <style name="OpDetailItemTotalTextView" parent="BaseOpDetailItemTextView">
     <!--<item name="android:background">@color/colorIndigo_200</item>-->
   </style>

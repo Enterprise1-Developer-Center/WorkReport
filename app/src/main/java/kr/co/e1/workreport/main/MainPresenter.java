@@ -47,8 +47,6 @@ public interface MainPresenter {
 
     void showReportDatePickerDialog();
 
-    void showReportDate(String date);
-
     void showProgress();
 
     void hideProgress();
@@ -60,22 +58,6 @@ public interface MainPresenter {
     void showStartTimePickerDialog();
 
     void showEndTimePickerDialog();
-
-    void showStartTime(String startTime);
-
-    void showEndTime(String endTime);
-
-    void showGroup(String group);
-
-    void showPerson(String person);
-
-    void showCode(String code);
-
-    void showProject(String project);
-
-    void showLastEditDateTime(String lastEditDateTime);
-
-    void showWorkTime(String workTime);
 
     void showCodeDialogFragment();
 

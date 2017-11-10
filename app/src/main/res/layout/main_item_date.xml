@@ -4,7 +4,7 @@
     style="@style/DateMainItemContainer"
     >
   <ImageView
-      style="@style/DateMainItemImageView"
+      style="@style/DateMainItemContainer"
       />
   <TextView
       tools:text="2017-09-26 (금)"

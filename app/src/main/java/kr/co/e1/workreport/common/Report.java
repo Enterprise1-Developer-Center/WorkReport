@@ -1,0 +1,29 @@
+package kr.co.e1.workreport.common;
+
+import android.support.annotation.DrawableRes;
+import kr.co.e1.workreport.R;
+
+/**
+ * Created by jaeho on 2017. 11. 10
+ */
+
+public enum Report {
+
+  DATE(R.drawable.ic_today, 0),
+  GROUP(R.drawable.ic_group, 1),
+  NAME(R.drawable.ic_person, 2),
+  START_TIME(R.drawable.ic_timer, 3),
+  END_TIME(R.drawable.ic_timer_off, 4),
+  WORKING_TIME(R.drawable.ic_timelapse, 5),
+  DETAIL_WORK(R.drawable.ic_format_list_numbered, 6),
+  PROJECT(R.drawable.ic_trending_up, 7),
+  MODIFIED_TIME(R.drawable.ic_edit, 8);
+
+  private @DrawableRes int resId;
+  private int position;
+
+  private Report(@DrawableRes int resId, int position) {
+    this.resId = resId;
+    this.position = position;
+  }
+}

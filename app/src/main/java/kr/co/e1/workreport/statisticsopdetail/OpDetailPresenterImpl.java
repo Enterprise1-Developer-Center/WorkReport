@@ -4,7 +4,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
-import kr.co.e1.workreport.statisticsopdetail.vo.OpDetail;
+import kr.co.e1.workreport.statisticsopdetail.model.OpDetail;
 
 /**
  * Created by jaeho on 2017. 10. 31

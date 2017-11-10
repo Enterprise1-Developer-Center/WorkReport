@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statisticsopdetail.vo;
+package kr.co.e1.workreport.statisticsopdetail.model;
 
 import lombok.Data;
 

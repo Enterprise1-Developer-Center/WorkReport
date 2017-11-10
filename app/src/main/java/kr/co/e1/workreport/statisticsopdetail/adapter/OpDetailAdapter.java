@@ -7,7 +7,7 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
-import kr.co.e1.workreport.statisticsopdetail.vo.OpDetail;
+import kr.co.e1.workreport.statisticsopdetail.model.OpDetail;
 
 /**
  * Created by jaeho on 2017. 11. 9

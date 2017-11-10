@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statisticstotal.vo;
+package kr.co.e1.workreport.statisticstotal.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

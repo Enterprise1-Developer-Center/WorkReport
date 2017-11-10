@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
-import kr.co.e1.workreport.statisticstotal.vo.TotalSummary;
+import kr.co.e1.workreport.statisticstotal.model.TotalSummary;
 
 /**
  * Created by jaeho on 2017. 11. 2

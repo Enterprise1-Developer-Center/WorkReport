@@ -61,13 +61,10 @@
   </style>
 
   <style name="BaseMainItemImageView">
-    <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">match_parent</item>
-    <item name="android:layout_marginLeft">@dimen/dp_10</item>
-  </style>
-
-  <style name="DateMainItemImageView" parent="BaseMainItemImageView">
-    <item name="android:src">@drawable/ic_today</item>
+    <item name="android:layout_width">?attr/actionBarSize</item>
+    <item name="android:layout_height">?attr/actionBarSize</item>
+    <item name="android:scaleType">fitXY</item>
+    <item name="android:id">@id/imageview</item>
   </style>
 
   <style name="GroupMainItemImageView" parent="BaseMainItemImageView">
@@ -102,12 +99,13 @@
     <item name="android:src">@drawable/ic_edit</item>
   </style>
 
-  <style name="BaseMainItemTextView" parent="TextAppearance.AppCompat.Body1">
+  <style name="BaseMainItemTextView">
     <item name="android:layout_width">wrap_content</item>
     <item name="android:layout_height">match_parent</item>
     <item name="android:layout_marginLeft">@dimen/dp_10</item>
     <item name="android:gravity">center_vertical</item>
-    <item name="android:typeface">monospace</item>
+    <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    <item name="android:id">@id/textview</item>
   </style>
 
   <style name="DateMainItemTextView" parent="BaseMainItemTextView">

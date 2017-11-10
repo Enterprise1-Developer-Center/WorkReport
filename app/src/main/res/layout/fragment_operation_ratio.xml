@@ -10,6 +10,7 @@
       android:layout_height="match_parent"
       android:fillViewport="true"
       android:orientation="vertical"
+      android:gravity="center"
       >
     <TextView
         android:text="월별 가동률"
@@ -33,7 +34,7 @@
         />
     <Button
         android:id="@id/detail_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="가동률 상세보기"
         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"

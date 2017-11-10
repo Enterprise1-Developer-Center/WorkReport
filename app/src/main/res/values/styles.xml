@@ -198,17 +198,17 @@
   <style name="BaseStatisticsTotalTextView">
     <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
     <item name="android:background">@drawable/rectangle_solid_border_2</item>
+    <item name="android:gravity">center</item>
   </style>
 
   <style name="StatisticsTotalItemTitleTextView" parent="BaseStatisticsTotalTextView">
-    <item name="android:layout_width">@dimen/dp_80</item>
-    <item name="android:layout_height">@dimen/dp_40</item>
-    <item name="android:gravity">top|center_horizontal</item>
+    <item name="android:layout_width">@dimen/dp_150</item>
+    <item name="android:layout_height">?attr/actionBarSize</item>
   </style>
 
   <style name="StatisticsTotalItemValueTextView" parent="BaseStatisticsTotalTextView">
-    <item name="android:layout_width">@dimen/dp_80</item>
-    <item name="android:layout_height">@dimen/dp_40</item>
+    <item name="android:layout_width">@dimen/dp_150</item>
+    <item name="android:layout_height">?attr/actionBarSize</item>
   </style>
 
   <style name="OperationRatioSubjectTextView">
@@ -239,4 +239,5 @@
     <item name="android:windowBackground">@drawable/splash_background</item>
   </style>
 
+  <dimen name="dp_150">150dp</dimen>
 </resources>

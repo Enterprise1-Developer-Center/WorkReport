@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.statisticsopdetail.adapter;
 
 import android.view.View;
+import hugo.weaving.DebugLog;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
@@ -52,15 +53,15 @@ public class OpDetailAdapter extends BaseRecyclerAdapter
     return getSize();
   }
 
-  @Override public void refresh() {
-    notifyDataSetChanged();
+  @DebugLog @Override public void refresh() {
+    //notifyDataSetChanged();
   }
 
-  @Override public void add(OpDetail item) {
+  @DebugLog @Override public void add(OpDetail item) {
     this.items.add(item);
   }
 
-  @Override public void addAll(List<OpDetail> items) {
+  @DebugLog @Override public void addAll(List<OpDetail> items) {
     this.items.addAll(items);
   }
 

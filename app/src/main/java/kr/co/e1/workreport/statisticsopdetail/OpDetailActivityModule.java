@@ -2,6 +2,7 @@ package kr.co.e1.workreport.statisticsopdetail;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapter;
 
 /**
@@ -20,5 +21,9 @@ import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapter;
 
   @Provides OpDetailAdapter provideOpDetailAdapter() {
     return new OpDetailAdapter();
+  }
+
+  @Provides BaseAdapterView provideAdapterView(OpDetailActivity activity) {
+    return activity.adapter;
   }
 }

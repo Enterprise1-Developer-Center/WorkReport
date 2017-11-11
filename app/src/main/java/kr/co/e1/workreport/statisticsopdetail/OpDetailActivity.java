@@ -10,8 +10,8 @@ import dagger.android.AndroidInjector;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseActivity;
+import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapter;
 
 /**
@@ -23,6 +23,7 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
 
   @Inject OpDetailAdapter adapter;
+  @Inject BaseAdapterView adapterView;
   @Inject OpDetailPresenter presenter;
 
   @Override protected void onCreated(Bundle savedInstanceState) {
@@ -58,14 +59,13 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
 
 
   @Override public void setRecyclerView() {
-    LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
-    recyclerView.setLayoutManager(manager);
+    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);
     recyclerView.setItemAnimator(new SlideInDownAnimator());
-    recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
+    recyclerView.getItemAnimator().setAddDuration(500);
   }
 
   @Override public void refresh() {
-    adapter.refresh();
+    adapterView.refresh();
   }
 }

@@ -41,9 +41,10 @@ public class OpDetailPresenterImpl implements OpDetailPresenter {
       t.setDec("98.8");
       t.setNowOpRatio("98.8");
       t.setYearOpRatio("98.8");
-      items.add(i, t);
+      adapterDataModel.add(t);
     }
-    adapterDataModel.addAll(items);
-    view.refresh();
+    //adapterDataModel.addAll(items);
+    //adapterDataModel.addAll(items);
+    //view.refresh();
   }
 }

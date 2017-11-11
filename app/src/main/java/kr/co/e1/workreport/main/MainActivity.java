@@ -119,7 +119,7 @@ public class MainActivity extends BaseActivity
     new AlertDialog.Builder(this).setTitle("Review").setMessage("Please write review").show();
   }
 
-  @Override public void showReportDatePickerDialog() {
+  @Override public void showDatePickerDialog() {
     Calendar calendar = Calendar.getInstance();
     int cYear = calendar.get(Calendar.YEAR);
     int cMonth = calendar.get(Calendar.MONTH);
@@ -177,7 +177,7 @@ public class MainActivity extends BaseActivity
     }, cHourOfDay, cMinute, true).show();
   }
 
-  @Override public void showCodeDialogFragment() {
+  @Override public void showDetailWorkDialog() {
     /*
     new ClassificationDialog().setOnDialogClickListener(
         o -> codeTextView.setText(o.getString("code") + " / " + o.getString("work")))

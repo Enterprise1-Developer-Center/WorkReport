@@ -79,39 +79,6 @@ public class MainPresenterImpl implements MainPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
   }
 
-  @Override public void onClick(int id) {
-    switch (id) {
-      case R.id.date_container:
-        view.showReportDatePickerDialog();
-        break;
-      case R.id.start_time_container:
-        view.showStartTimePickerDialog();
-        break;
-      case R.id.end_time_container:
-        view.showEndTimePickerDialog();
-        break;
-      case R.id.code_container:
-        view.showCodeDialogFragment();
-        break;
-      case R.id.project_container:
-        view.showProjectChoiceDialog();
-        break;
-      case R.id.save_button:
-        view.showProgress();
-        view.disableSaveButton();
-        testPost();
-        break;
-    }
-  }
-
-  private void testPost() {
-    new Handler().postDelayed(() -> {
-      view.hideProgress();
-      view.enableSaveButton();
-      view.showMessage(R.string.save_completed);
-    }, 2000);
-  }
-
   @DebugLog @Override public void onReportDateSet(int year, int month, int dayOfMonth) {
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd (EE)");
     Calendar calendar = Calendar.getInstance();
@@ -152,14 +119,19 @@ public class MainPresenterImpl implements MainPresenter {
   @Override public void onItemClick(ReportEntry item) {
     switch (item.getEntry()) {
       case DATE:
+        view.showDatePickerDialog();
         break;
       case START_TIME:
+        view.showStartTimePickerDialog();
         break;
       case END_TIME:
+        view.showEndTimePickerDialog();
         break;
       case DETAIL_WORK:
+        view.showDetailWorkDialog();
         break;
       case PROJECT:
+        view.showProjectChoiceDialog();
         break;
     }
   }

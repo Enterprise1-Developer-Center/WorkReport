@@ -20,8 +20,6 @@ public interface MainPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
-  void onClick(int id);
-
   void onReportDateSet(int y, int m, int dayOfMonth);
 
   void onStartTimeSet(int hourOfDay, int minute);
@@ -51,7 +49,7 @@ public interface MainPresenter {
 
     void navigateToReview();
 
-    void showReportDatePickerDialog();
+    void showDatePickerDialog();
 
     void showProgress();
 
@@ -65,7 +63,7 @@ public interface MainPresenter {
 
     void showEndTimePickerDialog();
 
-    void showCodeDialogFragment();
+    void showDetailWorkDialog();
 
     void showProjectChoiceDialog();
 

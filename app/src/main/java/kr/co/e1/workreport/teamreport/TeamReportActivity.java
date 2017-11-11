@@ -38,6 +38,7 @@ public class TeamReportActivity extends BaseActivity
 
   @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreated(savedInstanceState);
+    setLayoutScrollFlag(true);
   }
 
   @Override protected int getLayoutResID() {

@@ -8,7 +8,9 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import javax.inject.Inject;
+import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapter;
 
@@ -25,6 +27,7 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
 
   @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreated(savedInstanceState);
+    setLayoutScrollFlag(true);
   }
 
   @Override protected int getLayoutResID() {
@@ -58,6 +61,8 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
     LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
     recyclerView.setLayoutManager(manager);
     recyclerView.setAdapter(adapter);
+    recyclerView.setItemAnimator(new SlideInDownAnimator());
+    recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
   }
 
   @Override public void refresh() {

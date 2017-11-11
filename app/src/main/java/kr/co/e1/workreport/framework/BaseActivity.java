@@ -50,6 +50,16 @@ public abstract class BaseActivity extends AppCompatActivity implements HasSuppo
     unbinder.unbind();
   }
 
+  protected void setLayoutScrollFlag(boolean enabled) {
+    AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+    if (enabled) {
+      params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+          | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+    } else {
+      params.setScrollFlags(0);
+    }
+  }
+
   protected abstract void onCreated(Bundle savedInstanceState);
 
   protected abstract int getLayoutResID();

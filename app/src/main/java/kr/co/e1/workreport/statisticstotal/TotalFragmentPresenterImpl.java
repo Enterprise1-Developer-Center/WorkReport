@@ -36,7 +36,11 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
       items.add(new TotalSummary("Vacation & Etc", 71));
       items.add(new TotalSummary("SUM", 1424));
       adapterDataModel.addAll(items);
-      view.refresh();
+
+      for (int i = 0; i < items.size(); i++) {
+        view.refresh(i);
+      }
+
       view.hideProgress();
     }, 1000);
 

@@ -148,4 +148,19 @@ public class MainPresenterImpl implements MainPresenter {
       view.hideProgress();
     }, 1000);
   }
+
+  @Override public void onItemClick(ReportEntry item) {
+    switch (item.getEntry()) {
+      case DATE:
+        break;
+      case START_TIME:
+        break;
+      case END_TIME:
+        break;
+      case DETAIL_WORK:
+        break;
+      case PROJECT:
+        break;
+    }
+  }
 }

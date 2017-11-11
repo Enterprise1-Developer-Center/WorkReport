@@ -23,6 +23,6 @@ public interface TotalFragmentPresenter {
 
     void setRecyclerView();
 
-    void refresh();
+    void refresh(int position);
   }
 }

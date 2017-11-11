@@ -4,6 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapter;
+import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapterView;
 
 /**
  * Created by jaeho on 2017. 11. 2
@@ -19,7 +20,7 @@ import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapter;
     return fragment;
   }
 
-  @Provides BaseAdapterView provideAdapterView(TotalFragment fragment) {
+  @Provides TotalAdapterView provideAdapterView(TotalFragment fragment) {
     return fragment.adapter;
   }
 

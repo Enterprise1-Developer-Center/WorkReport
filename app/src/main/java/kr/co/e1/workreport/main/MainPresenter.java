@@ -30,6 +30,8 @@ public interface MainPresenter {
 
   void onSaveClick(List<ReportEntry> items);
 
+  void onItemClick(ReportEntry item);
+
   interface View {
     void setListener();
 

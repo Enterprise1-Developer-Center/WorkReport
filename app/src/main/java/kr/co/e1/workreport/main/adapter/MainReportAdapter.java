@@ -22,7 +22,9 @@ public class MainReportAdapter extends BaseRecyclerAdapter
 
   private OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener;
   private OnSaveButtonClickListener<List<ReportEntry>> onSaveButtonClickListener;
-  public MainReportAdapter(OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener, OnSaveButtonClickListener<List<ReportEntry>> onSaveButtonClickListener) {
+
+  public MainReportAdapter(OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener,
+      OnSaveButtonClickListener<List<ReportEntry>> onSaveButtonClickListener) {
     this.onRecyclerItemClickListener = onRecyclerItemClickListener;
     this.onSaveButtonClickListener = onSaveButtonClickListener;
   }
@@ -89,14 +91,23 @@ public class MainReportAdapter extends BaseRecyclerAdapter
       ReportEntry entry = items.get(position);
       holder.iconImageView.setImageResource(entry.getEntry().getResId());
       holder.contentsTextView.setText(entry.getContents());
-      holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
-      holder.itemView.setBackgroundResource(getBackgroundRes(holder.iconImageView.getContext()));
+      switch (entry.getEntry()) {
+        case DATE:
+        case START_TIME:
+        case END_TIME:
+        case DETAIL_WORK:
+        case PROJECT:
+          holder.itemView.setOnClickListener(
+              view -> onRecyclerItemClickListener.onItemClick(entry));
+          holder.itemView.setBackgroundResource(
+              getBackgroundRes(holder.iconImageView.getContext()));
+          break;
+      }
     } else {
       MainSaveViewHolder holder = (MainSaveViewHolder) viewHolder;
       holder.saveButton.setOnClickListener(view -> {
         onSaveButtonClickListener.onSaveClick(items);
       });
-
     }
   }
 

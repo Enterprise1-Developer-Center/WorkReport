@@ -102,7 +102,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     LineData lineData = new LineData(dataSets);
     lineData.setValueTextColor(Color.BLACK);
     //lineChart.animateXY(2000, 2000);
-    teamChart.animateY(1000);
+    teamChart.animateY(500);
     teamChart.setData(lineData);
     teamChart.invalidate();
     final String[] quarters = new String[] {
@@ -201,7 +201,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     BarData barData = new BarData(dataSets);
     barData.setValueTextColor(Color.BLACK);
     //lineChart.animateXY(2000, 2000);
-    memberChart.animateY(1000);
+    memberChart.animateY(500);
     memberChart.setData(barData);
     memberChart.invalidate();
     final String[] quarters = new String[] {

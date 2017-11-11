@@ -25,6 +25,7 @@ import java.util.List;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseActivity;
@@ -199,7 +200,7 @@ public class MainActivity extends BaseActivity
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);
     recyclerView.setItemAnimator(new SlideInDownAnimator());
-    recyclerView.getItemAnimator().setAddDuration(300);
+    recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
   }
 
   @Override public void refresh() {

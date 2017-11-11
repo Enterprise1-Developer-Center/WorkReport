@@ -13,6 +13,7 @@ import java.util.Calendar;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
@@ -103,7 +104,7 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     recyclerView.setAdapter(adapter);
     recyclerView.setItemAnimator(new SlideInDownAnimator());
-    recyclerView.getItemAnimator().setAddDuration(300);
+    recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
   }
 
   @Override public void refresh(int position) {

@@ -14,6 +14,7 @@ import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
@@ -64,7 +65,7 @@ public class TeamReportActivity extends BaseActivity
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);
     recyclerView.setItemAnimator(new SlideInDownAnimator());
-    recyclerView.getItemAnimator().setAddDuration(300);
+    recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
   }
 
   @Override public void refresh(int position) {

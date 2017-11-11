@@ -50,7 +50,7 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
   }
 
   @Override protected int getTitle() {
-    return R.string.login;
+    return R.string.empty_text;
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {

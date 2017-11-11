@@ -2,6 +2,8 @@ package kr.co.e1.workreport.main;
 
 import android.os.Bundle;
 import android.support.annotation.StringRes;
+import java.util.List;
+import kr.co.e1.workreport.common.model.ReportEntry;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -25,6 +27,8 @@ public interface MainPresenter {
   void onStartTimeSet(int hourOfDay, int minute);
 
   void onEndTimeSet(int hourOfDay, int minute);
+
+  void onSaveClick(List<ReportEntry> items);
 
   interface View {
     void setListener();

@@ -5,5 +5,5 @@ package kr.co.e1.workreport.main.adapter;
  */
 
 public interface OnSaveButtonClickListener<T> {
-  void onSave(T items);
+  void onSaveClick(T items);
 }

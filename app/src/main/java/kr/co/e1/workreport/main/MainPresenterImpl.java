@@ -140,4 +140,12 @@ public class MainPresenterImpl implements MainPresenter {
     String endTime = new SimpleDateFormat("HH:mm", Locale.KOREA).format(date);
     //view.showEndTime(endTime);
   }
+
+  @Override public void onSaveClick(List<ReportEntry> items) {
+    view.showProgress();
+    new Handler().postDelayed(() -> {
+      view.showMessage(R.string.save_completed);
+      view.hideProgress();
+    }, 1000);
+  }
 }

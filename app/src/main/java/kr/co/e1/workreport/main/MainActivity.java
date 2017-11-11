@@ -230,7 +230,7 @@ public class MainActivity extends BaseActivity
 
   }
 
-  @DebugLog @Override public void onSave(List<ReportEntry> items) {
-
+  @DebugLog @Override public void onSaveClick(List<ReportEntry> items) {
+    presenter.onSaveClick(items);
   }
 }

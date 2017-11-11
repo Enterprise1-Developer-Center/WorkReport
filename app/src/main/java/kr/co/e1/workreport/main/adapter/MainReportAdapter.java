@@ -94,7 +94,7 @@ public class MainReportAdapter extends BaseRecyclerAdapter
     } else {
       MainSaveViewHolder holder = (MainSaveViewHolder) viewHolder;
       holder.saveButton.setOnClickListener(view -> {
-        onSaveButtonClickListener.onSave(items);
+        onSaveButtonClickListener.onSaveClick(items);
       });
 
     }

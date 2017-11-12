@@ -41,8 +41,8 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
   protected abstract boolean isPositiveButton();
 
   private View getContentView() {
-    View view =
-        LayoutInflater.from(getContext()).inflate(getLayoutResId(), getInflateRoot(), getAttatchRoot());
+    View view = LayoutInflater.from(getContext())
+        .inflate(getLayoutResId(), getInflateRoot(), getAttatchRoot());
     ButterKnife.bind(this, view);
     return view;
   }

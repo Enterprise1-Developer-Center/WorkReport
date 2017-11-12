@@ -52,7 +52,7 @@ public class PasswordDialog extends BaseAlertDialogFragment
   }
 
   @Override protected int getTitle() {
-    return R.string.change_pw;
+    return R.string.empty_text;
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {

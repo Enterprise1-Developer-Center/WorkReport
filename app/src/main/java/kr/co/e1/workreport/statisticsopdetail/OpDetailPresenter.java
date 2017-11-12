@@ -16,5 +16,11 @@ public interface OpDetailPresenter {
     void setRecyclerView();
 
     void refresh();
+
+    void hideProgress();
+
+    void showProgress();
+
+    void refresh(int position);
   }
 }

@@ -5,14 +5,17 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseActivity;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapter;
+import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapterView;
 
 /**
  * Created by jaeho on 2017. 11. 9
@@ -21,9 +24,10 @@ import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapter;
 public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.View {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
 
   @Inject OpDetailAdapter adapter;
-  @Inject BaseAdapterView adapterView;
+  @Inject OpDetailAdapterView adapterView;
   @Inject OpDetailPresenter presenter;
 
   @Override protected void onCreated(Bundle savedInstanceState) {
@@ -62,10 +66,21 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);
     recyclerView.setItemAnimator(new SlideInDownAnimator());
-    recyclerView.getItemAnimator().setAddDuration(500);
+    recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
   }
 
   @Override public void refresh() {
-    adapterView.refresh();
+  }
+
+  @Override public void refresh(int position) {
+    adapterView.refresh(position);
+  }
+
+  @Override public void hideProgress() {
+    progressBar.setVisibility(View.GONE);
+  }
+
+  @Override public void showProgress() {
+    progressBar.setVisibility(View.VISIBLE);
   }
 }

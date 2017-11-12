@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.statisticsopdetail.model.OpDetail;
 
@@ -15,7 +14,7 @@ import kr.co.e1.workreport.statisticsopdetail.model.OpDetail;
  */
 
 public class OpDetailAdapter extends BaseRecyclerAdapter
-    implements BaseAdapterView, BaseAdapterDataModel<OpDetail> {
+    implements OpDetailAdapterView, BaseAdapterDataModel<OpDetail> {
 
   private List<OpDetail> items = new ArrayList<>();
 
@@ -53,10 +52,6 @@ public class OpDetailAdapter extends BaseRecyclerAdapter
     return getSize();
   }
 
-  @DebugLog @Override public void refresh() {
-    //notifyDataSetChanged();
-  }
-
   @DebugLog @Override public void add(OpDetail item) {
     this.items.add(item);
   }
@@ -83,5 +78,15 @@ public class OpDetailAdapter extends BaseRecyclerAdapter
 
   @Override public void clear() {
     items.clear();
+  }
+
+  @Override public void refresh(int position) {
+    notifyItemChanged(position);
+  }
+
+  @DebugLog  public void refresh() {
+    for (int i = 0; i < items.size(); i++) {
+      notifyItemChanged(i);
+    }
   }
 }

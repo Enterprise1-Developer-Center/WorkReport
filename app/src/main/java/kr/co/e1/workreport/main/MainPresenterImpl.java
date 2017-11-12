@@ -54,11 +54,11 @@ public class MainPresenterImpl implements MainPresenter {
     items.add(new ReportEntry(Report.DATE, "2017-11-10(금)"));
     items.add(new ReportEntry(Report.GROUP, "BS"));
     items.add(new ReportEntry(Report.NAME, "오재호"));
-    items.add(new ReportEntry(Report.START_TIME, "2017-09-18 18:00"));
-    items.add(new ReportEntry(Report.END_TIME, "2017-09-18 22:00"));
-    items.add(new ReportEntry(Report.WORKING_TIME, "04:00"));
-    items.add(new ReportEntry(Report.DETAIL_WORK, "11, 구조파악.."));
-    items.add(new ReportEntry(Report.PROJECT, "설계개발공유체게"));
+    items.add(new ReportEntry(Report.START_TIME, "17:00"));
+    items.add(new ReportEntry(Report.END_TIME, "01:00"));
+    items.add(new ReportEntry(Report.WORKING_TIME, "06:00"));
+    items.add(new ReportEntry(Report.DETAIL_WORK, "11, 구조파악..?"));
+    items.add(new ReportEntry(Report.PROJECT, "설계개발공유체계"));
     items.add(new ReportEntry(Report.MODIFIED_TIME, "2017-11-10 22:05"));
     adapterDataModel.addAll(items);
 

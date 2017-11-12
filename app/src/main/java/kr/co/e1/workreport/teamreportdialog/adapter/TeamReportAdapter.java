@@ -7,7 +7,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.Report;
+import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
@@ -71,7 +71,7 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
       ReportEntry entry = items.get(position);
       holder.iconImageView.setImageResource(entry.getEntry().getResId());
       holder.contentsTextView.setText(entry.getContents());
-      if (entry.getEntry() == Report.DATE) {
+      if (entry.getEntry() == ReportType.DATE) {
         holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
         holder.itemView.setBackgroundResource(getBackgroundRes(holder.iconImageView.getContext()));
       }

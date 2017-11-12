@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.Report;
+import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 
@@ -33,15 +33,15 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
     view.showProgress();
     new Handler().postDelayed(() -> {
       List<ReportEntry> items = new ArrayList<>();
-      items.add(new ReportEntry(Report.DATE, "2017-11-10(금)"));
-      items.add(new ReportEntry(Report.GROUP, "BS"));
-      items.add(new ReportEntry(Report.NAME, "오재호"));
-      items.add(new ReportEntry(Report.START_TIME, "2017-09-18 18:00"));
-      items.add(new ReportEntry(Report.END_TIME, "2017-09-18 22:00"));
-      items.add(new ReportEntry(Report.WORKING_TIME, "04:00"));
-      items.add(new ReportEntry(Report.DETAIL_WORK, "11, 구조파악.."));
-      items.add(new ReportEntry(Report.PROJECT, "설계개발공유체게"));
-      items.add(new ReportEntry(Report.MODIFIED_TIME, "2017-11-10 22:05"));
+      items.add(new ReportEntry(ReportType.DATE, "2017-11-10(금)"));
+      items.add(new ReportEntry(ReportType.GROUP, "BS"));
+      items.add(new ReportEntry(ReportType.NAME, "오재호"));
+      items.add(new ReportEntry(ReportType.START_TIME, "2017-09-18 18:00"));
+      items.add(new ReportEntry(ReportType.END_TIME, "2017-09-18 22:00"));
+      items.add(new ReportEntry(ReportType.WORKING_TIME, "04:00"));
+      items.add(new ReportEntry(ReportType.DETAIL_WORK, "11, 구조파악.."));
+      items.add(new ReportEntry(ReportType.PROJECT, "설계개발공유체게"));
+      items.add(new ReportEntry(ReportType.MODIFIED_TIME, "2017-11-10 22:05"));
       adapterDataModel.addAll(items);
 
       //view.refresh();

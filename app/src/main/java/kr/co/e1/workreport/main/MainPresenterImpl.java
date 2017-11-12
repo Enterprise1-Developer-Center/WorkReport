@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Locale;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.Report;
+import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
+import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -22,10 +22,10 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 public class MainPresenterImpl implements MainPresenter {
 
   private MainPresenter.View view;
-  private BaseAdapterDataModel<ReportEntry> adapterDataModel;
+  private MainAdapterDataModel<ReportEntry> adapterDataModel;
 
   @Inject public MainPresenterImpl(MainPresenter.View view,
-      BaseAdapterDataModel<ReportEntry> adapterDataModel) {
+      MainAdapterDataModel<ReportEntry> adapterDataModel) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     view.changeTheme();
@@ -50,22 +50,26 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @DebugLog @Override public void loginComplete() {
-    List<ReportEntry> items = new ArrayList<>();
-    items.add(new ReportEntry(Report.DATE, "2017-11-10(금)"));
-    items.add(new ReportEntry(Report.GROUP, "BS"));
-    items.add(new ReportEntry(Report.NAME, "오재호"));
-    items.add(new ReportEntry(Report.START_TIME, "17:00"));
-    items.add(new ReportEntry(Report.END_TIME, "01:00"));
-    items.add(new ReportEntry(Report.WORKING_TIME, "06:00"));
-    items.add(new ReportEntry(Report.DETAIL_WORK, "11, 구조파악..?"));
-    items.add(new ReportEntry(Report.PROJECT, "설계개발공유체계"));
-    items.add(new ReportEntry(Report.MODIFIED_TIME, "2017-11-10 22:05"));
-    adapterDataModel.addAll(items);
+    view.showProgress();
+    new Handler().postDelayed(() -> {
+      List<ReportEntry> items = new ArrayList<>();
+      items.add(new ReportEntry(ReportType.DATE, "2017-11-10(금)"));
+      items.add(new ReportEntry(ReportType.GROUP, "BS"));
+      items.add(new ReportEntry(ReportType.NAME, "오재호"));
+      items.add(new ReportEntry(ReportType.START_TIME, "17:00"));
+      items.add(new ReportEntry(ReportType.END_TIME, "01:00"));
+      items.add(new ReportEntry(ReportType.WORKING_TIME, "06:00"));
+      items.add(new ReportEntry(ReportType.DETAIL_WORK, "11, 구조파악..?"));
+      items.add(new ReportEntry(ReportType.PROJECT, "설계개발공유체계"));
+      items.add(new ReportEntry(ReportType.MODIFIED_TIME, "2017-11-10 22:05"));
+      adapterDataModel.addAll(items);
 
-    //view.refresh();
-    for (int i = 0; i < items.size(); i++) {
-      view.refresh(i);
-    }
+      //view.refresh();
+      for (int i = 0; i < items.size(); i++) {
+        view.refresh(i);
+      }
+      view.hideProgress();
+    }, 1000);
   }
 
   @Override public void onBackPressed(boolean isDrawerOpen) {
@@ -84,8 +88,9 @@ public class MainPresenterImpl implements MainPresenter {
     Calendar calendar = Calendar.getInstance();
     calendar.set(year, month, dayOfMonth);
     Date d = new Date(calendar.getTimeInMillis());
-    String reportDate = dateFormat.format(d);
-    //view.showReportDate(reportDate);
+    String date = dateFormat.format(d);
+    adapterDataModel.edit(ReportType.DATE, date);
+    view.refresh(ReportType.DATE.getPosition());
   }
 
   @DebugLog @Override public void onStartTimeSet(int hourOfDay, int minute) {

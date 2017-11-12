@@ -7,9 +7,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
@@ -18,7 +18,7 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
  */
 
 public class MainReportAdapter extends BaseRecyclerAdapter
-    implements ReportAdapterView, BaseAdapterDataModel<ReportEntry> {
+    implements ReportAdapterView, MainAdapterDataModel<ReportEntry> {
 
   private OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener;
   private OnSaveButtonClickListener<List<ReportEntry>> onSaveButtonClickListener;
@@ -127,5 +127,9 @@ public class MainReportAdapter extends BaseRecyclerAdapter
 
   @Override public void refresh() {
     notifyDataSetChanged();
+  }
+
+  @Override public void edit(ReportType type, String contents) {
+    items.get(type.getPosition()).setContents(contents);
   }
 }

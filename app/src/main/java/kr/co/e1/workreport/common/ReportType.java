@@ -8,7 +8,7 @@ import lombok.Getter;
  * Created by jaeho on 2017. 11. 10
  */
 
-public enum Report {
+public enum ReportType {
 
   DATE(R.drawable.ic_today, 0),
   GROUP(R.drawable.ic_group, 1),
@@ -23,7 +23,7 @@ public enum Report {
   @Getter private @DrawableRes int resId;
   @Getter private int position;
 
-  private Report(@DrawableRes int resId, int position) {
+  private ReportType(@DrawableRes int resId, int position) {
     this.resId = resId;
     this.position = position;
   }

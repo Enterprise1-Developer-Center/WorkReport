@@ -89,8 +89,14 @@ public class MainPresenterImpl implements MainPresenter {
     calendar.set(year, month, dayOfMonth);
     Date d = new Date(calendar.getTimeInMillis());
     String date = dateFormat.format(d);
+
     adapterDataModel.edit(ReportType.DATE, date);
     view.refresh(ReportType.DATE.getPosition());
+
+    view.showProgress();
+    new Handler().postDelayed(() -> {
+      view.hideProgress();
+    }, 1000);
   }
 
   @DebugLog @Override public void onStartTimeSet(int hourOfDay, int minute) {
@@ -100,7 +106,8 @@ public class MainPresenterImpl implements MainPresenter {
     Date date = new Date(calendar.getTimeInMillis());
 
     String startTime = new SimpleDateFormat("HH:mm", Locale.KOREA).format(date);
-    //view.showStartTime(startTime);
+    adapterDataModel.edit(ReportType.START_TIME, startTime);
+    view.refresh(ReportType.START_TIME.getPosition());
   }
 
   @DebugLog @Override public void onEndTimeSet(int hourOfDay, int minute) {
@@ -110,7 +117,8 @@ public class MainPresenterImpl implements MainPresenter {
     Date date = new Date(calendar.getTimeInMillis());
 
     String endTime = new SimpleDateFormat("HH:mm", Locale.KOREA).format(date);
-    //view.showEndTime(endTime);
+    adapterDataModel.edit(ReportType.END_TIME, endTime);
+    view.refresh(ReportType.END_TIME.getPosition());
   }
 
   @Override public void onSaveClick(List<ReportEntry> items) {
@@ -139,5 +147,16 @@ public class MainPresenterImpl implements MainPresenter {
         view.showProjectChoiceDialog();
         break;
     }
+  }
+
+  @Override public void onDetailWorkDialogClick(Bundle o) {
+    adapterDataModel.edit(ReportType.DETAIL_WORK,
+        o.getString("code") + " // " + o.getString("work"));
+    view.refresh(ReportType.DETAIL_WORK.getPosition());
+  }
+
+  @Override public void onProjectDialogClick(Bundle o) {
+    adapterDataModel.edit(ReportType.PROJECT, o.getString("name"));
+    view.refresh(ReportType.PROJECT.getPosition());
   }
 }

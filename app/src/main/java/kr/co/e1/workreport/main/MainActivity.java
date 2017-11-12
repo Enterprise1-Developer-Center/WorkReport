@@ -25,6 +25,7 @@ import java.util.List;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.classificationdialog.ClassificationDialog;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
@@ -34,6 +35,7 @@ import kr.co.e1.workreport.login.LoginFragment;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.main.adapter.OnSaveButtonClickListener;
 import kr.co.e1.workreport.password.PasswordDialog;
+import kr.co.e1.workreport.project.ProjectDialog;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
 import timber.log.Timber;
@@ -178,18 +180,15 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void showDetailWorkDialog() {
-    /*
-    new ClassificationDialog().setOnDialogClickListener(
-        o -> codeTextView.setText(o.getString("code") + " / " + o.getString("work")))
+    new ClassificationDialog().setOnDialogClickListener(o -> presenter.onDetailWorkDialogClick(o))
         .show(getSupportFragmentManager(), ClassificationDialog.class.getSimpleName());
-    */
   }
 
   @Override public void showProjectChoiceDialog() {
-    /*
-    new ProjectDialog().setOnDialogClickListener(o -> projectTextView.setText(o.getString("name")))
+
+    new ProjectDialog().setOnDialogClickListener(o -> presenter.onProjectDialogClick(o))
         .show(getSupportFragmentManager(), ProjectDialog.class.getSimpleName());
-    */
+
   }
 
   @Override public void showMessage(int resId) {

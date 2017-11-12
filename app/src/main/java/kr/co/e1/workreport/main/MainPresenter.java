@@ -30,6 +30,10 @@ public interface MainPresenter {
 
   void onItemClick(ReportEntry item);
 
+  void onDetailWorkDialogClick(Bundle o);
+
+  void onProjectDialogClick(Bundle o);
+
   interface View {
     void setListener();
 

@@ -12,7 +12,6 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
 import kr.co.e1.workreport.network.NetworkHelper;
-import kr.co.e1.workreport.network.WorkReportApi;
 
 /**
  * Created by jaeho on 2017. 9. 27
@@ -22,16 +21,14 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
 
   private LoginFragmentPresenter.View view;
   private LoginCommunicationListener loginListener;
-  private WorkReportApi workReportApi;
-  private NetworkHelper networkHelper;
+  private LoginNetwork network;
   @Nonnull private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-  @Inject LoginFragmentPresenterImpl(LoginFragmentPresenter.View view, NetworkHelper networkHelper,
+  @Inject LoginFragmentPresenterImpl(LoginFragmentPresenter.View view, LoginNetwork network,
       LoginCommunicationListener loginListener) {
     this.view = view;
     this.loginListener = loginListener;
-    this.networkHelper = networkHelper;
-    this.workReportApi = networkHelper.getWorkReportApi();
+    this.network = network;
   }
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
@@ -40,10 +37,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
 
   @Override public void onPositiveClick(String id, String pw) {
     view.showProgress();
-    String confidentialsClient = networkHelper.getConfidentialsClient();
-    String grantType = networkHelper.getGrantType();
-    String scope = networkHelper.getScope();
-    compositeDisposable.add(workReportApi.generateToken(confidentialsClient, grantType, scope)
+    compositeDisposable.add(network.generateToken()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(tokenResult -> {
@@ -51,7 +45,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
           Map<String, String> userMap = new HashMap<>();
           userMap.put("userId", id);
           userMap.put("userPw", pw);
-          workReportApi.getLoginResult(PreferencesUtils.getToken(), userMap)
+          network.getLoginResult(userMap)
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe(wlResult -> {

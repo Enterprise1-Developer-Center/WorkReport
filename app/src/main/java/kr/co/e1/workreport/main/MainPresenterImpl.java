@@ -3,12 +3,14 @@ package kr.co.e1.workreport.main;
 import android.os.Bundle;
 import android.os.Handler;
 import hugo.weaving.DebugLog;
+import io.reactivex.disposables.CompositeDisposable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.ReportType;
@@ -49,8 +51,11 @@ public class MainPresenterImpl implements MainPresenter {
     }
   }
 
+  @Nonnull private CompositeDisposable compositeDisposable = new CompositeDisposable();
+
   @DebugLog @Override public void loginComplete() {
     view.showProgress();
+    //compositeDisposable.add()
     new Handler().postDelayed(() -> {
       List<ReportEntry> items = new ArrayList<>();
       items.add(new ReportEntry(ReportType.DATE, "2017-11-10(금)"));

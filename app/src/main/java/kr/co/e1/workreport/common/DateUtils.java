@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nonnull;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 13
@@ -24,15 +25,21 @@ public class DateUtils {
     return dateFormat.format(d);
   }
 
-  public static String getRemoveDayOfWeekDate(@Nonnull String date) {
-    return date.split(" ")[0];
+  @DebugLog public static String getRemoveDayOfWeekDate(@Nonnull String date) {
+    int index = date.indexOf("(");
+    Timber.d("return date = " + date.substring(0, index).trim());
+    return date.substring(0, index).trim();
   }
 
-  public static Map<String, Integer> getYearMonthDayMap(@Nonnull String date) {
+  @DebugLog public static Map<String, Integer> getYearMonthDayMap(@Nonnull String date) {
     Map<String, Integer> map = new HashMap<>();
     map.put("year", Integer.parseInt(date.split("-")[0]));
     map.put("month", Integer.parseInt(date.split("-")[1]));
     map.put("day", Integer.parseInt(date.split("-")[2]));
     return map;
+  }
+
+  @DebugLog public static int getMonthOfYear(int month) {
+    return month - 1;
   }
 }

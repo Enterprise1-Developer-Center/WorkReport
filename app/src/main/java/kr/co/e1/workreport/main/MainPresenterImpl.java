@@ -137,9 +137,10 @@ public class MainPresenterImpl implements MainPresenter {
   @Override public void onItemClick(ReportEntry item) {
     switch (item.getEntry()) {
       case DATE:
-        view.showDatePickerDialog();
-        Map<String, Integer> map = DateUtils.getYearMonthDayMap(item.getContents().split(" ")[0]);
-        view.showDatePickerDialog(map.get("year"), map.get("month"), map.get("day"));
+        Map<String, Integer> map =
+            DateUtils.getYearMonthDayMap(DateUtils.getRemoveDayOfWeekDate(item.getContents()));
+        view.showDatePickerDialog(map.get("year"), DateUtils.getMonthOfYear(map.get("month")),
+            map.get("day"));
         break;
       case START_TIME:
         view.showStartTimePickerDialog();

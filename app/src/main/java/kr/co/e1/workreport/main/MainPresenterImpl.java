@@ -3,7 +3,10 @@ package kr.co.e1.workreport.main;
 import android.os.Bundle;
 import android.os.Handler;
 import hugo.weaving.DebugLog;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,6 +19,7 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
+import kr.co.e1.workreport.network.WLResult;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -25,11 +29,13 @@ public class MainPresenterImpl implements MainPresenter {
 
   private MainPresenter.View view;
   private MainAdapterDataModel<ReportEntry> adapterDataModel;
+  private MainNetwork network;
 
   @Inject public MainPresenterImpl(MainPresenter.View view,
-      MainAdapterDataModel<ReportEntry> adapterDataModel) {
+      MainAdapterDataModel<ReportEntry> adapterDataModel, MainNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
+    this.network = network;
     view.changeTheme();
   }
 
@@ -55,6 +61,20 @@ public class MainPresenterImpl implements MainPresenter {
 
   @DebugLog @Override public void loginComplete() {
     view.showProgress();
+
+    compositeDisposable.add(
+        network.getWorkingDay("").observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread()).subscribe(
+            new Consumer<WLResult>() {
+              @Override public void accept(WLResult result) throws Exception {
+
+              }
+            }, new Consumer<Throwable>() {
+              @Override public void accept(Throwable throwable) throws Exception {
+
+              }
+            })
+    );
+
     //compositeDisposable.add()
     new Handler().postDelayed(() -> {
       List<ReportEntry> items = new ArrayList<>();
@@ -163,5 +183,9 @@ public class MainPresenterImpl implements MainPresenter {
   @Override public void onProjectDialogClick(Bundle o) {
     adapterDataModel.edit(ReportType.PROJECT, o.getString("name"));
     view.refresh(ReportType.PROJECT.getPosition());
+  }
+
+  @Override public void onDestroy() {
+    compositeDisposable.clear();
   }
 }

@@ -3,6 +3,7 @@ package kr.co.e1.workreport.main;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialogComponent;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.login.LoginFragmentComponent;
@@ -21,8 +22,8 @@ import kr.co.e1.workreport.project.ProjectDialogComponent;
     return mainActivity;
   }
 
-  @Provides MainPresenter provideMainPresenter(MainPresenter.View view, MainActivity activity) {
-    return new MainPresenterImpl(view, activity.adapter);
+  @Provides MainPresenter provideMainPresenter(MainPresenter.View view, MainActivity activity, MainNetwork network) {
+    return new MainPresenterImpl(view, activity.adapter, network);
   }
 
   @Provides MainReportAdapter provideReportAdapter(MainActivity activity) {
@@ -31,5 +32,9 @@ import kr.co.e1.workreport.project.ProjectDialogComponent;
 
   @Provides ReportAdapterView provideBaseAdapterView(MainActivity activity) {
     return activity.adapter;
+  }
+
+  @Provides MainNetwork provideMainNetwork() {
+    return new MainNetwork(Constants.BASE_URL);
   }
 }

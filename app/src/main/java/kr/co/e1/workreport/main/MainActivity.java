@@ -233,4 +233,9 @@ public class MainActivity extends BaseActivity
   @DebugLog @Override public void onSaveClick(List<ReportEntry> items) {
     presenter.onSaveClick(items);
   }
+
+  @Override protected void onDestroy() {
+    presenter.onDestroy();
+    super.onDestroy();
+  }
 }

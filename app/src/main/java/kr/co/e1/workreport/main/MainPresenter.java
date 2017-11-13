@@ -34,6 +34,8 @@ public interface MainPresenter {
 
   void onProjectDialogClick(Bundle o);
 
+  void onDestroy();
+
   interface View {
     void setListener();
 

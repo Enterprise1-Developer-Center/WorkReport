@@ -5,7 +5,6 @@ import android.os.Handler;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,11 +15,9 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.ReportType;
-import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.network.NetworkHelper;
-import kr.co.e1.workreport.network.WResult;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -65,20 +62,16 @@ public class MainPresenterImpl implements MainPresenter {
     compositeDisposable.add(network.getWorkingDay(date)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Consumer<WResult<ReportContent>>() {
-          @DebugLog @Override public void accept(WResult<ReportContent> result) throws Exception {
-            if (result.getResult() == NetworkHelper.RESULT_SUCCESS) {
-              List<ReportEntry> items = ReportEntry.createReportEntrys(result.getContent());
-              adapterDataModel.addAll(items);
-              view.refresh();
-            }
-            view.hideProgress();
+        .subscribe(result -> {
+          if (result.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            List<ReportEntry> items = ReportEntry.createReportEntrys(result.getContent());
+            adapterDataModel.addAll(items);
+            view.refresh();
           }
-        }, new Consumer<Throwable>() {
-          @DebugLog @Override public void accept(Throwable throwable) throws Exception {
-            view.hideProgress();
-            view.showMessage(R.string.error_server_error);
-          }
+          view.hideProgress();
+        }, throwable -> {
+          view.hideProgress();
+          view.showMessage(R.string.error_server_error);
         }));
   }
 

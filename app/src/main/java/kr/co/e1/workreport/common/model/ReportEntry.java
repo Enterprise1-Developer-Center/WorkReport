@@ -3,6 +3,7 @@ package kr.co.e1.workreport.common.model;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
+import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,8 @@ import lombok.ToString;
 
   public static List<ReportEntry> createReportEntrys(ReportContent content) {
     final List<ReportEntry> entries = new ArrayList<>();
-    entries.add(new ReportEntry(ReportType.DATE, content.getDate()));
+
+    entries.add(new ReportEntry(ReportType.DATE, DateUtils.getIncludeDayOfWeek(content.getDate())));
     entries.add(new ReportEntry(ReportType.DEPT, content.getDeptName()));
     entries.add(new ReportEntry(ReportType.NAME, content.getUserName()));
     entries.add(new ReportEntry(ReportType.START_TIME, content.getSTime()));

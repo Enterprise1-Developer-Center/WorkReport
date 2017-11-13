@@ -57,6 +57,8 @@ public interface MainPresenter {
 
     void showDatePickerDialog();
 
+    void showDatePickerDialog(int year, int month, int day);
+
     void showProgress();
 
     void hideProgress();

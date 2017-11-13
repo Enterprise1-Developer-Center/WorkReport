@@ -132,6 +132,13 @@ public class MainActivity extends BaseActivity
     }, cYear, cMonth, cDayOfMonth).show();
   }
 
+  @DebugLog @Override public void showDatePickerDialog(int year, int month, int day) {
+
+    new DatePickerDialog(this,
+        (datePicker, $year, $month, $dayOfMonth) -> presenter.onReportDateSet($year, $month,
+            $dayOfMonth), year, month, day).show();
+  }
+
   @Override public void showProgress() {
     progressBar.setVisibility(View.VISIBLE);
   }

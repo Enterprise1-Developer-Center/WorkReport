@@ -11,9 +11,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
@@ -136,6 +138,8 @@ public class MainPresenterImpl implements MainPresenter {
     switch (item.getEntry()) {
       case DATE:
         view.showDatePickerDialog();
+        Map<String, Integer> map = DateUtils.getYearMonthDayMap(item.getContents().split(" ")[0]);
+        view.showDatePickerDialog(map.get("year"), map.get("month"), map.get("day"));
         break;
       case START_TIME:
         view.showStartTimePickerDialog();

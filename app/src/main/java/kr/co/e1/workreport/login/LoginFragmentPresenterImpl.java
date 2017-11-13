@@ -12,6 +12,7 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
 import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.network.TokenResult;
 
 /**
  * Created by jaeho on 2017. 9. 27
@@ -40,27 +41,29 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
     compositeDisposable.add(network.generateToken()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(tokenResult -> {
+        .subscribe((TokenResult tokenResult) -> {
+
           PreferencesUtils.setToken(tokenResult.getToken_type(), tokenResult.getAccess_token());
           PreferencesUtils.setUserId(id);
           Map<String, String> userMap = new HashMap<>();
           userMap.put("userId", id);
           userMap.put("userPw", pw);
-          network.getLoginResult(userMap)
+
+          compositeDisposable.add(network.getLoginResult(userMap)
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
-              .subscribe(wlResult -> {
-                if (wlResult.getResult() == NetworkHelper.RESULT_SUCCESS) {
-                  loginListener.loginComplete();
+              .subscribe(loginResult -> {
+                if (loginResult.getResult() == NetworkHelper.RESULT_SUCCESS) {
+                  loginListener.onLoginSuccess(loginResult.getContent().getDate());
                   view.dismiss();
                 } else {
-                  view.showMessage(wlResult.getMsg());
+                  view.showMessage(loginResult.getMsg());
                 }
                 view.hideProgress();
               }, throwable -> {
                 view.hideProgress();
                 view.showMessage(R.string.error_server_error);
-              });
+              }));
         }, throwable -> {
           view.hideProgress();
           view.showMessage(R.string.error_server_error);

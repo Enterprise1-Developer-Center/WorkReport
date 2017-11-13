@@ -126,7 +126,9 @@ public class MainReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void refresh() {
-    notifyDataSetChanged();
+    for (int i = 0; i < items.size(); i++) {
+      notifyItemChanged(i);
+    }
   }
 
   @Override public void edit(ReportType type, String contents) {

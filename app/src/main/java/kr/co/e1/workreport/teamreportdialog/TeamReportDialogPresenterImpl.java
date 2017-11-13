@@ -34,7 +34,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
     new Handler().postDelayed(() -> {
       List<ReportEntry> items = new ArrayList<>();
       items.add(new ReportEntry(ReportType.DATE, "2017-11-10(금)"));
-      items.add(new ReportEntry(ReportType.GROUP, "BS"));
+      items.add(new ReportEntry(ReportType.DEPT, "BS"));
       items.add(new ReportEntry(ReportType.NAME, "오재호"));
       items.add(new ReportEntry(ReportType.START_TIME, "2017-09-18 18:00"));
       items.add(new ReportEntry(ReportType.END_TIME, "2017-09-18 22:00"));

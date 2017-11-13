@@ -11,7 +11,7 @@ import lombok.Getter;
 public enum ReportType {
 
   DATE(R.drawable.ic_today, 0),
-  GROUP(R.drawable.ic_group, 1),
+  DEPT(R.drawable.ic_group, 1),
   NAME(R.drawable.ic_person, 2),
   START_TIME(R.drawable.ic_timer, 3),
   END_TIME(R.drawable.ic_timer_off, 4),

@@ -8,7 +8,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -17,9 +16,11 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.ReportType;
+import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
-import kr.co.e1.workreport.network.WLResult;
+import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.network.WResult;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -59,42 +60,26 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Nonnull private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-  @DebugLog @Override public void loginComplete() {
+  @Override public void onLoginSuccess(String date) {
     view.showProgress();
-
-    compositeDisposable.add(
-        network.getWorkingDay("").observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread()).subscribe(
-            new Consumer<WLResult>() {
-              @Override public void accept(WLResult result) throws Exception {
-
-              }
-            }, new Consumer<Throwable>() {
-              @Override public void accept(Throwable throwable) throws Exception {
-
-              }
-            })
-    );
-
-    //compositeDisposable.add()
-    new Handler().postDelayed(() -> {
-      List<ReportEntry> items = new ArrayList<>();
-      items.add(new ReportEntry(ReportType.DATE, "2017-11-10(금)"));
-      items.add(new ReportEntry(ReportType.GROUP, "BS"));
-      items.add(new ReportEntry(ReportType.NAME, "오재호"));
-      items.add(new ReportEntry(ReportType.START_TIME, "17:00"));
-      items.add(new ReportEntry(ReportType.END_TIME, "01:00"));
-      items.add(new ReportEntry(ReportType.WORKING_TIME, "06:00"));
-      items.add(new ReportEntry(ReportType.DETAIL_WORK, "11, 구조파악..?"));
-      items.add(new ReportEntry(ReportType.PROJECT, "설계개발공유체계"));
-      items.add(new ReportEntry(ReportType.MODIFIED_TIME, "2017-11-10 22:05"));
-      adapterDataModel.addAll(items);
-
-      //view.refresh();
-      for (int i = 0; i < items.size(); i++) {
-        view.refresh(i);
-      }
-      view.hideProgress();
-    }, 1000);
+    compositeDisposable.add(network.getWorkingDay(date)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<WResult<ReportContent>>() {
+          @DebugLog @Override public void accept(WResult<ReportContent> result) throws Exception {
+            if (result.getResult() == NetworkHelper.RESULT_SUCCESS) {
+              List<ReportEntry> items = ReportEntry.createReportEntrys(result.getContent());
+              adapterDataModel.addAll(items);
+              view.refresh();
+            }
+            view.hideProgress();
+          }
+        }, new Consumer<Throwable>() {
+          @DebugLog @Override public void accept(Throwable throwable) throws Exception {
+            view.hideProgress();
+            view.showMessage(R.string.error_server_error);
+          }
+        }));
   }
 
   @Override public void onBackPressed(boolean isDrawerOpen) {

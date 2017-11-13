@@ -47,7 +47,6 @@ public class MainActivity extends BaseActivity
 
   @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
   @BindView(R.id.navigation_view) NavigationView navigationView;
-  //@BindView(R.id.save_button) ImageView saveButton;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
@@ -188,7 +187,6 @@ public class MainActivity extends BaseActivity
 
     new ProjectDialog().setOnDialogClickListener(o -> presenter.onProjectDialogClick(o))
         .show(getSupportFragmentManager(), ProjectDialog.class.getSimpleName());
-
   }
 
   @Override public void showMessage(int resId) {
@@ -216,8 +214,8 @@ public class MainActivity extends BaseActivity
     return true;
   }
 
-  @Override public void loginComplete() {
-    presenter.loginComplete();
+  @DebugLog @Override public void onLoginSuccess(String date) {
+    presenter.onLoginSuccess(date);
   }
 
   @Inject DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;

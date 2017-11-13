@@ -14,8 +14,6 @@ public interface MainPresenter {
 
   void onNavigationItemSelected(int itemId);
 
-  void loginComplete();
-
   void onBackPressed(boolean isDrawerOpen);
 
   void onActivityCreate(Bundle savedInstanceState);
@@ -35,6 +33,8 @@ public interface MainPresenter {
   void onProjectDialogClick(Bundle o);
 
   void onDestroy();
+
+  void onLoginSuccess(String date);
 
   interface View {
     void setListener();

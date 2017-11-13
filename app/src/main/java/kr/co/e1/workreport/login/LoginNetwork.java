@@ -5,7 +5,7 @@ import java.util.Map;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.TokenResult;
-import kr.co.e1.workreport.network.WLResult;
+import kr.co.e1.workreport.network.WResult;
 import retrofit2.http.QueryMap;
 
 /**
@@ -17,7 +17,7 @@ public class LoginNetwork extends NetworkHelper {
     super(baseUrl);
   }
 
-  public Single<WLResult> getLoginResult(@QueryMap Map<String, String> queryMap) {
+  public Single<WResult<LoginContent>> getLoginResult(@QueryMap Map<String, String> queryMap) {
     String token = PreferencesUtils.getToken();
     return getWorkReportApi().getLoginResult(token, queryMap);
   }

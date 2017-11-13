@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WorkReportApi;
@@ -46,11 +47,11 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(tokenResult -> {
-          Map<String, String> h = new HashMap<>();
-          h.put("userId", id);
-          h.put("userPw", pw);
-          workReportApi.getLoginResult(
-              tokenResult.getToken_type() + " " + tokenResult.getAccess_token(), h)
+          PreferencesUtils.setToken(tokenResult.getToken_type(), tokenResult.getAccess_token());
+          Map<String, String> userMap = new HashMap<>();
+          userMap.put("userId", id);
+          userMap.put("userPw", pw);
+          workReportApi.getLoginResult(PreferencesUtils.getToken(), userMap)
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe(wlResult -> {
@@ -65,6 +66,9 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
                 view.hideProgress();
                 view.showMessage(R.string.error_server_error);
               });
+        }, throwable -> {
+          view.hideProgress();
+          view.showMessage(R.string.error_server_error);
         }));
   }
 

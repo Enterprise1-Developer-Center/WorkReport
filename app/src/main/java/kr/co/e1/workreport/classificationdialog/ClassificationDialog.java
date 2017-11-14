@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import butterknife.BindView;
-import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
@@ -124,7 +123,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     workTextInputEditText.setText(work);
   }
 
-  @DebugLog @Override public void onItemClick(ClassificationSelectableItem selectableItem) {
+  @Override public void onItemClick(ClassificationSelectableItem selectableItem) {
     bundle.putString("code", String.valueOf(selectableItem.getItem().getSmallClassCode()));
   }
 }

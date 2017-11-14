@@ -69,9 +69,9 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
     if (viewHolder instanceof TeamReportViewHolder) {
       TeamReportViewHolder holder = (TeamReportViewHolder) viewHolder;
       ReportEntry entry = items.get(position);
-      holder.iconImageView.setImageResource(entry.getEntry().getResId());
+      holder.iconImageView.setImageResource(entry.getType().getResId());
       holder.contentsTextView.setText(entry.getContents());
-      if (entry.getEntry() == ReportType.DATE) {
+      if (entry.getType() == ReportType.DATE) {
         holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
         holder.itemView.setBackgroundResource(getBackgroundRes(holder.iconImageView.getContext()));
       }

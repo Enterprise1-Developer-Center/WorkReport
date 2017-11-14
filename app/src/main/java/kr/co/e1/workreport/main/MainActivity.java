@@ -120,23 +120,9 @@ public class MainActivity extends BaseActivity
     new AlertDialog.Builder(this).setTitle("Review").setMessage("Please write review").show();
   }
 
-  @Override public void showDatePickerDialog() {
-    Calendar calendar = Calendar.getInstance();
-    int cYear = calendar.get(Calendar.YEAR);
-    int cMonth = calendar.get(Calendar.MONTH);
-    int cDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-    Timber.d("year = " + cYear + ", month = " + cMonth + ", day = " + cDayOfMonth);
-
-    new DatePickerDialog(this, (datePicker, year, month, dayOfMonth) -> {
-      presenter.onReportDateSet(year, month, dayOfMonth);
-    }, cYear, cMonth, cDayOfMonth).show();
-  }
-
-  @DebugLog @Override public void showDatePickerDialog(int year, int month, int day) {
-
-    new DatePickerDialog(this,
-        (datePicker, $year, $month, $dayOfMonth) -> presenter.onReportDateSet($year, $month,
-            $dayOfMonth), year, month, day).show();
+  @Override public void showDatePickerDialog(int year, int month, int day,
+      DatePickerDialog.OnDateSetListener listener) {
+    new DatePickerDialog(this, listener, year, month, day).show();
   }
 
   @Override public void showProgress() {
@@ -213,6 +199,11 @@ public class MainActivity extends BaseActivity
 
   @Override public void refresh(int position) {
     adapterView.refresh(position);
+  }
+
+  @Override public void showTimePickerDialog(int hour, int minute, TimePickerDialog.OnTimeSetListener listener) {
+
+    new TimePickerDialog(this, listener, hour, minute, true).show();
   }
 
   @Override public boolean onNavigationItemSelected(MenuItem item) {

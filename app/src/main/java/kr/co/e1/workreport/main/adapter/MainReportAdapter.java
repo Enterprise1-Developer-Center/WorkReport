@@ -89,9 +89,9 @@ public class MainReportAdapter extends BaseRecyclerAdapter
     if (viewHolder instanceof MainReportViewHolder) {
       MainReportViewHolder holder = (MainReportViewHolder) viewHolder;
       ReportEntry entry = items.get(position);
-      holder.iconImageView.setImageResource(entry.getEntry().getResId());
+      holder.iconImageView.setImageResource(entry.getType().getResId());
       holder.contentsTextView.setText(entry.getContents());
-      switch (entry.getEntry()) {
+      switch (entry.getType()) {
         case DATE:
         case START_TIME:
         case END_TIME:

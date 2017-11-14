@@ -1,5 +1,7 @@
 package kr.co.e1.workreport.main;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import java.util.List;
@@ -17,8 +19,6 @@ public interface MainPresenter {
   void onBackPressed(boolean isDrawerOpen);
 
   void onActivityCreate(Bundle savedInstanceState);
-
-  void onReportDateSet(int y, int m, int dayOfMonth);
 
   void onStartTimeSet(int hourOfDay, int minute);
 
@@ -55,9 +55,8 @@ public interface MainPresenter {
 
     void navigateToReview();
 
-    void showDatePickerDialog();
-
-    void showDatePickerDialog(int year, int month, int day);
+    void showDatePickerDialog(int year, int month, int day,
+        DatePickerDialog.OnDateSetListener listener);
 
     void showProgress();
 
@@ -82,5 +81,7 @@ public interface MainPresenter {
     void refresh();
 
     void refresh(int position);
+
+    void showTimePickerDialog(int hour, int minute, TimePickerDialog.OnTimeSetListener listener);
   }
 }

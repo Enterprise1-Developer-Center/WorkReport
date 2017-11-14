@@ -15,7 +15,7 @@ import lombok.ToString;
  */
 
 @ToString @AllArgsConstructor @Getter public class ReportEntry {
-  private ReportType entry;
+  private ReportType type;
   @Setter private String contents;
 
   public static List<ReportEntry> createReportEntrys(ReportContent content) {

@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.main;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import hugo.weaving.DebugLog;
@@ -88,22 +89,6 @@ public class MainPresenterImpl implements MainPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
   }
 
-  @DebugLog @Override public void onReportDateSet(int year, int month, int dayOfMonth) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd (EE)");
-    Calendar calendar = Calendar.getInstance();
-    calendar.set(year, month, dayOfMonth);
-    Date d = new Date(calendar.getTimeInMillis());
-    String date = dateFormat.format(d);
-
-    adapterDataModel.edit(ReportType.DATE, date);
-    view.refresh(ReportType.DATE.getPosition());
-
-    view.showProgress();
-    new Handler().postDelayed(() -> {
-      view.hideProgress();
-    }, 1000);
-  }
-
   @DebugLog @Override public void onStartTimeSet(int hourOfDay, int minute) {
     Calendar calendar = Calendar.getInstance();
     calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
@@ -134,27 +119,71 @@ public class MainPresenterImpl implements MainPresenter {
     }, 1000);
   }
 
+  private DatePickerDialog.OnDateSetListener onMainDateSetListener =
+      (pciker, year, month, dayOfMonth) -> {
+
+        view.showProgress();
+        new Handler().postDelayed(() -> {
+          view.hideProgress();
+        }, 1000);
+      };
+
   @Override public void onItemClick(ReportEntry item) {
-    switch (item.getEntry()) {
-      case DATE:
-        Map<String, Integer> map =
-            DateUtils.getYearMonthDayMap(DateUtils.getRemoveDayOfWeekDate(item.getContents()));
-        view.showDatePickerDialog(map.get("year"), DateUtils.getMonthOfYear(map.get("month")),
-            map.get("day"));
-        break;
-      case START_TIME:
-        view.showStartTimePickerDialog();
-        break;
-      case END_TIME:
-        view.showEndTimePickerDialog();
-        break;
-      case DETAIL_WORK:
-        view.showDetailWorkDialog();
-        break;
-      case PROJECT:
-        view.showProjectChoiceDialog();
-        break;
+    ReportType type = item.getType();
+
+    if (type == ReportType.DATE) {
+      dateHandling(item);
+    } else if (type == ReportType.START_TIME) {
+      startTimeHandling(item);
+    } else if (type == ReportType.END_TIME) {
+
+    } else if (type == ReportType.DETAIL_WORK) {
+
+    } else if (type == ReportType.PROJECT) {
+
     }
+  }
+
+  private void dateHandling(ReportEntry entry) {
+    String contents = entry.getContents();
+    Map<String, Integer> map = DateUtils.getYearMonthDayMap(DateUtils.getOnlyDateString(contents));
+    int year = map.get("year");
+    int month = DateUtils.getMonthOfYear(map.get("month"));
+    int day = map.get("day");
+    view.showDatePickerDialog(year, month, day, ($datePicker, $year, $month, $dayOfMonth) -> {
+      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd (EE)");
+      Calendar calendar = Calendar.getInstance();
+      calendar.set($year, $month, $dayOfMonth);
+      Date d = new Date(calendar.getTimeInMillis());
+      String date = dateFormat.format(d);
+
+      adapterDataModel.edit(ReportType.DATE, date);
+      view.refresh(ReportType.DATE.getPosition());
+    });
+  }
+
+  private void startTimeHandling(ReportEntry entry) {
+    String contents = entry.getContents();
+    ReportType type = entry.getType();
+
+    Map<String, Integer> map = DateUtils.getYearMonthDayMap(DateUtils.getOnlyDateString(contents));
+    int year = map.get("year");
+    int month = DateUtils.getMonthOfYear(map.get("month"));
+    int day = map.get("day");
+
+    view.showDatePickerDialog(year, month, day, ($datePicker, $year, $month, $day) -> {
+      Map<String, Integer> timeMap = DateUtils.getOnlyTimeMap(entry.getContents());
+      view.showTimePickerDialog(timeMap.get("hour"), timeMap.get("minute"),
+          ($timePicker, $hourOfDay, $minute) -> {
+
+            Calendar cal = Calendar.getInstance();
+            cal.set($year, $month, $day, $hourOfDay, $minute);
+            Date d = new Date(cal.getTimeInMillis());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            adapterDataModel.edit(type, format.format(d).trim());
+            view.refresh(type.getPosition());
+          });
+    });
   }
 
   @Override public void onDetailWorkDialogClick(Bundle o) {

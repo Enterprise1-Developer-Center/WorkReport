@@ -136,7 +136,7 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (type == ReportType.START_TIME) {
       startTimeHandling(item);
     } else if (type == ReportType.END_TIME) {
-
+      endTimeHandling(item);
     } else if (type == ReportType.DETAIL_WORK) {
 
     } else if (type == ReportType.PROJECT) {
@@ -175,12 +175,27 @@ public class MainPresenterImpl implements MainPresenter {
       Map<String, Integer> timeMap = DateUtils.getOnlyTimeMap(entry.getContents());
       view.showTimePickerDialog(timeMap.get("hour"), timeMap.get("minute"),
           ($timePicker, $hourOfDay, $minute) -> {
+            Date d = new Date(DateUtils.getTimeInMillis($year, $month, $day, $hourOfDay, $minute));
+            adapterDataModel.edit(type, DateUtils.getConvertoFormat(d, "yyyy-MM-dd HH:mm"));
+            view.refresh(type.getPosition());
+          });
+    });
+  }
 
-            Calendar cal = Calendar.getInstance();
-            cal.set($year, $month, $day, $hourOfDay, $minute);
-            Date d = new Date(cal.getTimeInMillis());
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            adapterDataModel.edit(type, format.format(d).trim());
+  private void endTimeHandling(ReportEntry entry) {
+    String contents = entry.getContents();
+    ReportType type = entry.getType();
+
+    Map<String, Integer> map = DateUtils.getYearMonthDayMap(DateUtils.getOnlyDateString(contents));
+    int year = map.get("year");
+    int month = DateUtils.getMonthOfYear(map.get("month"));
+    int day = map.get("day");
+    view.showDatePickerDialog(year, month, day, ($datePicker, $year, $month, $day) -> {
+      Map<String, Integer> timeMap = DateUtils.getOnlyTimeMap(entry.getContents());
+      view.showTimePickerDialog(timeMap.get("hour"), timeMap.get("minute"),
+          ($timePicker, $hourOfDay, $minute) -> {
+            Date d = new Date(DateUtils.getTimeInMillis($year, $month, $day, $hourOfDay, $minute));
+            adapterDataModel.edit(type, DateUtils.getConvertoFormat(d, "yyyy-MM-dd HH:mm"));
             view.refresh(type.getPosition());
           });
     });

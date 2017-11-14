@@ -51,4 +51,15 @@ public class DateUtils {
     map.put("minute", Integer.parseInt(dateTime.split(" ")[1].split(":")[1]));
     return map;
   }
+
+  public static long getTimeInMillis(int year, int month, int day, int hourOfDay, int minute) {
+    Calendar cal = Calendar.getInstance();
+    cal.set(year, month, day, hourOfDay, minute);
+    return cal.getTimeInMillis();
+  }
+
+  public static String getConvertoFormat(Date date, String pattern) {
+    SimpleDateFormat format = new SimpleDateFormat(pattern);
+    return format.format(date).trim();
+  }
 }

@@ -113,7 +113,7 @@ public class MainPresenterImpl implements MainPresenter {
         view.showClassificationDialog(code, work);
       }
     } else if (type == ReportType.PROJECT) {
-
+      view.showProjectChoiceDialog();
     }
   }
 

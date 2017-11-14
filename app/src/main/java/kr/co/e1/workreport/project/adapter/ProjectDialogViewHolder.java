@@ -26,7 +26,9 @@ public class ProjectDialogViewHolder extends BaseRecyclerAdapter.BaseViewHolder 
   }
 
   @DebugLog @OnClick(R.id.recyclerview_item_container) void onClick() {
-    checkbox.setChecked(true);
-    if (checkbox.isChecked()) onRecyclerItemClickListener.onItemClick(selectableItem);
+    if (!selectableItem.isSelected()) {
+      selectableItem.setSelected(true);
+      onRecyclerItemClickListener.onItemClick(selectableItem);
+    }
   }
 }

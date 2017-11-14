@@ -15,6 +15,8 @@ import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by jaeho on 2017. 10. 29
@@ -24,8 +26,8 @@ public class ProjectDialog extends BaseAlertDialogFragment
     implements ProjectDialogPresenter.View, OnRecyclerItemClickListener<ProjectSelectableItem> {
 
   @Inject ProjectDialogAdapter adapter;
-  @Inject ProjectDialogPresenter presenter;
   @Inject BaseAdapterView adapterView;
+  @Inject ProjectDialogPresenter presenter;
 
   @Override protected boolean isNegativeButton() {
     return true;
@@ -43,12 +45,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
     presenter.onActivityCreate(savedInstanceState);
   }
 
-  OnDialogClickListener<Bundle> onDialogClickListener;
-
-  public ProjectDialog setOnDialogClickListener(OnDialogClickListener<Bundle> listener) {
-    onDialogClickListener = listener;
-    return this;
-  }
+  @Accessors(chain = true) @Setter private OnDialogClickListener<Bundle> onDialogClickListener;
 
   @Override protected boolean getAttatchRoot() {
     return false;

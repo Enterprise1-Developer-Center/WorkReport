@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.classificationdialog.adapter;
 
+import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import hugo.weaving.DebugLog;
@@ -41,6 +42,7 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof ClassificationDialogViewHolder) {
       ClassificationDialogViewHolder holder = (ClassificationDialogViewHolder) viewHolder;
+      Context context = holder.itemView.getContext();
       ClassificationSelectableItem item = selectableItems.get(position);
       ClassificationCode classCode = item.getItem();
       holder.selectableItem = selectableItems.get(position);
@@ -49,13 +51,15 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
       holder.smallClassTextview.setText(classCode.getSmallClassName());
       holder.descriptionTextview.setText(classCode.getClassDesc());
       holder.onRecyclerItemClickListener = this;
-      if (item.isSelected()) {
-        holder.containerView.setBackgroundColor(
-            ContextCompat.getColor(holder.codeTextview.getContext(), R.color.colorIndigo_200));
-      } else {
-        holder.containerView.setBackgroundColor(
-            ContextCompat.getColor(holder.codeTextview.getContext(), android.R.color.transparent));
-      }
+      holder.containerView.setBackgroundColor(getBackgroundColor(context, item.isSelected()));
+    }
+  }
+
+  private int getBackgroundColor(Context context, boolean isSelected) {
+    if (isSelected) {
+      return ContextCompat.getColor(context, R.color.colorIndigo_200);
+    } else {
+      return ContextCompat.getColor(context, android.R.color.transparent);
     }
   }
 

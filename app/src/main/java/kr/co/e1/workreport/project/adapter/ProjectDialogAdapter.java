@@ -1,5 +1,7 @@
 package kr.co.e1.workreport.project.adapter;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import hugo.weaving.DebugLog;
 import java.util.ArrayList;
@@ -50,6 +52,14 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
     }
   }
 
+  private int getBackgroundColor(Context context, boolean isSelected) {
+    if (isSelected) {
+      return ContextCompat.getColor(context, R.color.colorIndigo_200);
+    } else {
+      return ContextCompat.getColor(context, android.R.color.transparent);
+    }
+  }
+
   @Override public int getItemCount() {
     return getSize();
   }
@@ -95,7 +105,6 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
   private int prePosition;
 
   @Override public void onItemClick(ProjectSelectableItem item) {
-
     for (ProjectSelectableItem selectableItem : selectableItems) {
       if (!selectableItem.equals(item)) {
         selectableItem.setSelected(false);
@@ -106,7 +115,6 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
 
     refresh(prePosition);
     prePosition = selectableItems.indexOf(item);
-
     onRecyclerItemClickListener.onItemClick(item);
   }
 }

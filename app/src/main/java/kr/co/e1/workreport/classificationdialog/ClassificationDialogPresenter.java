@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.classificationdialog;
 
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 
@@ -10,7 +11,7 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 
 public interface ClassificationDialogPresenter {
 
-  void onActivityCreate(Bundle savedInstanceState);
+  void onActivityCreate(Bundle savedInstanceState, String work);
 
   void setAdapterDataModel(BaseAdapterDataModel<ClassificationCode> adapter);
 
@@ -18,5 +19,13 @@ public interface ClassificationDialogPresenter {
     void setRecyclerView();
 
     void refresh();
+
+    void hideProgress();
+
+    void showProgress();
+
+    void showMessage(@StringRes int resId);
+
+    void showWork(String work);
   }
 }

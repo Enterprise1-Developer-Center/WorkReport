@@ -3,6 +3,7 @@ package kr.co.e1.workreport.login;
 import io.reactivex.Single;
 import java.util.Map;
 import kr.co.e1.workreport.common.PreferencesUtils;
+import kr.co.e1.workreport.login.model.LoginContent;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.TokenResult;
 import kr.co.e1.workreport.network.WResult;

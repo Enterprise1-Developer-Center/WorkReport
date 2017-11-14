@@ -4,6 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
@@ -25,13 +26,19 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
   }
 
   @Provides ClassificationDialogAdapter provideClassificationDialogAdapter(
-      OnRecyclerItemClickListener<ClassificationSelectableItem> listener) {
-    return new ClassificationDialogAdapter(listener);
+      ClassificationDialog dialog) {
+    return new ClassificationDialogAdapter().setOnRecyclerItemClickListener(dialog)
+        .setSelectedCode(dialog.selectedCode);
   }
 
   @Provides ClassificationDialogPresenter provideClassificationDialogPresenter(
-      ClassificationDialogPresenter.View view, ClassificationDialog dialog) {
-    return new ClassificationDialogPresenterImpl(view, dialog.adapter);
+      ClassificationDialogPresenter.View view, ClassificationDialog dialog,
+      ClassificationNetwork network) {
+    return new ClassificationDialogPresenterImpl(view, dialog.adapter, network);
+  }
+
+  @Provides ClassificationNetwork provideNetwork() {
+    return new ClassificationNetwork(Constants.BASE_URL);
   }
 
   @Provides BaseAdapterView provideClassificationDialogAdapterView(ClassificationDialog dialog) {

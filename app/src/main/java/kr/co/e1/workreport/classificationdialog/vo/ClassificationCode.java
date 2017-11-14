@@ -1,6 +1,6 @@
 package kr.co.e1.workreport.classificationdialog.vo;
 
-import lombok.AllArgsConstructor;
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -8,10 +8,10 @@ import lombok.ToString;
  * Created by jaeho on 2017. 10. 24
  */
 
-@ToString @AllArgsConstructor public class ClassificationCode {
-  @Getter private String code;
-  @Getter private String bigClass;
-  @Getter private String smallClass;
-  @Getter private String description;
-  @Getter private String detailWork;
+@ToString @Getter public class ClassificationCode {
+  @SerializedName("LCLS_NM") private String majorClassName;
+  @SerializedName("LCLS_CD") private int majorClassCode;
+  @SerializedName("MCLS_NM") private String smallClassName;
+  @SerializedName("MCLS_CD") private int smallClassCode;
+  @SerializedName("REMARK") private String classDesc;
 }

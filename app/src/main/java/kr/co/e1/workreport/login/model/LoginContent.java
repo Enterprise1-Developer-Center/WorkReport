@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.login;
+package kr.co.e1.workreport.login.model;
 
 import lombok.Getter;
 

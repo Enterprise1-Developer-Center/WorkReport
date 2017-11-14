@@ -1,9 +1,18 @@
 package kr.co.e1.workreport.classificationdialog;
 
 import android.os.Bundle;
+import hugo.weaving.DebugLog;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import java.util.List;
 import javax.inject.Inject;
+import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
+import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.network.WResult;
 
 /**
  * Created by jaeho on 2017. 10. 24
@@ -13,49 +22,40 @@ public class ClassificationDialogPresenterImpl implements ClassificationDialogPr
 
   private ClassificationDialogPresenter.View view;
   private BaseAdapterDataModel<ClassificationCode> adapterDataModel;
+  private CompositeDisposable compositeDisposable = new CompositeDisposable();
+  private ClassificationNetwork network;
 
-  @Inject ClassificationDialogPresenterImpl(View view, BaseAdapterDataModel<ClassificationCode> adapterDataModel) {
+  @Inject ClassificationDialogPresenterImpl(View view,
+      BaseAdapterDataModel<ClassificationCode> adapterDataModel, ClassificationNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
+    this.network = network;
   }
 
-  @Override public void onActivityCreate(Bundle savedInstanceState) {
+  @Override public void onActivityCreate(Bundle savedInstanceState, String work) {
     view.setRecyclerView();
-
-    //Request data;
-    adapterDataModel.add(new ClassificationCode("11", "Profits", "Outside Project",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("12", "Profits", "Inside Project",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("13", "Profits", "Project Support",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("22", "Invest", "Outside Project",
-        "외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("11", "Profits", "Outside Project",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("12", "Profits", "Inside Project",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("13", "Profits", "Project Support",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("22", "Invest", "Outside Project",
-        "외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("11", "Profits", "Outside Project",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("12", "Profits", "Inside Project",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("13", "Profits", "Project Support",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("22", "Invest", "Outside Project",
-        "외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("11", "Profits", "Outside Project",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("12", "Profits", "Inside Project",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("13", "Profits", "Project Support",
-        "외부 프로젝트로 정식계약에의해 진행 되며 계약기간동안 프로젝트를 수행하고 있는 프로젝트나 유지보수", "유저입력"));
-    adapterDataModel.add(new ClassificationCode("22", "Invest", "Outside Project",
-        "외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수", "유저입력"));
-    view.refresh();
+    view.showWork(work);
+    view.showProgress();
+    compositeDisposable.add(network.getCode()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<WResult<List<ClassificationCode>>>() {
+          @DebugLog @Override public void accept(WResult<List<ClassificationCode>> result)
+              throws Exception {
+            if (result.getResult() == NetworkHelper.RESULT_SUCCESS) {
+              adapterDataModel.addAll(result.getContent());
+              view.refresh();
+            } else {
+              view.showMessage(R.string.error_server_error);
+            }
+            view.hideProgress();
+          }
+        }, new Consumer<Throwable>() {
+          @DebugLog @Override public void accept(Throwable throwable) throws Exception {
+            view.showMessage(R.string.error_server_error);
+            view.hideProgress();
+          }
+        }));
   }
 
   @Override

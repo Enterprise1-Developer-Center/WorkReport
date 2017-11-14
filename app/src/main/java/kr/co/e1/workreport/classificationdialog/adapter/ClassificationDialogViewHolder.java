@@ -1,7 +1,7 @@
 package kr.co.e1.workreport.classificationdialog.adapter;
 
+import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -18,7 +18,8 @@ public class ClassificationDialogViewHolder extends BaseRecyclerAdapter.BaseView
   @BindView(R.id.big_class_textview) TextView bigClassTextview;
   @BindView(R.id.small_class_textview) TextView smallClassTextview;
   @BindView(R.id.description_textview) TextView descriptionTextview;
-  @BindView(R.id.checkbox) CheckBox checkBox;
+  @BindView(R.id.recyclerview_item_container) View containerView;
+
   ClassificationSelectableItem selectableItem;
   OnRecyclerItemClickListener<ClassificationSelectableItem> onRecyclerItemClickListener;
 
@@ -26,8 +27,13 @@ public class ClassificationDialogViewHolder extends BaseRecyclerAdapter.BaseView
     super(itemView);
   }
 
-  @OnClick(R.id.recyclerview_item_container) void onItemClick() {
-    checkBox.setChecked(!checkBox.isChecked());
-    if (checkBox.isChecked()) onRecyclerItemClickListener.onItemClick(selectableItem);
+  @OnClick(R.id.recyclerview_item_container) void onItemClick(View view) {
+
+    if (!selectableItem.isSelected()) {
+      selectableItem.setSelected(!selectableItem.isSelected());
+      view.setBackgroundColor(
+          ContextCompat.getColor(itemView.getContext(), R.color.colorIndigo_200));
+      onRecyclerItemClickListener.onItemClick(selectableItem);
+    }
   }
 }

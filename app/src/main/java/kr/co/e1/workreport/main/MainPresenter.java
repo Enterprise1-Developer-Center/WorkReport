@@ -20,10 +20,6 @@ public interface MainPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
-  void onStartTimeSet(int hourOfDay, int minute);
-
-  void onEndTimeSet(int hourOfDay, int minute);
-
   void onSaveClick(List<ReportEntry> items);
 
   void onItemClick(ReportEntry item);
@@ -66,11 +62,7 @@ public interface MainPresenter {
 
     void enableSaveButton();
 
-    void showStartTimePickerDialog();
-
-    void showEndTimePickerDialog();
-
-    void showDetailWorkDialog();
+    void showClassificationDialog(int code, String work);
 
     void showProjectChoiceDialog();
 

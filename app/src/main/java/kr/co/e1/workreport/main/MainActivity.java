@@ -20,7 +20,6 @@ import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import hugo.weaving.DebugLog;
-import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
@@ -149,30 +148,10 @@ public class MainActivity extends BaseActivity
     */
   }
 
-  @Override public void showStartTimePickerDialog() {
-
-    Calendar calendar = Calendar.getInstance();
-    int cHourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
-    int cMinute = calendar.get(Calendar.MINUTE);
-
-    new TimePickerDialog(this, (view, hourOfDay, minute) -> {
-      presenter.onStartTimeSet(hourOfDay, minute);
-    }, cHourOfDay, cMinute, true).show();
-  }
-
-  @Override public void showEndTimePickerDialog() {
-
-    Calendar calendar = Calendar.getInstance();
-    int cHourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
-    int cMinute = calendar.get(Calendar.MINUTE);
-
-    new TimePickerDialog(this, (view, hourOfDay, minute) -> {
-      presenter.onEndTimeSet(hourOfDay, minute);
-    }, cHourOfDay, cMinute, true).show();
-  }
-
-  @Override public void showDetailWorkDialog() {
-    new ClassificationDialog().setOnDialogClickListener(o -> presenter.onDetailWorkDialogClick(o))
+  @Override public void showClassificationDialog(int code, String work) {
+    new ClassificationDialog().setSelectedCode(code)
+        .setSelectedWork(work)
+        .setOnDialogClickListener(o -> presenter.onDetailWorkDialogClick(o))
         .show(getSupportFragmentManager(), ClassificationDialog.class.getSimpleName());
   }
 
@@ -201,7 +180,8 @@ public class MainActivity extends BaseActivity
     adapterView.refresh(position);
   }
 
-  @Override public void showTimePickerDialog(int hour, int minute, TimePickerDialog.OnTimeSetListener listener) {
+  @Override public void showTimePickerDialog(int hour, int minute,
+      TimePickerDialog.OnTimeSetListener listener) {
 
     new TimePickerDialog(this, listener, hour, minute, true).show();
   }

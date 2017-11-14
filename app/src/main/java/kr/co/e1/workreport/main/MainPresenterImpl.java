@@ -1,8 +1,8 @@
 package kr.co.e1.workreport.main;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
@@ -89,28 +88,6 @@ public class MainPresenterImpl implements MainPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
   }
 
-  @DebugLog @Override public void onStartTimeSet(int hourOfDay, int minute) {
-    Calendar calendar = Calendar.getInstance();
-    calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-        calendar.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
-    Date date = new Date(calendar.getTimeInMillis());
-
-    String startTime = new SimpleDateFormat("HH:mm", Locale.KOREA).format(date);
-    adapterDataModel.edit(ReportType.START_TIME, startTime);
-    view.refresh(ReportType.START_TIME.getPosition());
-  }
-
-  @DebugLog @Override public void onEndTimeSet(int hourOfDay, int minute) {
-    Calendar calendar = Calendar.getInstance();
-    calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-        calendar.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
-    Date date = new Date(calendar.getTimeInMillis());
-
-    String endTime = new SimpleDateFormat("HH:mm", Locale.KOREA).format(date);
-    adapterDataModel.edit(ReportType.END_TIME, endTime);
-    view.refresh(ReportType.END_TIME.getPosition());
-  }
-
   @Override public void onSaveClick(List<ReportEntry> items) {
     view.showProgress();
     new Handler().postDelayed(() -> {
@@ -118,15 +95,6 @@ public class MainPresenterImpl implements MainPresenter {
       view.hideProgress();
     }, 1000);
   }
-
-  private DatePickerDialog.OnDateSetListener onMainDateSetListener =
-      (pciker, year, month, dayOfMonth) -> {
-
-        view.showProgress();
-        new Handler().postDelayed(() -> {
-          view.hideProgress();
-        }, 1000);
-      };
 
   @Override public void onItemClick(ReportEntry item) {
     ReportType type = item.getType();
@@ -138,7 +106,12 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (type == ReportType.END_TIME) {
       endTimeHandling(item);
     } else if (type == ReportType.DETAIL_WORK) {
-
+      String contents = item.getContents();
+      if (!TextUtils.isEmpty(contents)) {
+        int code = Integer.valueOf(contents.split("/")[0].trim());
+        String work = contents.split("/")[1].trim();
+        view.showClassificationDialog(code, work);
+      }
     } else if (type == ReportType.PROJECT) {
 
     }
@@ -203,7 +176,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void onDetailWorkDialogClick(Bundle o) {
     adapterDataModel.edit(ReportType.DETAIL_WORK,
-        o.getString("code") + " // " + o.getString("work"));
+        o.getString("code") + " / " + o.getString("work"));
     view.refresh(ReportType.DETAIL_WORK.getPosition());
   }
 

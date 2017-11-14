@@ -1,15 +1,18 @@
 package kr.co.e1.workreport.classificationdialog.adapter;
 
+import android.support.v4.content.ContextCompat;
 import android.view.View;
+import hugo.weaving.DebugLog;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by jaeho on 2017. 10. 24
@@ -22,11 +25,10 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
   private ArrayList<ClassificationCode> items = new ArrayList<>();
   private ArrayList<ClassificationSelectableItem> selectableItems = new ArrayList<>();
 
-  private OnRecyclerItemClickListener<ClassificationSelectableItem> onRecyclerItemClickListener;
+  @Accessors(chain = true) @Setter private OnRecyclerItemClickListener<ClassificationSelectableItem>
+      onRecyclerItemClickListener;
 
-  @Inject public ClassificationDialogAdapter(OnRecyclerItemClickListener listener) {
-    this.onRecyclerItemClickListener = listener;
-  }
+  @Accessors(chain = true) @Setter private int selectedCode;
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new ClassificationDialogViewHolder(view);
@@ -42,13 +44,18 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
       ClassificationSelectableItem item = selectableItems.get(position);
       ClassificationCode classCode = item.getItem();
       holder.selectableItem = selectableItems.get(position);
-      holder.codeTextview.setText(classCode.getCode());
-      holder.bigClassTextview.setText(classCode.getBigClass());
-      holder.smallClassTextview.setText(classCode.getSmallClass());
-      holder.descriptionTextview.setText(classCode.getDescription());
-      holder.checkBox.setChecked(item.isSelected());
-      holder.checkBox.setEnabled(false);
+      holder.codeTextview.setText(String.valueOf(classCode.getSmallClassCode()));
+      holder.bigClassTextview.setText(classCode.getMajorClassName());
+      holder.smallClassTextview.setText(classCode.getSmallClassName());
+      holder.descriptionTextview.setText(classCode.getClassDesc());
       holder.onRecyclerItemClickListener = this;
+      if (item.isSelected()) {
+        holder.containerView.setBackgroundColor(
+            ContextCompat.getColor(holder.codeTextview.getContext(), R.color.colorIndigo_200));
+      } else {
+        holder.containerView.setBackgroundColor(
+            ContextCompat.getColor(holder.codeTextview.getContext(), android.R.color.transparent));
+      }
     }
   }
 
@@ -56,8 +63,10 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     return getSize();
   }
 
-  @Override public void refresh() {
-    notifyDataSetChanged();
+  @DebugLog @Override public void refresh() {
+    for (int i = 0; i < items.size(); i++) {
+      refresh(i);
+    }
   }
 
   public void refresh(int position) {
@@ -66,11 +75,19 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
 
   @Override public void add(ClassificationCode item) {
     items.add(item);
-    selectableItems.add(new ClassificationSelectableItem(item, false));
   }
 
-  @Override public void addAll(List<ClassificationCode> items) {
-    items.addAll(items);
+  @DebugLog @Override public void addAll(List<ClassificationCode> items) {
+    this.items.addAll(items);
+    for (int i = 0; i < items.size(); i++) {
+      ClassificationCode item = items.get(i);
+      boolean isSelected = false;
+      if (item.getSmallClassCode() == selectedCode) {
+        isSelected = true;
+        prePosition = i;
+      }
+      selectableItems.add(new ClassificationSelectableItem(item, isSelected));
+    }
   }
 
   @Override public ClassificationCode remove(int position) {

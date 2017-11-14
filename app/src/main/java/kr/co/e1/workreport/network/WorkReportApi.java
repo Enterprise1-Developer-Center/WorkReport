@@ -1,9 +1,11 @@
 package kr.co.e1.workreport.network;
 
 import io.reactivex.Single;
+import java.util.List;
 import java.util.Map;
+import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.common.model.ReportContent;
-import kr.co.e1.workreport.login.LoginContent;
+import kr.co.e1.workreport.login.model.LoginContent;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -26,4 +28,7 @@ public interface WorkReportApi {
 
   @GET("api/adapters/WorkReportSQL/getWorkingDay") Single<WResult<ReportContent>> getWorkingDay(
       @Header("Authorization") String header, @QueryMap Map<String, String> queryMap);
+
+  @GET("api/adapters/WorkReportSQL/getCode") Single<WResult<List<ClassificationCode>>> getCode(
+      @Header("Authorization") String header);
 }

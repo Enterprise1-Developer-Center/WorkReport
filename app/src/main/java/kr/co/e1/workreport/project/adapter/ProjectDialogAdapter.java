@@ -72,14 +72,13 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
   @Override public void addAll(List<Project> items) {
     this.items.addAll(items);
     for (int i = 0; i < this.items.size(); i++) {
-      for (Project item : this.items) {
-        boolean isSelected = false;
-        if (item.getCode().equals(selectedCode)) {
-          isSelected = true;
-          prePosition = i;
-        }
-        selectableItems.add(new ProjectSelectableItem(item, isSelected));
+      boolean isSelected = false;
+      Project p = this.items.get(i);
+      if (p.getCode().equals(selectedCode)) {
+        isSelected = true;
+        prePosition = i;
       }
+      selectableItems.add(new ProjectSelectableItem(p, isSelected));
     }
   }
 

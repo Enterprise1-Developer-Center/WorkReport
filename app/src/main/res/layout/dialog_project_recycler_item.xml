@@ -11,20 +11,11 @@
     android:paddingEnd="@dimen/dp_10"
     >
 
-  <CheckBox
-      android:id="@id/checkbox"
-      android:layout_width="?attr/actionBarSize"
-      android:layout_height="?attr/actionBarSize"
-      android:background="@drawable/checkbox_selector"
-      android:button="@null"
-      />
-
   <TextView
       android:id="@id/textview"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:textAppearance="@style/TextAppearance.AppCompat.Title"
       tools:text="백년을살아보니"
       />
 </LinearLayout>

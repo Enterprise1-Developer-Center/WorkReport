@@ -28,7 +28,6 @@ public class ClassificationDialogViewHolder extends BaseRecyclerAdapter.BaseView
   }
 
   @OnClick(R.id.recyclerview_item_container) void onItemClick(View view) {
-
     if (!selectableItem.isSelected()) {
       selectableItem.setSelected(!selectableItem.isSelected());
       view.setBackgroundColor(

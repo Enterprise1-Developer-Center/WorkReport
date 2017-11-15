@@ -64,7 +64,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
   }
 
   @Override protected int getTitle() {
-    return R.string.project_name;
+    return R.string.empty_text;
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {

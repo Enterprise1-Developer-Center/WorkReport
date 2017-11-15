@@ -45,10 +45,10 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
       ProjectSelectableItem selectableItem = selectableItems.get(position);
       Project project = selectableItem.getItem();
       holder.textview.setText(project.getName());
-      holder.checkbox.setChecked(selectableItem.isSelected());
-      holder.checkbox.setEnabled(false);
       holder.setOnRecyclerItemClickListener(this);
       holder.setSelectableItem(selectableItem);
+      holder.containerView.setBackgroundColor(
+          getBackgroundColor(holder.itemView.getContext(), selectableItem.isSelected()));
     }
   }
 

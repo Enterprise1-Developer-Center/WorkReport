@@ -1,7 +1,7 @@
 package kr.co.e1.workreport.project.adapter;
 
+import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -16,18 +16,20 @@ import lombok.Setter;
  */
 
 public class ProjectDialogViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
-  @Setter private OnRecyclerItemClickListener<ProjectSelectableItem> onRecyclerItemClickListener;
-  @BindView(R.id.checkbox) CheckBox checkbox;
   @BindView(R.id.textview) TextView textview;
+  @BindView(R.id.recyclerview_item_container) View containerView;
   @Setter private ProjectSelectableItem selectableItem;
+  @Setter private OnRecyclerItemClickListener<ProjectSelectableItem> onRecyclerItemClickListener;
 
   public ProjectDialogViewHolder(View itemView) {
     super(itemView);
   }
 
-  @DebugLog @OnClick(R.id.recyclerview_item_container) void onClick() {
+  @DebugLog @OnClick(R.id.recyclerview_item_container) void onClick(View view) {
     if (!selectableItem.isSelected()) {
-      selectableItem.setSelected(true);
+      selectableItem.setSelected(!selectableItem.isSelected());
+      view.setBackgroundColor(
+          ContextCompat.getColor(itemView.getContext(), R.color.colorIndigo_200));
       onRecyclerItemClickListener.onItemClick(selectableItem);
     }
   }

@@ -15,6 +15,7 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
@@ -111,9 +112,7 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (type == ReportType.DETAIL_WORK) {
       String contents = item.getContents();
       if (!TextUtils.isEmpty(contents)) {
-        int code = Integer.valueOf(contents.split("/")[0].trim());
-        String work = contents.split("/")[1].trim();
-        view.showClassificationDialog(code, work);
+        view.showClassificationDialog(item.getCode(), item.getContents());
       }
     } else if (type == ReportType.PROJECT) {
       view.showProjectChoiceDialog(item.getCode());
@@ -177,9 +176,8 @@ public class MainPresenterImpl implements MainPresenter {
     });
   }
 
-  @Override public void onDetailWorkDialogClick(Bundle o) {
-    adapterDataModel.edit(ReportType.DETAIL_WORK,
-        o.getString("code") + " / " + o.getString("work"));
+  @Override public void onDetailWorkDialogClick(ClassificationCode o, String work) {
+    adapterDataModel.edit(ReportType.DETAIL_WORK, o,null);
     view.refresh(ReportType.DETAIL_WORK.getPosition());
   }
 

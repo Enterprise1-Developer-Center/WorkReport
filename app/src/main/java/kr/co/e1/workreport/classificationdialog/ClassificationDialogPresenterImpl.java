@@ -9,8 +9,8 @@ import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.classificationdialog.adapter.ClassAdapterDataModel;
 import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
 
@@ -21,12 +21,12 @@ import kr.co.e1.workreport.network.WResult;
 public class ClassificationDialogPresenterImpl implements ClassificationDialogPresenter {
 
   private ClassificationDialogPresenter.View view;
-  private BaseAdapterDataModel<ClassificationCode> adapterDataModel;
+  private ClassAdapterDataModel adapterDataModel;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
   private ClassificationNetwork network;
 
   @Inject ClassificationDialogPresenterImpl(View view,
-      BaseAdapterDataModel<ClassificationCode> adapterDataModel, ClassificationNetwork network) {
+      ClassAdapterDataModel adapterDataModel, ClassificationNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     this.network = network;
@@ -58,8 +58,7 @@ public class ClassificationDialogPresenterImpl implements ClassificationDialogPr
         }));
   }
 
-  @Override
-  public void setAdapterDataModel(BaseAdapterDataModel<ClassificationCode> adapterDataModel) {
-    this.adapterDataModel = adapterDataModel;
+  @Override public void onPositiveClick() {
+    view.dismiss(adapterDataModel.getSelectedItem());
   }
 }

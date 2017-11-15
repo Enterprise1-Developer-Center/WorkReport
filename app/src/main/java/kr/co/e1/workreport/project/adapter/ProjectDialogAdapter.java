@@ -116,12 +116,12 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
     prePosition = selectableItems.indexOf(item);
   }
 
-  @Override public ProjectSelectableItem getSelectableItem() {
+  @Override public ProjectSelectableItem getSelectedItem() {
     for (ProjectSelectableItem selectableItem : selectableItems) {
       if (selectableItem.isSelected()) {
         return selectableItem;
       }
     }
-    return null;
+    return new ProjectSelectableItem(new Project(), true);
   }
 }

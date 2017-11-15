@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import java.util.List;
+import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.project.vo.Project;
 
@@ -25,7 +26,7 @@ public interface MainPresenter {
 
   void onItemClick(ReportEntry item);
 
-  void onDetailWorkDialogClick(Bundle o);
+  void onDetailWorkDialogClick(ClassificationCode o, String work);
 
   void onProjectDialogClick(Project o);
 
@@ -63,7 +64,7 @@ public interface MainPresenter {
 
     void enableSaveButton();
 
-    void showClassificationDialog(int code, String work);
+    void showClassificationDialog(String code, String work);
 
     void showProjectChoiceDialog(String code);
 

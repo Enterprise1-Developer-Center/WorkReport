@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
@@ -20,16 +19,13 @@ import lombok.experimental.Accessors;
  */
 
 public class ClassificationDialogAdapter extends BaseRecyclerAdapter
-    implements BaseAdapterDataModel<ClassificationCode>, BaseAdapterView,
+    implements ClassAdapterDataModel, BaseAdapterView,
     OnRecyclerItemClickListener<ClassificationSelectableItem> {
 
   private ArrayList<ClassificationCode> items = new ArrayList<>();
   private ArrayList<ClassificationSelectableItem> selectableItems = new ArrayList<>();
 
-  @Accessors(chain = true) @Setter private OnRecyclerItemClickListener<ClassificationSelectableItem>
-      onRecyclerItemClickListener;
-
-  @Accessors(chain = true) @Setter private int selectedCode;
+  @Accessors(chain = true) @Setter private String selectedCode;
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new ClassificationDialogViewHolder(view);
@@ -86,7 +82,7 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     for (int i = 0; i < items.size(); i++) {
       ClassificationCode item = items.get(i);
       boolean isSelected = false;
-      if (item.getSmallClassCode() == selectedCode) {
+      if (item.getSmallClassCode().equals(selectedCode)) {
         isSelected = true;
         prePosition = i;
       }
@@ -118,16 +114,18 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
   private int prePosition;
 
   @Override public void onItemClick(ClassificationSelectableItem item) {
-    for (ClassificationSelectableItem selectableItem : selectableItems) {
-      if (!selectableItem.equals(item)) {
-        selectableItem.setSelected(false);
-      } else {
-        selectableItem.setSelected(true);
-      }
-    }
-
+    selectableItems.get(prePosition).setSelected(false);
     refresh(prePosition);
     prePosition = selectableItems.indexOf(item);
-    onRecyclerItemClickListener.onItemClick(item);
+
+  }
+
+  @Override public ClassificationSelectableItem getSelectedItem() {
+    for (ClassificationSelectableItem selectableItem : selectableItems) {
+      if (selectableItem.isSelected()) {
+        return selectableItem;
+      }
+    }
+    return new ClassificationSelectableItem(new ClassificationCode(), true);
   }
 }

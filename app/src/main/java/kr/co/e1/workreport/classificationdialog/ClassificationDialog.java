@@ -5,7 +5,6 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -14,10 +13,10 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
+import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
-import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -26,8 +25,7 @@ import lombok.experimental.Accessors;
  */
 
 public class ClassificationDialog extends BaseAlertDialogFragment
-    implements ClassificationDialogPresenter.View,
-    OnRecyclerItemClickListener<ClassificationSelectableItem> {
+    implements ClassificationDialogPresenter.View {
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.text_input_edittext) TextInputEditText workTextInputEditText;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
@@ -37,8 +35,9 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   @Inject BaseAdapterView adapterView;
   @Inject ClassificationDialogPresenter presenter;
 
-  @Accessors(chain = true) @Setter private OnDialogClickListener<Bundle> onDialogClickListener;
-  @Accessors(chain = true) @Setter int selectedCode;
+  @Accessors(chain = true) @Setter private OnDialogClickListener<ClassificationCode>
+      onDialogClickListener;
+  @Accessors(chain = true) @Setter String selectedCode;
   @Accessors(chain = true) @Setter String selectedWork;
 
   @Override protected boolean isNegativeButton() {
@@ -77,14 +76,9 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     return R.string.empty_text;
   }
 
-  private Bundle bundle = new Bundle();
-
   @Override protected View.OnClickListener onPositiveClickListener() {
     return view -> {
-      bundle.putString("work", workTextInputEditText.getText().toString().trim());
-      if (TextUtils.isEmpty(bundle.getString("code"))) bundle.putString("code", "");
-      onDialogClickListener.onDialogClick(bundle);
-      dismiss();
+      presenter.onPositiveClick();
     };
   }
 
@@ -95,10 +89,6 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   @Override public void setRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     recyclerView.setAdapter(adapter);
-    /*
-    recyclerView.setItemAnimator(new SlideInDownAnimator());
-    recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
-    */
   }
 
   @Override public void refresh() {
@@ -123,7 +113,8 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     workTextInputEditText.setText(work);
   }
 
-  @Override public void onItemClick(ClassificationSelectableItem selectableItem) {
-    bundle.putString("code", String.valueOf(selectableItem.getItem().getSmallClassCode()));
+  @Override public void dismiss(ClassificationSelectableItem selectedItem) {
+    onDialogClickListener.onDialogClick(selectedItem.getItem());
+    dismiss();
   }
 }

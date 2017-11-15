@@ -9,9 +9,9 @@ import lombok.ToString;
  */
 
 @ToString @Getter public class ClassificationCode {
-  @SerializedName("LCLS_NM") private String majorClassName;
-  @SerializedName("LCLS_CD") private int majorClassCode;
-  @SerializedName("MCLS_NM") private String smallClassName;
-  @SerializedName("MCLS_CD") private int smallClassCode;
-  @SerializedName("REMARK") private String classDesc;
+  @SerializedName("LCLS_NM") private String majorClassName = "No";
+  @SerializedName("LCLS_CD") private String majorClassCode = "0";
+  @SerializedName("MCLS_NM") private String smallClassName = "no";
+  @SerializedName("MCLS_CD") private String smallClassCode = "no";
+  @SerializedName("REMARK") private String classDesc = "no";
 }

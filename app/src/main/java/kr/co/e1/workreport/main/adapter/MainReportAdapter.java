@@ -9,6 +9,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
@@ -147,5 +148,9 @@ public class MainReportAdapter extends BaseRecyclerAdapter
 
   @Override public void edit(ReportType type, Project o) {
     items.get(type.getPosition()).setContents(o.getName()).setCode(o.getCode());
+  }
+
+  @Override public void edit(ReportType type, ClassificationCode code, String work) {
+    items.get(type.getPosition()).setContents(work).setCode(code.getSmallClassCode());
   }
 }

@@ -148,16 +148,17 @@ public class MainActivity extends BaseActivity
     */
   }
 
-  @Override public void showClassificationDialog(int code, String work) {
+  @Override public void showClassificationDialog(String code, String work) {
     new ClassificationDialog().setSelectedCode(code)
         .setSelectedWork(work)
-        .setOnDialogClickListener(o -> presenter.onDetailWorkDialogClick(o))
+        .setOnDialogClickListener(o -> presenter.onDetailWorkDialogClick(o, work))
         .show(getSupportFragmentManager(), ClassificationDialog.class.getSimpleName());
   }
 
   @DebugLog @Override public void showProjectChoiceDialog(String code) {
 
-    new ProjectDialog().setSelectedCode(code).setOnDialogClickListener(o -> presenter.onProjectDialogClick(o))
+    new ProjectDialog().setSelectedCode(code)
+        .setOnDialogClickListener(o -> presenter.onProjectDialogClick(o))
         .show(getSupportFragmentManager(), ProjectDialog.class.getSimpleName());
   }
 

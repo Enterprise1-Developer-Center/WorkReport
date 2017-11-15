@@ -8,5 +8,5 @@ import kr.co.e1.workreport.project.vo.Project;
  */
 
 public interface ProjectAdapterDataModel extends BaseAdapterDataModel<Project> {
-  ProjectSelectableItem getSelectableItem();
+  ProjectSelectableItem getSelectedItem();
 }

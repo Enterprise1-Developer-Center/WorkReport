@@ -3,10 +3,8 @@ package kr.co.e1.workreport.classificationdialog;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
-import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
-import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
 /**
  * Created by jaeho on 2017. 10. 19
@@ -18,17 +16,10 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
       ClassificationDialog dialog) {
     return dialog;
   }
-
-  @Provides
-  OnRecyclerItemClickListener<ClassificationSelectableItem> provideOnRecyclerItemClickListener(
-      ClassificationDialog dialog) {
-    return dialog;
-  }
-
+  
   @Provides ClassificationDialogAdapter provideClassificationDialogAdapter(
       ClassificationDialog dialog) {
-    return new ClassificationDialogAdapter().setOnRecyclerItemClickListener(dialog)
-        .setSelectedCode(dialog.selectedCode);
+    return new ClassificationDialogAdapter().setSelectedCode(dialog.selectedCode);
   }
 
   @Provides ClassificationDialogPresenter provideClassificationDialogPresenter(

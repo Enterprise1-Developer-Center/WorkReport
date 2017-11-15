@@ -10,7 +10,7 @@ import lombok.ToString;
 
 @ToString @Getter public class Project {
   @SerializedName("PROJ_CD")
-  private String code;
+  private String code = "0";
   @SerializedName("PROJ_NM")
-  private String name;
+  private String name = "No";
 }

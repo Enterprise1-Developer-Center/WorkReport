@@ -58,7 +58,7 @@ public class ProjectDialogPresenterImpl implements ProjectDialogPresenter {
   }
 
   @Override public void onPositiveClick() {
-    adapterDataModel.getSelectableItem();
-    view.dismiss(adapterDataModel.getSelectableItem());
+    adapterDataModel.getSelectedItem();
+    view.dismiss(adapterDataModel.getSelectedItem());
   }
 }

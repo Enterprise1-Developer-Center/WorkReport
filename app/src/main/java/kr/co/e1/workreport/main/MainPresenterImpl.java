@@ -183,7 +183,7 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onProjectDialogClick(Bundle o) {
-    adapterDataModel.edit(ReportType.PROJECT, o.getString("name"));
+    adapterDataModel.edit(ReportType.PROJECT, o);
     view.refresh(ReportType.PROJECT.getPosition());
   }
 

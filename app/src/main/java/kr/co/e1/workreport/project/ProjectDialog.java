@@ -84,6 +84,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
 
   @DebugLog @Override public void onItemClick(ProjectSelectableItem selectableItem) {
     bundle.putString("name", selectableItem.getItem().getName());
+    bundle.putInt("code", selectableItem.getItem().getCode());
   }
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;

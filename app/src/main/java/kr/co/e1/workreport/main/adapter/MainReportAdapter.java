@@ -2,6 +2,7 @@ package kr.co.e1.workreport.main.adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
@@ -35,12 +36,12 @@ public class MainReportAdapter extends BaseRecyclerAdapter
 
   @Override public void add(ReportEntry item) {
     items.add(item);
-    items.add(new ReportEntry(null, null));
+    items.add(new ReportEntry().setType(null).setContents(null).setCode(-1));
   }
 
   @Override public void addAll(List<ReportEntry> items) {
     this.items.addAll(items);
-    this.items.add(new ReportEntry(null, null));
+    this.items.add(new ReportEntry().setType(null).setContents(null).setCode(-1));
   }
 
   @Override public ReportEntry remove(int position) {
@@ -142,5 +143,11 @@ public class MainReportAdapter extends BaseRecyclerAdapter
 
   @Override public void edit(ReportType type, String contents) {
     items.get(type.getPosition()).setContents(contents);
+  }
+
+  @Override public void edit(ReportType type, Bundle bundle) {
+    items.get(type.getPosition())
+        .setContents(bundle.getString("name"))
+        .setCode(bundle.getInt("code"));
   }
 }

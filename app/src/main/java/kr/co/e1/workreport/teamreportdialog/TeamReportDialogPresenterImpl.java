@@ -33,15 +33,16 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
     view.showProgress();
     new Handler().postDelayed(() -> {
       List<ReportEntry> items = new ArrayList<>();
-      items.add(new ReportEntry(ReportType.DATE, "2017-11-10(금)"));
-      items.add(new ReportEntry(ReportType.DEPT, "BS"));
-      items.add(new ReportEntry(ReportType.NAME, "오재호"));
-      items.add(new ReportEntry(ReportType.START_TIME, "2017-09-18 18:00"));
-      items.add(new ReportEntry(ReportType.END_TIME, "2017-09-18 22:00"));
-      items.add(new ReportEntry(ReportType.WORKING_TIME, "04:00"));
-      items.add(new ReportEntry(ReportType.DETAIL_WORK, "11, 구조파악.."));
-      items.add(new ReportEntry(ReportType.PROJECT, "설계개발공유체게"));
-      items.add(new ReportEntry(ReportType.MODIFIED_TIME, "2017-11-10 22:05"));
+      items.add(new ReportEntry().setType(ReportType.DATE).setContents("2017-11-10(금)"));
+      items.add(new ReportEntry().setType(ReportType.DEPT).setContents("BS"));
+      items.add(new ReportEntry().setType(ReportType.NAME).setContents("오재호"));
+      items.add(new ReportEntry().setType(ReportType.START_TIME).setContents("2017-09-18 18:00"));
+      items.add(new ReportEntry().setType(ReportType.END_TIME).setContents("2017-09-18 22:00"));
+      items.add(new ReportEntry().setType(ReportType.WORKING_TIME).setContents("04:00"));
+      items.add(new ReportEntry().setType(ReportType.DETAIL_WORK).setContents("11, 구조파악.."));
+      items.add(new ReportEntry().setType(ReportType.PROJECT).setContents("설계개발공유체게"));
+      items.add(
+          new ReportEntry().setType(ReportType.MODIFIED_TIME).setContents("2017-11-10 22:05"));
       adapterDataModel.addAll(items);
 
       //view.refresh();

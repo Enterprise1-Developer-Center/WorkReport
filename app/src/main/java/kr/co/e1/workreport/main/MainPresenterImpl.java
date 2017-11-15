@@ -98,7 +98,7 @@ public class MainPresenterImpl implements MainPresenter {
     }, 1000);
   }
 
-  @Override public void onItemClick(ReportEntry item) {
+  @DebugLog @Override public void onItemClick(ReportEntry item) {
     ReportType type = item.getType();
 
     if (type == ReportType.DATE) {
@@ -115,7 +115,7 @@ public class MainPresenterImpl implements MainPresenter {
         view.showClassificationDialog(code, work);
       }
     } else if (type == ReportType.PROJECT) {
-      view.showProjectChoiceDialog();
+      view.showProjectChoiceDialog(item.getCode());
     }
   }
 

@@ -24,7 +24,7 @@ import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
   }
 
   @Provides ProjectDialogAdapter provideProjectDialogAdapter(ProjectDialog dialog) {
-    return new ProjectDialogAdapter(dialog);
+    return new ProjectDialogAdapter(dialog).setSelectedCode(dialog.selectedCode);
   }
 
   @Provides ProjectDialogPresenter provideProjectDialogPresenter(ProjectDialogPresenter.View view,

@@ -155,7 +155,7 @@ public class MainActivity extends BaseActivity
         .show(getSupportFragmentManager(), ClassificationDialog.class.getSimpleName());
   }
 
-  @Override public void showProjectChoiceDialog() {
+  @Override public void showProjectChoiceDialog(String code) {
 
     new ProjectDialog().setOnDialogClickListener(o -> presenter.onProjectDialogClick(o))
         .show(getSupportFragmentManager(), ProjectDialog.class.getSimpleName());
@@ -164,6 +164,7 @@ public class MainActivity extends BaseActivity
   @Override public void showMessage(int resId) {
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
+
   @Override public void showMessage(String msg) {
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
@@ -205,7 +206,7 @@ public class MainActivity extends BaseActivity
     return fragmentDispatchingAndroidInjector;
   }
 
-  @DebugLog @Override public void onItemClick(ReportEntry item) {
+  @Override public void onItemClick(ReportEntry item) {
     presenter.onItemClick(item);
   }
 

@@ -36,12 +36,12 @@ public class MainReportAdapter extends BaseRecyclerAdapter
 
   @Override public void add(ReportEntry item) {
     items.add(item);
-    items.add(new ReportEntry().setType(null).setContents(null).setCode(-1));
+    items.add(new ReportEntry().setType(null).setContents(null));
   }
 
   @Override public void addAll(List<ReportEntry> items) {
     this.items.addAll(items);
-    this.items.add(new ReportEntry().setType(null).setContents(null).setCode(-1));
+    this.items.add(new ReportEntry().setType(null).setContents(null));
   }
 
   @Override public ReportEntry remove(int position) {
@@ -148,6 +148,6 @@ public class MainReportAdapter extends BaseRecyclerAdapter
   @Override public void edit(ReportType type, Bundle bundle) {
     items.get(type.getPosition())
         .setContents(bundle.getString("name"))
-        .setCode(bundle.getInt("code"));
+        .setCode(bundle.getString("code"));
   }
 }

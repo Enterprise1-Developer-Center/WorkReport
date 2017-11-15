@@ -28,6 +28,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
   @Inject ProjectDialogAdapter adapter;
   @Inject BaseAdapterView adapterView;
   @Inject ProjectDialogPresenter presenter;
+  @Accessors @Setter String selectedCode = "0";
 
   @Override protected boolean isNegativeButton() {
     return true;
@@ -84,7 +85,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
 
   @DebugLog @Override public void onItemClick(ProjectSelectableItem selectableItem) {
     bundle.putString("name", selectableItem.getItem().getName());
-    bundle.putInt("code", selectableItem.getItem().getCode());
+    bundle.putString("code", selectableItem.getItem().getCode());
   }
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;

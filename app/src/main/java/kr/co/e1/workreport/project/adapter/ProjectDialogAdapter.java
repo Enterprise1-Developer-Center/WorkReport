@@ -13,6 +13,8 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.project.vo.Project;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by jaeho on 2017. 10. 24
@@ -24,6 +26,8 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
 
   private ArrayList<Project> items = new ArrayList<>();
   private ArrayList<ProjectSelectableItem> selectableItems = new ArrayList<>();
+
+  @Accessors(chain = true) @Setter private String selectedCode = "0";
 
   private OnRecyclerItemClickListener<ProjectSelectableItem> onRecyclerItemClickListener;
 
@@ -47,7 +51,7 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
       holder.textview.setText(project.getName());
       holder.setOnRecyclerItemClickListener(this);
       holder.setSelectableItem(selectableItem);
-      holder.containerView.setBackgroundColor(
+      holder.itemView.setBackgroundColor(
           getBackgroundColor(holder.itemView.getContext(), selectableItem.isSelected()));
     }
   }
@@ -77,7 +81,11 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
     this.items.addAll(items);
 
     for (Project item : this.items) {
-      selectableItems.add(new ProjectSelectableItem(item, false));
+      boolean isSelected = false;
+      if (item.getCode().equals(selectedCode)) {
+        isSelected = true;
+      }
+      selectableItems.add(new ProjectSelectableItem(item, isSelected));
     }
   }
 

@@ -64,7 +64,7 @@ public interface MainPresenter {
 
     void showClassificationDialog(int code, String work);
 
-    void showProjectChoiceDialog();
+    void showProjectChoiceDialog(String code);
 
     void showMessage(@StringRes int resId);
 

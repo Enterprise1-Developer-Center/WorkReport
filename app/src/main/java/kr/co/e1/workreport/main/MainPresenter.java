@@ -75,5 +75,7 @@ public interface MainPresenter {
     void refresh(int position);
 
     void showTimePickerDialog(int hour, int minute, TimePickerDialog.OnTimeSetListener listener);
+
+    void showMessage(String msg);
   }
 }

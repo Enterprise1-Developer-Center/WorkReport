@@ -69,6 +69,8 @@ public class MainPresenterImpl implements MainPresenter {
             List<ReportEntry> items = ReportEntry.createReportEntrys(result.getContent());
             adapterDataModel.addAll(items);
             view.refresh();
+          } else {
+            view.showMessage(result.getMsg());
           }
           view.hideProgress();
         }, throwable -> {

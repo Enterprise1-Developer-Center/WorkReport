@@ -1,6 +1,6 @@
 package kr.co.e1.workreport.project.vo;
 
-import lombok.AllArgsConstructor;
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -8,7 +8,9 @@ import lombok.ToString;
  * Created by jaeho on 2017. 10. 29
  */
 
-@ToString @AllArgsConstructor public class Project {
-  @Getter private int id;
-  @Getter private String name;
+@ToString @Getter public class Project {
+  @SerializedName("PROJ_CD")
+  private int code;
+  @SerializedName("PROJ_NM")
+  private String name;
 }

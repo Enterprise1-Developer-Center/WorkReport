@@ -10,6 +10,8 @@ public interface ProjectDialogPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
+  void onDetach();
+
   interface View {
 
     void setRecyclerView();

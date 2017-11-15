@@ -15,7 +15,8 @@
       android:id="@id/textview"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:gravity="center_vertical"
       android:textAppearance="@style/TextAppearance.AppCompat.Title"
-      tools:text="백년을살아보니"
+      tools:text="2017년 법규인증 시스템 CHG 크레딧 관리 국내적용"
       />
 </LinearLayout>

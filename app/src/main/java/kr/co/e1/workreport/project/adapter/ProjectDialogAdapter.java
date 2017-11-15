@@ -74,7 +74,11 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void addAll(List<Project> items) {
-    items.addAll(items);
+    this.items.addAll(items);
+
+    for (Project item : this.items) {
+      selectableItems.add(new ProjectSelectableItem(item, false));
+    }
   }
 
   @Override public Project remove(int position) {

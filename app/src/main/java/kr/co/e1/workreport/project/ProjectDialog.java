@@ -96,4 +96,9 @@ public class ProjectDialog extends BaseAlertDialogFragment
   @Override public void refresh() {
     adapterView.refresh();
   }
+
+  @Override public void onDetach() {
+    presenter.onDetach();
+    super.onDetach();
+  }
 }

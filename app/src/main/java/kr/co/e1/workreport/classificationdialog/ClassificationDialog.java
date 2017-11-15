@@ -13,7 +13,6 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
-import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
@@ -35,7 +34,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   @Inject BaseAdapterView adapterView;
   @Inject ClassificationDialogPresenter presenter;
 
-  @Accessors(chain = true) @Setter private OnDialogClickListener<ClassificationCode>
+  @Accessors(chain = true) @Setter private OnDialogClickListener<ClassificationSelectableItem>
       onDialogClickListener;
   @Accessors(chain = true) @Setter String selectedCode;
   @Accessors(chain = true) @Setter String selectedWork;
@@ -78,7 +77,8 @@ public class ClassificationDialog extends BaseAlertDialogFragment
 
   @Override protected View.OnClickListener onPositiveClickListener() {
     return view -> {
-      presenter.onPositiveClick();
+      String work = workTextInputEditText.getText().toString().trim();
+      presenter.onPositiveClick(work);
     };
   }
 
@@ -114,7 +114,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   }
 
   @Override public void dismiss(ClassificationSelectableItem selectedItem) {
-    onDialogClickListener.onDialogClick(selectedItem.getItem());
+    onDialogClickListener.onDialogClick(selectedItem);
     dismiss();
   }
 }

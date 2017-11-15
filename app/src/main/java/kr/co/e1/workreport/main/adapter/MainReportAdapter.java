@@ -90,7 +90,11 @@ public class MainReportAdapter extends BaseRecyclerAdapter
       ReportEntry entry = items.get(position);
       holder.defaultSetting(entry, onRecyclerItemClickListener);
       holder.iconImageView.setImageResource(entry.getType().getResId());
-      holder.contentsTextView.setText(entry.getContents());
+      if (entry.getType() == ReportType.DETAIL_WORK) {
+        holder.contentsTextView.setText(entry.getCode() + " / " + entry.getContents());
+      } else {
+        holder.contentsTextView.setText(entry.getContents());
+      }
     } else {
       MainSaveViewHolder holder = (MainSaveViewHolder) viewHolder;
       holder.saveButton.setOnClickListener(view -> {

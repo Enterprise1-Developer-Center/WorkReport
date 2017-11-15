@@ -58,7 +58,7 @@ public class ClassificationDialogPresenterImpl implements ClassificationDialogPr
         }));
   }
 
-  @Override public void onPositiveClick() {
-    view.dismiss(adapterDataModel.getSelectedItem());
+  @Override public void onPositiveClick(String work) {
+    view.dismiss(adapterDataModel.getSelectedItem().setWork(work));
   }
 }

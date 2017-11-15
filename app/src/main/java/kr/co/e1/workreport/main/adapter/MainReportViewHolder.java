@@ -44,14 +44,6 @@ public class MainReportViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
             ContextCompat.getColor(itemView.getContext(), android.R.color.darker_gray)));
         break;
     }
-
-    switch (entry.getType()) {
-      case DETAIL_WORK:
-        contentsTextView.setText(entry.getCode() + " / " + entry.getContents());
-        break;
-      case PROJECT:
-        break;
-    }
   }
 
   private @DrawableRes int getBackgroundRes(Context context) {

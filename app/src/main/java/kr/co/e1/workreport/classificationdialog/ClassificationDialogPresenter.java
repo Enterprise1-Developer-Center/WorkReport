@@ -12,7 +12,7 @@ public interface ClassificationDialogPresenter {
 
   void onActivityCreate(Bundle savedInstanceState, String work);
 
-  void onPositiveClick();
+  void onPositiveClick(String work);
 
   interface View {
     void setRecyclerView();

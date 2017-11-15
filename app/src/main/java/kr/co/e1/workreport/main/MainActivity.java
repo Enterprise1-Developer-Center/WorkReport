@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity
     */
   }
 
-  @Override public void showClassificationDialog(String code, String work) {
+  @DebugLog @Override public void showClassificationDialog(String code, String work) {
     new ClassificationDialog().setSelectedCode(code)
         .setSelectedWork(work)
         .setOnDialogClickListener(o -> presenter.onDetailWorkDialogClick(o, work))

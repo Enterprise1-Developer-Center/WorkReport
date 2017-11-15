@@ -2,7 +2,6 @@ package kr.co.e1.workreport.main;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -110,13 +109,11 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (type == ReportType.END_TIME) {
       endTimeHandling(item);
     } else if (type == ReportType.DETAIL_WORK) {
-      String contents = item.getContents();
-      if (!TextUtils.isEmpty(contents)) {
-        view.showClassificationDialog(item.getCode(), item.getContents());
-      }
+      view.showClassificationDialog(item.getCode(), item.getContents());
     } else if (type == ReportType.PROJECT) {
       view.showProjectChoiceDialog(item.getCode());
     }
+
   }
 
   private void dateHandling(ReportEntry entry) {
@@ -176,8 +173,8 @@ public class MainPresenterImpl implements MainPresenter {
     });
   }
 
-  @Override public void onDetailWorkDialogClick(ClassificationCode o, String work) {
-    adapterDataModel.edit(ReportType.DETAIL_WORK, o,null);
+  @DebugLog @Override public void onDetailWorkDialogClick(ClassificationCode o, String work) {
+    adapterDataModel.edit(ReportType.DETAIL_WORK, o, work);
     view.refresh(ReportType.DETAIL_WORK.getPosition());
   }
 

@@ -32,9 +32,8 @@ public class ClassificationDialogPresenterImpl implements ClassificationDialogPr
     this.network = network;
   }
 
-  @Override public void onActivityCreate(Bundle savedInstanceState, String work) {
+  @DebugLog @Override public void onActivityCreate(Bundle savedInstanceState, String work) {
     view.setRecyclerView();
-    view.showWork(work);
     view.showProgress();
     compositeDisposable.add(network.getCode()
         .subscribeOn(Schedulers.io())
@@ -44,6 +43,7 @@ public class ClassificationDialogPresenterImpl implements ClassificationDialogPr
               throws Exception {
             if (result.getResult() == NetworkHelper.RESULT_SUCCESS) {
               adapterDataModel.addAll(result.getContent());
+              view.showWork(work);
               view.refresh();
             } else {
               view.showMessage(R.string.error_server_error);

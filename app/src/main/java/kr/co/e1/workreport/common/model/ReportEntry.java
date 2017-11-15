@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.common.model;
 
-import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.common.DateUtils;
@@ -35,13 +34,7 @@ import lombok.experimental.Accessors;
     entries.add(
         new ReportEntry().setType(ReportType.WORKING_TIME).setContents(content.getExtraTime()));
 
-    String detailWork =
-        content.getDetailWork().getCode() + " / " + content.getDetailWork().getDetail();
-
-    entries.add(new ReportEntry().setType(ReportType.DETAIL_WORK).setContents(detailWork).setCode(content.getDetailWork().getCode()));
-
-    String project = TextUtils.isEmpty(content.getProjects().getName()) ? ""
-        : content.getProjects().getName();
+    entries.add(new ReportEntry().setType(ReportType.DETAIL_WORK).setContents(content.getDetailWork().getDetail()).setCode(content.getDetailWork().getCode()));
 
     entries.add(new ReportEntry().setType(ReportType.PROJECT).setContents(content.getProjects().getName()).setCode(content.getProjects().getCode()));
 

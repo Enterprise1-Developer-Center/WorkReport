@@ -1,10 +1,5 @@
 package kr.co.e1.workreport.main.adapter;
 
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.support.annotation.DrawableRes;
-import android.support.v4.content.ContextCompat;
-import android.util.TypedValue;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,40 +87,16 @@ public class MainReportAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof MainReportViewHolder) {
       MainReportViewHolder holder = (MainReportViewHolder) viewHolder;
-      Context context = holder.itemView.getContext();
       ReportEntry entry = items.get(position);
+      holder.defaultSetting(entry, onRecyclerItemClickListener);
       holder.iconImageView.setImageResource(entry.getType().getResId());
       holder.contentsTextView.setText(entry.getContents());
-      switch (entry.getType()) {
-        case DATE:
-        case START_TIME:
-        case END_TIME:
-        case DETAIL_WORK:
-        case PROJECT:
-          holder.itemView.setOnClickListener(
-              view -> onRecyclerItemClickListener.onItemClick(entry));
-          holder.itemView.setBackgroundResource(getBackgroundRes(context));
-          break;
-        case DEPT:
-        case NAME:
-        case WORKING_TIME:
-        case MODIFIED_TIME:
-          holder.iconImageView.setImageTintList(
-              ColorStateList.valueOf(ContextCompat.getColor(context, android.R.color.darker_gray)));
-          break;
-      }
     } else {
       MainSaveViewHolder holder = (MainSaveViewHolder) viewHolder;
       holder.saveButton.setOnClickListener(view -> {
         onSaveButtonClickListener.onSaveClick(items);
       });
     }
-  }
-
-  private @DrawableRes int getBackgroundRes(Context context) {
-    TypedValue outValue = new TypedValue();
-    context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-    return outValue.resourceId;
   }
 
   @Override public int getItemCount() {

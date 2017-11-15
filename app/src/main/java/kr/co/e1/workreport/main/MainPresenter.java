@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.StringRes;
 import java.util.List;
 import kr.co.e1.workreport.common.model.ReportEntry;
+import kr.co.e1.workreport.project.vo.Project;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -26,7 +27,7 @@ public interface MainPresenter {
 
   void onDetailWorkDialogClick(Bundle o);
 
-  void onProjectDialogClick(Bundle o);
+  void onProjectDialogClick(Project o);
 
   void onDestroy();
 

@@ -6,15 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import butterknife.BindView;
-import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
-import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
+import kr.co.e1.workreport.project.vo.Project;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -23,7 +22,7 @@ import lombok.experimental.Accessors;
  */
 
 public class ProjectDialog extends BaseAlertDialogFragment
-    implements ProjectDialogPresenter.View, OnRecyclerItemClickListener<ProjectSelectableItem> {
+    implements ProjectDialogPresenter.View {
 
   @Inject ProjectDialogAdapter adapter;
   @Inject BaseAdapterView adapterView;
@@ -46,7 +45,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
     presenter.onActivityCreate(savedInstanceState);
   }
 
-  @Accessors(chain = true) @Setter private OnDialogClickListener<Bundle> onDialogClickListener;
+  @Accessors(chain = true) @Setter private OnDialogClickListener<Project> onDialogClickListener;
 
   @Override protected boolean getAttatchRoot() {
     return false;
@@ -70,22 +69,19 @@ public class ProjectDialog extends BaseAlertDialogFragment
 
   @Override protected View.OnClickListener onPositiveClickListener() {
     return view -> {
-      onDialogClickListener.onDialogClick(bundle);
-      dismiss();
+      presenter.onPositiveClick();
     };
+  }
+
+  @Override public void dismiss(ProjectSelectableItem selectableItem) {
+    onDialogClickListener.onDialogClick(selectableItem.getItem());
+    dismiss();
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {
     return view -> {
       dismiss();
     };
-  }
-
-  private Bundle bundle = new Bundle();
-
-  @DebugLog @Override public void onItemClick(ProjectSelectableItem selectableItem) {
-    bundle.putString("name", selectableItem.getItem().getName());
-    bundle.putString("code", selectableItem.getItem().getCode());
   }
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;

@@ -8,9 +8,9 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 import javax.inject.Inject;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
+import kr.co.e1.workreport.project.adapter.ProjectAdapterDataModel;
 import kr.co.e1.workreport.project.vo.Project;
 
 /**
@@ -20,11 +20,11 @@ import kr.co.e1.workreport.project.vo.Project;
 public class ProjectDialogPresenterImpl implements ProjectDialogPresenter {
 
   private ProjectDialogPresenter.View view;
-  private BaseAdapterDataModel<Project> adapterDataModel;
+  private ProjectAdapterDataModel adapterDataModel;
   private ProjectNetwork network;
 
   @Inject ProjectDialogPresenterImpl(ProjectDialogPresenter.View view,
-      BaseAdapterDataModel<Project> adapterDataModel, ProjectNetwork network) {
+      ProjectAdapterDataModel adapterDataModel, ProjectNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     this.network = network;
@@ -55,5 +55,10 @@ public class ProjectDialogPresenterImpl implements ProjectDialogPresenter {
 
   @Override public void onDetach() {
     compositeDisposable.clear();
+  }
+
+  @Override public void onPositiveClick() {
+    adapterDataModel.getSelectableItem();
+    view.dismiss(adapterDataModel.getSelectableItem());
   }
 }

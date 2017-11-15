@@ -2,7 +2,6 @@ package kr.co.e1.workreport.main.adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
@@ -15,6 +14,7 @@ import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.project.vo.Project;
 
 /**
  * Created by jaeho on 2017. 11. 10
@@ -145,9 +145,7 @@ public class MainReportAdapter extends BaseRecyclerAdapter
     items.get(type.getPosition()).setContents(contents);
   }
 
-  @Override public void edit(ReportType type, Bundle bundle) {
-    items.get(type.getPosition())
-        .setContents(bundle.getString("name"))
-        .setCode(bundle.getString("code"));
+  @Override public void edit(ReportType type, Project o) {
+    items.get(type.getPosition()).setContents(o.getName()).setCode(o.getCode());
   }
 }

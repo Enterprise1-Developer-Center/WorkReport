@@ -18,13 +18,8 @@ import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
     return dialog;
   }
 
-  @Provides OnRecyclerItemClickListener<ProjectSelectableItem> provideOnRecyclerItemClickListener(
-      ProjectDialog dialog) {
-    return dialog;
-  }
-
   @Provides ProjectDialogAdapter provideProjectDialogAdapter(ProjectDialog dialog) {
-    return new ProjectDialogAdapter(dialog).setSelectedCode(dialog.selectedCode);
+    return new ProjectDialogAdapter().setSelectedCode(dialog.selectedCode);
   }
 
   @Provides ProjectDialogPresenter provideProjectDialogPresenter(ProjectDialogPresenter.View view,

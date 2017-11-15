@@ -6,9 +6,7 @@ import android.view.View;
 import hugo.weaving.DebugLog;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
@@ -21,19 +19,13 @@ import lombok.experimental.Accessors;
  */
 
 public class ProjectDialogAdapter extends BaseRecyclerAdapter
-    implements BaseAdapterDataModel<Project>, BaseAdapterView,
+    implements ProjectAdapterDataModel, BaseAdapterView,
     OnRecyclerItemClickListener<ProjectSelectableItem> {
 
   private ArrayList<Project> items = new ArrayList<>();
   private ArrayList<ProjectSelectableItem> selectableItems = new ArrayList<>();
 
   @Accessors(chain = true) @Setter private String selectedCode = "0";
-
-  private OnRecyclerItemClickListener<ProjectSelectableItem> onRecyclerItemClickListener;
-
-  @Inject public ProjectDialogAdapter(OnRecyclerItemClickListener listener) {
-    this.onRecyclerItemClickListener = listener;
-  }
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new ProjectDialogViewHolder(view);
@@ -119,16 +111,17 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
   private int prePosition;
 
   @Override public void onItemClick(ProjectSelectableItem item) {
-    for (ProjectSelectableItem selectableItem : selectableItems) {
-      if (!selectableItem.equals(item)) {
-        selectableItem.setSelected(false);
-      } else {
-        selectableItem.setSelected(true);
-      }
-    }
-
+    selectableItems.get(prePosition).setSelected(false);
     refresh(prePosition);
     prePosition = selectableItems.indexOf(item);
-    onRecyclerItemClickListener.onItemClick(item);
+  }
+
+  @Override public ProjectSelectableItem getSelectableItem() {
+    for (ProjectSelectableItem selectableItem : selectableItems) {
+      if (selectableItem.isSelected()) {
+        return selectableItem;
+      }
+    }
+    return null;
   }
 }

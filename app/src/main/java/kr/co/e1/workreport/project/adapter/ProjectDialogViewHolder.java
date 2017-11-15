@@ -27,7 +27,7 @@ public class ProjectDialogViewHolder extends BaseRecyclerAdapter.BaseViewHolder 
 
   @DebugLog @OnClick(R.id.recyclerview_item_container) void onClick(View view) {
     if (!selectableItem.isSelected()) {
-      selectableItem.setSelected(!selectableItem.isSelected());
+      selectableItem.setSelected(true);
       view.setBackgroundColor(
           ContextCompat.getColor(itemView.getContext(), R.color.colorIndigo_200));
       onRecyclerItemClickListener.onItemClick(selectableItem);

@@ -21,7 +21,7 @@
   <string name="classification_code">분류코드</string>
   <string name="what_did_you_do_today">무슨 업무 하셨어요?</string>
   <string name="project">프로젝트</string>
-  <string name="project_name">프로젝트</string>
+  <string name="project_name">진행중인 프로젝트</string>
   <string name="change_pw">비밀번호 변경</string>
   <string name="now_password">현재 비밀번호</string>
   <string name="new_password">새로운 비밀번호</string>

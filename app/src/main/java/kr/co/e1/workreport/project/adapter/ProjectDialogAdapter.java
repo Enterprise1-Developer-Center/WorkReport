@@ -44,7 +44,7 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
       ProjectDialogViewHolder holder = (ProjectDialogViewHolder) viewHolder;
       ProjectSelectableItem selectableItem = selectableItems.get(position);
       Project project = selectableItem.getItem();
-      holder.textview.setText(project.getName());
+      holder.textview.setText(project.getName() + " / " + project.getCode());
       holder.setOnRecyclerItemClickListener(this);
       holder.setSelectableItem(selectableItem);
       holder.containerView.setBackgroundColor(

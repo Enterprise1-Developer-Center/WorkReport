@@ -1,7 +1,9 @@
 package kr.co.e1.workreport.main.adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.View;
 import java.util.ArrayList;
@@ -88,6 +90,7 @@ public class MainReportAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof MainReportViewHolder) {
       MainReportViewHolder holder = (MainReportViewHolder) viewHolder;
+      Context context = holder.itemView.getContext();
       ReportEntry entry = items.get(position);
       holder.iconImageView.setImageResource(entry.getType().getResId());
       holder.contentsTextView.setText(entry.getContents());
@@ -99,8 +102,14 @@ public class MainReportAdapter extends BaseRecyclerAdapter
         case PROJECT:
           holder.itemView.setOnClickListener(
               view -> onRecyclerItemClickListener.onItemClick(entry));
-          holder.itemView.setBackgroundResource(
-              getBackgroundRes(holder.iconImageView.getContext()));
+          holder.itemView.setBackgroundResource(getBackgroundRes(context));
+          break;
+        case DEPT:
+        case NAME:
+        case WORKING_TIME:
+        case MODIFIED_TIME:
+          holder.iconImageView.setImageTintList(
+              ColorStateList.valueOf(ContextCompat.getColor(context, android.R.color.darker_gray)));
           break;
       }
     } else {

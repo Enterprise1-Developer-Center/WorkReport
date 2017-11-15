@@ -13,8 +13,7 @@
       style="@style/BaseMainItemImageView"
       />
   <TextView
-      tools:text="2017-09-26 (금)"
-      style="@style/BaseMainItemTextView"
-      />
+      tools:text="이원정보기술 이원정보기술 이원정보기술 이원정보기술 이원정보기술"
+      style="@style/BaseMainItemTextView"/>
 
 </LinearLayout>

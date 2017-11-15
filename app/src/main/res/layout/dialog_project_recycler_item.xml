@@ -15,8 +15,9 @@
       android:id="@id/textview"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:gravity="center_vertical"
-      android:textAppearance="@style/TextAppearance.AppCompat.Title"
-      tools:text="2017년 법규인증 시스템 CHG 크레딧 관리 국내적용"
+      android:gravity="center"
+      android:textColor="@android:color/black"
+      android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+      tools:text="2017년 법규인증 시스템 CHG 크레딧 관리 국내적용 /887"
       />
 </LinearLayout>

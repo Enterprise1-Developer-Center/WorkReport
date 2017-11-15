@@ -29,8 +29,8 @@ import lombok.ToString;
     entries.add(new ReportEntry(ReportType.WORKING_TIME, content.getExtraTime()));
     entries.add(new ReportEntry(ReportType.DETAIL_WORK,
         content.getDetailWork().getCode() + " / " + content.getDetailWork().getDetail()));
-    String project =
-        TextUtils.isEmpty(content.getProjects().getName()) ? "" : content.getProjects().getName();
+    String project = TextUtils.isEmpty(content.getProjects().getName()) ? ""
+        : content.getProjects().getName() + " / " + content.getProjects().getCode();
     entries.add(new ReportEntry(ReportType.PROJECT, project));
     entries.add(new ReportEntry(ReportType.MODIFIED_TIME, content.getUpdTime()));
 

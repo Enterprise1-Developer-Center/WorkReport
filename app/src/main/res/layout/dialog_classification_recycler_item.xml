@@ -11,29 +11,29 @@
     >
   <TextView
       android:id="@id/code_textview"
-      android:layout_width="80dp"
-      android:layout_height="80dp"
-      android:gravity="center"
+      android:layout_width="@dimen/dp_70"
+      android:layout_height="@dimen/dp_70"
+      android:gravity="top|center_horizontal"
       android:textAppearance="@style/TextAppearance.AppCompat.Title"
-      android:textSize="22sp"
+      android:textSize="@dimen/sp_24"
       tools:text="21"
       />
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="@dimen/dp_80"
+      android:layout_height="@dimen/dp_70"
       android:orientation="vertical"
       android:layout_marginRight="@dimen/dp_10"
       >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_30"
+        android:layout_height="@dimen/dp_24"
         android:orientation="horizontal"
         >
       <TextView
           android:id="@id/big_class_textview"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
-          android:gravity="center_vertical"
+          android:gravity="left"
           android:maxLines="1"
           android:textColor="@android:color/black"
           android:textSize="@dimen/sp_20"
@@ -45,7 +45,7 @@
           android:layout_height="match_parent"
           android:layout_marginLeft="@dimen/dp_10"
           android:ellipsize="end"
-          android:gravity="right|center_vertical"
+          android:gravity="bottom|left"
           android:maxLines="1"
           android:textColor="@android:color/black"
           android:textSize="@dimen/sp_14"
@@ -55,14 +55,13 @@
     <TextView
         android:id="@id/description_textview"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:ellipsize="none"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:gravity="left"
         android:maxLines="3"
         android:minLines="1"
         android:textColor="#5b5b5b"
-        android:textSize="@dimen/sp_10"
+        android:textSize="@dimen/sp_11"
         tools:text="외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수"
         />
   </LinearLayout>

@@ -20,6 +20,7 @@ import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.network.NetworkHelper;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -183,6 +184,7 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onProjectDialogClick(Bundle o) {
+    Timber.d("onProjectDialogclick() = " + o.getString("code"));
     adapterDataModel.edit(ReportType.PROJECT, o);
     view.refresh(ReportType.PROJECT.getPosition());
   }

@@ -155,9 +155,9 @@ public class MainActivity extends BaseActivity
         .show(getSupportFragmentManager(), ClassificationDialog.class.getSimpleName());
   }
 
-  @Override public void showProjectChoiceDialog(String code) {
+  @DebugLog @Override public void showProjectChoiceDialog(String code) {
 
-    new ProjectDialog().setOnDialogClickListener(o -> presenter.onProjectDialogClick(o))
+    new ProjectDialog().setSelectedCode(code).setOnDialogClickListener(o -> presenter.onProjectDialogClick(o))
         .show(getSupportFragmentManager(), ProjectDialog.class.getSimpleName());
   }
 

@@ -28,7 +28,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
   @Inject ProjectDialogAdapter adapter;
   @Inject BaseAdapterView adapterView;
   @Inject ProjectDialogPresenter presenter;
-  @Accessors @Setter String selectedCode = "0";
+  @Accessors(chain = true) @Setter String selectedCode = "0";
 
   @Override protected boolean isNegativeButton() {
     return true;

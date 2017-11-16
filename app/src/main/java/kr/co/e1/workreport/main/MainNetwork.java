@@ -23,4 +23,11 @@ public class MainNetwork extends NetworkHelper {
     map.put("date", date);
     return getWorkReportApi().getWorkingDay(PreferencesUtils.getToken(), map);
   }
+
+  public Single<WResult<ReportContent>> updateWorkingDay(String majorCode, String smallCode,
+      String work, String projectCode, String startTime, String endTime, String updateTime,
+      String userId, String date) {
+    return getWorkReportApi().updateWorkingDay(PreferencesUtils.getToken(), majorCode, smallCode,
+        work, projectCode, startTime, endTime, updateTime, userId, date);
+  }
 }

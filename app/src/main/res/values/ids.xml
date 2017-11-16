@@ -50,7 +50,6 @@
   <item name="new_text_input_layout" type="id"/>
   <item name="new_confirm_text_input_layout" type="id"/>
   <item name="progress_bar" type="id"/>
-  <item name="password_dialog_container" type="id"/>
   <item name="action_ratio" type="id"/>
   <item name="action_graph" type="id"/>
   <item name="action_total" type="id"/>

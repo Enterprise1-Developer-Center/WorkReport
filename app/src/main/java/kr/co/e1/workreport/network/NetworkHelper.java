@@ -13,8 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class NetworkHelper {
-  public final static int RESULT_SUCCESS = 1;
-  public final static int RESULT_FAILURE = 0;
 
   private String baseUrl;
 

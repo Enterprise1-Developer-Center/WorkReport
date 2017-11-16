@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassAdapterDataModel;
 import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
-import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
 
 /**
@@ -41,7 +40,7 @@ public class ClassificationDialogPresenterImpl implements ClassificationDialogPr
         .subscribe(new Consumer<WResult<List<ClassificationCode>>>() {
           @DebugLog @Override public void accept(WResult<List<ClassificationCode>> result)
               throws Exception {
-            if (result.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            if (result.getResult() == WResult.RESULT_SUCCESS) {
               adapterDataModel.addAll(result.getContent());
               view.showWork(work);
               view.refresh();

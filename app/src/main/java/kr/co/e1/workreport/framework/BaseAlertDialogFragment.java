@@ -66,7 +66,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
     super.onStart();
     alertDialog = (AlertDialog) getDialog();
     if (alertDialog != null) {
-      contentView = alertDialog.findViewById(R.id.password_dialog_container);
+      contentView = alertDialog.findViewById(R.id.root_view);
       setCancelable(isDialogCancelable());
       alertDialog.getButton(DialogInterface.BUTTON_POSITIVE)
           .setOnClickListener(onPositiveClickListener());

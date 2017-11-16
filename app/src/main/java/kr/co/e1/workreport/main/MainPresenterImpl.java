@@ -21,10 +21,10 @@ import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
-import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
-import timber.log.Timber;
+
+import static kr.co.e1.workreport.network.WResult.RESULT_SUCCESS;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -70,7 +70,7 @@ public class MainPresenterImpl implements MainPresenter {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
-          if (result.getResult() == NetworkHelper.RESULT_SUCCESS) {
+          if (result.getResult() == RESULT_SUCCESS) {
             List<ReportEntry> items = ReportEntry.createReportEntrys(result.getContent());
             adapterDataModel.addAll(items);
             view.refresh();
@@ -97,7 +97,6 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void onSaveClick(SummaryReportContent content) {
     view.showProgress();
-    Timber.d("SummaryContent = " + content);
     compositeDisposable.add(
         network.updateWorkingDay(content.getMajorCode(), content.getSmallCode(), content.getWork(),
             content.getProjectCode(), content.getStartTime(), content.getEndTime(),
@@ -105,14 +104,20 @@ public class MainPresenterImpl implements MainPresenter {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Consumer<WResult<ReportContent>>() {
-              @DebugLog @Override public void accept(WResult<ReportContent> reportContentWResult)
+              @DebugLog @Override public void accept(WResult<ReportContent> result)
                   throws Exception {
-
+                if (result.getResult() == WResult.RESULT_SUCCESS) {
+                  adapterDataModel.clear();
+                  adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
+                } else {
+                  view.showMessage(R.string.error_server_error);
+                }
                 view.hideProgress();
               }
             }, new Consumer<Throwable>() {
               @DebugLog @Override public void accept(Throwable throwable) throws Exception {
                 view.hideProgress();
+                view.showMessage(R.string.error_server_error);
               }
             }));
   }

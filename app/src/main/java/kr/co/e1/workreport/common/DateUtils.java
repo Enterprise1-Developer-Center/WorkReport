@@ -23,16 +23,13 @@ public class DateUtils {
     return dateFormat.format(d);
   }
 
-  public static String getExcludeDayOfWeek(@Nonnull String date) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    Calendar calendar = Calendar.getInstance();
-
-    int year = Integer.parseInt(date.split("-")[0]);
-    int month = Integer.parseInt(date.split("-")[1]) - 1;
-    int day = Integer.parseInt(date.split("-")[2]);
-    calendar.set(year, month, day);
-    Date d = new Date(calendar.getTimeInMillis());
-    return dateFormat.format(d);
+  public static String getExcludeDayOfWeek(@Nonnull String $date) {
+    if ($date.indexOf("(") != -1) {
+      String date = $date.substring(0, $date.indexOf(" "));
+      return date.trim();
+    } else {
+      return $date.trim();
+    }
   }
 
   public static String getOnlyDateString(@Nonnull String content) {

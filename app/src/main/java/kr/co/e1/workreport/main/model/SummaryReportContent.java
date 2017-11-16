@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.main.model;
 
 import java.util.List;
+import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
@@ -8,7 +9,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * Created by jaeho on 2017. 11. 16..
+ * Created by jaeho on 2017. 11. 16
  */
 
 @ToString @Getter public class SummaryReportContent {
@@ -31,7 +32,7 @@ import lombok.ToString;
     endTime = items.get(ReportType.END_TIME.getPosition()).getContents();
     updateTime = items.get(ReportType.MODIFIED_TIME.getPosition()).getContents();
     userId = PreferencesUtils.getUserId();
-    //수정하기..
-    date = items.get(ReportType.DATE.getPosition()).getContents().split(" ")[0];
+    String dateIncludeDayOfWeek = items.get(ReportType.DATE.getPosition()).getContents();
+    date = DateUtils.getExcludeDayOfWeek(dateIncludeDayOfWeek);
   }
 }

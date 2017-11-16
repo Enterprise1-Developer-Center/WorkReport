@@ -11,8 +11,8 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
-import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.TokenResult;
+import kr.co.e1.workreport.network.WResult;
 
 /**
  * Created by jaeho on 2017. 9. 27
@@ -53,7 +53,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe(loginResult -> {
-                if (loginResult.getResult() == NetworkHelper.RESULT_SUCCESS) {
+                if (loginResult.getResult() == WResult.RESULT_SUCCESS) {
                   loginListener.onLoginSuccess(loginResult.getContent().getDate());
                   view.dismiss();
                 } else {

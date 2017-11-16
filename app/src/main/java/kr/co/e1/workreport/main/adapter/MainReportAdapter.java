@@ -19,7 +19,8 @@ import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 
 public class MainReportAdapter extends BaseRecyclerAdapter
     implements ReportAdapterView, MainAdapterDataModel<ReportEntry> {
-
+  private final static int ITEM_DEFAULT = 0;
+  private final static int ITEM_SAVE = 1;
   private OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener;
   private OnSaveButtonClickListener<SummaryReportContent> onSaveButtonClickListener;
 
@@ -62,7 +63,7 @@ public class MainReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
-    if (viewType == 0) {
+    if (viewType == ITEM_DEFAULT) {
       return new MainReportViewHolder(view);
     } else {
       return new MainSaveViewHolder(view);
@@ -71,14 +72,14 @@ public class MainReportAdapter extends BaseRecyclerAdapter
 
   @Override public int getItemViewType(int position) {
     if (position < items.size() - 1) {
-      return 0;
+      return ITEM_DEFAULT;
     } else {
-      return 1;
+      return ITEM_SAVE;
     }
   }
 
   @Override public int getLayoutRes(int viewType) {
-    if (viewType == 0) {
+    if (viewType == ITEM_DEFAULT) {
       return R.layout.content_main_report_item;
     } else {
       return R.layout.content_main_save_item;

@@ -5,9 +5,9 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import java.util.List;
-import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
+import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.model.ReportEntry;
-import kr.co.e1.workreport.project.vo.Project;
+import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -26,9 +26,9 @@ public interface MainPresenter {
 
   void onItemClick(ReportEntry item);
 
-  void onDetailWorkDialogClick(ClassificationCode o, String work);
+  void onDetailWorkDialogClick(ClassificationSelectableItem item);
 
-  void onProjectDialogClick(Project o);
+  void onProjectDialogClick(ProjectSelectableItem item);
 
   void onDestroy();
 

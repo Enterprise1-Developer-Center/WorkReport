@@ -14,13 +14,13 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
+import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.network.NetworkHelper;
-import kr.co.e1.workreport.project.vo.Project;
+import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -113,7 +113,6 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (type == ReportType.PROJECT) {
       view.showProjectChoiceDialog(item.getCode());
     }
-
   }
 
   private void dateHandling(ReportEntry entry) {
@@ -173,13 +172,13 @@ public class MainPresenterImpl implements MainPresenter {
     });
   }
 
-  @DebugLog @Override public void onDetailWorkDialogClick(ClassificationCode o, String work) {
-    adapterDataModel.edit(ReportType.DETAIL_WORK, o, work);
+  @DebugLog @Override public void onDetailWorkDialogClick(ClassificationSelectableItem item) {
+    adapterDataModel.edit(ReportType.DETAIL_WORK, item.getItem(), item.getWork());
     view.refresh(ReportType.DETAIL_WORK.getPosition());
   }
 
-  @Override public void onProjectDialogClick(Project o) {
-    adapterDataModel.edit(ReportType.PROJECT, o);
+  @Override public void onProjectDialogClick(ProjectSelectableItem item) {
+    adapterDataModel.edit(ReportType.PROJECT, item.getItem());
     view.refresh(ReportType.PROJECT.getPosition());
   }
 

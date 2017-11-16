@@ -25,12 +25,10 @@ import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialog;
-import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseActivity;
-import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.login.LoginFragment;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
@@ -153,12 +151,7 @@ public class MainActivity extends BaseActivity
   @DebugLog @Override public void showClassificationDialog(String code, String work) {
     new ClassificationDialog().setSelectedCode(code)
         .setSelectedWork(work)
-        .setOnDialogClickListener(new OnDialogClickListener<ClassificationSelectableItem>() {
-          @Override public void onDialogClick(ClassificationSelectableItem o) {
-            presenter.onDetailWorkDialogClick(o.getItem(), o.getWork());
-          }
-
-        })
+        .setOnDialogClickListener(o -> presenter.onDetailWorkDialogClick(o))
         .show(getSupportFragmentManager(), ClassificationDialog.class.getSimpleName());
   }
 

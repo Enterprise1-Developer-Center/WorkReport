@@ -13,7 +13,6 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
-import kr.co.e1.workreport.project.vo.Project;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -45,7 +44,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
     presenter.onActivityCreate(savedInstanceState);
   }
 
-  @Accessors(chain = true) @Setter private OnDialogClickListener<Project> onDialogClickListener;
+  @Accessors(chain = true) @Setter private OnDialogClickListener<ProjectSelectableItem> onDialogClickListener;
 
   @Override protected boolean getAttatchRoot() {
     return false;
@@ -74,7 +73,7 @@ public class ProjectDialog extends BaseAlertDialogFragment
   }
 
   @Override public void dismiss(ProjectSelectableItem selectableItem) {
-    onDialogClickListener.onDialogClick(selectableItem.getItem());
+    onDialogClickListener.onDialogClick(selectableItem);
     dismiss();
   }
 

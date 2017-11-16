@@ -10,6 +10,7 @@ import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 
 /**
@@ -20,10 +21,10 @@ public class MainReportAdapter extends BaseRecyclerAdapter
     implements ReportAdapterView, MainAdapterDataModel<ReportEntry> {
 
   private OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener;
-  private OnSaveButtonClickListener<List<ReportEntry>> onSaveButtonClickListener;
+  private OnSaveButtonClickListener<SummaryReportContent> onSaveButtonClickListener;
 
   public MainReportAdapter(OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener,
-      OnSaveButtonClickListener<List<ReportEntry>> onSaveButtonClickListener) {
+      OnSaveButtonClickListener<SummaryReportContent> onSaveButtonClickListener) {
     this.onRecyclerItemClickListener = onRecyclerItemClickListener;
     this.onSaveButtonClickListener = onSaveButtonClickListener;
   }
@@ -98,7 +99,8 @@ public class MainReportAdapter extends BaseRecyclerAdapter
     } else {
       MainSaveViewHolder holder = (MainSaveViewHolder) viewHolder;
       holder.saveButton.setOnClickListener(view -> {
-        onSaveButtonClickListener.onSaveClick(items);
+        SummaryReportContent sContent = new SummaryReportContent(items);
+        onSaveButtonClickListener.onSaveClick(sContent);
       });
     }
   }

@@ -20,7 +20,6 @@ import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import hugo.weaving.DebugLog;
-import java.util.List;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
@@ -33,6 +32,7 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.login.LoginFragment;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.main.adapter.OnSaveButtonClickListener;
+import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.password.PasswordDialog;
 import kr.co.e1.workreport.project.ProjectDialog;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
@@ -42,7 +42,7 @@ import timber.log.Timber;
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
     LoginCommunicationListener, OnRecyclerItemClickListener<ReportEntry>,
-    OnSaveButtonClickListener<List<ReportEntry>> {
+    OnSaveButtonClickListener<SummaryReportContent> {
 
   @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
   @BindView(R.id.navigation_view) NavigationView navigationView;
@@ -211,8 +211,8 @@ public class MainActivity extends BaseActivity
     presenter.onItemClick(item);
   }
 
-  @DebugLog @Override public void onSaveClick(List<ReportEntry> items) {
-    presenter.onSaveClick(items);
+  @DebugLog @Override public void onSaveClick(SummaryReportContent content) {
+    presenter.onSaveClick(content);
   }
 
   @Override protected void onDestroy() {

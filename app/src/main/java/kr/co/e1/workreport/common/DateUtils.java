@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.common;
 
-import hugo.weaving.DebugLog;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,7 +12,7 @@ import javax.annotation.Nonnull;
  */
 
 public class DateUtils {
-  @DebugLog public static String getIncludeDayOfWeek(@Nonnull String date) {
+  public static String getIncludeDayOfWeek(@Nonnull String date) {
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd (EE)");
     Calendar calendar = Calendar.getInstance();
     int year = Integer.parseInt(date.split("-")[0]);
@@ -24,7 +23,19 @@ public class DateUtils {
     return dateFormat.format(d);
   }
 
-  @DebugLog public static String getOnlyDateString(@Nonnull String content) {
+  public static String getExcludeDayOfWeek(@Nonnull String date) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    Calendar calendar = Calendar.getInstance();
+
+    int year = Integer.parseInt(date.split("-")[0]);
+    int month = Integer.parseInt(date.split("-")[1]) - 1;
+    int day = Integer.parseInt(date.split("-")[2]);
+    calendar.set(year, month, day);
+    Date d = new Date(calendar.getTimeInMillis());
+    return dateFormat.format(d);
+  }
+
+  public static String getOnlyDateString(@Nonnull String content) {
     if (content.indexOf(" ") != -1) {
       int index = content.indexOf(" ");
       return content.substring(0, index).trim();
@@ -33,7 +44,7 @@ public class DateUtils {
     }
   }
 
-  @DebugLog public static Map<String, Integer> getYearMonthDayMap(@Nonnull String date) {
+  public static Map<String, Integer> getYearMonthDayMap(@Nonnull String date) {
     Map<String, Integer> map = new HashMap<>();
     map.put("year", Integer.parseInt(date.split("-")[0]));
     map.put("month", Integer.parseInt(date.split("-")[1]));
@@ -41,7 +52,7 @@ public class DateUtils {
     return map;
   }
 
-  @DebugLog public static int getMonthOfYear(int month) {
+  public static int getMonthOfYear(int month) {
     return month - 1;
   }
 

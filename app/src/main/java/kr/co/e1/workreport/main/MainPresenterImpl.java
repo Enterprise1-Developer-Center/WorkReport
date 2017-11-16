@@ -1,10 +1,10 @@
 package kr.co.e1.workreport.main;
 
 import android.os.Bundle;
-import android.os.Handler;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,10 +17,14 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
+import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
+import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -91,12 +95,26 @@ public class MainPresenterImpl implements MainPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
   }
 
-  @Override public void onSaveClick(List<ReportEntry> items) {
+  @Override public void onSaveClick(SummaryReportContent content) {
     view.showProgress();
-    new Handler().postDelayed(() -> {
-      view.showMessage(R.string.save_completed);
-      view.hideProgress();
-    }, 1000);
+    Timber.d("SummaryContent = " + content);
+    compositeDisposable.add(
+        network.updateWorkingDay(content.getMajorCode(), content.getSmallCode(), content.getWork(),
+            content.getProjectCode(), content.getStartTime(), content.getEndTime(),
+            content.getUpdateTime(), content.getUserId(), content.getDate())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Consumer<WResult<ReportContent>>() {
+              @DebugLog @Override public void accept(WResult<ReportContent> reportContentWResult)
+                  throws Exception {
+
+                view.hideProgress();
+              }
+            }, new Consumer<Throwable>() {
+              @DebugLog @Override public void accept(Throwable throwable) throws Exception {
+                view.hideProgress();
+              }
+            }));
   }
 
   @DebugLog @Override public void onItemClick(ReportEntry item) {

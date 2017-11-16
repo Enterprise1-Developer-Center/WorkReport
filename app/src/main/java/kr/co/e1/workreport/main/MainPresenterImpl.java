@@ -104,8 +104,10 @@ public class MainPresenterImpl implements MainPresenter {
             .subscribe(result -> {
               if (result.getResult() == WResult.RESULT_SUCCESS) {
                 adapterDataModel.clear();
+                view.refresh();
                 adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
                 view.refresh();
+                view.showMessage(R.string.save_completed);
               } else if (result.getResult() == WResult.RESULT_FAILURE) {
                 view.showMessage(result.getMsg());
               } else {

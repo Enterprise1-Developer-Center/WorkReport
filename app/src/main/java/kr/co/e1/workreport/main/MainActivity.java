@@ -25,11 +25,11 @@ import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialog;
 import kr.co.e1.workreport.common.Constants;
-import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.login.LoginFragment;
+import kr.co.e1.workreport.main.adapter.MainAdapterView;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.main.adapter.OnSaveButtonClickListener;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @Inject MainReportAdapter adapter;
-  @Inject ReportAdapterView adapterView;
+  @Inject MainAdapterView adapterView;
   @Inject MainPresenter presenter;
 
   @Override protected void onCreated(Bundle savedInstanceState) {

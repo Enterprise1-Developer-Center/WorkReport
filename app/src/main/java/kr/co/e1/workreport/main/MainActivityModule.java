@@ -4,9 +4,9 @@ import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialogComponent;
 import kr.co.e1.workreport.common.Constants;
-import kr.co.e1.workreport.main.adapter.MainReportAdapter;
-import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.login.LoginFragmentComponent;
+import kr.co.e1.workreport.main.adapter.MainAdapterView;
+import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.password.PasswordDialogComponent;
 import kr.co.e1.workreport.project.ProjectDialogComponent;
 
@@ -30,7 +30,7 @@ import kr.co.e1.workreport.project.ProjectDialogComponent;
     return new MainReportAdapter(activity, activity);
   }
 
-  @Provides ReportAdapterView provideBaseAdapterView(MainActivity activity) {
+  @Provides MainAdapterView provideBaseAdapterView(MainActivity activity) {
     return activity.adapter;
   }
 

@@ -6,7 +6,6 @@ import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.ReportType;
-import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
@@ -18,7 +17,7 @@ import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
  */
 
 public class MainReportAdapter extends BaseRecyclerAdapter
-    implements ReportAdapterView, MainAdapterDataModel<ReportEntry> {
+    implements MainAdapterView, MainAdapterDataModel<ReportEntry> {
   private final static int ITEM_DEFAULT = 0;
   private final static int ITEM_SAVE = 1;
   private OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener;
@@ -115,9 +114,7 @@ public class MainReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void refresh() {
-    for (int i = 0; i < items.size(); i++) {
-      notifyItemChanged(i);
-    }
+    notifyItemRangeChanged(0, getSize());
   }
 
   @Override public void edit(ReportType type, String contents) {

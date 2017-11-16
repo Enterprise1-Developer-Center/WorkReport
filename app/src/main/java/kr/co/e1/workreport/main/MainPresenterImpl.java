@@ -109,9 +109,9 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (type == ReportType.END_TIME) {
       endTimeHandling(item);
     } else if (type == ReportType.DETAIL_WORK) {
-      view.showClassificationDialog(item.getCode(), item.getContents());
+      view.showClassificationDialog(item.getSmallCode(), item.getContents());
     } else if (type == ReportType.PROJECT) {
-      view.showProjectChoiceDialog(item.getCode());
+      view.showProjectChoiceDialog(item.getProjectCode());
     }
   }
 
@@ -173,12 +173,12 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @DebugLog @Override public void onDetailWorkDialogClick(ClassificationSelectableItem item) {
-    adapterDataModel.edit(ReportType.DETAIL_WORK, item.getItem(), item.getWork());
+    adapterDataModel.edit(ReportType.DETAIL_WORK, item);
     view.refresh(ReportType.DETAIL_WORK.getPosition());
   }
 
   @Override public void onProjectDialogClick(ProjectSelectableItem item) {
-    adapterDataModel.edit(ReportType.PROJECT, item.getItem());
+    adapterDataModel.edit(ReportType.PROJECT, item);
     view.refresh(ReportType.PROJECT.getPosition());
   }
 

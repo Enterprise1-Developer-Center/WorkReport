@@ -4,9 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
-import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
-import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 
 /**
  * Created by jaeho on 2017. 10. 19
@@ -19,7 +17,7 @@ import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
   }
 
   @Provides ProjectDialogAdapter provideProjectDialogAdapter(ProjectDialog dialog) {
-    return new ProjectDialogAdapter().setSelectedCode(dialog.selectedCode);
+    return new ProjectDialogAdapter().setSelectedProjectCode(dialog.selectredProjectCode);
   }
 
   @Provides ProjectDialogPresenter provideProjectDialogPresenter(ProjectDialogPresenter.View view,

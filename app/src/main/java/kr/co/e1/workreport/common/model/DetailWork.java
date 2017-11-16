@@ -9,5 +9,5 @@ import lombok.Getter;
 
 @Getter public class DetailWork {
   @SerializedName("DETAIL") private String detail;
-  @SerializedName("MCLS_CD") private String code;
+  @SerializedName("MCLS_CD") private String smallCode;
 }

@@ -15,7 +15,9 @@ import lombok.experimental.Accessors;
 @ToString @Data @Accessors(chain = true) public class ReportEntry {
   private ReportType type;
   private String contents;
-  private String code = "0";
+  private String projectCode = "0";
+  private String smallCode = "0";
+  private String majorCode = "0";
 
   public static List<ReportEntry> createReportEntrys(ReportContent content) {
     final List<ReportEntry> entries = new ArrayList<>();
@@ -34,9 +36,13 @@ import lombok.experimental.Accessors;
     entries.add(
         new ReportEntry().setType(ReportType.WORKING_TIME).setContents(content.getExtraTime()));
 
-    entries.add(new ReportEntry().setType(ReportType.DETAIL_WORK).setContents(content.getDetailWork().getDetail()).setCode(content.getDetailWork().getCode()));
+    entries.add(new ReportEntry().setType(ReportType.DETAIL_WORK)
+        .setContents(content.getDetailWork().getDetail())
+        .setSmallCode(content.getDetailWork().getSmallCode()));
 
-    entries.add(new ReportEntry().setType(ReportType.PROJECT).setContents(content.getProjects().getName()).setCode(content.getProjects().getCode()));
+    entries.add(new ReportEntry().setType(ReportType.PROJECT)
+        .setContents(content.getProjects().getProjectName())
+        .setSmallCode(content.getProjects().getProjectCode()));
 
     entries.add(
         new ReportEntry().setType(ReportType.MODIFIED_TIME).setContents(content.getUpdTime()));

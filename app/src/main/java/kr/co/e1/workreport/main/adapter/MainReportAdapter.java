@@ -4,13 +4,13 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
+import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
-import kr.co.e1.workreport.project.vo.Project;
+import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 
 /**
  * Created by jaeho on 2017. 11. 10
@@ -91,7 +91,7 @@ public class MainReportAdapter extends BaseRecyclerAdapter
       holder.defaultSetting(entry, onRecyclerItemClickListener);
       holder.iconImageView.setImageResource(entry.getType().getResId());
       if (entry.getType() == ReportType.DETAIL_WORK) {
-        holder.contentsTextView.setText(entry.getCode() + " / " + entry.getContents());
+        holder.contentsTextView.setText(entry.getSmallCode() + " / " + entry.getContents());
       } else {
         holder.contentsTextView.setText(entry.getContents());
       }
@@ -121,11 +121,16 @@ public class MainReportAdapter extends BaseRecyclerAdapter
     items.get(type.getPosition()).setContents(contents);
   }
 
-  @Override public void edit(ReportType type, Project o) {
-    items.get(type.getPosition()).setContents(o.getName()).setCode(o.getCode());
+  @Override public void edit(ReportType type, ProjectSelectableItem item) {
+    items.get(type.getPosition())
+        .setContents(item.getItem().getProjectName())
+        .setProjectCode(item.getItem().getProjectCode());
   }
 
-  @Override public void edit(ReportType type, ClassificationCode code, String work) {
-    items.get(type.getPosition()).setContents(work).setCode(code.getSmallClassCode());
+  @Override public void edit(ReportType type, ClassificationSelectableItem item) {
+    items.get(type.getPosition())
+        .setContents(item.getWork())
+        .setMajorCode(item.getItem().getMajorClassCode())
+        .setSmallCode(item.getItem().getSmallClassCode());
   }
 }

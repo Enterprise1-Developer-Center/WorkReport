@@ -9,8 +9,8 @@ import lombok.Getter;
 
 @Getter public class Projects {
   @SerializedName("PROJ_CD")
-  private String code;
+  private String projectCode;
   @SerializedName("PROJ_NM")
-  private String name;
+  private String projectName;
 
 }

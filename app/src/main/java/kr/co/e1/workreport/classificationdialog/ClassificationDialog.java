@@ -36,7 +36,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
 
   @Accessors(chain = true) @Setter private OnDialogClickListener<ClassificationSelectableItem>
       onDialogClickListener;
-  @Accessors(chain = true) @Setter String selectedCode;
+  @Accessors(chain = true) @Setter String selectedSmallCode;
   @Accessors(chain = true) @Setter String selectedWork;
 
   @Override protected boolean isNegativeButton() {

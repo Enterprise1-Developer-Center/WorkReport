@@ -4,7 +4,6 @@ import android.os.Bundle;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,7 +16,6 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
-import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
@@ -103,22 +101,20 @@ public class MainPresenterImpl implements MainPresenter {
             content.getUpdateTime(), content.getUserId(), content.getDate())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Consumer<WResult<ReportContent>>() {
-              @DebugLog @Override public void accept(WResult<ReportContent> result)
-                  throws Exception {
-                if (result.getResult() == WResult.RESULT_SUCCESS) {
-                  adapterDataModel.clear();
-                  adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
-                } else {
-                  view.showMessage(R.string.error_server_error);
-                }
-                view.hideProgress();
-              }
-            }, new Consumer<Throwable>() {
-              @DebugLog @Override public void accept(Throwable throwable) throws Exception {
-                view.hideProgress();
+            .subscribe(result -> {
+              if (result.getResult() == WResult.RESULT_SUCCESS) {
+                adapterDataModel.clear();
+                adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
+                view.refresh();
+              } else if (result.getResult() == WResult.RESULT_FAILURE) {
+                view.showMessage(result.getMsg());
+              } else {
                 view.showMessage(R.string.error_server_error);
               }
+              view.hideProgress();
+            }, throwable -> {
+              view.hideProgress();
+              view.showMessage(R.string.error_server_error);
             }));
   }
 

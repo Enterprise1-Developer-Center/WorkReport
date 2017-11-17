@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
@@ -100,11 +101,11 @@ public class MainPresenterImpl implements MainPresenter {
             content.getProjectCode(), content.getStartTime(), content.getEndTime(),
             content.getUpdateTime(), content.getUserId(), content.getDate())
             .subscribeOn(Schedulers.io())
+            .delay(500, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(result -> {
               if (result.getResult() == WResult.RESULT_SUCCESS) {
                 adapterDataModel.clear();
-                view.refresh();
                 adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
                 view.refresh();
                 view.showMessage(R.string.save_completed);

@@ -132,22 +132,6 @@ public class MainActivity extends BaseActivity
     progressBar.setVisibility(View.INVISIBLE);
   }
 
-  @Override public void enableSaveButton() {
-    /*
-    saveButton.setEnabled(true);
-    saveButton.setColorFilter(
-        ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
-    */
-  }
-
-  @Override public void disableSaveButton() {
-    /*
-    saveButton.setEnabled(false);
-    saveButton.setColorFilter(
-        ContextCompat.getColor(getApplicationContext(), R.color.colorIndigo_100));
-    */
-  }
-
   @DebugLog @Override public void showClassificationDialog(String code, String work) {
     new ClassificationDialog().setSelectedSmallCode(code)
         .setSelectedWork(work)

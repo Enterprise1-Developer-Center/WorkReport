@@ -60,10 +60,6 @@ public interface MainPresenter {
 
     void hideProgress();
 
-    void disableSaveButton();
-
-    void enableSaveButton();
-
     void showClassificationDialog(String code, String work);
 
     void showProjectChoiceDialog(String code);

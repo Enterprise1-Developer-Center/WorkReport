@@ -1,9 +1,7 @@
 package kr.co.e1.workreport.main.adapter;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.support.annotation.DrawableRes;
-import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,8 +17,8 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
  */
 
 public class MainReportViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
-  @BindView(R.id.imageview) ImageView iconImageView;
-  @BindView(R.id.textview) TextView contentsTextView;
+  @BindView(R.id.imageview) ImageView imageView;
+  @BindView(R.id.textview) TextView textView;
 
   public MainReportViewHolder(View itemView) {
     super(itemView);
@@ -40,8 +38,10 @@ public class MainReportViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
       case NAME:
       case WORKING_TIME:
       case MODIFIED_TIME:
+        /*
         iconImageView.setImageTintList(ColorStateList.valueOf(
             ContextCompat.getColor(itemView.getContext(), android.R.color.darker_gray)));
+        */
         break;
     }
   }

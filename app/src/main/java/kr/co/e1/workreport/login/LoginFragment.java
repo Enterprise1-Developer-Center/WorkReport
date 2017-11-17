@@ -16,6 +16,7 @@ import butterknife.BindView;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.SystemUtility;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
@@ -69,6 +70,12 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     presenter.onActivityCreate(savedInstanceState);
+
+    if(MyApplication.DEBUG) {
+      idEdittext.setText("jhoh");
+      pwEdittext.setText("1111");
+    }
+
   }
 
   @Override protected boolean getAttatchRoot() {

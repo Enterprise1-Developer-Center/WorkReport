@@ -8,4 +8,5 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 
 public interface MainAdapterView extends BaseAdapterView {
   void refresh(int position);
+  void refreshRemove();
 }

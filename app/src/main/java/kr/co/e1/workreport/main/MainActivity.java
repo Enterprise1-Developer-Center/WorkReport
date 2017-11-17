@@ -154,6 +154,10 @@ public class MainActivity extends BaseActivity
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
 
+  @Override public void refreshRemove() {
+    adapterView.refreshRemove();
+  }
+
   @Override public void setRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);

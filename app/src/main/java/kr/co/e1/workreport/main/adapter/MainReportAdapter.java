@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.main.adapter;
 
+import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +8,12 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportEntry;
+import kr.co.e1.workreport.framework.LayoutUtility;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.project.vo.Project;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 10
@@ -88,13 +91,30 @@ public class MainReportAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof MainReportViewHolder) {
       MainReportViewHolder holder = (MainReportViewHolder) viewHolder;
+      Context context = holder.itemView.getContext();
       ReportEntry entry = items.get(position);
-      holder.defaultSetting(entry, onRecyclerItemClickListener);
-      holder.iconImageView.setImageResource(entry.getType().getResId());
+      holder.imageView.setImageResource(entry.getType().getResId());
       if (entry.getType() == ReportType.DETAIL_WORK) {
-        holder.contentsTextView.setText(entry.getMcls_cd() + " / " + entry.getContents());
+        holder.textView.setText(entry.getMcls_cd() + " / " + entry.getContents());
       } else {
-        holder.contentsTextView.setText(entry.getContents());
+        holder.textView.setText(entry.getContents());
+      }
+
+      ReportType type = entry.getType();
+      if (type == ReportType.DATE
+          || type == ReportType.START_TIME
+          || type == ReportType.END_TIME
+          || type == ReportType.DETAIL_WORK
+          || type == ReportType.PROJECT) {
+        holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
+        holder.itemView.setBackgroundResource(LayoutUtility.getSelectableItemBackground(context));
+        holder.imageView.setImageTintList(
+            LayoutUtility.getColorStateList(context, android.R.color.black));
+      } else {
+        holder.itemView.setOnClickListener(null);
+        holder.itemView.setBackgroundResource(0);
+        holder.imageView.setImageTintList(
+            LayoutUtility.getColorStateList(context, android.R.color.darker_gray));
       }
     } else {
       MainSaveViewHolder holder = (MainSaveViewHolder) viewHolder;
@@ -111,6 +131,10 @@ public class MainReportAdapter extends BaseRecyclerAdapter
 
   @Override public void refresh(int position) {
     notifyItemChanged(position);
+  }
+
+  @Override public void refreshRemove() {
+    notifyItemRangeRemoved(0, getSize());
   }
 
   @Override public void refresh() {

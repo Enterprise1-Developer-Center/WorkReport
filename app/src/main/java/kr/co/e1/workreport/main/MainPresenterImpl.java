@@ -100,6 +100,8 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void onSaveClick(SummaryReportContent c) {
     view.showProgress();
+    view.refreshRemove();
+    adapterDataModel.clear();
     compositeDisposable.add(
         network.updateWorkingDay(c.getLcls_cd(), c.getMcls_cd(), c.getDetail(), c.getProj_cd(),
             c.getS_time(), c.getE_time(), c.getUpd_time(), c.getUser_id(), c.getWork_ymd())
@@ -109,7 +111,7 @@ public class MainPresenterImpl implements MainPresenter {
             .subscribe(result -> {
               MainPresenterImpl.this.result = result;
               if (result.getResult() == WResult.RESULT_SUCCESS) {
-                adapterDataModel.clear();
+
                 adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
                 view.refresh();
                 view.showMessage(R.string.save_completed);

@@ -36,6 +36,7 @@ import kr.co.e1.workreport.main.adapter.OnSaveButtonClickListener;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.password.PasswordDialog;
 import kr.co.e1.workreport.project.ProjectDialog;
+import kr.co.e1.workreport.project.vo.Project;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
 import timber.log.Timber;
@@ -139,9 +140,8 @@ public class MainActivity extends BaseActivity
         .show(getSupportFragmentManager(), ClassificationDialog.class.getSimpleName());
   }
 
-  @DebugLog @Override public void showProjectChoiceDialog(String code) {
-
-    new ProjectDialog().setSelectredProjectCode(code)
+  @Override public void showProjectChoiceDialog(Project nowProject) {
+    new ProjectDialog().setNowProject(nowProject)
         .setOnDialogClickListener(o -> presenter.onProjectDialogClick(o))
         .show(getSupportFragmentManager(), ProjectDialog.class.getSimpleName());
   }

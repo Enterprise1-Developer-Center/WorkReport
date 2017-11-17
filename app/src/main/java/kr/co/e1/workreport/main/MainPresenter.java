@@ -7,7 +7,7 @@ import android.support.annotation.StringRes;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
-import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
+import kr.co.e1.workreport.project.vo.Project;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -28,7 +28,7 @@ public interface MainPresenter {
 
   void onDetailWorkDialogClick(DetailWork detailWork);
 
-  void onProjectDialogClick(ProjectSelectableItem item);
+  void onProjectDialogClick(Project selectedItem);
 
   void onDestroy();
 
@@ -62,7 +62,7 @@ public interface MainPresenter {
 
     void showClassificationDialog(DetailWork detailWork);
 
-    void showProjectChoiceDialog(String code);
+    void showProjectChoiceDialog(Project nowProject);
 
     void showMessage(@StringRes int resId);
 

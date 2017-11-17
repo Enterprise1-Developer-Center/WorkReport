@@ -14,7 +14,7 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
 import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
-import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
+import kr.co.e1.workreport.project.vo.Project;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -28,7 +28,7 @@ public class ProjectDialog extends BaseAlertDialogFragment implements ProjectDia
   @Inject ProjectDialogAdapter adapter;
   @Inject BaseAdapterView adapterView;
   @Inject ProjectDialogPresenter presenter;
-  @Accessors(chain = true) @Setter String selectredProjectCode = "0";
+  @Accessors(chain = true) @Setter Project nowProject;
 
   @Override protected boolean isNegativeButton() {
     return true;
@@ -46,8 +46,7 @@ public class ProjectDialog extends BaseAlertDialogFragment implements ProjectDia
     presenter.onActivityCreate(savedInstanceState);
   }
 
-  @Accessors(chain = true) @Setter private OnDialogClickListener<ProjectSelectableItem>
-      onDialogClickListener;
+  @Accessors(chain = true) @Setter private OnDialogClickListener<Project> onDialogClickListener;
 
   @Override protected boolean getAttatchRoot() {
     return false;
@@ -75,8 +74,8 @@ public class ProjectDialog extends BaseAlertDialogFragment implements ProjectDia
     };
   }
 
-  @Override public void dismiss(ProjectSelectableItem selectableItem) {
-    onDialogClickListener.onDialogClick(selectableItem);
+  @Override public void dismiss(Project selectedItem) {
+    onDialogClickListener.onDialogClick(selectedItem);
     dismiss();
   }
 

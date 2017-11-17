@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.common.model;
 
 import com.google.gson.annotations.SerializedName;
+import kr.co.e1.workreport.project.vo.Project;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -11,7 +12,7 @@ import lombok.ToString;
 @ToString @Getter public class ReportContent {
   @SerializedName("S_TIME") private String sTime;
   @SerializedName("USER_NM") private String userName;
-  @SerializedName("PROJ") private Projects projects;
+  @SerializedName("PROJ") private Project project;
   @SerializedName("USER_ID") private String userId;
   @SerializedName("E_TIME") private String eTime;
   @SerializedName("EXTRA_TIME") private String extraTime;

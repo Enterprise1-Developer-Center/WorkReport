@@ -27,7 +27,7 @@ import lombok.ToString;
     majorCode = items.get(ReportType.DETAIL_WORK.getPosition()).getLcls_cd();
     smallCode = items.get(ReportType.DETAIL_WORK.getPosition()).getMcls_cd();
     work = items.get(ReportType.DETAIL_WORK.getPosition()).getContents();
-    projectCode = items.get(ReportType.PROJECT.getPosition()).getProjectCode();
+    projectCode = items.get(ReportType.PROJECT.getPosition()).getProj_cd();
     startTime = items.get(ReportType.START_TIME.getPosition()).getContents();
     endTime = items.get(ReportType.END_TIME.getPosition()).getContents();
     updateTime = items.get(ReportType.MODIFIED_TIME.getPosition()).getContents();

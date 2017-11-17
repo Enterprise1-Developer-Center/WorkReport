@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 @ToString @Data @Accessors(chain = true) public class ReportEntry {
   private ReportType type;
   private String contents;
-  private String projectCode = "0";
+  private String proj_cd = "0";
   private String mcls_cd = "0";
   private String lcls_cd = "0";
 
@@ -41,8 +41,8 @@ import lombok.experimental.Accessors;
         .setMcls_cd(content.getDetailWork().getMcls_cd()));
 
     entries.add(new ReportEntry().setType(ReportType.PROJECT)
-        .setContents(content.getProjects().getProjectName())
-        .setMcls_cd(content.getProjects().getProjectCode()));
+        .setContents(content.getProject().getProj_nm())
+        .setProj_cd(content.getProject().getProj_cd()));
 
     entries.add(
         new ReportEntry().setType(ReportType.MODIFIED_TIME).setContents(content.getUpdTime()));

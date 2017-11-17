@@ -17,7 +17,7 @@ import kr.co.e1.workreport.project.adapter.ProjectDialogAdapter;
   }
 
   @Provides ProjectDialogAdapter provideProjectDialogAdapter(ProjectDialog dialog) {
-    return new ProjectDialogAdapter().setSelectedProjectCode(dialog.selectredProjectCode);
+    return new ProjectDialogAdapter(dialog.nowProject);
   }
 
   @Provides ProjectDialogPresenter provideProjectDialogPresenter(ProjectDialogPresenter.View view,

@@ -2,7 +2,7 @@ package kr.co.e1.workreport.project;
 
 import android.os.Bundle;
 import android.support.annotation.StringRes;
-import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
+import kr.co.e1.workreport.project.vo.Project;
 
 /**
  * Created by jaeho on 2017. 10. 29
@@ -22,7 +22,7 @@ public interface ProjectDialogPresenter {
 
     void refresh();
 
-    void dismiss(ProjectSelectableItem selectableItem);
+    void dismiss(Project selectableItem);
 
     void showProgress();
 

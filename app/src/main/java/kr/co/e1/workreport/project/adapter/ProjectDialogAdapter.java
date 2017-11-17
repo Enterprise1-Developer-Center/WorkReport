@@ -25,7 +25,11 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
   private ArrayList<Project> items = new ArrayList<>();
   private ArrayList<ProjectSelectableItem> selectableItems = new ArrayList<>();
 
-  @Accessors(chain = true) @Setter private String selectedProjectCode = "0";
+  @Accessors(chain = true) @Setter private Project nowProject;
+
+  public ProjectDialogAdapter(Project nowProject) {
+    this.nowProject = nowProject;
+  }
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new ProjectDialogViewHolder(view);
@@ -40,7 +44,7 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
       ProjectDialogViewHolder holder = (ProjectDialogViewHolder) viewHolder;
       ProjectSelectableItem selectableItem = selectableItems.get(position);
       Project project = selectableItem.getItem();
-      holder.textview.setText(project.getProjectName());
+      holder.textview.setText(project.getProj_nm());
       holder.setOnRecyclerItemClickListener(this);
       holder.setSelectableItem(selectableItem);
       holder.itemView.setBackgroundColor(
@@ -66,16 +70,14 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
 
   @Override public void add(Project item) {
     items.add(item);
-    selectableItems.add(new ProjectSelectableItem(item, false));
   }
 
   @Override public void addAll(List<Project> items) {
     this.items.addAll(items);
     for (int i = 0; i < this.items.size(); i++) {
-      boolean isSelected = false;
       Project p = this.items.get(i);
-      if (p.getProjectCode().equals(selectedProjectCode)) {
-        isSelected = true;
+      boolean isSelected = p.getProj_cd().equals(nowProject.getProj_cd());
+      if (isSelected) {
         prePosition = i;
       }
       selectableItems.add(new ProjectSelectableItem(p, isSelected));
@@ -115,12 +117,12 @@ public class ProjectDialogAdapter extends BaseRecyclerAdapter
     prePosition = selectableItems.indexOf(item);
   }
 
-  @Override public ProjectSelectableItem getSelectedItem() {
+  @Override public Project getSelectedItem() {
     for (ProjectSelectableItem selectableItem : selectableItems) {
       if (selectableItem.isSelected()) {
-        return selectableItem;
+        return selectableItem.getItem();
       }
     }
-    return new ProjectSelectableItem(new Project(), true);
+    return null;
   }
 }

@@ -10,7 +10,7 @@ import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
-import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
+import kr.co.e1.workreport.project.vo.Project;
 
 /**
  * Created by jaeho on 2017. 11. 10
@@ -121,10 +121,8 @@ public class MainReportAdapter extends BaseRecyclerAdapter
     items.get(type.getPosition()).setContents(contents);
   }
 
-  @Override public void edit(ReportType type, ProjectSelectableItem item) {
-    items.get(type.getPosition())
-        .setContents(item.getItem().getProjectName())
-        .setProjectCode(item.getItem().getProjectCode());
+  @Override public void edit(ReportType type, Project o) {
+    items.get(type.getPosition()).setContents(o.getProj_nm()).setProj_cd(o.getProj_cd());
   }
 
   @Override public void edit(ReportType type, DetailWork o) {

@@ -16,8 +16,8 @@ import lombok.experimental.Accessors;
   private ReportType type;
   private String contents;
   private String projectCode = "0";
-  private String smallCode = "0";
-  private String majorCode = "0";
+  private String mcls_cd = "0";
+  private String lcls_cd = "0";
 
   public static List<ReportEntry> createReportEntrys(ReportContent content) {
     final List<ReportEntry> entries = new ArrayList<>();
@@ -38,11 +38,11 @@ import lombok.experimental.Accessors;
 
     entries.add(new ReportEntry().setType(ReportType.DETAIL_WORK)
         .setContents(content.getDetailWork().getDETAIL())
-        .setSmallCode(content.getDetailWork().getMCLS_CD()));
+        .setMcls_cd(content.getDetailWork().getMcls_cd()));
 
     entries.add(new ReportEntry().setType(ReportType.PROJECT)
         .setContents(content.getProjects().getProjectName())
-        .setSmallCode(content.getProjects().getProjectCode()));
+        .setMcls_cd(content.getProjects().getProjectCode()));
 
     entries.add(
         new ReportEntry().setType(ReportType.MODIFIED_TIME).setContents(content.getUpdTime()));

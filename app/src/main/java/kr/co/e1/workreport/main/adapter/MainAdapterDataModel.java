@@ -1,7 +1,7 @@
 package kr.co.e1.workreport.main.adapter;
 
-import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.ReportType;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 
@@ -12,5 +12,5 @@ import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
 public interface MainAdapterDataModel<T> extends BaseAdapterDataModel<T> {
   void edit(ReportType type, String contents);
   void edit(ReportType type, ProjectSelectableItem o);
-  void edit(ReportType type, ClassificationSelectableItem o);
+  void edit(ReportType type, DetailWork o);
 }

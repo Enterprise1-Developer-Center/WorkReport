@@ -14,9 +14,9 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
@@ -131,7 +131,7 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (type == ReportType.END_TIME) {
       endTimeHandling(item);
     } else if (type == ReportType.DETAIL_WORK) {
-      view.showClassificationDialog(item.getSmallCode(), item.getContents());
+      view.showClassificationDialog(item.getMcls_cd(), item.getContents());
     } else if (type == ReportType.PROJECT) {
       view.showProjectChoiceDialog(item.getProjectCode());
     }
@@ -179,8 +179,8 @@ public class MainPresenterImpl implements MainPresenter {
         });
   }
 
-  @DebugLog @Override public void onDetailWorkDialogClick(ClassificationSelectableItem item) {
-    adapterDataModel.edit(ReportType.DETAIL_WORK, item);
+  @DebugLog @Override public void onDetailWorkDialogClick(DetailWork detailWork) {
+    adapterDataModel.edit(ReportType.DETAIL_WORK, detailWork);
     view.refresh(ReportType.DETAIL_WORK.getPosition());
   }
 

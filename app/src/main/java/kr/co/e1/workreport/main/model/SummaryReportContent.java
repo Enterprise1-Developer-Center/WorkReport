@@ -24,8 +24,8 @@ import lombok.ToString;
   private String date;
 
   public SummaryReportContent(List<ReportEntry> items) {
-    majorCode = items.get(ReportType.DETAIL_WORK.getPosition()).getMajorCode();
-    smallCode = items.get(ReportType.DETAIL_WORK.getPosition()).getSmallCode();
+    majorCode = items.get(ReportType.DETAIL_WORK.getPosition()).getLcls_cd();
+    smallCode = items.get(ReportType.DETAIL_WORK.getPosition()).getMcls_cd();
     work = items.get(ReportType.DETAIL_WORK.getPosition()).getContents();
     projectCode = items.get(ReportType.PROJECT.getPosition()).getProjectCode();
     startTime = items.get(ReportType.START_TIME.getPosition()).getContents();

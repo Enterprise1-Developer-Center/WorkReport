@@ -8,5 +8,5 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
  */
 
 public interface ClassAdapterDataModel extends BaseAdapterDataModel<DetailWork> {
-  ClassificationSelectableItem getSelectedItem();
+  DetailWork getSelectedItem();
 }

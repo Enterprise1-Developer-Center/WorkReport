@@ -4,7 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
-import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.project.adapter.ProjectSelectableItem;
@@ -26,7 +26,7 @@ public interface MainPresenter {
 
   void onItemClick(ReportEntry item);
 
-  void onDetailWorkDialogClick(ClassificationSelectableItem item);
+  void onDetailWorkDialogClick(DetailWork detailWork);
 
   void onProjectDialogClick(ProjectSelectableItem item);
 

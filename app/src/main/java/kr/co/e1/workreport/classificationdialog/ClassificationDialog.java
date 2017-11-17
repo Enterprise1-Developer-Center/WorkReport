@@ -12,7 +12,7 @@ import butterknife.BindView;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassificationDialogAdapter;
-import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
@@ -34,7 +34,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   @Inject BaseAdapterView adapterView;
   @Inject ClassificationDialogPresenter presenter;
 
-  @Accessors(chain = true) @Setter private OnDialogClickListener<ClassificationSelectableItem>
+  @Accessors(chain = true) @Setter private OnDialogClickListener<DetailWork>
       onDialogClickListener;
   @Accessors(chain = true) @Setter String selectedSmallCode;
   @Accessors(chain = true) @Setter String selectedWork;
@@ -113,8 +113,8 @@ public class ClassificationDialog extends BaseAlertDialogFragment
     workTextInputEditText.setText(work);
   }
 
-  @Override public void dismiss(ClassificationSelectableItem selectedItem) {
-    onDialogClickListener.onDialogClick(selectedItem);
+  @Override public void dismiss(DetailWork detailWork) {
+    onDialogClickListener.onDialogClick(detailWork);
     dismiss();
   }
 }

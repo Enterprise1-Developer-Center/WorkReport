@@ -20,8 +20,8 @@ public class ClassificationDialogViewHolder extends BaseRecyclerAdapter.BaseView
   @BindView(R.id.description_textview) TextView descriptionTextview;
   @BindView(R.id.recyclerview_item_container) View containerView;
 
-  ClassificationSelectableItem selectableItem;
-  OnRecyclerItemClickListener<ClassificationSelectableItem> onRecyclerItemClickListener;
+  DetailSelectableItem selectableItem;
+  OnRecyclerItemClickListener<DetailSelectableItem> onRecyclerItemClickListener;
 
   public ClassificationDialogViewHolder(View itemView) {
     super(itemView);

@@ -20,10 +20,10 @@ import lombok.experimental.Accessors;
 
 public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     implements ClassAdapterDataModel, BaseAdapterView,
-    OnRecyclerItemClickListener<ClassificationSelectableItem> {
+    OnRecyclerItemClickListener<DetailSelectableItem> {
 
   private ArrayList<DetailWork> items = new ArrayList<>();
-  private ArrayList<ClassificationSelectableItem> selectableItems = new ArrayList<>();
+  private ArrayList<DetailSelectableItem> selectableItems = new ArrayList<>();
 
   @Accessors(chain = true) @Setter private String selectedCode;
 
@@ -39,13 +39,13 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     if (viewHolder instanceof ClassificationDialogViewHolder) {
       ClassificationDialogViewHolder holder = (ClassificationDialogViewHolder) viewHolder;
       Context context = holder.itemView.getContext();
-      ClassificationSelectableItem item = selectableItems.get(position);
+      DetailSelectableItem item = selectableItems.get(position);
       DetailWork classCode = item.getItem();
       holder.selectableItem = selectableItems.get(position);
-      holder.codeTextview.setText(String.valueOf(classCode.getMCLS_CD()));
-      holder.bigClassTextview.setText(classCode.getLCLS_CD());
-      holder.smallClassTextview.setText(classCode.getMCLS_NM());
-      holder.descriptionTextview.setText(classCode.getREMARK());
+      holder.codeTextview.setText(String.valueOf(classCode.getMcls_cd()));
+      holder.bigClassTextview.setText(classCode.getLcls_nm());
+      holder.smallClassTextview.setText(classCode.getMcls_nm());
+      holder.descriptionTextview.setText(classCode.getRemark());
       holder.onRecyclerItemClickListener = this;
       holder.containerView.setBackgroundColor(getBackgroundColor(context, item.isSelected()));
     }
@@ -82,11 +82,11 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     for (int i = 0; i < items.size(); i++) {
       DetailWork item = items.get(i);
       boolean isSelected = false;
-      if (item.getMCLS_CD().equals(selectedCode)) {
+      if (item.getMcls_cd().equals(selectedCode)) {
         isSelected = true;
         prePosition = i;
       }
-      selectableItems.add(new ClassificationSelectableItem(item, isSelected));
+      selectableItems.add(new DetailSelectableItem(item, isSelected));
     }
   }
 
@@ -113,19 +113,18 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
 
   private int prePosition;
 
-  @Override public void onItemClick(ClassificationSelectableItem item) {
+  @Override public void onItemClick(DetailSelectableItem item) {
     selectableItems.get(prePosition).setSelected(false);
     refresh(prePosition);
     prePosition = selectableItems.indexOf(item);
-
   }
 
-  @Override public ClassificationSelectableItem getSelectedItem() {
-    for (ClassificationSelectableItem selectableItem : selectableItems) {
+  @Override public DetailWork getSelectedItem() {
+    for (DetailSelectableItem selectableItem : selectableItems) {
       if (selectableItem.isSelected()) {
-        return selectableItem;
+        return selectableItem.getItem();
       }
     }
-    return new ClassificationSelectableItem(new DetailWork(), true);
+    return null;
   }
 }

@@ -2,7 +2,7 @@ package kr.co.e1.workreport.classificationdialog;
 
 import android.os.Bundle;
 import android.support.annotation.StringRes;
-import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
+import kr.co.e1.workreport.common.model.DetailWork;
 
 /**
  * Created by jaeho on 2017. 10. 24
@@ -27,6 +27,6 @@ public interface ClassificationDialogPresenter {
 
     void showWork(String work);
 
-    void dismiss(ClassificationSelectableItem selectedItem);
+    void dismiss(DetailWork selectedItem);
   }
 }

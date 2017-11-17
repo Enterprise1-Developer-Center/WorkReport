@@ -4,8 +4,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.classificationdialog.adapter.ClassificationSelectableItem;
 import kr.co.e1.workreport.common.ReportType;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
@@ -92,7 +92,7 @@ public class MainReportAdapter extends BaseRecyclerAdapter
       holder.defaultSetting(entry, onRecyclerItemClickListener);
       holder.iconImageView.setImageResource(entry.getType().getResId());
       if (entry.getType() == ReportType.DETAIL_WORK) {
-        holder.contentsTextView.setText(entry.getSmallCode() + " / " + entry.getContents());
+        holder.contentsTextView.setText(entry.getMcls_cd() + " / " + entry.getContents());
       } else {
         holder.contentsTextView.setText(entry.getContents());
       }
@@ -127,10 +127,10 @@ public class MainReportAdapter extends BaseRecyclerAdapter
         .setProjectCode(item.getItem().getProjectCode());
   }
 
-  @Override public void edit(ReportType type, ClassificationSelectableItem item) {
+  @Override public void edit(ReportType type, DetailWork o) {
     items.get(type.getPosition())
-        .setContents(item.getWork())
-        .setMajorCode(item.getItem().getLCLS_CD())
-        .setSmallCode(item.getItem().getMCLS_CD());
+        .setContents(o.getDETAIL())
+        .setLcls_cd(o.getLcls_cd())
+        .setMcls_cd(o.getMcls_cd());
   }
 }

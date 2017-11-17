@@ -60,9 +60,37 @@ public class DateUtils {
     return map;
   }
 
+  /**
+   * @return Map<String, Integer>
+   */
+  public static Map<String, Integer> getTimeMap(@Nonnull String time) {
+    Map<String, Integer> map = new HashMap<>();
+    map.put("hour", Integer.parseInt(time.split(":")[0]));
+    map.put("minute", Integer.parseInt(time.split(":")[1]));
+    return map;
+  }
+  public static Map<String, Integer> convertTimeToMap(@Nonnull String time) {
+    Map<String, Integer> map = new HashMap<>();
+    map.put("hour", Integer.parseInt(time.split(":")[0]));
+    map.put("minute", Integer.parseInt(time.split(":")[1]));
+    return map;
+  }
+
   public static long getTimeInMillis(int year, int month, int day, int hourOfDay, int minute) {
     Calendar cal = Calendar.getInstance();
     cal.set(year, month, day, hourOfDay, minute);
+    return cal.getTimeInMillis();
+  }
+
+  public static long convertTimeToMillis(int hourOfDay, int minute) {
+    Calendar cal = Calendar.getInstance();
+    cal.set(0, 0, 0, hourOfDay, minute);
+    return cal.getTimeInMillis();
+  }
+
+  public static long convertMinuteToMillisecond(int hourOfDay, int minute) {
+    Calendar cal = Calendar.getInstance();
+    cal.set(0, 0, 0, hourOfDay, minute);
     return cal.getTimeInMillis();
   }
 

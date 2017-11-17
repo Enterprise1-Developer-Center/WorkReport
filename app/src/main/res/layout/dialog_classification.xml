@@ -49,6 +49,7 @@
           android:maxLines="1"
           android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
           android:textColorHint="@color/colorAccent"
+          android:importantForAutofill="noExcludeDescendants"
           />
     </android.support.design.widget.TextInputLayout>
   </LinearLayout>

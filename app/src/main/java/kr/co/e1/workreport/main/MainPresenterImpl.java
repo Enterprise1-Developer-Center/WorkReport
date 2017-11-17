@@ -185,11 +185,17 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @DebugLog @Override public void onDetailWorkDialogClick(DetailWork detailWork) {
+    if (result != null) {
+      result.getContent().setMcls(detailWork);
+    }
     adapterDataModel.edit(ReportType.DETAIL_WORK, detailWork);
     view.refresh(ReportType.DETAIL_WORK.getPosition());
   }
 
   @Override public void onProjectDialogClick(Project project) {
+    if (result != null) {
+      result.getContent().setProj(project);
+    }
     adapterDataModel.edit(ReportType.PROJECT, project);
     view.refresh(ReportType.PROJECT.getPosition());
   }

@@ -23,29 +23,29 @@ import lombok.experimental.Accessors;
     final List<ReportEntry> entries = new ArrayList<>();
 
     entries.add(new ReportEntry().setType(ReportType.DATE)
-        .setContents(DateUtils.getIncludeDayOfWeek(content.getDate())));
+        .setContents(DateUtils.getIncludeDayOfWeek(content.getWork_ymd())));
 
-    entries.add(new ReportEntry().setType(ReportType.DEPT).setContents(content.getDeptName()));
+    entries.add(new ReportEntry().setType(ReportType.DEPT).setContents(content.getDept_nm()));
 
-    entries.add(new ReportEntry().setType(ReportType.NAME).setContents(content.getUserName()));
+    entries.add(new ReportEntry().setType(ReportType.NAME).setContents(content.getUser_nm()));
 
-    entries.add(new ReportEntry().setType(ReportType.START_TIME).setContents(content.getSTime()));
+    entries.add(new ReportEntry().setType(ReportType.START_TIME).setContents(content.getS_time()));
 
-    entries.add(new ReportEntry().setType(ReportType.END_TIME).setContents(content.getETime()));
+    entries.add(new ReportEntry().setType(ReportType.END_TIME).setContents(content.getE_time()));
 
     entries.add(
-        new ReportEntry().setType(ReportType.WORKING_TIME).setContents(content.getExtraTime()));
+        new ReportEntry().setType(ReportType.WORKING_TIME).setContents(content.getExtra_time()));
 
     entries.add(new ReportEntry().setType(ReportType.DETAIL_WORK)
-        .setContents(content.getDetailWork().getDetail())
-        .setMcls_cd(content.getDetailWork().getMcls_cd()));
+        .setContents(content.getMcls().getDetail())
+        .setMcls_cd(content.getMcls().getMcls_cd()));
 
     entries.add(new ReportEntry().setType(ReportType.PROJECT)
-        .setContents(content.getProject().getProj_nm())
-        .setProj_cd(content.getProject().getProj_cd()));
+        .setContents(content.getProj().getProj_nm())
+        .setProj_cd(content.getProj().getProj_cd()));
 
     entries.add(
-        new ReportEntry().setType(ReportType.MODIFIED_TIME).setContents(content.getUpdTime()));
+        new ReportEntry().setType(ReportType.MODIFIED_TIME).setContents(content.getUpd_time()));
 
     return entries;
   }

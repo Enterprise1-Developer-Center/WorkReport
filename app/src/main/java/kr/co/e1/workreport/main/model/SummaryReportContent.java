@@ -13,26 +13,26 @@ import lombok.ToString;
  */
 
 @ToString @Getter public class SummaryReportContent {
-  private String majorCode;
-  private String smallCode;
-  private String work;
-  private String projectCode;
-  private String startTime;
-  private String endTime;
-  private String updateTime;
-  private String userId;
-  private String date;
+  private String lcls_cd;
+  private String mcls_cd;
+  private String detail;
+  private String proj_cd;
+  private String s_time;
+  private String e_time;
+  private String upd_time;
+  private String user_id;
+  private String work_ymd;
 
   public SummaryReportContent(List<ReportEntry> items) {
-    majorCode = items.get(ReportType.DETAIL_WORK.getPosition()).getLcls_cd();
-    smallCode = items.get(ReportType.DETAIL_WORK.getPosition()).getMcls_cd();
-    work = items.get(ReportType.DETAIL_WORK.getPosition()).getContents();
-    projectCode = items.get(ReportType.PROJECT.getPosition()).getProj_cd();
-    startTime = items.get(ReportType.START_TIME.getPosition()).getContents();
-    endTime = items.get(ReportType.END_TIME.getPosition()).getContents();
-    updateTime = items.get(ReportType.MODIFIED_TIME.getPosition()).getContents();
-    userId = PreferencesUtils.getUserId();
+    lcls_cd = items.get(ReportType.DETAIL_WORK.getPosition()).getLcls_cd();
+    mcls_cd = items.get(ReportType.DETAIL_WORK.getPosition()).getMcls_cd();
+    detail = items.get(ReportType.DETAIL_WORK.getPosition()).getContents();
+    proj_cd = items.get(ReportType.PROJECT.getPosition()).getProj_cd();
+    s_time = items.get(ReportType.START_TIME.getPosition()).getContents();
+    e_time = items.get(ReportType.END_TIME.getPosition()).getContents();
+    upd_time = items.get(ReportType.MODIFIED_TIME.getPosition()).getContents();
+    user_id = PreferencesUtils.getUserId();
     String dateIncludeDayOfWeek = items.get(ReportType.DATE.getPosition()).getContents();
-    date = DateUtils.getExcludeDayOfWeek(dateIncludeDayOfWeek);
+    work_ymd = DateUtils.getExcludeDayOfWeek(dateIncludeDayOfWeek);
   }
 }

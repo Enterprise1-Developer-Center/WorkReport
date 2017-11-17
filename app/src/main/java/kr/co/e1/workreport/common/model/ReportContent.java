@@ -10,14 +10,14 @@ import lombok.ToString;
  */
 
 @ToString @Getter public class ReportContent {
-  @SerializedName("S_TIME") private String sTime;
-  @SerializedName("USER_NM") private String userName;
-  @SerializedName("PROJ") private Project project;
-  @SerializedName("USER_ID") private String userId;
-  @SerializedName("E_TIME") private String eTime;
-  @SerializedName("EXTRA_TIME") private String extraTime;
-  @SerializedName("DEPT_NM") private String deptName;
-  @SerializedName("WORK_YMD") private String date;
-  @SerializedName("MCLS") private DetailWork detailWork;
-  @SerializedName("UPD_TIME") private String updTime;
+  @SerializedName("S_TIME") private String s_time;
+  @SerializedName("USER_NM") private String user_nm;
+  @SerializedName("PROJ") private Project proj;
+  @SerializedName("USER_ID") private String user_id;
+  @SerializedName("E_TIME") private String e_time;
+  @SerializedName("EXTRA_TIME") private String extra_time;
+  @SerializedName("DEPT_NM") private String dept_nm;
+  @SerializedName("WORK_YMD") private String work_ymd;
+  @SerializedName("MCLS") private DetailWork mcls;
+  @SerializedName("UPD_TIME") private String upd_time;
 }

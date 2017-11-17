@@ -98,12 +98,11 @@ public class MainPresenterImpl implements MainPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
   }
 
-  @Override public void onSaveClick(SummaryReportContent content) {
+  @Override public void onSaveClick(SummaryReportContent c) {
     view.showProgress();
     compositeDisposable.add(
-        network.updateWorkingDay(content.getMajorCode(), content.getSmallCode(), content.getWork(),
-            content.getProjectCode(), content.getStartTime(), content.getEndTime(),
-            content.getUpdateTime(), content.getUserId(), content.getDate())
+        network.updateWorkingDay(c.getLcls_cd(), c.getMcls_cd(), c.getDetail(), c.getProj_cd(),
+            c.getS_time(), c.getE_time(), c.getUpd_time(), c.getUser_id(), c.getWork_ymd())
             .subscribeOn(Schedulers.io())
             .delay(500, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
@@ -135,9 +134,9 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (type == ReportType.END_TIME) {
       endTimeHandling(item);
     } else if (type == ReportType.DETAIL_WORK) {
-      view.showClassificationDialog(result.getContent().getDetailWork());
+      view.showClassificationDialog(result.getContent().getMcls());
     } else if (type == ReportType.PROJECT) {
-      view.showProjectChoiceDialog(result.getContent().getProject());
+      view.showProjectChoiceDialog(result.getContent().getProj());
     }
   }
 

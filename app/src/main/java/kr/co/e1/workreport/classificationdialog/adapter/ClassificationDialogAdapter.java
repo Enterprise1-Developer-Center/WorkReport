@@ -7,7 +7,7 @@ import hugo.weaving.DebugLog;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
@@ -22,7 +22,7 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     implements ClassAdapterDataModel, BaseAdapterView,
     OnRecyclerItemClickListener<ClassificationSelectableItem> {
 
-  private ArrayList<ClassificationCode> items = new ArrayList<>();
+  private ArrayList<DetailWork> items = new ArrayList<>();
   private ArrayList<ClassificationSelectableItem> selectableItems = new ArrayList<>();
 
   @Accessors(chain = true) @Setter private String selectedCode;
@@ -40,12 +40,12 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
       ClassificationDialogViewHolder holder = (ClassificationDialogViewHolder) viewHolder;
       Context context = holder.itemView.getContext();
       ClassificationSelectableItem item = selectableItems.get(position);
-      ClassificationCode classCode = item.getItem();
+      DetailWork classCode = item.getItem();
       holder.selectableItem = selectableItems.get(position);
-      holder.codeTextview.setText(String.valueOf(classCode.getSmallClassCode()));
-      holder.bigClassTextview.setText(classCode.getMajorClassName());
-      holder.smallClassTextview.setText(classCode.getSmallClassName());
-      holder.descriptionTextview.setText(classCode.getClassDesc());
+      holder.codeTextview.setText(String.valueOf(classCode.getMCLS_CD()));
+      holder.bigClassTextview.setText(classCode.getLCLS_CD());
+      holder.smallClassTextview.setText(classCode.getMCLS_NM());
+      holder.descriptionTextview.setText(classCode.getREMARK());
       holder.onRecyclerItemClickListener = this;
       holder.containerView.setBackgroundColor(getBackgroundColor(context, item.isSelected()));
     }
@@ -73,16 +73,16 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     notifyItemChanged(position);
   }
 
-  @Override public void add(ClassificationCode item) {
+  @Override public void add(DetailWork item) {
     items.add(item);
   }
 
-  @DebugLog @Override public void addAll(List<ClassificationCode> items) {
+  @DebugLog @Override public void addAll(List<DetailWork> items) {
     this.items.addAll(items);
     for (int i = 0; i < items.size(); i++) {
-      ClassificationCode item = items.get(i);
+      DetailWork item = items.get(i);
       boolean isSelected = false;
-      if (item.getSmallClassCode().equals(selectedCode)) {
+      if (item.getMCLS_CD().equals(selectedCode)) {
         isSelected = true;
         prePosition = i;
       }
@@ -90,15 +90,15 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     }
   }
 
-  @Override public ClassificationCode remove(int position) {
+  @Override public DetailWork remove(int position) {
     return items.remove(position);
   }
 
-  @Override public ClassificationCode getItem(int position) {
+  @Override public DetailWork getItem(int position) {
     return items.get(position);
   }
 
-  @Override public void add(int index, ClassificationCode item) {
+  @Override public void add(int index, DetailWork item) {
     items.add(index, item);
   }
 
@@ -126,6 +126,6 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
         return selectableItem;
       }
     }
-    return new ClassificationSelectableItem(new ClassificationCode(), true);
+    return new ClassificationSelectableItem(new DetailWork(), true);
   }
 }

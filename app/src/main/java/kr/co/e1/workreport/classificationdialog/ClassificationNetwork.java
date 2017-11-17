@@ -2,8 +2,8 @@ package kr.co.e1.workreport.classificationdialog;
 
 import io.reactivex.Single;
 import java.util.List;
-import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
 import kr.co.e1.workreport.common.PreferencesUtils;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
 
@@ -16,7 +16,7 @@ public class ClassificationNetwork extends NetworkHelper {
     super(baseUrl);
   }
 
-  public Single<WResult<List<ClassificationCode>>> getCode() {
+  public Single<WResult<List<DetailWork>>> getCode() {
     return getWorkReportApi().getCode(PreferencesUtils.getToken());
   }
 }

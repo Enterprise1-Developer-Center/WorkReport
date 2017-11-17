@@ -130,7 +130,7 @@ public class MainReportAdapter extends BaseRecyclerAdapter
   @Override public void edit(ReportType type, ClassificationSelectableItem item) {
     items.get(type.getPosition())
         .setContents(item.getWork())
-        .setMajorCode(item.getItem().getMajorClassCode())
-        .setSmallCode(item.getItem().getSmallClassCode());
+        .setMajorCode(item.getItem().getLCLS_CD())
+        .setSmallCode(item.getItem().getMCLS_CD());
   }
 }

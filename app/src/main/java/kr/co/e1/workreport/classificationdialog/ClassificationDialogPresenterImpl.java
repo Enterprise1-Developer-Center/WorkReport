@@ -10,7 +10,7 @@ import java.util.List;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.adapter.ClassAdapterDataModel;
-import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.network.WResult;
 
 /**
@@ -37,8 +37,8 @@ public class ClassificationDialogPresenterImpl implements ClassificationDialogPr
     compositeDisposable.add(network.getCode()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Consumer<WResult<List<ClassificationCode>>>() {
-          @DebugLog @Override public void accept(WResult<List<ClassificationCode>> result)
+        .subscribe(new Consumer<WResult<List<DetailWork>>>() {
+          @DebugLog @Override public void accept(WResult<List<DetailWork>> result)
               throws Exception {
             if (result.getResult() == WResult.RESULT_SUCCESS) {
               adapterDataModel.addAll(result.getContent());

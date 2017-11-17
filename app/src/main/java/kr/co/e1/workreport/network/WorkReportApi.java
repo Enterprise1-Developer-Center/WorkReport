@@ -3,7 +3,7 @@ package kr.co.e1.workreport.network;
 import io.reactivex.Single;
 import java.util.List;
 import java.util.Map;
-import kr.co.e1.workreport.classificationdialog.vo.ClassificationCode;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.login.model.LoginContent;
 import kr.co.e1.workreport.project.vo.Project;
@@ -30,7 +30,7 @@ public interface WorkReportApi {
   @GET("api/adapters/WorkReportSQL/getWorkingDay") Single<WResult<ReportContent>> getWorkingDay(
       @Header("Authorization") String header, @QueryMap Map<String, String> queryMap);
 
-  @GET("api/adapters/WorkReportSQL/getCode") Single<WResult<List<ClassificationCode>>> getCode(
+  @GET("api/adapters/WorkReportSQL/getCode") Single<WResult<List<DetailWork>>> getCode(
       @Header("Authorization") String header);
 
   @GET("api/adapters/WorkReportSQL/getProjects") Single<WResult<List<Project>>> getProjects(

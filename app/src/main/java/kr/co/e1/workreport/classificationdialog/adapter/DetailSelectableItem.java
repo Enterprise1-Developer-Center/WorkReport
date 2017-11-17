@@ -8,7 +8,7 @@ import kr.co.e1.workreport.framework.adapter.SelectableItem;
  */
 
 public class DetailSelectableItem extends SelectableItem<DetailWork> {
-  public DetailSelectableItem(DetailWork classificationCode, boolean isSelected) {
-    super(classificationCode, isSelected);
+  public DetailSelectableItem(DetailWork detailWork, boolean isSelected) {
+    super(detailWork, isSelected);
   }
 }

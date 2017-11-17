@@ -60,7 +60,7 @@ public interface MainPresenter {
 
     void hideProgress();
 
-    void showClassificationDialog(String code, String work);
+    void showClassificationDialog(DetailWork detailWork);
 
     void showProjectChoiceDialog(String code);
 

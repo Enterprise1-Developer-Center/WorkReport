@@ -10,7 +10,7 @@ import kr.co.e1.workreport.common.model.DetailWork;
 
 public interface ClassificationDialogPresenter {
 
-  void onActivityCreate(Bundle savedInstanceState, String work);
+  void onActivityCreate(Bundle savedInstanceState, DetailWork nowDetailWork);
 
   void onPositiveClick(String work);
 

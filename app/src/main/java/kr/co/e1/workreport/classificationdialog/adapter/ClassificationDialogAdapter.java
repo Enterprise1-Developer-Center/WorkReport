@@ -11,8 +11,6 @@ import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
 /**
  * Created by jaeho on 2017. 10. 24
@@ -24,8 +22,11 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
 
   private ArrayList<DetailWork> items = new ArrayList<>();
   private ArrayList<DetailSelectableItem> selectableItems = new ArrayList<>();
+  private DetailWork nowDetailWork;
 
-  @Accessors(chain = true) @Setter private String selectedCode;
+  public ClassificationDialogAdapter(DetailWork nowDetailWork) {
+    this.nowDetailWork = nowDetailWork;
+  }
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new ClassificationDialogViewHolder(view);
@@ -81,9 +82,8 @@ public class ClassificationDialogAdapter extends BaseRecyclerAdapter
     this.items.addAll(items);
     for (int i = 0; i < items.size(); i++) {
       DetailWork item = items.get(i);
-      boolean isSelected = false;
-      if (item.getMcls_cd().equals(selectedCode)) {
-        isSelected = true;
+      boolean isSelected = item.getMcls_cd().equals(nowDetailWork.getMcls_cd());
+      if (isSelected) {
         prePosition = i;
       }
       selectableItems.add(new DetailSelectableItem(item, isSelected));

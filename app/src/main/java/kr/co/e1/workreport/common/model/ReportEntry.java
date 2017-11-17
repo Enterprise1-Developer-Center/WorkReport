@@ -37,7 +37,7 @@ import lombok.experimental.Accessors;
         new ReportEntry().setType(ReportType.WORKING_TIME).setContents(content.getExtraTime()));
 
     entries.add(new ReportEntry().setType(ReportType.DETAIL_WORK)
-        .setContents(content.getDetailWork().getDETAIL())
+        .setContents(content.getDetailWork().getDetail())
         .setMcls_cd(content.getDetailWork().getMcls_cd()));
 
     entries.add(new ReportEntry().setType(ReportType.PROJECT)

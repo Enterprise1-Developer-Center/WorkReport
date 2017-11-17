@@ -36,9 +36,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
 
   @Accessors(chain = true) @Setter private OnDialogClickListener<DetailWork>
       onDialogClickListener;
-  @Accessors(chain = true) @Setter String selectedSmallCode;
-  @Accessors(chain = true) @Setter String selectedWork;
-
+  @Accessors(chain = true) @Setter DetailWork nowDetailWork;
   @Override protected boolean isNegativeButton() {
     return true;
   }
@@ -52,7 +50,7 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    presenter.onActivityCreate(savedInstanceState, selectedWork);
+    presenter.onActivityCreate(savedInstanceState, nowDetailWork);
   }
 
   @Override protected boolean getAttatchRoot() {

@@ -129,7 +129,7 @@ public class MainReportAdapter extends BaseRecyclerAdapter
 
   @Override public void edit(ReportType type, DetailWork o) {
     items.get(type.getPosition())
-        .setContents(o.getDETAIL())
+        .setContents(o.getDetail())
         .setLcls_cd(o.getLcls_cd())
         .setMcls_cd(o.getMcls_cd());
   }

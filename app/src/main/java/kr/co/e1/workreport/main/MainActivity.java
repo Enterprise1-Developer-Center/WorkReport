@@ -25,6 +25,7 @@ import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.classificationdialog.ClassificationDialog;
 import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
@@ -132,9 +133,8 @@ public class MainActivity extends BaseActivity
     progressBar.setVisibility(View.INVISIBLE);
   }
 
-  @DebugLog @Override public void showClassificationDialog(String code, String work) {
-    new ClassificationDialog().setSelectedSmallCode(code)
-        .setSelectedWork(work)
+  @DebugLog @Override public void showClassificationDialog(DetailWork nowDetailWork) {
+    new ClassificationDialog().setNowDetailWork(nowDetailWork)
         .setOnDialogClickListener(o -> presenter.onDetailWorkDialogClick(o))
         .show(getSupportFragmentManager(), ClassificationDialog.class.getSimpleName());
   }

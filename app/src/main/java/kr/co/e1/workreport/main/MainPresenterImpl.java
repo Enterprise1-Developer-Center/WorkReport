@@ -17,6 +17,7 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.DetailWork;
+import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
@@ -61,6 +62,7 @@ public class MainPresenterImpl implements MainPresenter {
     }
   }
 
+  private static WResult<ReportContent> result;
   @Nonnull private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
   @Override public void onLoginSuccess(String date) {
@@ -69,6 +71,7 @@ public class MainPresenterImpl implements MainPresenter {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
+          MainPresenterImpl.this.result = result;
           if (result.getResult() == RESULT_SUCCESS) {
             List<ReportEntry> items = ReportEntry.createReportEntrys(result.getContent());
             adapterDataModel.addAll(items);
@@ -123,7 +126,6 @@ public class MainPresenterImpl implements MainPresenter {
 
   @DebugLog @Override public void onItemClick(ReportEntry item) {
     ReportType type = item.getType();
-
     if (type == ReportType.DATE) {
       dateHandling(item);
     } else if (type == ReportType.START_TIME) {
@@ -131,7 +133,8 @@ public class MainPresenterImpl implements MainPresenter {
     } else if (type == ReportType.END_TIME) {
       endTimeHandling(item);
     } else if (type == ReportType.DETAIL_WORK) {
-      view.showClassificationDialog(item.getMcls_cd(), item.getContents());
+
+      view.showClassificationDialog(result.getContent().getDetailWork());
     } else if (type == ReportType.PROJECT) {
       view.showProjectChoiceDialog(item.getProjectCode());
     }

@@ -19,7 +19,7 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
   
   @Provides ClassificationDialogAdapter provideClassificationDialogAdapter(
       ClassificationDialog dialog) {
-    return new ClassificationDialogAdapter().setSelectedCode(dialog.selectedSmallCode);
+    return new ClassificationDialogAdapter(dialog.nowDetailWork);
   }
 
   @Provides ClassificationDialogPresenter provideClassificationDialogPresenter(

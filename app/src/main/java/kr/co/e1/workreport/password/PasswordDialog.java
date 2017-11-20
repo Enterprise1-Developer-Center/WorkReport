@@ -100,4 +100,9 @@ public class PasswordDialog extends BaseAlertDialogFragment
   @Override public void hideProgress() {
     progressBar.setVisibility(View.INVISIBLE);
   }
+
+  @Override public void onDetach() {
+    super.onDetach();
+    presenter.onDetach();
+  }
 }

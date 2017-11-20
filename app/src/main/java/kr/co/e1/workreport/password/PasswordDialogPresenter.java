@@ -15,6 +15,8 @@ public interface PasswordDialogPresenter {
 
   void onPositiveClick(String nowPw, String newPw, String newPwConfirm);
 
+  void onDetach();
+
   interface View {
 
     void dismiss();

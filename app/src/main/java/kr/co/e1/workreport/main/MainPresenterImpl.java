@@ -154,7 +154,6 @@ public class MainPresenterImpl implements MainPresenter {
       calendar.set($year, $month, $dayOfMonth);
       Date d = new Date(calendar.getTimeInMillis());
       String date = dateFormat.format(d);
-
       adapterDataModel.edit(ReportType.DATE, date);
       view.refresh(ReportType.DATE.getPosition());
     });

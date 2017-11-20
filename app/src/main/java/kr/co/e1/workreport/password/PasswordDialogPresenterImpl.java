@@ -54,4 +54,8 @@ public class PasswordDialogPresenterImpl implements PasswordDialogPresenter {
           view.hideProgress();
         }));
   }
+
+  @Override public void onDetach() {
+    compositeDisposable.clear();
+  }
 }

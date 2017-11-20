@@ -22,7 +22,6 @@ import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.project.vo.Project;
-import timber.log.Timber;
 
 import static kr.co.e1.workreport.network.WResult.RESULT_SUCCESS;
 
@@ -70,6 +69,7 @@ public class MainPresenterImpl implements MainPresenter {
     view.showProgress();
     compositeDisposable.add(network.getWorkingDay(date)
         .subscribeOn(Schedulers.io())
+        .delay(500, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
           MainPresenterImpl.this.result = result;
@@ -111,7 +111,6 @@ public class MainPresenterImpl implements MainPresenter {
             .subscribe(result -> {
               MainPresenterImpl.this.result = result;
               if (result.getResult() == WResult.RESULT_SUCCESS) {
-
                 adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
                 view.refresh();
                 view.showMessage(R.string.save_completed);
@@ -142,20 +141,44 @@ public class MainPresenterImpl implements MainPresenter {
     }
   }
 
-  private void dateHandling(ReportEntry entry) {
-    String contents = entry.getContents();
-    Map<String, Integer> map = DateUtils.getYearMonthDayMap(DateUtils.getOnlyDateString(contents));
-    int year = map.get("year");
-    int month = DateUtils.getMonthOfYear(map.get("month"));
-    int day = map.get("day");
+  private void dateHandling(final ReportEntry entry) {
+    final String contents = entry.getContents();
+    final Map<String, Integer> map = DateUtils.YmdMap(contents.trim());
+    final int year = map.get("year");
+    final int month = DateUtils.getMonthOfYear(map.get("month"));
+    final int day = map.get("day");
     view.showDatePickerDialog(year, month, day, ($datePicker, $year, $month, $dayOfMonth) -> {
       Calendar calendar = Calendar.getInstance();
       calendar.set($year, $month, $dayOfMonth);
       Date date = new Date(calendar.getTimeInMillis());
-      adapterDataModel.edit(ReportType.DATE, DateUtils.getConvertoFormat(date, "yyyy-MM-dd"));
-      view.refresh(ReportType.DATE.getPosition());
-      Timber.d("date contents = " + adapterDataModel.getItem(ReportType.DATE.getPosition())
-          .getContents());
+
+      view.refreshRemove();
+      adapterDataModel.clear();
+
+      compositeDisposable.add(network.getWorkingDay(DateUtils.getConvertoFormat(date, "yyyy-MM-dd"))
+          .subscribeOn(Schedulers.io())
+          .delay(500, TimeUnit.MILLISECONDS)
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(result -> {
+            MainPresenterImpl.this.result = result;
+            if (result.getResult() == RESULT_SUCCESS) {
+              List<ReportEntry> items = ReportEntry.createReportEntrys(result.getContent());
+              adapterDataModel.addAll(items);
+              view.refresh();
+            } else {
+              view.showMessage(result.getMsg());
+              adapterDataModel.clear();
+              onLoginSuccess(entry.getContents());
+            }
+            view.hideProgress();
+          }, throwable -> {
+            view.refresh();
+            view.hideProgress();
+            view.showMessage(R.string.error_server_error);
+          }));
+
+      //adapterDataModel.edit(ReportType.DATE, DateUtils.getConvertoFormat(date, "yyyy-MM-dd"));
+      //view.refresh(ReportType.DATE.getPosition());
     });
   }
 

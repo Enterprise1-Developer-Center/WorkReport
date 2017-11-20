@@ -23,7 +23,7 @@ import lombok.experimental.Accessors;
     final List<ReportEntry> entries = new ArrayList<>();
 
     entries.add(new ReportEntry().setType(ReportType.DATE)
-        .setContents(DateUtils.getIncludeDayOfWeek(content.getWork_ymd())));
+        .setContents(content.getWork_ymd()));
 
     entries.add(new ReportEntry().setType(ReportType.DEPT).setContents(content.getDept_nm()));
 

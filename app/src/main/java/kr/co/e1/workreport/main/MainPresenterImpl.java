@@ -5,7 +5,6 @@ import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +22,7 @@ import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.project.vo.Project;
+import timber.log.Timber;
 
 import static kr.co.e1.workreport.network.WResult.RESULT_SUCCESS;
 
@@ -149,13 +149,13 @@ public class MainPresenterImpl implements MainPresenter {
     int month = DateUtils.getMonthOfYear(map.get("month"));
     int day = map.get("day");
     view.showDatePickerDialog(year, month, day, ($datePicker, $year, $month, $dayOfMonth) -> {
-      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd (EE)");
       Calendar calendar = Calendar.getInstance();
       calendar.set($year, $month, $dayOfMonth);
-      Date d = new Date(calendar.getTimeInMillis());
-      String date = dateFormat.format(d);
-      adapterDataModel.edit(ReportType.DATE, date);
+      Date date = new Date(calendar.getTimeInMillis());
+      adapterDataModel.edit(ReportType.DATE, DateUtils.getConvertoFormat(date, "yyyy-MM-dd"));
       view.refresh(ReportType.DATE.getPosition());
+      Timber.d("date contents = " + adapterDataModel.getItem(ReportType.DATE.getPosition())
+          .getContents());
     });
   }
 

@@ -5,6 +5,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportEntry;
@@ -13,7 +14,6 @@ import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.project.vo.Project;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 10
@@ -96,6 +96,10 @@ public class MainReportAdapter extends BaseRecyclerAdapter
       holder.imageView.setImageResource(entry.getType().getResId());
       if (entry.getType() == ReportType.DETAIL_WORK) {
         holder.textView.setText(entry.getMcls_cd() + " / " + entry.getContents());
+      } else if (entry.getType() == ReportType.DATE) {
+        String date = DateUtils.getIncludeDayOfWeek(entry.getContents());
+        //String date = (entry.getContents());
+        holder.textView.setText(date);
       } else {
         holder.textView.setText(entry.getContents());
       }

@@ -38,6 +38,7 @@
           android:imeOptions="actionNext"
           android:inputType="textAutoComplete"
           android:maxLines="1"
+          android:importantForAutofill="noExcludeDescendants"
           />
     </android.support.design.widget.TextInputLayout>
 
@@ -58,6 +59,7 @@
           android:imeOptions="actionSend"
           android:inputType="textPassword"
           android:maxLines="1"
+          android:importantForAutofill="noExcludeDescendants"
           />
     </android.support.design.widget.TextInputLayout>
   </LinearLayout>

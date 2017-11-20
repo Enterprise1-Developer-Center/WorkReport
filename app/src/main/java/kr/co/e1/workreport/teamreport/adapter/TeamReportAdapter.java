@@ -34,12 +34,11 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof TeamReportViewHolder) {
       TeamReportViewHolder holder = (TeamReportViewHolder) viewHolder;
-      TeamReportContent t = items.get(position);
-      holder.setTeamReport(t);
-      holder.nameTextView.setText(t.getName());
-      final String summary = t.getProj_nm() + " / " + t.getDetail();
+      TeamReportContent item = items.get(position);
+      holder.nameTextView.setText(item.getName());
+      final String summary = item.getProj_nm() + " / " + item.getDetail();
       holder.summaryTextView.setText(summary);
-      holder.setOnRecyclerItemClickListener(onRecyclerItemClickListener);
+      holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(item));
     }
   }
 

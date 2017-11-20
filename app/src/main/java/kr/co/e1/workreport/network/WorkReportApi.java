@@ -43,4 +43,12 @@ public interface WorkReportApi {
       @Field("S_TIME") String startTime, @Field("E_TIME") String endTime,
       @Field("UPD_TIME") String updateTime, @Field("USER_ID") String userId,
       @Field("date") String date);
+
+  /**
+   * @param header Token
+   */
+  @FormUrlEncoded @POST("api/adapters/WorkReportSQL/changePwd") Single<WResult> changePwd(
+      @Header("Authorization") String header, @Field("userId") String userId,
+      @Field("curPwd") String nowPw, @Field("newPwd") String newPw,
+      @Field("newPwdConfirm") String newPwConfirm);
 }

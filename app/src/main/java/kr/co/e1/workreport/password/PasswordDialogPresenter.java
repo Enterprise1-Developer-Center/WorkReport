@@ -13,7 +13,7 @@ public interface PasswordDialogPresenter {
 
   void onRefresh();
 
-  void onPositiveClick();
+  void onPositiveClick(String nowPw, String newPw, String newPwConfirm);
 
   interface View {
 
@@ -27,7 +27,9 @@ public interface PasswordDialogPresenter {
 
     void setListener();
 
-    void showSnackBar(@StringRes int resId);
-    void showSnackBar(String msg);
+    void showMessage(@StringRes int resId);
+
+    void showMessage(String msg);
+
   }
 }

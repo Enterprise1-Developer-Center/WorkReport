@@ -18,6 +18,10 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 public class PasswordDialog extends BaseAlertDialogFragment
     implements PasswordDialogPresenter.View {
 
+  @BindView(R.id.now_edit_text) TextInputEditText nowPwEditText;
+  @BindView(R.id.new_edit_text) TextInputEditText newPwEditText;
+  @BindView(R.id.new_confirm_edit_text) TextInputEditText newPwConfirmEditText;
+
   @Inject PasswordDialogPresenter presenter;
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
@@ -27,11 +31,11 @@ public class PasswordDialog extends BaseAlertDialogFragment
   @Override public void setListener() {
   }
 
-  @Override public void showSnackBar(int resId) {
+  @Override public void showMessage(int resId) {
     Snackbar.make(contentView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showSnackBar(String msg) {
+  @Override public void showMessage(String msg) {
     Snackbar.make(contentView, msg, Snackbar.LENGTH_SHORT).show();
   }
 
@@ -57,7 +61,9 @@ public class PasswordDialog extends BaseAlertDialogFragment
 
   @Override protected View.OnClickListener onPositiveClickListener() {
     return view -> {
-      presenter.onPositiveClick();
+      presenter.onPositiveClick(nowPwEditText.getText().toString().trim(),
+          newPwEditText.getText().toString().trim(),
+          newPwConfirmEditText.getText().toString().trim());
     };
   }
 
@@ -79,14 +85,10 @@ public class PasswordDialog extends BaseAlertDialogFragment
     return true;
   }
 
-  @BindView(R.id.now_edit_text) TextInputEditText nowTextInputEditText;
-  @BindView(R.id.new_edit_text) TextInputEditText newTextInputEditText;
-  @BindView(R.id.new_confirm_edit_text) TextInputEditText newConfirmTextInputEditText;
-
   @Override public void clear() {
-    nowTextInputEditText.setText("");
-    newTextInputEditText.setText("");
-    newConfirmTextInputEditText.setText("");
+    nowPwEditText.setText("");
+    newPwEditText.setText("");
+    newPwConfirmEditText.setText("");
   }
 
   @BindView(R.id.progress_bar) ProgressBar progressBar;

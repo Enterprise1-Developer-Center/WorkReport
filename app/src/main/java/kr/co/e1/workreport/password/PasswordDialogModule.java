@@ -2,6 +2,7 @@ package kr.co.e1.workreport.password;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.common.Constants;
 
 /**
  * Created by jaeho on 2017. 10. 19
@@ -13,7 +14,12 @@ import dagger.Provides;
     return dialog;
   }
 
-  @Provides PasswordDialogPresenter providePasswordDialogPresenter(PasswordDialogPresenter.View view) {
-    return new PasswordDialogPresenterImpl(view);
+  @Provides PasswordDialogPresenter providePasswordDialogPresenter(
+      PasswordDialogPresenter.View view, PasswordNetwork network) {
+    return new PasswordDialogPresenterImpl(view, network);
+  }
+
+  @Provides PasswordNetwork providePasswordNetwork() {
+    return new PasswordNetwork(Constants.BASE_URL);
   }
 }

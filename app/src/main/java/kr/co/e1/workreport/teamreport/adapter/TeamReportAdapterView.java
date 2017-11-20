@@ -5,5 +5,5 @@ package kr.co.e1.workreport.teamreport.adapter;
  */
 
 public interface TeamReportAdapterView {
-  void refresh(int position);
+  void refresh();
 }

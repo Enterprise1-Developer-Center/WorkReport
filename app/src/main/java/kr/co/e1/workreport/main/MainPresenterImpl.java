@@ -22,6 +22,7 @@ import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.project.vo.Project;
+import timber.log.Timber;
 
 import static kr.co.e1.workreport.network.WResult.RESULT_SUCCESS;
 
@@ -72,6 +73,7 @@ public class MainPresenterImpl implements MainPresenter {
         .delay(500, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
+          Timber.d("result = " + result.toString());
           MainPresenterImpl.this.result = result;
           if (result.getResult() == RESULT_SUCCESS) {
             List<ReportEntry> items = ReportEntry.createReportEntrys(result.getContent());

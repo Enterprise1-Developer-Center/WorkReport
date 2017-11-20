@@ -7,11 +7,13 @@ import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.login.model.LoginContent;
 import kr.co.e1.workreport.project.vo.Project;
+import kr.co.e1.workreport.teamreport.model.TeamReportContent;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 /**
@@ -44,11 +46,11 @@ public interface WorkReportApi {
       @Field("UPD_TIME") String updateTime, @Field("USER_ID") String userId,
       @Field("date") String date);
 
-  /**
-   * @param header Token
-   */
   @FormUrlEncoded @POST("api/adapters/WorkReportSQL/changePwd") Single<WResult> changePwd(
       @Header("Authorization") String header, @Field("userId") String userId,
       @Field("curPwd") String nowPw, @Field("newPwd") String newPw,
       @Field("newPwdConfirm") String newPwConfirm);
+
+  @GET("api/adapters/WorkReportSQL/getSummary") Single<WResult<List<TeamReportContent>>> getSummary(
+      @Header("Authorization") String header, @Query("DEPT_NM") String deptNm);
 }

@@ -44,7 +44,6 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
         .subscribe((TokenResult tokenResult) -> {
 
           PreferencesUtils.setToken(tokenResult.getToken_type(), tokenResult.getAccess_token());
-          PreferencesUtils.setUserId(id);
           Map<String, String> userMap = new HashMap<>();
           userMap.put("userId", id);
           userMap.put("userPw", pw);
@@ -53,6 +52,8 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe(loginResult -> {
+                PreferencesUtils.setUserId(loginResult.getContent().getUserId());
+                PreferencesUtils.setDept(loginResult.getContent().getDeptNm());
                 if (loginResult.getResult() == WResult.RESULT_SUCCESS) {
                   loginListener.onLoginSuccess(loginResult.getContent().getDate());
                   view.dismiss();

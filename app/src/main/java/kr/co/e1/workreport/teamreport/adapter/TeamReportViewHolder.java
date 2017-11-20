@@ -6,7 +6,7 @@ import butterknife.BindView;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
-import kr.co.e1.workreport.teamreport.vo.TeamReport;
+import kr.co.e1.workreport.teamreport.model.TeamReportContent;
 import lombok.Setter;
 
 /**
@@ -17,8 +17,8 @@ public class TeamReportViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
   @BindView(R.id.recyclerview_item_container) View itemContainer;
   @BindView(R.id.name_textview) TextView nameTextView;
   @BindView(R.id.summary_textview) TextView summaryTextView;
-  @Setter private OnRecyclerItemClickListener<TeamReport> onRecyclerItemClickListener;
-  @Setter private TeamReport teamReport;
+  @Setter private OnRecyclerItemClickListener<TeamReportContent> onRecyclerItemClickListener;
+  @Setter private TeamReportContent teamReport;
 
   public TeamReportViewHolder(View itemView) {
     super(itemView);

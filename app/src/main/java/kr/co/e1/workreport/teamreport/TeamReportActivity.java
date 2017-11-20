@@ -19,7 +19,7 @@ import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapterView;
-import kr.co.e1.workreport.teamreport.vo.TeamReport;
+import kr.co.e1.workreport.teamreport.model.TeamReportContent;
 import kr.co.e1.workreport.teamreportdialog.TeamReportDialog;
 
 /**
@@ -27,7 +27,7 @@ import kr.co.e1.workreport.teamreportdialog.TeamReportDialog;
  */
 
 public class TeamReportActivity extends BaseActivity
-    implements TeamReportPresenter.View, OnRecyclerItemClickListener<TeamReport> {
+    implements TeamReportPresenter.View, OnRecyclerItemClickListener<TeamReportContent> {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
@@ -69,8 +69,8 @@ public class TeamReportActivity extends BaseActivity
     recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
   }
 
-  @Override public void refresh(int position) {
-    adapterView.refresh(position);
+  @Override public void refresh() {
+    adapterView.refresh();
   }
 
   @Override public void hideProgress() {
@@ -81,7 +81,7 @@ public class TeamReportActivity extends BaseActivity
     progressBar.setVisibility(View.VISIBLE);
   }
 
-  @DebugLog @Override public void onItemClick(TeamReport item) {
+  @DebugLog @Override public void onItemClick(TeamReportContent item) {
     new TeamReportDialog().show(getSupportFragmentManager(),
         TeamReportDialog.class.getSimpleName());
   }
@@ -90,5 +90,10 @@ public class TeamReportActivity extends BaseActivity
 
   @Override public AndroidInjector<Fragment> supportFragmentInjector() {
     return fragmentDispatchingAndroidInjector;
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    presenter.onDestroy();
   }
 }

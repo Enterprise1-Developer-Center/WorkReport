@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.login.model;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 
 /**
@@ -7,5 +8,7 @@ import lombok.Getter;
  */
 
 public class LoginContent {
-  @Getter private String date;
+  @SerializedName("date")@Getter private String date;
+  @SerializedName("USER_ID") @Getter private String userId;
+  @SerializedName("DEPT_NM") @Getter private String deptNm;
 }

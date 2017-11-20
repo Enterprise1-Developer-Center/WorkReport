@@ -7,17 +7,17 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
-import kr.co.e1.workreport.teamreport.vo.TeamReport;
+import kr.co.e1.workreport.teamreport.model.TeamReportContent;
 
 /**
  * Created by jaeho on 2017. 10. 31
  */
 
 public class TeamReportAdapter extends BaseRecyclerAdapter
-    implements BaseAdapterDataModel<TeamReport>, TeamReportAdapterView {
-  private ArrayList<TeamReport> items = new ArrayList<>();
+    implements BaseAdapterDataModel<TeamReportContent>, TeamReportAdapterView {
+  private ArrayList<TeamReportContent> items = new ArrayList<>();
 
-  private OnRecyclerItemClickListener<TeamReport> onRecyclerItemClickListener;
+  private OnRecyclerItemClickListener<TeamReportContent> onRecyclerItemClickListener;
 
   public TeamReportAdapter(OnRecyclerItemClickListener listener) {
     onRecyclerItemClickListener = listener;
@@ -34,10 +34,11 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof TeamReportViewHolder) {
       TeamReportViewHolder holder = (TeamReportViewHolder) viewHolder;
-      TeamReport t = items.get(position);
+      TeamReportContent t = items.get(position);
       holder.setTeamReport(t);
       holder.nameTextView.setText(t.getName());
-      holder.summaryTextView.setText(t.getSummary());
+      final String summary = t.getProj_nm() + " / " + t.getDetail();
+      holder.summaryTextView.setText(summary);
       holder.setOnRecyclerItemClickListener(onRecyclerItemClickListener);
     }
   }
@@ -46,27 +47,27 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
     return getSize();
   }
 
-  public void refresh(int position) {
-    notifyItemChanged(position);
+  public void refresh() {
+    notifyItemRangeChanged(0, getSize());
   }
 
-  @Override public void add(TeamReport item) {
+  @Override public void add(TeamReportContent item) {
     items.add(item);
   }
 
-  @Override public void addAll(List<TeamReport> items) {
+  @Override public void addAll(List<TeamReportContent> items) {
     this.items.addAll(items);
   }
 
-  @Override public TeamReport remove(int position) {
+  @Override public TeamReportContent remove(int position) {
     return items.remove(position);
   }
 
-  @Override public TeamReport getItem(int position) {
+  @Override public TeamReportContent getItem(int position) {
     return items.get(position);
   }
 
-  @Override public void add(int index, TeamReport item) {
+  @Override public void add(int index, TeamReportContent item) {
     items.add(index, item);
   }
 

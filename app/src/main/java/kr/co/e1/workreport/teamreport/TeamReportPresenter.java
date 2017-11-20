@@ -10,11 +10,13 @@ public interface TeamReportPresenter {
 
   void onCreated(Bundle savedInstanceState);
 
+  void onDestroy();
+
   interface View {
 
     void setRecyclerView();
 
-    void refresh(int position);
+    void refresh();
 
     void hideProgress();
 

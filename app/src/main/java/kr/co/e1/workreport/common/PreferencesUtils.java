@@ -23,4 +23,12 @@ public class PreferencesUtils {
   public static void setUserId(String userId) {
     Prefs.putString("userId", userId);
   }
+
+  public static void setDept(String dept) {
+    Prefs.putString("dept", dept);
+  }
+
+  public static String getDept() {
+    return Prefs.getString("dept", null);
+  }
 }

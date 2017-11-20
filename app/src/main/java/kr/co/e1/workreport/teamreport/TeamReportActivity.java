@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.teamreport;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,6 @@ import android.widget.ProgressBar;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
@@ -81,7 +81,11 @@ public class TeamReportActivity extends BaseActivity
     progressBar.setVisibility(View.VISIBLE);
   }
 
-  @DebugLog @Override public void onItemClick(TeamReportContent item) {
+  @Override public void showMessage(int resId) {
+    Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void onItemClick(TeamReportContent item) {
     new TeamReportDialog().show(getSupportFragmentManager(),
         TeamReportDialog.class.getSimpleName());
   }

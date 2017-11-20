@@ -8,6 +8,8 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -17,11 +19,8 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
     implements BaseAdapterDataModel<TeamReportContent>, TeamReportAdapterView {
   private ArrayList<TeamReportContent> items = new ArrayList<>();
 
-  private OnRecyclerItemClickListener<TeamReportContent> onRecyclerItemClickListener;
-
-  public TeamReportAdapter(OnRecyclerItemClickListener listener) {
-    onRecyclerItemClickListener = listener;
-  }
+  @Accessors(chain = true) @Setter private OnRecyclerItemClickListener<TeamReportContent>
+      onRecyclerItemClickListener;
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new TeamReportViewHolder(view);

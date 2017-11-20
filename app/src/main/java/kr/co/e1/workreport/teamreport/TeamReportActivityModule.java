@@ -22,7 +22,7 @@ import kr.co.e1.workreport.teamreportdialog.TeamReportDialogComponent;
   }
 
   @Provides TeamReportAdapter provideTeamReportAdapter(TeamReportActivity teamReportActivity) {
-    return new TeamReportAdapter(teamReportActivity);
+    return new TeamReportAdapter().setOnRecyclerItemClickListener(teamReportActivity);
   }
 
   @Provides TeamReportAdapterView provideTeamReportAdapterView(

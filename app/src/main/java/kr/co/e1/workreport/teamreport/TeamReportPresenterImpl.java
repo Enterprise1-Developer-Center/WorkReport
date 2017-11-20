@@ -3,9 +3,8 @@ package kr.co.e1.workreport.teamreport;
 import android.os.Bundle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import java.util.List;
+import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
@@ -34,21 +33,17 @@ public class TeamReportPresenterImpl implements TeamReportPresenter {
     compositeDisposable.add(network.getSummary()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Consumer<WResult<List<TeamReportContent>>>() {
-          @Override public void accept(WResult<List<TeamReportContent>> result) throws Exception {
-            if (result.getResult() == WResult.RESULT_SUCCESS) {
-              adapterDataModel.addAll(result.getContent());
-              view.refresh();
-            } else {
-
-            }
-            view.hideProgress();
+        .subscribe(result -> {
+          if (result.getResult() == WResult.RESULT_SUCCESS) {
+            adapterDataModel.addAll(result.getContent());
+            view.refresh();
+          } else {
+            view.showMessage(R.string.error_server_error);
           }
-        }, new Consumer<Throwable>() {
-          @Override public void accept(Throwable throwable) throws Exception {
-
-            view.hideProgress();
-          }
+          view.hideProgress();
+        }, throwable -> {
+          view.showMessage(R.string.error_server_error);
+          view.hideProgress();
         }));
   }
 

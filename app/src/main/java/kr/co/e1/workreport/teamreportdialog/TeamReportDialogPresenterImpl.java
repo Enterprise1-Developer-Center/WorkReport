@@ -39,7 +39,9 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.setRecyclerView();
     view.showProgress();
-
+    req();
+  }
+  private void req() {
     compositeDisposable.add(network.getWorkingDay(PreferencesUtils.getToday(), userId)
         .subscribeOn(Schedulers.io())
         .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
@@ -49,7 +51,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
             adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
             view.refresh();
           } else {
-            view.showMessage(R.string.error_server_error);
+            view.showMessage(result.getMsg());
           }
 
           view.hideProgress();
@@ -57,8 +59,8 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
           view.hideProgress();
           view.showMessage(R.string.error_server_error);
         }));
-  }
 
+  }
   @Override public void onItemClick(ReportEntry item) {
     String date = item.getContents().trim();
     Map<String, Integer> dateMap = DateUtils.getYmdMap(date);
@@ -83,7 +85,9 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
                   adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
                   view.refresh();
                 } else {
-                  view.showMessage(R.string.error_server_error);
+                  view.showMessage(result.getMsg());
+                  adapterDataModel.clear();
+                  req();
                 }
                 view.hideProgress();
               }, throwable -> {

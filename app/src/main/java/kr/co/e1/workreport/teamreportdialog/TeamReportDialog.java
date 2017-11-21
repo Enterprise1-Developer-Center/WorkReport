@@ -109,6 +109,10 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
+  @Override public void showMessage(String msg) {
+    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+  }
+
   @Override public void refresh() {
     adapterView.refresh();
   }

@@ -1,14 +1,10 @@
 package kr.co.e1.workreport.teamreportdialog;
 
 import android.os.Bundle;
-import android.os.Handler;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 
@@ -27,10 +23,13 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
     this.adapterDataModel = adapterDataModel;
   }
 
+
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.setRecyclerView();
-
     view.showProgress();
+
+
+    /*
     new Handler().postDelayed(() -> {
       List<ReportEntry> items = new ArrayList<>();
       items.add(new ReportEntry().setType(ReportType.DATE).setContents("2017-11-10(금)"));
@@ -52,6 +51,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
 
       view.hideProgress();
     }, 1000);
+    */
   }
 
   @Override public void onClick(int id) {

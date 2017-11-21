@@ -10,8 +10,10 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.common.model.ReportEntry;
+import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.teamreportdialog.adapter.TeamDialogAdapterDataModel;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 1
@@ -25,8 +27,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
   private String userId;
 
   TeamReportDialogPresenterImpl(TeamReportDialogPresenter.View view,
-      TeamDialogAdapterDataModel adapterDataModel, TeamReportDialogNetwork network,
-      String userId) {
+      TeamDialogAdapterDataModel adapterDataModel, TeamReportDialogNetwork network, String userId) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     this.network = network;
@@ -41,7 +42,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
 
     compositeDisposable.add(network.getWorkingDay(PreferencesUtils.getToday(), userId)
         .subscribeOn(Schedulers.io())
-        .delay(500, TimeUnit.MILLISECONDS)
+        .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
           if (result.getResult() == WResult.RESULT_SUCCESS) {
@@ -68,8 +69,27 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
 
     view.showDatePickerDialog(year, month, dayOfMonth,
         ($datePicker, $year, $month, $dayOfMonth) -> {
-          //Timber.d("year = " + $year + ", month = " + $month + ", dayOfMonth = " + $dayOfMonth);
-
+          Timber.d("year = " + $year + ", month = " + $month + ", dayOfMonth = " + $dayOfMonth);
+          view.refreshRemove();
+          adapterDataModel.clear();
+          String dateString = DateUtils.getDateString($year, $month, $dayOfMonth, "yyyy-MM-dd");
+          view.showProgress();
+          compositeDisposable.add(network.getWorkingDay(dateString, userId)
+              .subscribeOn(Schedulers.io())
+              .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
+              .observeOn(AndroidSchedulers.mainThread())
+              .subscribe(result -> {
+                if (result.getResult() == WResult.RESULT_SUCCESS) {
+                  adapterDataModel.addAll(ReportEntry.createReportEntrys(result.getContent()));
+                  view.refresh();
+                } else {
+                  view.showMessage(R.string.error_server_error);
+                }
+                view.hideProgress();
+              }, throwable -> {
+                view.showMessage(R.string.error_server_error);
+                view.hideProgress();
+              }));
         });
   }
 

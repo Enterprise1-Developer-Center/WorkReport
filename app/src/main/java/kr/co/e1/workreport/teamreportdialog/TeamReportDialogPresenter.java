@@ -30,5 +30,7 @@ public interface TeamReportDialogPresenter {
     void showMessage(@StringRes int resId);
 
     void refresh();
+
+    void refreshRemove();
   }
 }

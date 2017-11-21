@@ -32,15 +32,6 @@ public class DateUtils {
     }
   }
 
-  public static String getOnlyDateString(@Nonnull String content) {
-    if (content.indexOf(" ") != -1) {
-      int index = content.indexOf(" ");
-      return content.substring(0, index).trim();
-    } else {
-      return content.trim();
-    }
-  }
-
   public static Map<String, Integer> getYmdMap(@Nonnull String date) {
     Map<String, Integer> map = new HashMap<>();
     map.put("year", Integer.parseInt(date.split("-")[0]));
@@ -69,5 +60,12 @@ public class DateUtils {
   public static String getConvertoFormat(Date date, String pattern) {
     SimpleDateFormat format = new SimpleDateFormat(pattern);
     return format.format(date).trim();
+  }
+
+  public static String getDateString(int year, int month, int dayOfMonth, String pattern) {
+    SimpleDateFormat format = new SimpleDateFormat(pattern);
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(year, month, dayOfMonth);
+    return format.format(calendar.getTime());
   }
 }

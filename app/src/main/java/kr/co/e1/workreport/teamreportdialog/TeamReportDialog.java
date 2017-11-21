@@ -113,6 +113,10 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     adapterView.refresh();
   }
 
+  @Override public void refreshRemove() {
+    adapterView.refreshRemove();
+  }
+
   @Override public void onItemClick(ReportEntry item) {
     presenter.onItemClick(item);
   }

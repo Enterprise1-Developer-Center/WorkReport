@@ -13,12 +13,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class NetworkHelper {
-
-  private String baseUrl;
-
+  public final static int DELAY = 500;
   protected final static String confidentialsClient = Credentials.basic("test", "test");
   protected final static String grantType = "client_credentials";
   protected final String scope = "RegisteredClient";
+
+  private String baseUrl;
 
   public NetworkHelper(String baseUrl) {
     this.baseUrl = baseUrl;

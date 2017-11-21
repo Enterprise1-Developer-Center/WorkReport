@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.teamreportdialog;
 
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 
 /**
  * Created by jaeho on 2017. 11. 1
@@ -25,5 +26,9 @@ public interface TeamReportDialogPresenter {
     void setRecyclerView();
 
     void refresh(int position);
+
+    void showMessage(@StringRes int resId);
+
+    void refresh();
   }
 }

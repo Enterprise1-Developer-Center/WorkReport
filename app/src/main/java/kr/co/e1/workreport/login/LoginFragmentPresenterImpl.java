@@ -51,14 +51,15 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
           compositeDisposable.add(network.getLoginResult(userMap)
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
-              .subscribe(loginResult -> {
-                PreferencesUtils.setUserId(loginResult.getContent().getUserId());
-                PreferencesUtils.setDept(loginResult.getContent().getDeptNm());
-                if (loginResult.getResult() == WResult.RESULT_SUCCESS) {
-                  loginListener.onLoginSuccess(loginResult.getContent().getDate());
+              .subscribe(result -> {
+                PreferencesUtils.setUserId(result.getContent().getUserId());
+                PreferencesUtils.setDept(result.getContent().getDeptNm());
+                PreferencesUtils.setToday(result.getContent().getDate());
+                if (result.getResult() == WResult.RESULT_SUCCESS) {
+                  loginListener.onLoginSuccess(result.getContent().getDate());
                   view.dismiss();
                 } else {
-                  view.showMessage(loginResult.getMsg());
+                  view.showMessage(result.getMsg());
                 }
                 view.hideProgress();
               }, throwable -> {

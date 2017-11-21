@@ -13,4 +13,5 @@ import lombok.ToString;
   @SerializedName("PROJ_NM") private String proj_nm;
   @SerializedName("DETAIL") private String detail;
   @SerializedName("MCLS_CD") private String mcls_cd;
+  @SerializedName("USER_ID") private String user_id;
 }

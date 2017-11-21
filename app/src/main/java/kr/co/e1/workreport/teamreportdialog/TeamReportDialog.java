@@ -2,13 +2,13 @@ package kr.co.e1.workreport.teamreportdialog;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import butterknife.BindView;
-import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
@@ -19,6 +19,9 @@ import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.teamreportdialog.adapter.TeamReportAdapter;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import timber.log.Timber;
 
 /**
@@ -33,6 +36,8 @@ public class TeamReportDialog extends BaseAlertDialogFragment
   @Inject TeamReportAdapter adapter;
   @Inject ReportAdapterView adapterView;
   @Inject TeamReportDialogPresenter presenter;
+
+  @Accessors(chain = true) @Getter @Setter private String userId;
 
   @Override protected boolean isNegativeButton() {
     return false;
@@ -111,7 +116,17 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     adapterView.refresh(position);
   }
 
-  @DebugLog @Override public void onItemClick(ReportEntry item) {
+  @BindView(R.id.root_view) View rootView;
+
+  @Override public void showMessage(int resId) {
+    Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void refresh() {
+    adapterView.refresh();
+  }
+
+  @Override public void onItemClick(ReportEntry item) {
 
   }
 }

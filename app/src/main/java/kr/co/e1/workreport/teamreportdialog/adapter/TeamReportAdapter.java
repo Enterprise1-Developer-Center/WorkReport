@@ -93,6 +93,6 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void refresh() {
-    notifyDataSetChanged();
+    notifyItemRangeChanged(0, getSize());
   }
 }

@@ -81,15 +81,17 @@ dependencies {
 
   debugCompile "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
   releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
+
   compile "com.squareup.retrofit2:retrofit:$retrofit_version"
   compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+  compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
   compile "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
   compile "com.squareup.okhttp3:okhttp:$okhttp3_version"
 
   compile "com.pixplicity.easyprefs:library:$easyprefs_version"
 
-  compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-  compile 'jp.wasabeef:recyclerview-animators:2.2.7'
+  compile "jp.wasabeef:recyclerview-animators:$recyclerview_animators"
 
 }
 repositories {

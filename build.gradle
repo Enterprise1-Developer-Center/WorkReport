@@ -9,7 +9,7 @@ buildscript {
     //rxbinding_version = '2.0.0'
     rxjava_version = '2.1.6'
     rxandroid_version = '2.0.1'
-    dagger_version = '2.12'
+    dagger_version = '2.13'
     butterknife_version = '8.8.1'
     mfp_version = '8.0.2017092602'
     support_version = '27.0.0'

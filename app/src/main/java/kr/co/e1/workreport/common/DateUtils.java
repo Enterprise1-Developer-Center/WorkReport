@@ -41,7 +41,7 @@ public class DateUtils {
     }
   }
 
-  public static Map<String, Integer> YmdMap(@Nonnull String date) {
+  public static Map<String, Integer> getYmdMap(@Nonnull String date) {
     Map<String, Integer> map = new HashMap<>();
     map.put("year", Integer.parseInt(date.split("-")[0]));
     map.put("month", Integer.parseInt(date.split("-")[1]));

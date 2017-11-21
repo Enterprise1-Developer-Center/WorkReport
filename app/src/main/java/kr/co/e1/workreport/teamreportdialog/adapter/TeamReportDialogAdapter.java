@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.ReportType;
-import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
@@ -18,12 +16,13 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
  * Created by jaeho on 2017. 11. 10
  */
 
-public class TeamReportAdapter extends BaseRecyclerAdapter
-    implements ReportAdapterView, BaseAdapterDataModel<ReportEntry> {
+public class TeamReportDialogAdapter extends BaseRecyclerAdapter
+    implements TeamDialogAdapterView, TeamDialogAdapterDataModel<ReportEntry> {
 
   private OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener;
 
-  public TeamReportAdapter(OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener) {
+  public TeamReportDialogAdapter(
+      OnRecyclerItemClickListener<ReportEntry> onRecyclerItemClickListener) {
     this.onRecyclerItemClickListener = onRecyclerItemClickListener;
   }
 
@@ -58,7 +57,7 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
-    return new TeamReportViewHolder(view);
+    return new TeamDialogViewHolder(view);
   }
 
   @Override public int getLayoutRes(int viewType) {
@@ -66,8 +65,8 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
-    if (viewHolder instanceof TeamReportViewHolder) {
-      TeamReportViewHolder holder = (TeamReportViewHolder) viewHolder;
+    if (viewHolder instanceof TeamDialogViewHolder) {
+      TeamDialogViewHolder holder = (TeamDialogViewHolder) viewHolder;
       ReportEntry entry = items.get(position);
       holder.iconImageView.setImageResource(entry.getType().getResId());
       holder.contentsTextView.setText(entry.getContents());
@@ -88,11 +87,15 @@ public class TeamReportAdapter extends BaseRecyclerAdapter
     return getSize();
   }
 
-  @Override public void refresh(int position) {
-    notifyItemChanged(position);
-  }
-
   @Override public void refresh() {
     notifyItemRangeChanged(0, getSize());
+  }
+
+  @Override public void refreshRemove() {
+    notifyItemRangeRemoved(0, getSize());
+  }
+
+  @Override public void edit(ReportType type, String content) {
+    this.items.get(type.getPosition()).setContents(content);
   }
 }

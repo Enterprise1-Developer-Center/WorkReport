@@ -11,11 +11,11 @@ import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
  * Created by jaeho on 2017. 11. 10
  */
 
-public class TeamReportViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
+public class TeamDialogViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
   @BindView(R.id.imageview) ImageView iconImageView;
   @BindView(R.id.textview) TextView contentsTextView;
 
-  public TeamReportViewHolder(View itemView) {
+  public TeamDialogViewHolder(View itemView) {
     super(itemView);
   }
 }

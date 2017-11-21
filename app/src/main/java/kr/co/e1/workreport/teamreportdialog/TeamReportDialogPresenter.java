@@ -1,7 +1,9 @@
 package kr.co.e1.workreport.teamreportdialog;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
+import kr.co.e1.workreport.common.model.ReportEntry;
 
 /**
  * Created by jaeho on 2017. 11. 1
@@ -11,21 +13,19 @@ public interface TeamReportDialogPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
-  void onClick(int id);
+  void onItemClick(ReportEntry item);
 
-  void onDateSet(int year, int month, int dayOfMonth);
+  void onDetach();
 
   interface View {
 
-    void showDatePickerDialog();
+    void showDatePickerDialog(int year, int month, int day, DatePickerDialog.OnDateSetListener listener);
 
     void showProgress();
 
     void hideProgress();
 
     void setRecyclerView();
-
-    void refresh(int position);
 
     void showMessage(@StringRes int resId);
 

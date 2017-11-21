@@ -3,8 +3,8 @@ package kr.co.e1.workreport.teamreportdialog;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
-import kr.co.e1.workreport.common.adapter.ReportAdapterView;
-import kr.co.e1.workreport.teamreportdialog.adapter.TeamReportAdapter;
+import kr.co.e1.workreport.teamreportdialog.adapter.TeamDialogAdapterView;
+import kr.co.e1.workreport.teamreportdialog.adapter.TeamReportDialogAdapter;
 
 /**
  * Created by jaeho on 2017. 10. 19
@@ -22,12 +22,12 @@ import kr.co.e1.workreport.teamreportdialog.adapter.TeamReportAdapter;
     return new TeamReportDialogPresenterImpl(view, dialog.adapter, network, dialog.getUserId());
   }
 
-  @Provides ReportAdapterView provideReportAdapterView(TeamReportDialog dialog) {
+  @Provides TeamDialogAdapterView provideReportAdapterView(TeamReportDialog dialog) {
     return dialog.adapter;
   }
 
-  @Provides TeamReportAdapter provideTeamReportAdapter(TeamReportDialog dialog) {
-    return new TeamReportAdapter(dialog);
+  @Provides TeamReportDialogAdapter provideTeamReportAdapter(TeamReportDialog dialog) {
+    return new TeamReportDialogAdapter(dialog);
   }
 
   @Provides TeamReportDialogNetwork provideTeamReportDialogNetwork() {

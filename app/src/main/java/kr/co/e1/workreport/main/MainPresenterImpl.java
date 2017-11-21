@@ -145,7 +145,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   private void dateHandling(final ReportEntry entry) {
     final String contents = entry.getContents();
-    final Map<String, Integer> map = DateUtils.YmdMap(contents.trim());
+    final Map<String, Integer> map = DateUtils.getYmdMap(contents.trim());
     final int year = map.get("year");
     final int month = DateUtils.getMonthOfYear(map.get("month"));
     final int day = map.get("day");

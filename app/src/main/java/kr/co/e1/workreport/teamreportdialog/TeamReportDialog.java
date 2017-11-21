@@ -9,20 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import butterknife.BindView;
-import java.util.Calendar;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
-import kr.co.e1.workreport.common.adapter.ReportAdapterView;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
-import kr.co.e1.workreport.teamreportdialog.adapter.TeamReportAdapter;
+import kr.co.e1.workreport.teamreportdialog.adapter.TeamDialogAdapterView;
+import kr.co.e1.workreport.teamreportdialog.adapter.TeamReportDialogAdapter;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 11. 1
@@ -33,8 +31,8 @@ public class TeamReportDialog extends BaseAlertDialogFragment
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
 
-  @Inject TeamReportAdapter adapter;
-  @Inject ReportAdapterView adapterView;
+  @Inject TeamReportDialogAdapter adapter;
+  @Inject TeamDialogAdapterView adapterView;
   @Inject TeamReportDialogPresenter presenter;
 
   @Accessors(chain = true) @Getter @Setter private String userId;
@@ -68,7 +66,7 @@ public class TeamReportDialog extends BaseAlertDialogFragment
   }
 
   @Override protected boolean isDialogCancelable() {
-    return false;
+    return true;
   }
 
   @Override protected int getTitle() {
@@ -85,16 +83,9 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     return null;
   }
 
-  @Override public void showDatePickerDialog() {
-    Calendar calendar = Calendar.getInstance();
-    int cYear = calendar.get(Calendar.YEAR);
-    int cMonth = calendar.get(Calendar.MONTH);
-    int cDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-    Timber.d("year = " + cYear + ", month = " + cMonth + ", day = " + cDayOfMonth);
-
-    new DatePickerDialog(getContext(), (datePicker, year, month, dayOfMonth) -> {
-      presenter.onDateSet(year, month, dayOfMonth);
-    }, cYear, cMonth, cDayOfMonth).show();
+  @Override public void showDatePickerDialog(int year, int month, int day,
+      DatePickerDialog.OnDateSetListener listener) {
+    new DatePickerDialog(getContext(), listener, year, month, day).show();
   }
 
   @Override public void showProgress() {
@@ -112,10 +103,6 @@ public class TeamReportDialog extends BaseAlertDialogFragment
     recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
   }
 
-  @Override public void refresh(int position) {
-    adapterView.refresh(position);
-  }
-
   @BindView(R.id.root_view) View rootView;
 
   @Override public void showMessage(int resId) {
@@ -127,6 +114,11 @@ public class TeamReportDialog extends BaseAlertDialogFragment
   }
 
   @Override public void onItemClick(ReportEntry item) {
+    presenter.onItemClick(item);
+  }
 
+  @Override public void onDetach() {
+    super.onDetach();
+    presenter.onDetach();
   }
 }

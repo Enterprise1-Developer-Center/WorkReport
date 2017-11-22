@@ -64,4 +64,6 @@
   <string name="total_detail">집계 상세보기</string>
   <string name="please_enter_all">모두 입력해 주세요.</string>
   <string name="members">팀원별</string>
+  <string name="dept_year_op_ratio">연간 가동율 :</string>
+  <string name="member_cur_op_ratio">팀원 평균 가동률 :</string>
 </resources>

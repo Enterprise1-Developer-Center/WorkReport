@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.statisticsop.model.OpRatioContent;
+import kr.co.e1.workreport.statisticsop.model.OpRatioHeader;
 import kr.co.e1.workreport.statisticsop.model.OpRatioItem;
 import kr.co.e1.workreport.statisticsop.model.OpRatioTotal;
 import lombok.Setter;
@@ -32,6 +33,19 @@ public class ChartDataGen {
 
   public ChartDataGen(Context context) {
     this.context = context;
+  }
+
+  public String[] getDeptQuarters() {
+    OpRatioHeader h = opRatioContent.getHeader();
+
+    return new String[] {
+        h.getJan(), h.getFab(), h.getMar(), h.getApr(), h.getMay(), h.getJun(), h.getJul(),
+        h.getAug(), h.getSep(), h.getOct(), h.getNov(), h.getDec()
+    };
+  }
+
+  public float getDeptYearOpRatio() {
+    return opRatioContent.getOpRatioTotal().getYearOpr();
   }
 
   public LineData getDeptChartData() {
@@ -64,6 +78,22 @@ public class ChartDataGen {
     lineData.setValueTextColor(Color.BLACK);
 
     return lineData;
+  }
+
+  public float getMemberCurOpRatio() {
+    return opRatioContent.getOpRatioTotal().getCurOpr();
+  }
+
+  public String[] getMemberQuarters() {
+    List<OpRatioItem> items = opRatioContent.getOpRatios();
+    int size = items.size();
+    String[] names = new String[size];
+    for (int i = 0; i < size; i++) {
+      OpRatioItem item = items.get(i);
+      names[i] = item.getUserNm();
+    }
+
+    return names;
   }
 
   public BarData getMemberChartData() {

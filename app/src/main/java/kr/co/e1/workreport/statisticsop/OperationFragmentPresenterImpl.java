@@ -37,8 +37,10 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
         .subscribe(result -> {
           chartDataGen.setOpRatioContent(result.getContent());
           if (result.getResult() == WResult.RESULT_SUCCESS) {
-            view.showDeptChart(chartDataGen.getDeptChartData());
-            view.showMemberChart(chartDataGen.getMemberChartData());
+            view.showDeptChart(chartDataGen.getDeptChartData(), chartDataGen.getDeptYearOpRatio(),
+                chartDataGen.getDeptQuarters());
+            view.showMemberChart(chartDataGen.getMemberChartData(),
+                chartDataGen.getMemberCurOpRatio(), chartDataGen.getMemberQuarters());
             view.detailButtonEnabled(true);
           } else {
             view.showMessage(result.getMsg());

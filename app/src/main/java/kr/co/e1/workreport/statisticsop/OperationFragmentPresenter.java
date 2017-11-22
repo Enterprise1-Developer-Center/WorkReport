@@ -23,8 +23,6 @@ public interface OperationFragmentPresenter {
 
     void hideProgress();
 
-    void showChart();
-
     void detailButtonEnabled(boolean enabled);
 
     void navigateToOpDetail();

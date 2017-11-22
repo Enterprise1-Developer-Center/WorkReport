@@ -58,5 +58,6 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
 
   @Override public void onDetach() {
     compositeDisposable.clear();
+    view.cancelChartAni();
   }
 }

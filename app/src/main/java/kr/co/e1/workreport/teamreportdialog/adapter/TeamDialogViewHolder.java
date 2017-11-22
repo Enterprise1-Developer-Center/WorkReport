@@ -12,7 +12,7 @@ import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
  */
 
 public class TeamDialogViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
-  @BindView(R.id.imageview) ImageView iconImageView;
+  @BindView(R.id.imageview) ImageView imageView;
   @BindView(R.id.textview) TextView contentsTextView;
 
   public TeamDialogViewHolder(View itemView) {

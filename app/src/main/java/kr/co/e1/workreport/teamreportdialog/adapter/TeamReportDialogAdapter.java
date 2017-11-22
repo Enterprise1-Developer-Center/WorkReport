@@ -1,14 +1,13 @@
 package kr.co.e1.workreport.teamreportdialog.adapter;
 
 import android.content.Context;
-import android.support.annotation.DrawableRes;
-import android.util.TypedValue;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
+import kr.co.e1.workreport.framework.LayoutUtility;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
@@ -67,20 +66,22 @@ public class TeamReportDialogAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof TeamDialogViewHolder) {
       TeamDialogViewHolder holder = (TeamDialogViewHolder) viewHolder;
+      Context context = holder.itemView.getContext();
       ReportEntry entry = items.get(position);
-      holder.iconImageView.setImageResource(entry.getType().getResId());
+      holder.imageView.setImageResource(entry.getType().getResId());
       holder.contentsTextView.setText(entry.getContents());
       if (entry.getType() == ReportType.DATE) {
         holder.itemView.setOnClickListener(view -> onRecyclerItemClickListener.onItemClick(entry));
-        holder.itemView.setBackgroundResource(getBackgroundRes(holder.iconImageView.getContext()));
+        holder.itemView.setBackgroundResource(LayoutUtility.getSelectableItemBackground(context));
+        holder.imageView.setImageTintList(
+            LayoutUtility.getColorStateList(context, android.R.color.black));
+      } else {
+        holder.itemView.setOnClickListener(null);
+        holder.itemView.setBackgroundResource(0);
+        holder.imageView.setImageTintList(
+            LayoutUtility.getColorStateList(context, android.R.color.darker_gray));
       }
     }
-  }
-
-  private @DrawableRes int getBackgroundRes(Context context) {
-    TypedValue outValue = new TypedValue();
-    context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-    return outValue.resourceId;
   }
 
   @Override public int getItemCount() {

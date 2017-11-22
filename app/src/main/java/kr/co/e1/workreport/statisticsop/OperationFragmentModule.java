@@ -2,6 +2,7 @@ package kr.co.e1.workreport.statisticsop;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.common.Constants;
 
 /**
  * Created by jaeho on 2017. 11. 2
@@ -15,7 +16,11 @@ import dagger.Provides;
   }
 
   @Provides OperationFragmentPresenter provideOperationFragmentPresenter(
-      OperationFragmentPresenter.View view) {
-    return new OperationFragmentPresenterImpl(view);
+      OperationFragmentPresenter.View view, OpRatioNetwork network) {
+    return new OperationFragmentPresenterImpl(view, network);
+  }
+
+  @Provides OpRatioNetwork provideOpRatioNetwork() {
+    return new OpRatioNetwork(Constants.BASE_URL);
   }
 }

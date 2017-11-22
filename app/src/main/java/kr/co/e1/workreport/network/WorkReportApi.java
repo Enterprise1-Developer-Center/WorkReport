@@ -7,6 +7,7 @@ import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.login.model.LoginContent;
 import kr.co.e1.workreport.project.vo.Project;
+import kr.co.e1.workreport.statisticsop.model.OpRatioContent;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -26,6 +27,9 @@ public interface WorkReportApi {
       @Header("Authorization") String header, @Field("grant_type") String grantTYpe,
       @Field("scope") String scope);
 
+  /**
+   * @param header Token
+   */
   @GET("api/adapters/WorkReportSQL/login") Single<WResult<LoginContent>> getLoginResult(
       @Header("Authorization") String header, @QueryMap Map<String, String> queryMap);
 
@@ -56,4 +60,8 @@ public interface WorkReportApi {
 
   @GET("api/adapters/WorkReportSQL/getSummary") Single<WResult<List<TeamReportContent>>> getSummary(
       @Header("Authorization") String header, @Query("DEPT_NM") String deptNm);
+
+  @GET("api/adapters/WorkReportSQL/getOperRatio") Single<WResult<OpRatioContent>> getOperRatio(
+      @Header("Authorization") String header, @Query("DEPT_NM") String deptNm,
+      @Query("YEAR") int year);
 }

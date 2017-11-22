@@ -3,6 +3,7 @@ package kr.co.e1.workreport.statisticsop;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
   @BindView(R.id.member_chart) BarChart memberChart;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.detail_button) Button detailButton;
+  @BindView(R.id.root_view) View rootView;
   @Inject OperationFragmentPresenter presenter;
 
   public static OperationFragment newInstance() {
@@ -154,6 +156,18 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     startActivity(intent);
   }
 
+  @Override public void showMessage(int resId) {
+    Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showYearOpRatioChart() {
+
+  }
+
+  @Override public void showMemberOpRatioChart() {
+
+  }
+
   private void setMemberData() {
     List<BarEntry> entries = new ArrayList<>();
 
@@ -229,5 +243,10 @@ public class OperationFragment extends BaseFragment implements OperationFragment
 
   @OnClick(R.id.detail_button) void onClick(View view) {
     presenter.onClick(view.getId());
+  }
+
+  @Override public void onDetach() {
+    super.onDetach();
+    presenter.onDetach();
   }
 }

@@ -16,6 +16,11 @@ public class ProjectNetwork extends NetworkHelper {
     super(baseUrl);
   }
 
+  public Single<WResult<List<Project>>> getProjects(String deptNm) {
+    String header = PreferencesUtils.getToken();
+    return getWorkReportApi().getProjects(header, deptNm);
+  }
+
   public Single<WResult<List<Project>>> getProjects() {
     String header = PreferencesUtils.getToken();
     return getWorkReportApi().getProjects(header);

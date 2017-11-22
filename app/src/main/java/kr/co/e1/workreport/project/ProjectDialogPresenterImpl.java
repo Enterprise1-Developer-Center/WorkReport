@@ -8,6 +8,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.project.adapter.ProjectAdapterDataModel;
 
@@ -33,7 +34,7 @@ public class ProjectDialogPresenterImpl implements ProjectDialogPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.setRecyclerView();
     view.showProgress();
-    compositeDisposable.add(network.getProjects()
+    compositeDisposable.add(network.getProjects(PreferencesUtils.getDept())
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {

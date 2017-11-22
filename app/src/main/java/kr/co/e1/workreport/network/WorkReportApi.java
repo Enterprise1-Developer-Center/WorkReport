@@ -38,6 +38,9 @@ public interface WorkReportApi {
   @GET("api/adapters/WorkReportSQL/getProjects") Single<WResult<List<Project>>> getProjects(
       @Header("Authorization") String header);
 
+  @GET("api/adapters/WorkReportSQL/getProjects") Single<WResult<List<Project>>> getProjects(
+      @Header("Authorization") String header, @Query("DEPT_NM") String deptNm);
+
   @FormUrlEncoded @POST("api/adapters/WorkReportSQL/updateWorkingDay")
   Single<WResult<ReportContent>> updateWorkingDay(@Header("Authorization") String header,
       @Field("LCLS_CD") String majorCode, @Field("MCLS_CD") String smallCode,

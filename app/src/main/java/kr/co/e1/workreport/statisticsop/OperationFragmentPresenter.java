@@ -2,6 +2,8 @@ package kr.co.e1.workreport.statisticsop;
 
 import android.os.Bundle;
 import android.support.annotation.StringRes;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.LineData;
 
 /**
  * Created by jaeho on 2017. 11. 2
@@ -29,8 +31,10 @@ public interface OperationFragmentPresenter {
 
     void showMessage(@StringRes int resId);
 
-    void showYearOpRatioChart();
+    void showDeptChart(LineData lineData);
 
-    void showMemberOpRatioChart();
+    void showMemberChart(BarData barData);
+
+    void showMessage(String msg);
   }
 }

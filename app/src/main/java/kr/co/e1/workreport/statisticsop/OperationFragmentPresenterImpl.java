@@ -4,7 +4,9 @@ import android.os.Bundle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import java.util.concurrent.TimeUnit;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
 
 /**
@@ -15,10 +17,12 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
 
   private View view;
   private OpRatioNetwork network;
+  private ChartDataGen chartDataGen;
 
-  OperationFragmentPresenterImpl(View view, OpRatioNetwork network) {
+  OperationFragmentPresenterImpl(View view, OpRatioNetwork network, ChartDataGen chartDataGen) {
     this.view = view;
     this.network = network;
+    this.chartDataGen = chartDataGen;
   }
 
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -28,14 +32,16 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
     view.detailButtonEnabled(false);
     compositeDisposable.add(network.getOperRatio()
         .subscribeOn(Schedulers.io())
+        .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
+          chartDataGen.setOpRatioContent(result.getContent());
           if (result.getResult() == WResult.RESULT_SUCCESS) {
-            view.showYearOpRatioChart();
-            view.showMemberOpRatioChart();
+            view.showDeptChart(chartDataGen.getDeptChartData());
+            view.showMemberChart(chartDataGen.getMemberChartData());
             view.detailButtonEnabled(true);
           } else {
-            view.showMessage(R.string.error_server_error);
+            view.showMessage(result.getMsg());
           }
           view.hideProgress();
         }, throwable -> {

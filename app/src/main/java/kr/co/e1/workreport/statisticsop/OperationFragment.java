@@ -160,12 +160,62 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showYearOpRatioChart() {
+  @Override public void showDeptChart(LineData lineData) {
+    teamChart.animateY(500);
+    teamChart.setData(lineData);
+    teamChart.invalidate();
+    final String[] quarters = new String[] {
+        "01월", "02월", "03월", "04월", "05월", "06월", "07월", "08월", "09월", "10월", "11월", "12월"
+    };
 
+    Description description = teamChart.getDescription();
+    description.setTextSize(13);
+    description.setText("연간 가동율 : 40.9");
+    description.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+
+    XAxis xAxis = teamChart.getXAxis();
+    xAxis.setDrawGridLines(false);
+    xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+    xAxis.setGranularity(1f);
+    xAxis.setValueFormatter((value, axis) -> {
+      try {
+        return quarters[(int) value];
+      } catch (ArrayIndexOutOfBoundsException e) {
+        return quarters[0];
+      }
+    });
   }
 
-  @Override public void showMemberOpRatioChart() {
+  @Override public void showMemberChart(BarData barData) {
+    memberChart.animateY(500);
+    memberChart.setData(barData);
+    memberChart.invalidate();
+    final String[] quarters = new String[] {
+        "홍승연", "문재선", "구서현", "신명재", "최정훈", "손성필", "민병일", "이완섭", "박동선", "이미자", "장현희", "오재호", "경주원"
+    };
 
+    Description description = memberChart.getDescription();
+    description.setTextSize(11.0f);
+    description.setText("팀원 평균 가동률 : 40.9");
+    description.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+
+    XAxis xAxis = memberChart.getXAxis();
+    xAxis.setDrawGridLines(false);
+    xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+    xAxis.setGranularity(1.0f);
+    xAxis.setValueFormatter((value, axis) -> {
+      try {
+        return quarters[(int) value];
+      } catch (ArrayIndexOutOfBoundsException e) {
+        return quarters[0];
+      }
+    });
+  }
+
+  @Override public void showMessage(String msg) {
+    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
 
   private void setMemberData() {

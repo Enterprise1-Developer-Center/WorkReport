@@ -20,6 +20,7 @@ import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
+import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.project.vo.Project;
 import timber.log.Timber;
@@ -70,7 +71,7 @@ public class MainPresenterImpl implements MainPresenter {
     view.showProgress();
     compositeDisposable.add(network.getWorkingDay(date)
         .subscribeOn(Schedulers.io())
-        .delay(500, TimeUnit.MILLISECONDS)
+        .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
           Timber.d("result = " + result.toString());
@@ -108,7 +109,7 @@ public class MainPresenterImpl implements MainPresenter {
         network.updateWorkingDay(c.getLcls_cd(), c.getMcls_cd(), c.getDetail(), c.getProj_cd(),
             c.getS_time(), c.getE_time(), c.getUpd_time(), c.getUser_id(), c.getWork_ymd())
             .subscribeOn(Schedulers.io())
-            .delay(500, TimeUnit.MILLISECONDS)
+            .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(result -> {
               MainPresenterImpl.this.result = result;
@@ -159,7 +160,7 @@ public class MainPresenterImpl implements MainPresenter {
 
       compositeDisposable.add(network.getWorkingDay(DateUtils.getConvertoFormat(date, "yyyy-MM-dd"))
           .subscribeOn(Schedulers.io())
-          .delay(500, TimeUnit.MILLISECONDS)
+          .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(result -> {
             MainPresenterImpl.this.result = result;

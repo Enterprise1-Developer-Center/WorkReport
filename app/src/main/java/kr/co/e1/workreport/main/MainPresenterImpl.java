@@ -108,8 +108,8 @@ public class MainPresenterImpl implements MainPresenter {
     compositeDisposable.add(
         network.updateWorkingDay(c.getLcls_cd(), c.getMcls_cd(), c.getDetail(), c.getProj_cd(),
             c.getS_time(), c.getE_time(), c.getUpd_time(), c.getUser_id(), c.getWork_ymd())
+            .delay(500, TimeUnit.MILLISECONDS)
             .subscribeOn(Schedulers.io())
-            .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(result -> {
               MainPresenterImpl.this.result = result;

@@ -86,8 +86,8 @@ public class TeamReportActivity extends BaseActivity
   }
 
   @Override public void onItemClick(TeamReportContent item) {
-    new TeamReportDialog().setUserId(item.getUser_id()).show(getSupportFragmentManager(),
-        TeamReportDialog.class.getSimpleName());
+    new TeamReportDialog().setUserId(item.getUser_id())
+        .show(getSupportFragmentManager(), TeamReportDialog.class.getSimpleName());
   }
 
   @Inject DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;

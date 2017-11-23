@@ -14,6 +14,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.DateUtils;
+import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportContent;
@@ -119,6 +120,7 @@ public class MainPresenterImpl implements MainPresenter {
                 view.showMessage(R.string.save_completed);
               } else if (result.getResult() == WResult.RESULT_FAILURE) {
                 view.showMessage(result.getMsg());
+                onLoginSuccess(PreferencesUtils.getToday());
               } else {
                 view.showMessage(R.string.error_server_error);
               }

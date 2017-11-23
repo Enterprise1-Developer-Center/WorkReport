@@ -37,7 +37,6 @@ public class OpDetailPresenterImpl implements OpDetailPresenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
           if (result.getResult() == WResult.RESULT_SUCCESS) {
-            adapterDataModel.addHeader(result.getContent().getHeader());
             adapterDataModel.addAll(result.getContent().getOpRatios());
             adapterDataModel.addFooter(result.getContent().getOpRatioTotal());
             view.refresh();

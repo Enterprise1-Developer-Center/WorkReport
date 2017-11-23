@@ -48,35 +48,6 @@ public class OpDetailPresenterImpl implements OpDetailPresenter {
           view.hideProgress();
           view.showMessage(R.string.error_server_error);
         }));
-    /*
-    new Handler().postDelayed(() -> {
-      List<OpDetail> items = new ArrayList<>();
-      for (int i = 0; i < 13; i++) {
-        OpDetail t = new OpDetail();
-        t.setName("홍" + i + "연");
-        t.setJan("98.8");
-        t.setFeb("98.8");
-        t.setMar("98.8");
-        t.setApr("98.8");
-        t.setMay("98.8");
-        t.setJun("98.8");
-        t.setJul("98.8");
-        t.setAug("98.8");
-        t.setSep("98.8");
-        t.setOct("98.8");
-        t.setNov("98.8");
-        t.setDec("98.8");
-        t.setNowOpRatio("98.8");
-        t.setYearOpRatio("98.8");
-        items.add(t);
-      }
-      adapterDataModel.addAll(items);
-      for (int i = 0; i < items.size(); i++) {
-        view.refresh(i);
-      }
-      view.hideProgress();
-    }, 1000);
-    */
   }
 
   @Override public void onDestroy() {

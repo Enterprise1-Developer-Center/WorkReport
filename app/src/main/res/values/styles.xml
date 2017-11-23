@@ -23,17 +23,16 @@
     <item name="android:layout_width">@dimen/dp_30</item>
     <item name="android:layout_height">@dimen/dp_30</item>
     <item name="android:scaleType">fitXY</item>
-    <item name="android:layout_marginStart">@dimen/dp_30</item>
+    <item name="android:layout_marginLeft">?android:attr/actionBarSize</item>
     <item name="android:id">@id/imageview</item>
-
   </style>
 
   <style name="BaseMainItemTextView">
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">?attr/actionBarSize</item>
-    <item name="android:layout_marginLeft">@dimen/dp_10</item>
+    <item name="android:layout_marginLeft">?android:attr/actionBarSize</item>
     <item name="android:layout_marginRight">@dimen/dp_30</item>
-    <item name="android:gravity">center</item>
+    <item name="android:gravity">left|center_vertical</item>
     <item name="android:textColor">@android:color/black</item>
     <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
     <item name="android:id">@id/textview</item>

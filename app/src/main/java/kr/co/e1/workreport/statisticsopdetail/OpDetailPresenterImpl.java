@@ -1,12 +1,14 @@
 package kr.co.e1.workreport.statisticsopdetail;
 
 import android.os.Bundle;
-import android.os.Handler;
-import java.util.ArrayList;
-import java.util.List;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
-import kr.co.e1.workreport.statisticsopdetail.model.OpDetail;
-import timber.log.Timber;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
+import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.network.WResult;
+import kr.co.e1.workreport.statisticsop.OpRatioNetwork;
+import kr.co.e1.workreport.statisticsop.model.OpRatioItem;
+import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapterDataModel;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -15,16 +17,39 @@ import timber.log.Timber;
 public class OpDetailPresenterImpl implements OpDetailPresenter {
 
   private View view;
-  private BaseAdapterDataModel<OpDetail> adapterDataModel;
+  private OpDetailAdapterDataModel<OpRatioItem> adapterDataModel;
+  private OpRatioNetwork network;
 
-  OpDetailPresenterImpl(View view, BaseAdapterDataModel adapterDataModel) {
+  OpDetailPresenterImpl(View view, OpDetailAdapterDataModel adapterDataModel,
+      OpRatioNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
+    this.network = network;
   }
+
+  private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
   @Override public void onCreated(Bundle savedInstanceState) {
     view.setRecyclerView();
     view.showProgress();
+    compositeDisposable.add(network.getOperRatio()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(result -> {
+          if (result.getResult() == WResult.RESULT_SUCCESS) {
+            adapterDataModel.addHeader(result.getContent().getHeader());
+            adapterDataModel.addAll(result.getContent().getOpRatios());
+            adapterDataModel.addFooter(result.getContent().getOpRatioTotal());
+            view.refresh();
+          } else {
+            view.showMessage(result.getMsg());
+          }
+          view.hideProgress();
+        }, throwable -> {
+          view.hideProgress();
+          view.showMessage(R.string.error_server_error);
+        }));
+    /*
     new Handler().postDelayed(() -> {
       List<OpDetail> items = new ArrayList<>();
       for (int i = 0; i < 13; i++) {
@@ -52,8 +77,10 @@ public class OpDetailPresenterImpl implements OpDetailPresenter {
       }
       view.hideProgress();
     }, 1000);
-    //adapterDataModel.addAll(items);
-    //adapterDataModel.addAll(items);
-    //view.refresh();
+    */
+  }
+
+  @Override public void onDestroy() {
+    compositeDisposable.clear();
   }
 }

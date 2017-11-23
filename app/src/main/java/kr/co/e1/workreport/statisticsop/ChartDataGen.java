@@ -39,7 +39,7 @@ public class ChartDataGen {
     OpRatioHeader h = opRatioContent.getHeader();
 
     return new String[] {
-        h.getJan(), h.getFab(), h.getMar(), h.getApr(), h.getMay(), h.getJun(), h.getJul(),
+        h.getJan(), h.getFeb(), h.getMar(), h.getApr(), h.getMay(), h.getJun(), h.getJul(),
         h.getAug(), h.getSep(), h.getOct(), h.getNov(), h.getDec()
     };
   }
@@ -51,7 +51,7 @@ public class ChartDataGen {
   public LineData getDeptChartData() {
     OpRatioTotal t = opRatioContent.getOpRatioTotal();
     final float[] opRatioFloats = new float[] {
-        t.getJan(), t.getFab(), t.getMar(), t.getApr(), t.getMay(), t.getJun(), t.getJul(),
+        t.getJan(), t.getFeb(), t.getMar(), t.getApr(), t.getMay(), t.getJun(), t.getJul(),
         t.getAug(), t.getSep(), t.getOct(), t.getNov(), t.getDec()
     };
     List<Entry> entries = new ArrayList<>();

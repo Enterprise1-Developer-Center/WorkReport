@@ -12,7 +12,7 @@ import lombok.ToString;
   @SerializedName("USER_ID") String id;
   @SerializedName("USER_NM") String userNm;
   @SerializedName("JAN") String jan;
-  @SerializedName("FAB") String fab;
+  @SerializedName("FEB") String feb;
   @SerializedName("MAR") String mar;
   @SerializedName("APR") String apr;
   @SerializedName("MAY") String may;

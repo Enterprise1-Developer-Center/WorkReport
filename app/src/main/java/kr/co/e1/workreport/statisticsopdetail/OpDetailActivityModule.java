@@ -2,6 +2,8 @@ package kr.co.e1.workreport.statisticsopdetail;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.statisticsop.OpRatioNetwork;
 import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapter;
 import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapterView;
 
@@ -15,8 +17,8 @@ import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapterView;
   }
 
   @Provides OpDetailPresenter provideStatisticsPresenter(OpDetailPresenter.View view,
-      OpDetailActivity opDetailActivity) {
-    return new OpDetailPresenterImpl(view, opDetailActivity.adapter);
+      OpDetailActivity opDetailActivity, OpRatioNetwork network) {
+    return new OpDetailPresenterImpl(view, opDetailActivity.adapter, network);
   }
 
   @Provides OpDetailAdapter provideOpDetailAdapter() {
@@ -25,5 +27,9 @@ import kr.co.e1.workreport.statisticsopdetail.adapter.OpDetailAdapterView;
 
   @Provides OpDetailAdapterView provideAdapterView(OpDetailActivity activity) {
     return activity.adapter;
+  }
+
+  @Provides OpRatioNetwork provideOpRatioNetwork() {
+    return new OpRatioNetwork(Constants.BASE_URL);
   }
 }

@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.statisticsopdetail;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -60,8 +61,6 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
     return null;
   }
 
-
-
   @Override public void setRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);
@@ -70,10 +69,19 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
   }
 
   @Override public void refresh() {
+    adapterView.refresh();
   }
 
   @Override public void refresh(int position) {
     adapterView.refresh(position);
+  }
+
+  @Override public void showMessage(int resId) {
+    Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showMessage(String msg) {
+    Snackbar.make(drawer, msg, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override public void hideProgress() {
@@ -82,5 +90,10 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
 
   @Override public void showProgress() {
     progressBar.setVisibility(View.VISIBLE);
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    presenter.onDestroy();
   }
 }

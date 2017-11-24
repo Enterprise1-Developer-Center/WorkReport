@@ -30,6 +30,6 @@
       android:layout_height="@dimen/divider"
       android:layout_marginLeft="?actionBarSize"
       android:layout_marginRight="?actionBarSize"
-      android:background="@android:color/white"
+      android:background="@color/colorLight"
       />
 </LinearLayout>

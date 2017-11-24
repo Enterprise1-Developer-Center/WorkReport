@@ -60,7 +60,7 @@ public class TeamReportDialogAdapter extends BaseRecyclerAdapter
   }
 
   @Override public int getLayoutRes(int viewType) {
-    return R.layout.content_main_report_item;
+    return R.layout.fragment_report_item;
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {

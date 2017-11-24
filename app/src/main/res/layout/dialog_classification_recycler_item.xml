@@ -7,62 +7,73 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:foreground="?attr/selectableItemBackground"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     >
-  <TextView
-      android:id="@id/code_textview"
-      android:layout_width="@dimen/dp_70"
-      android:layout_height="@dimen/dp_70"
-      android:gravity="top|center_horizontal"
-      android:textAppearance="@style/TextAppearance.AppCompat.Title"
-      android:textSize="@dimen/sp_24"
-      tools:text="21"
-      />
   <LinearLayout
+      android:id="@id/recyclerview_item_container"
       android:layout_width="match_parent"
-      android:layout_height="@dimen/dp_70"
-      android:orientation="vertical"
-      android:layout_marginRight="@dimen/dp_10"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
       >
+    <TextView
+        android:id="@id/code_textview"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
+        android:gravity="top|center_horizontal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="@dimen/sp_24"
+        tools:text="21"
+        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_24"
-        android:orientation="horizontal"
+        android:layout_height="@dimen/dp_70"
+        android:layout_marginRight="@dimen/dp_10"
+        android:orientation="vertical"
         >
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/dp_24"
+          android:orientation="horizontal"
+          >
+        <TextView
+            android:id="@id/big_class_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_20"
+            tools:text="Profits"
+            />
+        <TextView
+            android:id="@id/small_class_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:ellipsize="end"
+            android:gravity="bottom|left"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_14"
+            tools:text="Outside Project"
+            />
+      </LinearLayout>
       <TextView
-          android:id="@id/big_class_textview"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:gravity="left"
-          android:maxLines="1"
-          android:textColor="@android:color/black"
-          android:textSize="@dimen/sp_20"
-          tools:text="Profits"
-          />
-      <TextView
-          android:id="@id/small_class_textview"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:layout_marginLeft="@dimen/dp_10"
+          android:id="@id/description_textview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
           android:ellipsize="end"
-          android:gravity="bottom|left"
-          android:maxLines="1"
-          android:textColor="@android:color/black"
-          android:textSize="@dimen/sp_14"
-          tools:text="Outside Project"
+          android:gravity="left"
+          android:maxLines="3"
+          android:minLines="1"
+          android:textColor="#5b5b5b"
+          android:textSize="@dimen/sp_11"
+          tools:text="외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수"
           />
     </LinearLayout>
-    <TextView
-        android:id="@id/description_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="left"
-        android:maxLines="3"
-        android:minLines="1"
-        android:textColor="#5b5b5b"
-        android:textSize="@dimen/sp_11"
-        tools:text="외부 프로젝트로 계약기간 이외의 기간이거나 수익발생이 안되는 경우이지만 회사 전략상 필요하다고 판단되어 승인된 프로젝트나 유지보수"
-        />
   </LinearLayout>
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/divider"
+      android:background="@color/colorLight"/>
 </LinearLayout>

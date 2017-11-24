@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/recyclerview_item_container"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_70"
+    android:layout_height="@dimen/dp_70_5"
     android:background="?attr/selectableItemBackground"
     android:foreground="?attr/selectableItemBackground"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingStart="@dimen/dp_10"
     android:paddingEnd="@dimen/dp_10"
     >
@@ -22,4 +22,8 @@
       android:layout_marginRight="@dimen/dp_20"
       tools:text="2017년 법규인증 시스템 CHG 크레딧 관리 국내적용"
       />
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/divider"
+      android:background="@color/colorLight"/>
 </LinearLayout>

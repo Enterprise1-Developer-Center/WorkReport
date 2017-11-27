@@ -4,7 +4,9 @@ import android.os.Bundle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import java.util.concurrent.TimeUnit;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.statisticsop.OpRatioNetwork;
 import kr.co.e1.workreport.statisticsop.model.OpRatioItem;
@@ -33,6 +35,7 @@ public class OpDetailPresenterImpl implements OpDetailPresenter {
     view.setRecyclerView();
     view.showProgress();
     compositeDisposable.add(network.getOperRatio()
+        .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {

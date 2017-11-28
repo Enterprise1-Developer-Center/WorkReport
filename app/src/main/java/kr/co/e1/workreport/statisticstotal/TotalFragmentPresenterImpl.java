@@ -1,11 +1,12 @@
 package kr.co.e1.workreport.statisticstotal;
 
 import android.os.Bundle;
-import android.os.Handler;
-import java.util.ArrayList;
-import java.util.List;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
+import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.statisticstotal.model.TotalSummary;
 
 /**
@@ -16,48 +17,42 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
 
   private View view;
   private BaseAdapterDataModel<TotalSummary> adapterDataModel;
+  private TotalNetwork network;
+  private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-  TotalFragmentPresenterImpl(View view, BaseAdapterDataModel adapterDataModel) {
+  TotalFragmentPresenterImpl(View view, BaseAdapterDataModel adapterDataModel,
+      TotalNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
+    this.network = network;
   }
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.showProgress();
     view.setRecyclerView();
 
-    new Handler().postDelayed(() -> {
-      List<TotalSummary> items = new ArrayList<>();
-      items.add(new TotalSummary("Profits", 1207));
-      items.add(new TotalSummary("Invest", 340));
-      items.add(new TotalSummary("Loss", 0));
-      items.add(new TotalSummary("Support", 8));
-      items.add(new TotalSummary("Educate & Proposal", 138));
-      items.add(new TotalSummary("Vacation & Etc", 71));
-      items.add(new TotalSummary("SUM", 1424));
-      adapterDataModel.addAll(items);
-
-      for (int i = 0; i < items.size(); i++) {
-        view.refresh(i);
-      }
-
-      view.hideProgress();
-    }, 1000);
-
-    /*
-          view.showProfits("1197");
-      view.showInvest("340");
-      view.showLoss("0");
-      view.showSupport("8");
-      view.showEducate("138");
-      view.showVacation("71");
-      view.showSum("1414");
-      view.hideProgress();
-
-    */
+    compositeDisposable.add(network.getWorkingDayTOT()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(result -> {
+          if (result.getResult() == WResult.RESULT_SUCCESS) {
+            adapterDataModel.addAll(result.getContent());
+            view.refresh();
+          } else {
+            view.showMessage(result.getMsg());
+          }
+          view.hideProgress();
+        }, throwable -> {
+          view.showMessage(R.string.error_server_error);
+          view.hideProgress();
+        }));
   }
 
   @Override public void onClick(int id) {
     if (id == R.id.detail_button) view.showMessage(R.string.coming_soon);
+  }
+
+  @Override public void onDetach() {
+    compositeDisposable.clear();
   }
 }

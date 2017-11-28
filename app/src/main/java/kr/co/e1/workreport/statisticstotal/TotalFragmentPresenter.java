@@ -13,6 +13,8 @@ public interface TotalFragmentPresenter {
 
   void onClick(int id);
 
+  void onDetach();
+
   interface View {
 
     void showProgress();
@@ -23,6 +25,8 @@ public interface TotalFragmentPresenter {
 
     void setRecyclerView();
 
-    void refresh(int position);
+    void showMessage(String msg);
+
+    void refresh();
   }
 }

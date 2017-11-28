@@ -8,6 +8,7 @@ import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.login.model.LoginContent;
 import kr.co.e1.workreport.project.vo.Project;
 import kr.co.e1.workreport.statisticsop.model.OpRatioContent;
+import kr.co.e1.workreport.statisticstotal.model.TotalSummary;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -64,4 +65,8 @@ public interface WorkReportApi {
   @GET("api/adapters/WorkReportSQL/getOperRatio") Single<WResult<OpRatioContent>> getOperRatio(
       @Header("Authorization") String header, @Query("DEPT_NM") String deptNm,
       @Query("YEAR") int year);
+
+  @GET("api/adapters/WorkReportSQL/getWorkingDayTOT")
+  Single<WResult<List<TotalSummary>>> getWorkingDayTOT(@Header("Authorization") String header,
+      @Query("DEPT_NM") String deptNm);
 }

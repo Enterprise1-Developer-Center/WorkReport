@@ -2,9 +2,9 @@ package kr.co.e1.workreport.statisticstotal;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapter;
-import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapterView;
 
 /**
  * Created by jaeho on 2017. 11. 2
@@ -16,16 +16,16 @@ import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapterView;
     return new TotalAdapter();
   }
 
-  @Provides TotalFragmentPresenter.View provideTotalFragmentView(TotalFragment fragment) {
-    return fragment;
+  @Provides TotalFragmentPresenter provideTotalFragmentPresenter(TotalFragment fragment,
+      TotalNetwork network) {
+    return new TotalFragmentPresenterImpl(fragment, fragment.adapter, network);
   }
 
-  @Provides TotalAdapterView provideAdapterView(TotalFragment fragment) {
+  @Provides TotalNetwork provideTotalNetwork() {
+    return new TotalNetwork(Constants.BASE_URL);
+  }
+
+  @Provides BaseAdapterView provideBaseAdapterView(TotalFragment fragment) {
     return fragment.adapter;
-  }
-
-  @Provides TotalFragmentPresenter provideTotalFragmentPresenter(TotalFragmentPresenter.View view,
-      TotalFragment fragment) {
-    return new TotalFragmentPresenterImpl(view, fragment.adapter);
   }
 }

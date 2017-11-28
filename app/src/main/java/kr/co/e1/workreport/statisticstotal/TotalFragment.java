@@ -13,8 +13,8 @@ import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
+import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapter;
-import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapterView;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -28,7 +28,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
 
   @Inject TotalAdapter adapter;
   @Inject TotalFragmentPresenter presenter;
-  @Inject TotalAdapterView adapterView;
+  @Inject BaseAdapterView adapterView;
 
   public static TotalFragment newInstance() {
     return new TotalFragment();
@@ -65,11 +65,20 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
   }
 
-  @Override public void refresh(int position) {
-    adapterView.refresh(position);
+  @Override public void refresh() {
+    adapterView.refresh();
+  }
+
+  @Override public void showMessage(String msg) {
+    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
 
   @OnClick({ R.id.detail_button }) void onClick(View view) {
     presenter.onClick(view.getId());
+  }
+
+  @Override public void onDetach() {
+    super.onDetach();
+    presenter.onDetach();
   }
 }

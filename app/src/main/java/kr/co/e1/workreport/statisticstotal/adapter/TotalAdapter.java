@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
+import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.statisticstotal.model.TotalSummary;
 
@@ -13,7 +14,7 @@ import kr.co.e1.workreport.statisticstotal.model.TotalSummary;
  */
 
 public class TotalAdapter extends BaseRecyclerAdapter
-    implements TotalAdapterView, BaseAdapterDataModel<TotalSummary> {
+    implements BaseAdapterView, BaseAdapterDataModel<TotalSummary> {
   private List<TotalSummary> items = new ArrayList<>();
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
@@ -37,8 +38,8 @@ public class TotalAdapter extends BaseRecyclerAdapter
     return getSize();
   }
 
-  @Override public void refresh(int position) {
-    notifyItemChanged(position);
+  @Override public void refresh() {
+    notifyItemRangeChanged(0, getSize());
   }
 
   @Override public void add(TotalSummary item) {

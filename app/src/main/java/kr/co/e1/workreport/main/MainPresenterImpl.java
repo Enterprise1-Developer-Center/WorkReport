@@ -1,6 +1,10 @@
 package kr.co.e1.workreport.main;
 
 import android.os.Bundle;
+import com.worklight.common.WLAnalytics;
+import com.worklight.wlclient.WLRequestListener;
+import com.worklight.wlclient.api.WLFailResponse;
+import com.worklight.wlclient.api.WLResponse;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -92,6 +96,15 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onBackPressed(boolean isDrawerOpen) {
+    WLAnalytics.send(new WLRequestListener() {
+      @DebugLog @Override public void onSuccess(WLResponse wlResponse) {
+
+      }
+
+      @DebugLog @Override public void onFailure(WLFailResponse wlFailResponse) {
+
+      }
+    });
     if (isDrawerOpen) {
       view.closeDrawer();
     } else {

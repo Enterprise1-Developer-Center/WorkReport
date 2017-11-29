@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class NetworkHelper {
-  public final static int DELAY = 0;
+  public final static int DELAY = 500;
   protected final static String confidentialsClient = Credentials.basic("test", "test");
   protected final static String grantType = "client_credentials";
   protected final String scope = "RegisteredClient";

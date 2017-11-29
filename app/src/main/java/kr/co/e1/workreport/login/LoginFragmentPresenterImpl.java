@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.login;
 
 import android.os.Bundle;
+import com.worklight.common.WLAnalytics;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -36,7 +37,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
 
   }
 
-  @Override public void onPositiveClick(String id, String pw) {
+  @Override public void onPositiveClick(final String id, final String pw) {
     view.showProgress();
     compositeDisposable.add(network.generateToken()
         .subscribeOn(Schedulers.io())
@@ -44,7 +45,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
         .subscribe((TokenResult tokenResult) -> {
 
           PreferencesUtils.setToken(tokenResult.getToken_type(), tokenResult.getAccess_token());
-          Map<String, String> userMap = new HashMap<>();
+          final Map<String, String> userMap = new HashMap<>();
           userMap.put("userId", id);
           userMap.put("userPw", pw);
 
@@ -56,6 +57,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
                 PreferencesUtils.setDept(result.getContent().getDeptNm());
                 PreferencesUtils.setToday(result.getContent().getDate());
                 if (result.getResult() == WResult.RESULT_SUCCESS) {
+                  WLAnalytics.setUserContext(id);
                   loginListener.onLoginSuccess(result.getContent().getDate());
                   view.dismiss();
                 } else {

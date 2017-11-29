@@ -8,6 +8,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.squareup.leakcanary.LeakCanary;
+import com.worklight.common.WLAnalytics;
 import com.worklight.wlclient.api.WLClient;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -67,6 +68,9 @@ public class MyApplication extends Application implements HasActivityInjector {
 
   private void initWLClient() {
     WLClient.createInstance(this);
+    WLAnalytics.init(this);
+    WLAnalytics.addDeviceEventListener(WLAnalytics.DeviceEvent.LIFECYCLE);
+    WLAnalytics.addDeviceEventListener(WLAnalytics.DeviceEvent.NETWORK);
   }
 
   private void initLeakCanary() {

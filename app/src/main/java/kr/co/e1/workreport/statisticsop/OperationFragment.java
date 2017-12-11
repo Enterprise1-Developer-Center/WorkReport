@@ -7,11 +7,11 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.LineData;
@@ -27,11 +27,13 @@ import timber.log.Timber;
  */
 public class OperationFragment extends BaseFragment implements OperationFragmentPresenter.View {
 
-  @BindView(R.id.year_line_chart) LineChart teamChart;
-  @BindView(R.id.member_chart) BarChart memberChart;
+  @BindView(R.id.year_line_chart) LineChart yearOpRatioChart;
+  @BindView(R.id.member_chart) BarChart nowOpRatioChart;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.detail_button) Button detailButton;
   @BindView(R.id.root_view) View rootView;
+  @BindView(R.id.year_op_ratio_textview) TextView yearOpRatioTextView;
+  @BindView(R.id.member_cur_op_ratio_textview) TextView memberCurOpRatioTextView;
   @Inject OperationFragmentPresenter presenter;
 
   public static OperationFragment newInstance() {
@@ -72,16 +74,21 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showDeptChart(LineData lineData, float yearOpRatio, String[] quarters) {
-    teamChart.animateY(Constants.CHART_ANI_DURATION);
-    teamChart.setData(lineData);
-    teamChart.invalidate();
-    Description description = teamChart.getDescription();
-    description.setTextSize(13);
-    description.setText(getString(R.string.dept_year_op_ratio) + yearOpRatio);
-    description.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+  @Override public void showYearOpRatioChart(LineData lineData, float yearOpRatio, String[] quarters) {
+    yearOpRatioChart.animateY(Constants.CHART_ANI_DURATION);
+    yearOpRatioChart.setData(lineData);
+    yearOpRatioChart.invalidate();
+    yearOpRatioChart.zoom(2f, 1f, 1f, 1f);
+    yearOpRatioChart.setPinchZoom(true);
 
-    XAxis xAxis = teamChart.getXAxis();
+    yearOpRatioTextView.setText(getString(R.string.year_op_ratio) + " : " + yearOpRatio);
+    yearOpRatioChart.setDescription(null);
+    //Description description = yearOpRatioChart.getDescription();
+    //description.setTextSize(13);
+    //description.setText(getString(R.string.dept_year_op_ratio) + yearOpRatio);
+    //description.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+
+    XAxis xAxis = yearOpRatioChart.getXAxis();
     xAxis.setDrawGridLines(false);
     xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -95,17 +102,21 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     });
   }
 
-  @Override public void showMemberChart(BarData barData, float yearOpRatio, String[] quarters) {
-    memberChart.animateY(Constants.CHART_ANI_DURATION);
-    memberChart.setData(barData);
-    memberChart.invalidate();
+  @Override public void showNowOpRatioChart(BarData barData, float yearOpRatio, String[] quarters) {
+    nowOpRatioChart.animateY(Constants.CHART_ANI_DURATION);
+    nowOpRatioChart.setData(barData);
+    nowOpRatioChart.invalidate();
+    nowOpRatioChart.zoom(2f, 1f, 1f, 1f);
+    nowOpRatioChart.setPinchZoom(true);
+    nowOpRatioChart.setDescription(null);
+    memberCurOpRatioTextView.setText(getString(R.string.now_op_ratio) + " : " + yearOpRatio);
 
-    Description description = memberChart.getDescription();
-    description.setTextSize(11.0f);
-    description.setText(getString(R.string.member_cur_op_ratio) + yearOpRatio);
-    description.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+    //Description description = nowOpRatioChart.getDescription();
+    //description.setTextSize(11.0f);
+    //description.setText(getString(R.string.member_cur_op_ratio) + yearOpRatio);
+    //description.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
 
-    XAxis xAxis = memberChart.getXAxis();
+    XAxis xAxis = nowOpRatioChart.getXAxis();
     xAxis.setDrawGridLines(false);
     xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);

@@ -35,7 +35,7 @@ public class ChartDataGen {
     this.context = context;
   }
 
-  public String[] getDeptQuarters() {
+  public String[] getYearOpRatioQuarters() {
     OpRatioHeader h = opRatioContent.getHeader();
 
     return new String[] {
@@ -44,11 +44,11 @@ public class ChartDataGen {
     };
   }
 
-  public float getDeptYearOpRatio() {
+  public float getYearOpRatio() {
     return opRatioContent.getOpRatioTotal().getYearOpr();
   }
 
-  public LineData getDeptChartData() {
+  public LineData getYearOpRatioChartData() {
     OpRatioTotal t = opRatioContent.getOpRatioTotal();
     final float[] opRatioFloats = new float[] {
         t.getJan(), t.getFeb(), t.getMar(), t.getApr(), t.getMay(), t.getJun(), t.getJul(),
@@ -80,11 +80,11 @@ public class ChartDataGen {
     return lineData;
   }
 
-  public float getMemberCurOpRatio() {
+  public float getNowOpRatio() {
     return opRatioContent.getOpRatioTotal().getCurOpr();
   }
 
-  public String[] getMemberQuarters() {
+  public String[] getNowOpRatioQuarters() {
     List<OpRatioItem> items = opRatioContent.getOpRatios();
     int size = items.size();
     String[] names = new String[size];
@@ -96,7 +96,7 @@ public class ChartDataGen {
     return names;
   }
 
-  public BarData getMemberChartData() {
+  public BarData getNowOpRatioChartData() {
     List<OpRatioItem> items = opRatioContent.getOpRatios();
     List<BarEntry> entries = new ArrayList<>();
     List<BarEntry> values = new ArrayList<>();

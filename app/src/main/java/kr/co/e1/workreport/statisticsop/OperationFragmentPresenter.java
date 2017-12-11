@@ -29,9 +29,9 @@ public interface OperationFragmentPresenter {
 
     void showMessage(@StringRes int resId);
 
-    void showDeptChart(LineData lineData, float yearOpRatio, String[] quarters);
+    void showYearOpRatioChart(LineData lineData, float yearOpRatio, String[] quarters);
 
-    void showMemberChart(BarData barData, float yearOpRatio, String[] quarters);
+    void showNowOpRatioChart(BarData barData, float yearOpRatio, String[] quarters);
 
     void showMessage(String msg);
   }

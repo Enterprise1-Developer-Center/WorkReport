@@ -83,10 +83,6 @@ public class OperationFragment extends BaseFragment implements OperationFragment
 
     yearOpRatioTextView.setText(getString(R.string.year_op_ratio) + " : " + yearOpRatio);
     yearOpRatioChart.setDescription(null);
-    //Description description = yearOpRatioChart.getDescription();
-    //description.setTextSize(13);
-    //description.setText(getString(R.string.dept_year_op_ratio) + yearOpRatio);
-    //description.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
 
     XAxis xAxis = yearOpRatioChart.getXAxis();
     xAxis.setDrawGridLines(false);
@@ -110,11 +106,6 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     nowOpRatioChart.setPinchZoom(true);
     nowOpRatioChart.setDescription(null);
     memberCurOpRatioTextView.setText(getString(R.string.now_op_ratio) + " : " + yearOpRatio);
-
-    //Description description = nowOpRatioChart.getDescription();
-    //description.setTextSize(11.0f);
-    //description.setText(getString(R.string.member_cur_op_ratio) + yearOpRatio);
-    //description.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
 
     XAxis xAxis = nowOpRatioChart.getXAxis();
     xAxis.setDrawGridLines(false);

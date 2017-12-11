@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import butterknife.BindView;
-import butterknife.OnClick;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
@@ -71,10 +70,6 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
 
   @Override public void showMessage(String msg) {
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
-  }
-
-  @OnClick({ R.id.detail_button }) void onClick(View view) {
-    presenter.onClick(view.getId());
   }
 
   @Override public void onDetach() {

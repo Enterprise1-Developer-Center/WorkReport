@@ -11,8 +11,6 @@ public interface TotalFragmentPresenter {
 
   void onActivityCreate(Bundle savedInstanceState);
 
-  void onClick(int id);
-
   void onDetach();
 
   interface View {

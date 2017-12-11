@@ -48,10 +48,6 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
         }));
   }
 
-  @Override public void onClick(int id) {
-    if (id == R.id.detail_button) view.showMessage(R.string.coming_soon);
-  }
-
   @Override public void onDetach() {
     compositeDisposable.clear();
   }

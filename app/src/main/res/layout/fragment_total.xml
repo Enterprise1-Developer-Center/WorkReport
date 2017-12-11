@@ -15,8 +15,8 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:orientation="vertical"
       android:gravity="center_horizontal"
+      android:orientation="vertical"
       >
 
     <TextView
@@ -34,15 +34,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         tools:listitem="@layout/fragment_total_recycler_item"
-        />
-    <Button
-        android:id="@id/detail_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/total_detail"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:textColor="@color/colorAccent"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"
         />
   </LinearLayout>
 

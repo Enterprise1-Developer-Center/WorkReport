@@ -2,6 +2,7 @@ package kr.co.e1.workreport.statisticstotal;
 
 import android.os.Bundle;
 import android.support.annotation.StringRes;
+import com.github.mikephil.charting.data.BarData;
 
 /**
  * Created by jaeho on 2017. 11. 2
@@ -26,5 +27,7 @@ public interface TotalFragmentPresenter {
     void showMessage(String msg);
 
     void refresh();
+
+    void showChart(BarData barData, String[] quarters);
   }
 }

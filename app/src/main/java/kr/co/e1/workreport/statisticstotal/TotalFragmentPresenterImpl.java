@@ -18,13 +18,15 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
   private View view;
   private BaseAdapterDataModel<TotalSummary> adapterDataModel;
   private TotalNetwork network;
+  private TotalChartDataGen chartDataGen;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-  TotalFragmentPresenterImpl(View view, BaseAdapterDataModel adapterDataModel,
-      TotalNetwork network) {
+  TotalFragmentPresenterImpl(View view, BaseAdapterDataModel adapterDataModel, TotalNetwork network,
+      TotalChartDataGen chartDataGen) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     this.network = network;
+    this.chartDataGen = chartDataGen;
   }
 
   @Override public void onActivityCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
           if (result.getResult() == WResult.RESULT_SUCCESS) {
             adapterDataModel.addAll(result.getContent());
             view.refresh();
+            chartDataGen.setTotalSummaries(result.getContent());
+            view.showChart(chartDataGen.getBarData(), chartDataGen.getQuarters());
           } else {
             view.showMessage(result.getMsg());
           }

@@ -17,8 +17,8 @@ import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapter;
   }
 
   @Provides TotalFragmentPresenter provideTotalFragmentPresenter(TotalFragment fragment,
-      TotalNetwork network) {
-    return new TotalFragmentPresenterImpl(fragment, fragment.adapter, network);
+      TotalNetwork network, TotalChartDataGen chartDataGen) {
+    return new TotalFragmentPresenterImpl(fragment, fragment.adapter, network, chartDataGen);
   }
 
   @Provides TotalNetwork provideTotalNetwork() {
@@ -27,5 +27,9 @@ import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapter;
 
   @Provides BaseAdapterView provideBaseAdapterView(TotalFragment fragment) {
     return fragment.adapter;
+  }
+
+  @Provides TotalChartDataGen provideTotalChartDataGen(TotalFragment fragment) {
+    return new TotalChartDataGen(fragment.getContext());
   }
 }

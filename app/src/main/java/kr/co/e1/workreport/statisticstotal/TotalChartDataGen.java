@@ -3,7 +3,6 @@ package kr.co.e1.workreport.statisticstotal;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -55,7 +54,7 @@ public class TotalChartDataGen {
     dataSet.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
     dataSet.setValues(values);
 
-    dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+    //dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
 
     List<IBarDataSet> dataSets = new ArrayList<>();
     dataSets.add(dataSet);

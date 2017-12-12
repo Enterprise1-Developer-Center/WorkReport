@@ -20,6 +20,7 @@ import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapter;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -81,9 +82,10 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     chart.setDrawBarShadow(false);
     chart.setDrawValueAboveBar(true);
     chart.getDescription().setEnabled(false);
-    chart.setMaxVisibleValueCount(60);
     chart.setPinchZoom(false);
     chart.setDrawGridBackground(false);
+    chart.setFitBars(true);
+    chart.animateY(Constants.ANI_DURATION);
     chart.setData(barData);
 
     XAxis xl = chart.getXAxis();
@@ -94,8 +96,10 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     xl.setGranularity(10f);
     xl.setValueFormatter((value, axis) -> {
       try {
+        Timber.d("quarter = " + quarters[(int) value] + ", value = " + value);
         return quarters[(int) value];
       } catch (ArrayIndexOutOfBoundsException e) {
+        e.printStackTrace();
         return quarters[0];
       }
     });
@@ -111,9 +115,6 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     yr.setDrawAxisLine(true);
     yr.setDrawGridLines(false);
     yr.setAxisMinimum(0f);
-
-    chart.setFitBars(true);
-    chart.animateY(Constants.ANI_DURATION);
 
     Legend l = chart.getLegend();
     l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);

@@ -74,7 +74,8 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showYearOpRatioChart(LineData lineData, float yearOpRatio, String[] quarters) {
+  @Override
+  public void showYearOpRatioChart(LineData lineData, float yearOpRatio, String[] quarters) {
     yearOpRatioChart.animateY(Constants.CHART_ANI_DURATION);
     yearOpRatioChart.setData(lineData);
     yearOpRatioChart.invalidate();

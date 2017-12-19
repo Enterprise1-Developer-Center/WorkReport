@@ -63,9 +63,10 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     chart.setDrawValueAboveBar(true);
     chart.getDescription().setEnabled(false);
     chart.setPinchZoom(false);
+
     chart.setDrawGridBackground(false);
     chart.setFitBars(true);
-    chart.animateY(Constants.ANI_DURATION);
+    chart.animateY(Constants.CHART_ANI_DURATION);
     chart.setData(barData);
 
     XAxis xl = chart.getXAxis();

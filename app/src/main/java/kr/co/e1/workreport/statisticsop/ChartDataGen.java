@@ -113,13 +113,14 @@ public class ChartDataGen {
     dataSet.setValueTextSize(12f);
     dataSet.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
     dataSet.setValues(values);
-
     dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+
 
     List<IBarDataSet> dataSets = new ArrayList<>();
     dataSets.add(dataSet);
     BarData barData = new BarData(dataSets);
     barData.setValueTextColor(Color.BLACK);
+    barData.setBarWidth(0.5f);
 
     return barData;
   }

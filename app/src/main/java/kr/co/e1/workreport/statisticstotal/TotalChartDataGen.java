@@ -49,17 +49,16 @@ public class TotalChartDataGen {
 
     BarDataSet dataSet = new BarDataSet(entries, context.getString(R.string.members));
     dataSet.setHighLightColor(ContextCompat.getColor(context, R.color.colorPrimary));
-    dataSet.setDrawValues(true);
-    dataSet.setValueTextSize(12f);
+    dataSet.setDrawValues(false);
+    dataSet.setValueTextSize(9f);
     dataSet.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
     dataSet.setValues(values);
-
-    //dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
 
     List<IBarDataSet> dataSets = new ArrayList<>();
     dataSets.add(dataSet);
     BarData barData = new BarData(dataSets);
     barData.setValueTextColor(Color.BLACK);
+    barData.setBarWidth(0.5f);
 
     return barData;
   }

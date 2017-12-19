@@ -80,7 +80,6 @@
   <item name="now_op_ratio_textview" type="id"/>
   <item name="year_op_ratio_textview" type="id"/>
   <item name="value_textview" type="id"/>
-  <item name="subject_textview" type="id"/>
   <item name="item_container" type="id"/>
   <item name="imageview" type="id"/>
   <item name="member_cur_op_ratio_textview" type="id"/>

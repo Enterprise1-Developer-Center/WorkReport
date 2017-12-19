@@ -3,8 +3,6 @@ package kr.co.e1.workreport.statisticstotal;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import butterknife.BindView;
@@ -14,12 +12,9 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import javax.inject.Inject;
-import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
-import kr.co.e1.workreport.statisticstotal.adapter.TotalAdapter;
 import timber.log.Timber;
 
 /**
@@ -30,12 +25,9 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
 
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
-  @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.chart) HorizontalBarChart chart;
 
-  @Inject TotalAdapter adapter;
   @Inject TotalFragmentPresenter presenter;
-  @Inject BaseAdapterView adapterView;
 
   public static TotalFragment newInstance() {
     return new TotalFragment();
@@ -65,19 +57,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void setRecyclerView() {
-    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    recyclerView.setAdapter(adapter);
-    recyclerView.setItemAnimator(new SlideInDownAnimator());
-    recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
-  }
-
-  @Override public void refresh() {
-    adapterView.refresh();
-  }
-
   @Override public void showChart(BarData barData, String[] quarters) {
-    recyclerView.setVisibility(View.INVISIBLE);
 
     chart.setDrawBarShadow(false);
     chart.setDrawValueAboveBar(true);
@@ -93,7 +73,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     xl.setTypeface(Typeface.DEFAULT);
     xl.setDrawAxisLine(true);
     xl.setDrawGridLines(false);
-    xl.setGranularity(10f);
+    //xl.setGranularity(10f);
     xl.setValueFormatter((value, axis) -> {
       try {
         Timber.d("quarter = " + quarters[(int) value] + ", value = " + value);

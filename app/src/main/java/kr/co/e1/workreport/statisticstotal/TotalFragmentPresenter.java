@@ -22,11 +22,7 @@ public interface TotalFragmentPresenter {
 
     void showMessage(@StringRes int resId);
 
-    void setRecyclerView();
-
     void showMessage(String msg);
-
-    void refresh();
 
     void showChart(BarData barData, String[] quarters);
   }

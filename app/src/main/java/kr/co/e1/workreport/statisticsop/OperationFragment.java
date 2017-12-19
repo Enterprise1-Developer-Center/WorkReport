@@ -104,7 +104,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     nowOpRatioChart.setData(barData);
     nowOpRatioChart.invalidate();
     nowOpRatioChart.zoom(2f, 1f, 1f, 1f);
-    nowOpRatioChart.setPinchZoom(true);
+    nowOpRatioChart.setPinchZoom(false);
     nowOpRatioChart.setDescription(null);
     memberCurOpRatioTextView.setText(getString(R.string.now_op_ratio) + " : " + yearOpRatio);
 

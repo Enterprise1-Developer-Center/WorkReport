@@ -49,8 +49,8 @@ public class TotalChartDataGen {
 
     BarDataSet dataSet = new BarDataSet(entries, context.getString(R.string.members));
     dataSet.setHighLightColor(ContextCompat.getColor(context, R.color.colorPrimary));
-    dataSet.setDrawValues(false);
-    dataSet.setValueTextSize(9f);
+    dataSet.setDrawValues(true);
+    dataSet.setValueTextSize(12f);
     dataSet.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
     dataSet.setValues(values);
 
@@ -58,7 +58,7 @@ public class TotalChartDataGen {
     dataSets.add(dataSet);
     BarData barData = new BarData(dataSets);
     barData.setValueTextColor(Color.BLACK);
-    barData.setBarWidth(0.5f);
+    //barData.setBarWidth(0.5f);
 
     return barData;
   }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import butterknife.BindView;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import javax.inject.Inject;
@@ -24,6 +25,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.chart) BarChart chart;
+  @BindView(R.id.chart2) HorizontalBarChart chart2;
 
   @Inject TotalFragmentPresenter presenter;
 
@@ -77,6 +79,30 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
         return quarters[0];
       }
     });
+  }
+  @Override public void showChart2(BarData barData, TotalSummary totItem, String[] quarters) {
+    chart2.animateY(Constants.CHART_ANI_DURATION);
+    chart2.setData(barData);
+    chart2.zoom(2f, 1f, 1f, 1f);
+    chart2.setDoubleTapToZoomEnabled(false);
+    chart2.setPinchZoom(false);
+    chart2.getDescription().setEnabled(false);
+    //memberCurOpRatioTextView.setText(getString(R.string.now_op_ratio) + " : " + yearOpRatio);
+
+    XAxis xAxis = chart2.getXAxis();
+    xAxis.setDrawGridLines(false);
+    xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+    xAxis.setGranularity(1.0f);
+    xAxis.setValueFormatter((value, axis) -> {
+      try {
+        return quarters[(int) value];
+      } catch (ArrayIndexOutOfBoundsException e) {
+        return quarters[0];
+      }
+    });
+
+    chart2.invalidate();
   }
 
   @Override public void showMessage(String msg) {

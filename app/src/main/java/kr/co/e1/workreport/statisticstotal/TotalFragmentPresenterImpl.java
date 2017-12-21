@@ -33,7 +33,8 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
         .subscribe(result -> {
           if (result.getResult() == WResult.RESULT_SUCCESS) {
             chartDataGen.setItems(result.getContent());
-            view.showChart(chartDataGen.getBarData(), chartDataGen.getTotItem(), chartDataGen.getQuarters());
+            //view.showChart(chartDataGen.getBarData(), chartDataGen.getTotItem(), chartDataGen.getQuarters());
+            view.showChart2(chartDataGen.getBarData(), chartDataGen.getTotItem(), chartDataGen.getQuarters());
           } else {
             view.showMessage(result.getMsg());
           }

@@ -39,7 +39,6 @@ public class TotalChartDataGen {
   }
 
   public BarData getBarData() {
-    items.remove(items.size() - 1);
     List<TotalSummary> items = this.items;
     List<BarEntry> entries = new ArrayList<>();
     List<BarEntry> values = new ArrayList<>();
@@ -60,7 +59,7 @@ public class TotalChartDataGen {
     dataSets.add(dataSet);
     BarData barData = new BarData(dataSets);
     barData.setValueTextColor(Color.BLACK);
-    barData.setBarWidth(0.6f);
+    barData.setBarWidth(0.3f);
 
     return barData;
   }

@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.statisticstotal.model.TotalSummary;
-import lombok.Setter;
-import lombok.experimental.Accessors;
+import lombok.Getter;
 
 /**
  * Created by jaeho on 2017. 12. 12
@@ -20,7 +19,9 @@ import lombok.experimental.Accessors;
 
 public class TotalChartDataGen {
 
-  @Accessors(chain = true) @Setter private List<TotalSummary> totalSummaries;
+  private List<TotalSummary> items;
+  @Getter private TotalSummary totItem;
+
   private Context context;
 
   public TotalChartDataGen(Context context) {
@@ -28,7 +29,7 @@ public class TotalChartDataGen {
   }
 
   public String[] getQuarters() {
-    final List<TotalSummary> items = totalSummaries;
+    final List<TotalSummary> items = this.items;
     int size = items.size();
     final String[] quarters = new String[items.size()];
     for (int i = 0; i < size; i++) {
@@ -38,8 +39,8 @@ public class TotalChartDataGen {
   }
 
   public BarData getBarData() {
-    totalSummaries.remove(totalSummaries.size()-1);
-    List<TotalSummary> items = totalSummaries;
+    items.remove(items.size() - 1);
+    List<TotalSummary> items = this.items;
     List<BarEntry> entries = new ArrayList<>();
     List<BarEntry> values = new ArrayList<>();
     for (int i = 0; i < items.size(); i++) {
@@ -62,5 +63,10 @@ public class TotalChartDataGen {
     barData.setBarWidth(0.6f);
 
     return barData;
+  }
+
+  public void setItems(List<TotalSummary> items) {
+    totItem = items.remove(items.size() - 1);
+    this.items = items;
   }
 }

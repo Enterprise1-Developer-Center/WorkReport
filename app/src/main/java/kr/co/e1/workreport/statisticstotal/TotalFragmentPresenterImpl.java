@@ -32,8 +32,8 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
           if (result.getResult() == WResult.RESULT_SUCCESS) {
-            chartDataGen.setTotalSummaries(result.getContent());
-            view.showChart(chartDataGen.getBarData(), chartDataGen.getQuarters());
+            chartDataGen.setItems(result.getContent());
+            view.showChart(chartDataGen.getBarData(), chartDataGen.getTotItem(), chartDataGen.getQuarters());
           } else {
             view.showMessage(result.getMsg());
           }

@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
+import kr.co.e1.workreport.statisticstotal.model.TotalSummary;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -54,7 +55,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showChart(BarData barData, String[] quarters) {
+  @Override public void showChart(BarData barData, TotalSummary totItem, String[] quarters) {
     chart.animateY(Constants.CHART_ANI_DURATION);
     chart.setData(barData);
     chart.invalidate();

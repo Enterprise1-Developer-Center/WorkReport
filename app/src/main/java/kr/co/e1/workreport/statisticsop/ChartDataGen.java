@@ -62,7 +62,7 @@ public class ChartDataGen {
     }
 
     LineDataSet dataSet = new LineDataSet(entries, context.getString(R.string.monthly));
-    dataSet.setLineWidth(2.0f);
+    dataSet.setLineWidth(1.0f);
     dataSet.setCircleRadius(3.5f);
     dataSet.setHighLightColor(ContextCompat.getColor(context, R.color.colorPrimary));
     dataSet.setCircleColor(ContextCompat.getColor(context, R.color.colorAccent));

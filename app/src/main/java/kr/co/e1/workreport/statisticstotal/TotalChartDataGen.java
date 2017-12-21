@@ -38,6 +38,7 @@ public class TotalChartDataGen {
   }
 
   public BarData getBarData() {
+    totalSummaries.remove(totalSummaries.size()-1);
     List<TotalSummary> items = totalSummaries;
     List<BarEntry> entries = new ArrayList<>();
     List<BarEntry> values = new ArrayList<>();

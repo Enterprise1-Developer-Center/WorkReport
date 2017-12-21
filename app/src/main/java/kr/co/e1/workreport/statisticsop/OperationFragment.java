@@ -20,7 +20,6 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
 import kr.co.e1.workreport.statisticsopdetail.OpDetailActivity;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -45,7 +44,6 @@ public class OperationFragment extends BaseFragment implements OperationFragment
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    Timber.d("presenter = " + presenter);
     presenter.onActivityCreate(savedInstanceState);
   }
 
@@ -80,6 +78,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     yearOpRatioChart.setData(lineData);
     yearOpRatioChart.invalidate();
     yearOpRatioChart.zoom(2f, 1f, 1f, 1f);
+    yearOpRatioChart.setDoubleTapToZoomEnabled(false);
     yearOpRatioChart.setPinchZoom(false);
 
     yearOpRatioTextView.setText(getString(R.string.year_op_ratio) + " : " + yearOpRatio);
@@ -103,7 +102,8 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     nowOpRatioChart.animateY(Constants.CHART_ANI_DURATION);
     nowOpRatioChart.setData(barData);
     nowOpRatioChart.invalidate();
-    nowOpRatioChart.zoom(2f, 2f, 2f, 2f);
+    nowOpRatioChart.zoom(2f, 1f, 2f, 2f);
+    nowOpRatioChart.setDoubleTapToZoomEnabled(false);
     nowOpRatioChart.setPinchZoom(false);
     nowOpRatioChart.getDescription().setEnabled(false);
     memberCurOpRatioTextView.setText(getString(R.string.now_op_ratio) + " : " + yearOpRatio);

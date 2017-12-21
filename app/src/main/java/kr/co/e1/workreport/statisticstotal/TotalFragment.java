@@ -1,21 +1,18 @@
 package kr.co.e1.workreport.statisticstotal;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ProgressBar;
 import butterknife.BindView;
-import com.github.mikephil.charting.charts.HorizontalBarChart;
-import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -25,7 +22,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
 
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
-  @BindView(R.id.chart) HorizontalBarChart chart;
+  @BindView(R.id.chart) BarChart chart;
 
   @Inject TotalFragmentPresenter presenter;
 
@@ -60,50 +57,25 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
   @Override public void showChart(BarData barData, String[] quarters) {
     chart.animateY(Constants.CHART_ANI_DURATION);
     chart.setData(barData);
-    chart.zoom(2f, 2f, 2f, 2f);
+    chart.invalidate();
+    chart.zoom(2f, 1f, 1f, 1f);
+    chart.setDoubleTapToZoomEnabled(false);
     chart.setPinchZoom(false);
     chart.getDescription().setEnabled(false);
+    //memberCurOpRatioTextView.setText(getString(R.string.now_op_ratio) + " : " + yearOpRatio);
 
-    XAxis xl = chart.getXAxis();
-    xl.setPosition(XAxis.XAxisPosition.BOTTOM);
-    xl.setTypeface(Typeface.DEFAULT);
-    xl.setDrawAxisLine(true);
-    xl.setDrawGridLines(false);
-    //xl.setGranularity(10f);
-    xl.setValueFormatter((value, axis) -> {
+    XAxis xAxis = chart.getXAxis();
+    xAxis.setDrawGridLines(false);
+    xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+    xAxis.setGranularity(1.0f);
+    xAxis.setValueFormatter((value, axis) -> {
       try {
-        Timber.d("quarter = " + quarters[(int) value] + ", value = " + value);
         return quarters[(int) value];
       } catch (ArrayIndexOutOfBoundsException e) {
-        e.printStackTrace();
         return quarters[0];
       }
     });
-
-    YAxis yl = chart.getAxisLeft();
-    yl.setSpaceBottom(0.2f);
-    yl.setTypeface(Typeface.DEFAULT);
-    yl.setDrawAxisLine(true);
-    yl.setDrawGridLines(true);
-    yl.setAxisMinimum(0f);
-
-    YAxis yr = chart.getAxisRight();
-    yr.setSpaceBottom(0.2f);
-    yr.setTypeface(Typeface.DEFAULT);
-    yr.setDrawAxisLine(true);
-    yr.setDrawGridLines(false);
-    yr.setAxisMinimum(0f);
-
-    Legend l = chart.getLegend();
-    l.setYEntrySpace(0.2f);
-    l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-    l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-    l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-    l.setDrawInside(false);
-    l.setFormSize(8f);
-    l.setXEntrySpace(2f);
-
-    chart.invalidate();
   }
 
   @Override public void showMessage(String msg) {

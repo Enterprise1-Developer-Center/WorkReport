@@ -80,10 +80,10 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     yearOpRatioChart.setData(lineData);
     yearOpRatioChart.invalidate();
     yearOpRatioChart.zoom(2f, 1f, 1f, 1f);
-    yearOpRatioChart.setPinchZoom(true);
+    yearOpRatioChart.setPinchZoom(false);
 
     yearOpRatioTextView.setText(getString(R.string.year_op_ratio) + " : " + yearOpRatio);
-    yearOpRatioChart.setDescription(null);
+    yearOpRatioChart.getDescription().setEnabled(false);
 
     XAxis xAxis = yearOpRatioChart.getXAxis();
     xAxis.setDrawGridLines(false);
@@ -103,9 +103,9 @@ public class OperationFragment extends BaseFragment implements OperationFragment
     nowOpRatioChart.animateY(Constants.CHART_ANI_DURATION);
     nowOpRatioChart.setData(barData);
     nowOpRatioChart.invalidate();
-    nowOpRatioChart.zoom(2f, 1f, 1f, 1f);
+    nowOpRatioChart.zoom(2f, 2f, 2f, 2f);
     nowOpRatioChart.setPinchZoom(false);
-    nowOpRatioChart.setDescription(null);
+    nowOpRatioChart.getDescription().setEnabled(false);
     memberCurOpRatioTextView.setText(getString(R.string.now_op_ratio) + " : " + yearOpRatio);
 
     XAxis xAxis = nowOpRatioChart.getXAxis();

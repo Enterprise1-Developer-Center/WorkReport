@@ -58,7 +58,7 @@ public class TotalChartDataGen {
     dataSets.add(dataSet);
     BarData barData = new BarData(dataSets);
     barData.setValueTextColor(Color.BLACK);
-    //barData.setBarWidth(0.5f);
+    barData.setBarWidth(0.6f);
 
     return barData;
   }

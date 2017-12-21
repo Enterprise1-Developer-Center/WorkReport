@@ -58,18 +58,11 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
   }
 
   @Override public void showChart(BarData barData, String[] quarters) {
-
-    chart.setDrawBarShadow(false);
-    chart.setDrawValueAboveBar(true);
-    chart.getDescription().setEnabled(false);
-    chart.setPinchZoom(true);
-
-    chart.setDrawGridBackground(false);
-    chart.setFitBars(true);
     chart.animateY(Constants.CHART_ANI_DURATION);
-    chart.invalidate();
-    chart.zoom(2f, 1f, 1f, 1f);
     chart.setData(barData);
+    chart.zoom(2f, 2f, 2f, 2f);
+    chart.setPinchZoom(false);
+    chart.getDescription().setEnabled(false);
 
     XAxis xl = chart.getXAxis();
     xl.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -88,24 +81,29 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     });
 
     YAxis yl = chart.getAxisLeft();
+    yl.setSpaceBottom(0.2f);
     yl.setTypeface(Typeface.DEFAULT);
     yl.setDrawAxisLine(true);
     yl.setDrawGridLines(true);
     yl.setAxisMinimum(0f);
 
     YAxis yr = chart.getAxisRight();
+    yr.setSpaceBottom(0.2f);
     yr.setTypeface(Typeface.DEFAULT);
     yr.setDrawAxisLine(true);
     yr.setDrawGridLines(false);
     yr.setAxisMinimum(0f);
 
     Legend l = chart.getLegend();
+    l.setYEntrySpace(0.2f);
     l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
     l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
     l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
     l.setDrawInside(false);
     l.setFormSize(8f);
-    l.setXEntrySpace(4f);
+    l.setXEntrySpace(2f);
+
+    chart.invalidate();
   }
 
   @Override public void showMessage(String msg) {

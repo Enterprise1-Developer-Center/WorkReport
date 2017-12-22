@@ -26,7 +26,5 @@ public interface TotalFragmentPresenter {
     void showMessage(String msg);
 
     void showChart(BarData barData, TotalSummary totItem, String[] quarters);
-
-    void showChart2(BarData barData, TotalSummary totItem, String[] quarters);
   }
 }

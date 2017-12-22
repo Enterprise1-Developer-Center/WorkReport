@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ProgressBar;
 import butterknife.BindView;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -25,8 +24,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
 
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
-  @BindView(R.id.chart) BarChart chart;
-  @BindView(R.id.chart2) HorizontalBarChart chart2;
+  @BindView(R.id.chart) HorizontalBarChart chart;
 
   @Inject TotalFragmentPresenter presenter;
 
@@ -58,38 +56,15 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showChart(BarData barData, TotalSummary totItem, String[] quarters) {
+  @DebugLog @Override public void showChart(BarData barData, TotalSummary totItem, String[] quarters) {
     chart.animateY(Constants.CHART_ANI_DURATION);
     chart.setData(barData);
-    chart.invalidate();
-    chart.zoom(2f, 1f, 1f, 1f);
+    chart.zoom(0.3f, 0.3f, 0.3f, 0.3f);
     chart.setDoubleTapToZoomEnabled(false);
     chart.setPinchZoom(false);
     chart.getDescription().setEnabled(false);
-    //memberCurOpRatioTextView.setText(getString(R.string.now_op_ratio) + " : " + yearOpRatio);
 
     XAxis xAxis = chart.getXAxis();
-    xAxis.setDrawGridLines(false);
-    xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
-    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-    xAxis.setGranularity(1.0f);
-    xAxis.setValueFormatter((value, axis) -> {
-      try {
-        return quarters[(int) value];
-      } catch (ArrayIndexOutOfBoundsException e) {
-        return quarters[0];
-      }
-    });
-  }
-  @DebugLog @Override public void showChart2(BarData barData, TotalSummary totItem, String[] quarters) {
-    chart2.animateY(Constants.CHART_ANI_DURATION);
-    chart2.setData(barData);
-    chart2.zoom(0.3f, 0.3f, 0.3f, 0.3f);
-    chart2.setDoubleTapToZoomEnabled(false);
-    chart2.setPinchZoom(false);
-    chart2.getDescription().setEnabled(false);
-
-    XAxis xAxis = chart2.getXAxis();
     xAxis.setDrawGridLines(false);
     xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
@@ -104,13 +79,13 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
       }
     });
 
-    chart2.invalidate();
+    chart.invalidate();
   }
 
   @Override public void showMessage(String msg) {
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
-e
+
   @Override public void onDetach() {
     super.onDetach();
     presenter.onDetach();

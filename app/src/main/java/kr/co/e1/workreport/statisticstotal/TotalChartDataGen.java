@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.statisticstotal.model.TotalSummary;
-import lombok.Getter;
 
 /**
  * Created by jaeho on 2017. 12. 12
@@ -20,7 +19,7 @@ import lombok.Getter;
 public class TotalChartDataGen {
 
   private List<TotalSummary> items;
-  @Getter private TotalSummary totItem;
+  private TotalSummary totItem;
 
   private Context context;
 
@@ -48,10 +47,10 @@ public class TotalChartDataGen {
       values.add(new BarEntry(i, item.getValue()));
     }
 
-    BarDataSet dataSet = new BarDataSet(entries, context.getString(R.string.members));
+    BarDataSet dataSet = new BarDataSet(entries, context.getString(R.string.total));
     dataSet.setHighLightColor(ContextCompat.getColor(context, R.color.colorPrimary));
     dataSet.setDrawValues(true);
-    dataSet.setValueTextSize(12f);
+    dataSet.setValueTextSize(13f);
     dataSet.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
     dataSet.setValues(values);
 
@@ -59,9 +58,13 @@ public class TotalChartDataGen {
     dataSets.add(dataSet);
     BarData barData = new BarData(dataSets);
     barData.setValueTextColor(Color.BLACK);
-    barData.setBarWidth(0.3f);
+    barData.setBarWidth(0.5f);
 
     return barData;
+  }
+
+  public String getTotal() {
+    return totItem.getName() + " : " + totItem.getValue();
   }
 
   public void setItems(List<TotalSummary> items) {

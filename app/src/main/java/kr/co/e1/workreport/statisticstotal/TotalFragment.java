@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import butterknife.BindView;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -14,7 +15,6 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
-import kr.co.e1.workreport.statisticstotal.model.TotalSummary;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -25,6 +25,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.chart) HorizontalBarChart chart;
+  @BindView(R.id.textview) TextView totalTextView;
 
   @Inject TotalFragmentPresenter presenter;
 
@@ -56,7 +57,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @DebugLog @Override public void showChart(BarData barData, TotalSummary totItem, String[] quarters) {
+  @DebugLog @Override public void showChart(BarData barData, String[] quarters) {
     chart.animateY(Constants.CHART_ANI_DURATION);
     chart.setData(barData);
     chart.zoom(0.3f, 0.3f, 0.3f, 0.3f);
@@ -68,8 +69,9 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     xAxis.setDrawGridLines(false);
     xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
-    xAxis.setLabelRotationAngle(55f);
-    xAxis.setXOffset(37);
+    xAxis.setLabelRotationAngle(40f);
+    xAxis.setXOffset(25);
+    chart.setExtraLeftOffset(35f);
     xAxis.setGranularity(1);
     xAxis.setValueFormatter((value, axis) -> {
       try {
@@ -80,6 +82,10 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
     });
 
     chart.invalidate();
+  }
+
+  @Override public void showTotal(String total) {
+    totalTextView.setText(total);
   }
 
   @Override public void showMessage(String msg) {

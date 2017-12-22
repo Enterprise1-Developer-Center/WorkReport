@@ -19,9 +19,25 @@
       android:layout_gravity="center"
       android:visibility="gone"
       />
-  <com.github.mikephil.charting.charts.HorizontalBarChart
-      android:id="@id/chart"
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      />
+      android:orientation="vertical"
+      android:gravity="center"
+      >
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+        android:id="@id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:id="@id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+        tools:text="Total : 4567"
+        android:layout_marginBottom="@dimen/dp_10"
+        />
+  </LinearLayout>
 </FrameLayout>

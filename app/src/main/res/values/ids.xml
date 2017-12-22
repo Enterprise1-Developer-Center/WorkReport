@@ -83,4 +83,5 @@
   <item name="item_container" type="id"/>
   <item name="imageview" type="id"/>
   <item name="member_cur_op_ratio_textview" type="id"/>
+  <item name="spinner" type="id"/>
 </resources>

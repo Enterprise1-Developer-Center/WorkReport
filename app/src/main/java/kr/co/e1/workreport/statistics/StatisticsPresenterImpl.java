@@ -1,6 +1,9 @@
 package kr.co.e1.workreport.statistics;
 
 import android.os.Bundle;
+import hugo.weaving.DebugLog;
+import java.util.ArrayList;
+import java.util.List;
 import kr.co.e1.workreport.R;
 
 /**
@@ -18,6 +21,15 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
   @Override public void onCreated(Bundle savedInstanceState) {
     view.setListener();
     view.showOperationFragment();
+    initSpinner();
+  }
+
+  private void initSpinner() {
+
+    List<String> items = new ArrayList<>();
+    items.add("2017");
+    items.add("2018");
+    view.showSpinner(items);
   }
 
   @Override public boolean onBottomNavigationItemSelected(int itemId, boolean isChecked) {
@@ -32,5 +44,9 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
       }
     }
     return false;
+  }
+
+  @DebugLog @Override public void onSpinnerItemSelected(int position, long id) {
+
   }
 }

@@ -5,12 +5,17 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
+import java.util.List;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
+import kr.co.e1.workreport.framework.abs.OnSimpleItemSelectedListener;
 import kr.co.e1.workreport.statisticsop.OperationFragment;
 import kr.co.e1.workreport.statisticstotal.TotalFragment;
 
@@ -23,8 +28,10 @@ import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_T
 
 public class StatisticsActivity extends BaseActivity
     implements StatisticsPresenter.View, BottomNavigationView.OnNavigationItemSelectedListener {
+  @Inject ArrayAdapter<String> adapter;
   @Inject StatisticsPresenter presenter;
   @BindView(R.id.bottom_navigation_view) BottomNavigationView bottomNavigationView;
+  @BindView(R.id.spinner) Spinner spinner;
 
   @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreated(savedInstanceState);
@@ -67,6 +74,17 @@ public class StatisticsActivity extends BaseActivity
             R.animator.enter_animation, R.animator.exit_animation)
         .replace(R.id.fragment_container, TotalFragment.newInstance())
         .commit();
+  }
+
+  @Override public void showSpinner(List<String> items) {
+    spinner.setVisibility(View.VISIBLE);
+    adapter.addAll(items);
+    spinner.setAdapter(adapter);
+    spinner.setOnItemSelectedListener(new OnSimpleItemSelectedListener() {
+      @Override public void onItemSelected(int position, long id) {
+        presenter.onSpinnerItemSelected(position, id);
+      }
+    });
   }
 
   @Override public void setListener() {

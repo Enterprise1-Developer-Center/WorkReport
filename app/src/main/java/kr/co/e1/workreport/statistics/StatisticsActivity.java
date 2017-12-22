@@ -74,7 +74,7 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-    return presenter.onBottomNavigationItemSelected(item.getItemId());
+    return presenter.onBottomNavigationItemSelected(item.getItemId(), item.isChecked());
   }
 
   @Inject DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;

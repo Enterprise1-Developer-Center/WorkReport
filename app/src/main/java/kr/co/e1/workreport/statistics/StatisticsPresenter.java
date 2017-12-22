@@ -14,7 +14,7 @@ public interface StatisticsPresenter {
 
   void onCreated(Bundle savedInstanceState);
 
-  boolean onBottomNavigationItemSelected(int itemId);
+  boolean onBottomNavigationItemSelected(int itemId, boolean checked);
 
   interface View {
 

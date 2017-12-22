@@ -18,20 +18,19 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
   @Override public void onCreated(Bundle savedInstanceState) {
     view.setListener();
     view.showOperationFragment();
-    //view.showGraphFragment();
-    //view.showTotalFragment();
   }
 
-  @Override public boolean onBottomNavigationItemSelected(int itemId) {
-    switch (itemId) {
-      case R.id.action_ratio:
-        view.showOperationFragment();
-        break;
-      case R.id.action_total:
-        view.showTotalFragment();
-        break;
+  @Override public boolean onBottomNavigationItemSelected(int itemId, boolean isChecked) {
+    if (!isChecked) {
+      switch (itemId) {
+        case R.id.action_ratio:
+          view.showOperationFragment();
+          break;
+        case R.id.action_total:
+          view.showTotalFragment();
+          break;
+      }
     }
-
     return false;
   }
 }

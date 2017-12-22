@@ -17,7 +17,7 @@ public interface StatisticsPresenter {
 
   boolean onBottomNavigationItemSelected(int itemId, boolean checked);
 
-  void onSpinnerItemSelected(int position, long id);
+  void onSpinnerItemSelected(String item);
 
   interface View {
 

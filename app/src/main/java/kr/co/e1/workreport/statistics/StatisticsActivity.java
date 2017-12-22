@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.statistics;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -82,7 +83,7 @@ public class StatisticsActivity extends BaseActivity
     spinner.setAdapter(adapter);
     spinner.setOnItemSelectedListener(new OnSimpleItemSelectedListener() {
       @Override public void onItemSelected(int position, long id) {
-        presenter.onSpinnerItemSelected(position, id);
+        presenter.onSpinnerItemSelected(adapter.getItem(position));
       }
     });
   }

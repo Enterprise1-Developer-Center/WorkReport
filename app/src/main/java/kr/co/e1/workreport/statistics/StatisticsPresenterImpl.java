@@ -29,6 +29,9 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
     List<String> items = new ArrayList<>();
     items.add("2017");
     items.add("2018");
+
+    // networking..
+
     view.showSpinner(items);
   }
 
@@ -46,7 +49,7 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
     return false;
   }
 
-  @DebugLog @Override public void onSpinnerItemSelected(int position, long id) {
+  @DebugLog @Override public void onSpinnerItemSelected(String item) {
 
   }
 }

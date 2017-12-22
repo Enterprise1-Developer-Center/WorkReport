@@ -10,6 +10,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
@@ -80,20 +81,21 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
       }
     });
   }
-  @Override public void showChart2(BarData barData, TotalSummary totItem, String[] quarters) {
+  @DebugLog @Override public void showChart2(BarData barData, TotalSummary totItem, String[] quarters) {
     chart2.animateY(Constants.CHART_ANI_DURATION);
     chart2.setData(barData);
-    chart2.zoom(2f, 1f, 1f, 1f);
+    chart2.zoom(0.3f, 0.3f, 0.3f, 0.3f);
     chart2.setDoubleTapToZoomEnabled(false);
     chart2.setPinchZoom(false);
     chart2.getDescription().setEnabled(false);
-    //memberCurOpRatioTextView.setText(getString(R.string.now_op_ratio) + " : " + yearOpRatio);
 
     XAxis xAxis = chart2.getXAxis();
     xAxis.setDrawGridLines(false);
     xAxis.setAxisLineColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
-    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-    xAxis.setGranularity(1.0f);
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
+    xAxis.setLabelRotationAngle(55f);
+    xAxis.setXOffset(37);
+    xAxis.setGranularity(1);
     xAxis.setValueFormatter((value, axis) -> {
       try {
         return quarters[(int) value];
@@ -108,7 +110,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
   @Override public void showMessage(String msg) {
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
-
+e
   @Override public void onDetach() {
     super.onDetach();
     presenter.onDetach();

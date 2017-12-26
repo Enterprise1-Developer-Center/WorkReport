@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.statistics;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,10 +11,12 @@ import android.widget.Spinner;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
+import kr.co.e1.workreport.framework.ObjectUtils;
 import kr.co.e1.workreport.framework.abs.OnSimpleItemSelectedListener;
 import kr.co.e1.workreport.statisticsop.OperationFragment;
 import kr.co.e1.workreport.statisticstotal.TotalFragment;
@@ -59,7 +60,7 @@ public class StatisticsActivity extends BaseActivity
     return super.onOptionsItemSelected(item);
   }
 
-  @Override public void showOperationFragment() {
+  @Override public void showOperationFragment(String year) {
     bottomNavigationView.getMenu().getItem(POSITION_NAVI_RATIO).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
@@ -68,7 +69,7 @@ public class StatisticsActivity extends BaseActivity
         .commit();
   }
 
-  @Override public void showTotalFragment() {
+  @Override public void showTotalFragment(String year) {
     bottomNavigationView.getMenu().getItem(POSITION_NAVI_TOTAL).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
@@ -83,9 +84,20 @@ public class StatisticsActivity extends BaseActivity
     spinner.setAdapter(adapter);
     spinner.setOnItemSelectedListener(new OnSimpleItemSelectedListener() {
       @Override public void onItemSelected(int position, long id) {
-        presenter.onSpinnerItemSelected(adapter.getItem(position));
+        presenter.onSpinnerItemSelected(getNowFragmentName(), adapter.getItem(position));
       }
     });
+
+    spinner.setSelection(items.indexOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR))));
+  }
+
+  private String getNowFragmentName() {
+    Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+    if (!ObjectUtils.isEmpty(fragment)) {
+      return fragment.getClass().getSimpleName();
+    } else {
+      return null;
+    }
   }
 
   @Override public void setListener() {
@@ -93,7 +105,8 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-    return presenter.onBottomNavigationItemSelected(item.getItemId(), item.isChecked());
+    String year = String.valueOf(spinner.getSelectedItem());
+    return presenter.onBottomNavigationItemSelected(year, item.getItemId(), item.isChecked());
   }
 
   @Inject DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;

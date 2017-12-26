@@ -1,9 +1,11 @@
 package kr.co.e1.workreport.statistics;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import hugo.weaving.DebugLog;
-import java.util.ArrayList;
-import java.util.List;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import kr.co.e1.workreport.R;
 
 /**
@@ -13,43 +15,54 @@ import kr.co.e1.workreport.R;
 public class StatisticsPresenterImpl implements StatisticsPresenter {
 
   private StatisticsPresenter.View view;
+  private StatisticsNetwork network;
+  private Disposable disposable;
 
-  StatisticsPresenterImpl(StatisticsPresenter.View view) {
+  StatisticsPresenterImpl(StatisticsPresenter.View view, StatisticsNetwork network) {
     this.view = view;
+    this.network = network;
   }
 
   @Override public void onCreated(Bundle savedInstanceState) {
     view.setListener();
-    view.showOperationFragment();
     initSpinner();
   }
 
   private void initSpinner() {
-
-    List<String> items = new ArrayList<>();
-    items.add("2017");
-    items.add("2018");
-
-    // networking..
-
-    view.showSpinner(items);
+    disposable = network.getAvailableStatisticsYear()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(result -> {
+          if (result.getContent().size() > 0) {
+            view.showSpinner(result.getContent());
+          }
+        });
   }
 
-  @Override public boolean onBottomNavigationItemSelected(int itemId, boolean isChecked) {
+  @Override
+  public boolean onBottomNavigationItemSelected(String year, int itemId, boolean isChecked) {
     if (!isChecked) {
       switch (itemId) {
         case R.id.action_ratio:
-          view.showOperationFragment();
+          view.showOperationFragment(year);
           break;
         case R.id.action_total:
-          view.showTotalFragment();
+          view.showTotalFragment(year);
           break;
       }
     }
     return false;
   }
 
-  @DebugLog @Override public void onSpinnerItemSelected(String item) {
-
+  @DebugLog @Override public void onSpinnerItemSelected(String name, String year) {
+    if (!TextUtils.isEmpty(name)) {
+      if (name.equals("OperationFragment")) {
+        view.showOperationFragment(year);
+      } else {
+        view.showTotalFragment(year);
+      }
+    } else {
+      view.showOperationFragment(year);
+    }
   }
 }

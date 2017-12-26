@@ -69,4 +69,7 @@ public interface WorkReportApi {
   @GET("api/adapters/WorkReportSQL/getWorkingDayTOT")
   Single<WResult<List<TotalSummary>>> getWorkingDayTOT(@Header("Authorization") String header,
       @Query("DEPT_NM") String deptNm);
+
+  @GET("api/adapters/WorkReportSQL/getAvailableStatisticsYear")
+  Single<WResult<List<String>>> getAvailableStatisticsYear(@Header("Authorization") String header);
 }

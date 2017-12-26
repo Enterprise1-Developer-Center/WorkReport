@@ -12,21 +12,20 @@ public interface StatisticsPresenter {
   public final static int POSITION_NAVI_RATIO = 0;
   public final static int POSITION_NAVI_TOTAL = 1;
 
-
   void onCreated(Bundle savedInstanceState);
 
-  boolean onBottomNavigationItemSelected(int itemId, boolean checked);
+  void onSpinnerItemSelected(String name, String year);
 
-  void onSpinnerItemSelected(String item);
+  boolean onBottomNavigationItemSelected(String year, int itemId, boolean checked);
 
   interface View {
-
-    void showOperationFragment();
-
-    void showTotalFragment();
 
     void setListener();
 
     void showSpinner(List<String> items);
+
+    void showOperationFragment(String year);
+
+    void showTotalFragment(String year);
   }
 }

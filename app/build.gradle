@@ -21,6 +21,14 @@ android {
       proguardFile 'proguard-retrofit.pro'
       proguardFile 'proguard-okhttp.pro'
     }
+    debug {
+      minifyEnabled false
+      proguardFile getDefaultProguardFile('proguard-android.txt')
+      proguardFile 'proguard-rules.pro'
+      proguardFile 'proguard-butterknife.pro'
+      proguardFile 'proguard-retrofit.pro'
+      proguardFile 'proguard-okhttp.pro'
+    }
   }
   packagingOptions {
     pickFirst 'META-INF/ASL2.0'

@@ -29,8 +29,12 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
 
   @Inject TotalFragmentPresenter presenter;
 
-  public static TotalFragment newInstance() {
-    return new TotalFragment();
+  public static TotalFragment newInstance(String year) {
+    TotalFragment f = new TotalFragment();
+    Bundle args = new Bundle();
+    args.putString("year", year);
+    f.setArguments(args);
+    return f;
   }
 
   @Override protected int getLayoutResID() {

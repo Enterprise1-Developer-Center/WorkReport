@@ -65,7 +65,7 @@ public class StatisticsActivity extends BaseActivity
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
-        .replace(R.id.fragment_container, OperationFragment.newInstance())
+        .replace(R.id.fragment_container, OperationFragment.newInstance(year))
         .commit();
   }
 
@@ -74,7 +74,7 @@ public class StatisticsActivity extends BaseActivity
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
-        .replace(R.id.fragment_container, TotalFragment.newInstance())
+        .replace(R.id.fragment_container, TotalFragment.newInstance(year))
         .commit();
   }
 

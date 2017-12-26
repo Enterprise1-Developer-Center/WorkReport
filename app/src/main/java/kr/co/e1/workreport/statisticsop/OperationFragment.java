@@ -35,8 +35,12 @@ public class OperationFragment extends BaseFragment implements OperationFragment
   @BindView(R.id.member_cur_op_ratio_textview) TextView memberCurOpRatioTextView;
   @Inject OperationFragmentPresenter presenter;
 
-  public static OperationFragment newInstance() {
-    return new OperationFragment();
+  public static OperationFragment newInstance(String year) {
+    OperationFragment f = new OperationFragment();
+    Bundle args = new Bundle();
+    args.putString("year", year);
+    f.setArguments(args);
+    return f;
   }
 
   @Override protected int getLayoutResID() {

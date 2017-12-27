@@ -40,7 +40,7 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
   }
 
   @Override
-  public boolean onBottomNavigationItemSelected(String year, int itemId, boolean isChecked) {
+  public boolean onBottomNavigationItemSelected(int year, int itemId, boolean isChecked) {
     if (!isChecked) {
       switch (itemId) {
         case R.id.action_ratio:
@@ -54,7 +54,7 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
     return false;
   }
 
-  @DebugLog @Override public void onSpinnerItemSelected(String name, String year) {
+  @DebugLog @Override public void onSpinnerItemSelected(String name, int year) {
     if (!TextUtils.isEmpty(name)) {
       if (name.equals("OperationFragment")) {
         view.showOperationFragment(year);

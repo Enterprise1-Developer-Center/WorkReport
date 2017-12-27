@@ -14,9 +14,9 @@ public interface StatisticsPresenter {
 
   void onCreated(Bundle savedInstanceState);
 
-  void onSpinnerItemSelected(String name, String year);
+  void onSpinnerItemSelected(String name, int year);
 
-  boolean onBottomNavigationItemSelected(String year, int itemId, boolean checked);
+  boolean onBottomNavigationItemSelected(int year, int itemId, boolean checked);
 
   interface View {
 
@@ -24,8 +24,8 @@ public interface StatisticsPresenter {
 
     void showSpinner(List<String> items);
 
-    void showOperationFragment(String year);
+    void showOperationFragment(int year);
 
-    void showTotalFragment(String year);
+    void showTotalFragment(int year);
   }
 }

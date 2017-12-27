@@ -60,7 +60,7 @@ public class StatisticsActivity extends BaseActivity
     return super.onOptionsItemSelected(item);
   }
 
-  @Override public void showOperationFragment(String year) {
+  @Override public void showOperationFragment(int year) {
     bottomNavigationView.getMenu().getItem(POSITION_NAVI_RATIO).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
@@ -69,7 +69,7 @@ public class StatisticsActivity extends BaseActivity
         .commit();
   }
 
-  @Override public void showTotalFragment(String year) {
+  @Override public void showTotalFragment(int year) {
     bottomNavigationView.getMenu().getItem(POSITION_NAVI_TOTAL).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
@@ -84,7 +84,8 @@ public class StatisticsActivity extends BaseActivity
     spinner.setAdapter(adapter);
     spinner.setOnItemSelectedListener(new OnSimpleItemSelectedListener() {
       @Override public void onItemSelected(int position, long id) {
-        presenter.onSpinnerItemSelected(getNowFragmentName(), adapter.getItem(position));
+        presenter.onSpinnerItemSelected(getNowFragmentName(),
+            Integer.parseInt(adapter.getItem(position)));
       }
     });
 
@@ -105,7 +106,7 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-    String year = String.valueOf(spinner.getSelectedItem());
+    int year = Integer.parseInt(spinner.getSelectedItem().toString());
     return presenter.onBottomNavigationItemSelected(year, item.getItemId(), item.isChecked());
   }
 

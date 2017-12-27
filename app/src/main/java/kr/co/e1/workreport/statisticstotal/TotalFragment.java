@@ -29,10 +29,10 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
 
   @Inject TotalFragmentPresenter presenter;
 
-  public static TotalFragment newInstance(String year) {
+  public static TotalFragment newInstance(int year) {
     TotalFragment f = new TotalFragment();
     Bundle args = new Bundle();
-    args.putString("year", year);
+    args.putInt("year", year);
     f.setArguments(args);
     return f;
   }

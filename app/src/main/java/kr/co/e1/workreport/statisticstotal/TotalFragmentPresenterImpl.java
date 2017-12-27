@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.statisticstotal;
 
-import android.os.Bundle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -24,10 +23,10 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
     this.chartDataGen = chartDataGen;
   }
 
-  @Override public void onActivityCreate(Bundle savedInstanceState) {
+  @Override public void onActivityCreate(int year) {
     view.showProgress();
 
-    compositeDisposable.add(network.getSummaryTotal()
+    compositeDisposable.add(network.getSummaryTotal(year)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {

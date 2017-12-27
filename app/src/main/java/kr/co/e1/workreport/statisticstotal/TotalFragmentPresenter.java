@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.statisticstotal;
 
-import android.os.Bundle;
 import android.support.annotation.StringRes;
 import com.github.mikephil.charting.data.BarData;
 
@@ -10,7 +9,7 @@ import com.github.mikephil.charting.data.BarData;
 
 public interface TotalFragmentPresenter {
 
-  void onActivityCreate(Bundle savedInstanceState);
+  void onActivityCreate(int year);
 
   void onDetach();
 

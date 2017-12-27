@@ -16,8 +16,8 @@ public class TotalNetwork extends NetworkHelper {
     super(baseUrl);
   }
 
-  public Single<WResult<List<TotalSummary>>> getSummaryTotal() {
+  public Single<WResult<List<TotalSummary>>> getSummaryTotal(int year) {
     return getWorkReportApi().getSummaryTotal(PreferencesUtils.getToken(),
-        PreferencesUtils.getDept());
+        PreferencesUtils.getDept(), year);
   }
 }

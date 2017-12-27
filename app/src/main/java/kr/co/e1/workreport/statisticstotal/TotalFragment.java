@@ -42,7 +42,7 @@ public class TotalFragment extends BaseFragment implements TotalFragmentPresente
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    presenter.onActivityCreate(savedInstanceState);
+    presenter.onActivityCreate(getArguments().getInt("year"));
   }
 
   @Override protected boolean isDagger() {

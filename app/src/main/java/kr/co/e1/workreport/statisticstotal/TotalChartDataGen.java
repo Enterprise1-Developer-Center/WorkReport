@@ -68,7 +68,7 @@ public class TotalChartDataGen {
   }
 
   public void setItems(List<TotalSummary> items) {
-    totItem = items.remove(items.size() - 1);
+    //totItem = items.remove(items.size() - 1);
     this.items = items;
   }
 }

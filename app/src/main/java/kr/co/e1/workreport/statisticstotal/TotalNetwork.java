@@ -16,8 +16,8 @@ public class TotalNetwork extends NetworkHelper {
     super(baseUrl);
   }
 
-  public Single<WResult<List<TotalSummary>>> getWorkingDayTOT() {
-    return getWorkReportApi().getWorkingDayTOT(PreferencesUtils.getToken(),
+  public Single<WResult<List<TotalSummary>>> getSummaryTotal() {
+    return getWorkReportApi().getSummaryTotal(PreferencesUtils.getToken(),
         PreferencesUtils.getDept());
   }
 }

@@ -27,6 +27,24 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.showProgress();
 
+    compositeDisposable.add(network.getSummaryTotal()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(result -> {
+          if (result.getResult() == WResult.RESULT_SUCCESS) {
+            chartDataGen.setItems(result.getContent());
+            view.showChart(chartDataGen.getBarData(), chartDataGen.getQuarters());
+            //view.showTotal(chartDataGen.getTotal());
+          } else {
+            view.showMessage(result.getMsg());
+          }
+          view.hideProgress();
+        }, throwable -> {
+
+          view.showMessage(R.string.error_server_error);
+          view.hideProgress();
+        }));
+    /*
     compositeDisposable.add(network.getWorkingDayTOT()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -43,6 +61,7 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
           view.showMessage(R.string.error_server_error);
           view.hideProgress();
         }));
+    */
   }
 
   @Override public void onDetach() {

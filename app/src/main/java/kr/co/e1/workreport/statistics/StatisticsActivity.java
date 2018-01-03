@@ -21,6 +21,7 @@ import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.ObjectUtils;
 import kr.co.e1.workreport.framework.abs.OnSimpleItemSelectedListener;
 import kr.co.e1.workreport.statistics.analytics.AnalyticsFragment;
+import kr.co.e1.workreport.statistics.dialog_createdb.CreateDbFragment;
 import kr.co.e1.workreport.statistics.holiday.HolidayFragment;
 import kr.co.e1.workreport.statistics.operatio.OperationFragment;
 import kr.co.e1.workreport.statistics.total.TotalFragment;
@@ -102,7 +103,7 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @DebugLog @Override public void showCreateYearDbDialog() {
-
+    new CreateDbFragment().show(getSupportFragmentManager(), CreateDbFragment.class.getSimpleName());
   }
 
   @Override public void showSpinner(List<String> items) {

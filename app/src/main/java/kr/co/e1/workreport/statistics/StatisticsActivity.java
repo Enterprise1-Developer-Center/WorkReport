@@ -19,12 +19,9 @@ import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.ObjectUtils;
 import kr.co.e1.workreport.framework.abs.OnSimpleItemSelectedListener;
 import kr.co.e1.workreport.statisticsan.AnalyticsFragment;
+import kr.co.e1.workreport.statisticsho.HolidayFragment;
 import kr.co.e1.workreport.statisticsop.OperationFragment;
 import kr.co.e1.workreport.statisticstotal.TotalFragment;
-
-import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_ANALY;
-import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_RATIO;
-import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_TOTAL;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -63,7 +60,7 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public void showOperationFragment(int year) {
-    bottomNavigationView.getMenu().getItem(POSITION_NAVI_RATIO).setChecked(true);
+    bottomNavigationView.getMenu().getItem(BottomNav.RATIO.getValue()).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
@@ -72,7 +69,7 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public void showTotalFragment(int year) {
-    bottomNavigationView.getMenu().getItem(POSITION_NAVI_TOTAL).setChecked(true);
+    bottomNavigationView.getMenu().getItem(BottomNav.TOTAL.getValue()).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
@@ -81,11 +78,20 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public void showAnalyticsFragment(int year) {
-    bottomNavigationView.getMenu().getItem(POSITION_NAVI_ANALY).setChecked(true);
+    bottomNavigationView.getMenu().getItem(BottomNav.ANALY.getValue()).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
         .replace(R.id.fragment_container, AnalyticsFragment.newInstance(year))
+        .commit();
+  }
+
+  @Override public void showHolidayFragment(int year) {
+    bottomNavigationView.getMenu().getItem(BottomNav.HOLID.getValue()).setChecked(true);
+    getSupportFragmentManager().beginTransaction()
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
+        .replace(R.id.fragment_container, HolidayFragment.newInstance(year))
         .commit();
   }
 

@@ -52,6 +52,9 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
         case R.id.action_analytics:
           view.showAnalyticsFragment(year);
           break;
+        case R.id.action_holiday:
+          view.showHolidayFragment(year);
+          break;
       }
     }
     return false;

@@ -9,4 +9,7 @@
   <item android:id="@id/action_analytics"
       android:title="@string/analytics"
       android:icon="@drawable/ic_insert_chart" />
+  <item android:id="@id/action_holiday"
+      android:title="@string/holiday"
+      android:icon="@drawable/ic_nature_people" />
 </menu>

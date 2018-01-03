@@ -86,4 +86,5 @@
   <item name="spinner" type="id"/>
   <item name="action_analytics" type="id"/>
   <item name="action_holiday" type="id"/>
+  <item name="action_create_year_db" type="id"/>
 </resources>

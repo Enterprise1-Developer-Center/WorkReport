@@ -15,6 +15,8 @@ public interface StatisticsPresenter {
 
   boolean onBottomNavigationItemSelected(int year, int itemId, boolean checked);
 
+  boolean onOptionsItemSelected(int itemId);
+
   interface View {
 
     void setListener();
@@ -28,5 +30,9 @@ public interface StatisticsPresenter {
     void showAnalyticsFragment(int year);
 
     void showHolidayFragment(int year);
+
+    void finish();
+
+    void showCreateYearDbDialog();
   }
 }

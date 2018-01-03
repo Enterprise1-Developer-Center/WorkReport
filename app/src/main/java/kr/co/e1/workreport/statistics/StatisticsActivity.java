@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,6 +12,7 @@ import android.widget.Spinner;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
+import hugo.weaving.DebugLog;
 import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
@@ -55,8 +57,12 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
-    finish();
-    return super.onOptionsItemSelected(item);
+    return presenter.onOptionsItemSelected(item.getItemId());
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.toolbar, menu);
+    return super.onCreateOptionsMenu(menu);
   }
 
   @Override public void showOperationFragment(int year) {
@@ -93,6 +99,10 @@ public class StatisticsActivity extends BaseActivity
             R.animator.enter_animation, R.animator.exit_animation)
         .replace(R.id.fragment_container, HolidayFragment.newInstance(year))
         .commit();
+  }
+
+  @DebugLog @Override public void showCreateYearDbDialog() {
+
   }
 
   @Override public void showSpinner(List<String> items) {

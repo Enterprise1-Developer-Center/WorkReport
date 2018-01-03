@@ -39,8 +39,7 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
         });
   }
 
-  @Override
-  public boolean onBottomNavigationItemSelected(int year, int itemId, boolean isChecked) {
+  @Override public boolean onBottomNavigationItemSelected(int year, int itemId, boolean isChecked) {
     if (!isChecked) {
       switch (itemId) {
         case R.id.action_ratio:
@@ -58,6 +57,18 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
       }
     }
     return false;
+  }
+
+  @Override public boolean onOptionsItemSelected(int itemId) {
+    switch (itemId) {
+      case android.R.id.home:
+        view.finish();
+        break;
+      case R.id.action_create_year_db:
+        view.showCreateYearDbDialog();
+        break;
+    }
+    return true;
   }
 
   @DebugLog @Override public void onSpinnerItemSelected(String name, int year) {

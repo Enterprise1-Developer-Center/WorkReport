@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.dialog_createdb;
+package kr.co.e1.workreport.statistics.dialog_create;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +11,7 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
  */
 
 public class CreateDbFragment extends BaseAlertDialogFragment {
+
   @Override protected boolean isNegativeButton() {
     return true;
   }
@@ -20,7 +21,7 @@ public class CreateDbFragment extends BaseAlertDialogFragment {
   }
 
   @Override protected boolean isDagger() {
-    return false;
+    return true;
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {

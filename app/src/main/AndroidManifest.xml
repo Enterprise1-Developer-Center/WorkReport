@@ -29,7 +29,7 @@
         android:screenOrientation="portrait"
         android:windowSoftInputMode="adjustResize"/>
     <activity
-        android:name=".statisticsopdetail.OpDetailActivity"
+        android:name=".statistics.operatiodetail.OpDetailActivity"
         android:screenOrientation="landscape"
         android:windowSoftInputMode="adjustResize"/>
     <activity

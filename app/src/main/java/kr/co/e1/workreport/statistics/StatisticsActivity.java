@@ -20,10 +20,10 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.ObjectUtils;
 import kr.co.e1.workreport.framework.abs.OnSimpleItemSelectedListener;
-import kr.co.e1.workreport.statisticsan.AnalyticsFragment;
-import kr.co.e1.workreport.statisticsho.HolidayFragment;
-import kr.co.e1.workreport.statisticsop.OperationFragment;
-import kr.co.e1.workreport.statisticstotal.TotalFragment;
+import kr.co.e1.workreport.statistics.analytics.AnalyticsFragment;
+import kr.co.e1.workreport.statistics.holiday.HolidayFragment;
+import kr.co.e1.workreport.statistics.operatio.OperationFragment;
+import kr.co.e1.workreport.statistics.total.TotalFragment;
 
 /**
  * Created by jaeho on 2017. 10. 31

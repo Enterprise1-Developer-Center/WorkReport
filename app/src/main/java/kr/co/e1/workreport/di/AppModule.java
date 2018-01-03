@@ -7,7 +7,7 @@ import dagger.Provides;
 import javax.inject.Singleton;
 import kr.co.e1.workreport.main.MainActivityComponent;
 import kr.co.e1.workreport.statistics.StatisticsActivityComponent;
-import kr.co.e1.workreport.statisticsopdetail.OpDetailActivityComponent;
+import kr.co.e1.workreport.statistics.operatiodetail.OpDetailActivityComponent;
 import kr.co.e1.workreport.teamreport.TeamReportActivityComponent;
 
 /**

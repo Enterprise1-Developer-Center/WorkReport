@@ -2,8 +2,8 @@ package kr.co.e1.workreport.statistics;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
-import kr.co.e1.workreport.statisticsop.OperationFragmentProvider;
-import kr.co.e1.workreport.statisticstotal.TotalFragmentProvider;
+import kr.co.e1.workreport.statistics.operatio.OperationFragmentProvider;
+import kr.co.e1.workreport.statistics.total.TotalFragmentProvider;
 
 /**
  * Created by jaeho on 2017. 9. 25

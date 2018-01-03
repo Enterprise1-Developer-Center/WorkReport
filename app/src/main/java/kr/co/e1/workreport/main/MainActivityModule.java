@@ -2,13 +2,13 @@ package kr.co.e1.workreport.main;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.classificationdialog.ClassificationDialogComponent;
+import kr.co.e1.workreport.main.dialog_class.ClassificationDialogComponent;
 import kr.co.e1.workreport.common.Constants;
-import kr.co.e1.workreport.login.LoginFragmentComponent;
+import kr.co.e1.workreport.main.dialog_login.LoginFragmentComponent;
 import kr.co.e1.workreport.main.adapter.MainAdapterView;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
-import kr.co.e1.workreport.password.PasswordDialogComponent;
-import kr.co.e1.workreport.project.ProjectDialogComponent;
+import kr.co.e1.workreport.main.dialog_pass.PasswordDialogComponent;
+import kr.co.e1.workreport.main.dialog_proje.ProjectDialogComponent;
 
 /**
  * Created by jaeho on 2017. 9. 25

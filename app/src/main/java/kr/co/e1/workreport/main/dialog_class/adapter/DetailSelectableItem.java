@@ -1,0 +1,14 @@
+package kr.co.e1.workreport.main.dialog_class.adapter;
+
+import kr.co.e1.workreport.common.model.DetailWork;
+import kr.co.e1.workreport.framework.adapter.SelectableItem;
+
+/**
+ * Created by jaeho on 2017. 10. 30
+ */
+
+public class DetailSelectableItem extends SelectableItem<DetailWork> {
+  public DetailSelectableItem(DetailWork detailWork, boolean isSelected) {
+    super(detailWork, isSelected);
+  }
+}

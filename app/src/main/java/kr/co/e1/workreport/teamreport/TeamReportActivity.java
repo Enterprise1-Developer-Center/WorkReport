@@ -20,7 +20,7 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapterView;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
-import kr.co.e1.workreport.teamreportdialog.TeamReportDialog;
+import kr.co.e1.workreport.teamreport.dialog.TeamReportDialog;
 
 /**
  * Created by jaeho on 2017. 10. 31

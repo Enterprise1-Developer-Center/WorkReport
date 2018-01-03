@@ -18,9 +18,11 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.ObjectUtils;
 import kr.co.e1.workreport.framework.abs.OnSimpleItemSelectedListener;
+import kr.co.e1.workreport.statisticsan.AnalyticsFragment;
 import kr.co.e1.workreport.statisticsop.OperationFragment;
 import kr.co.e1.workreport.statisticstotal.TotalFragment;
 
+import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_ANALY;
 import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_RATIO;
 import static kr.co.e1.workreport.statistics.StatisticsPresenter.POSITION_NAVI_TOTAL;
 
@@ -75,6 +77,15 @@ public class StatisticsActivity extends BaseActivity
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
         .replace(R.id.fragment_container, TotalFragment.newInstance(year))
+        .commit();
+  }
+
+  @Override public void showAnalyticsFragment(int year) {
+    bottomNavigationView.getMenu().getItem(POSITION_NAVI_ANALY).setChecked(true);
+    getSupportFragmentManager().beginTransaction()
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
+        .replace(R.id.fragment_container, AnalyticsFragment.newInstance(year))
         .commit();
   }
 

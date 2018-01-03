@@ -67,4 +67,5 @@
   <string name="year_op_ratio">연간 가동률</string>
   <string name="now_op_ratio">현재 가동률</string>
   <string name="op_ratio_detail_view">가동률 상세보기</string>
+  <string name="analytics">분석</string>
 </resources>

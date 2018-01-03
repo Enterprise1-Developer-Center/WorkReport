@@ -6,4 +6,7 @@
   <item android:id="@id/action_total"
       android:title="@string/total"
       android:icon="@drawable/ic_border_all" />
+  <item android:id="@id/action_analytics"
+      android:title="@string/analytics"
+      android:icon="@drawable/ic_insert_chart" />
 </menu>

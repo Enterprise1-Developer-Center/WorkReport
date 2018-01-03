@@ -11,6 +11,7 @@ public interface StatisticsPresenter {
 
   public final static int POSITION_NAVI_RATIO = 0;
   public final static int POSITION_NAVI_TOTAL = 1;
+  public final static int POSITION_NAVI_ANALY = 2;
 
   void onCreated(Bundle savedInstanceState);
 
@@ -27,5 +28,7 @@ public interface StatisticsPresenter {
     void showOperationFragment(int year);
 
     void showTotalFragment(int year);
+
+    void showAnalyticsFragment(int year);
   }
 }

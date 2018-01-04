@@ -14,6 +14,8 @@ public interface CreateDbPresenter {
 
   void onOkClick();
 
+  void onStart();
+
   interface View {
 
     void setYear(int year, int maxYear, int minYear);
@@ -23,5 +25,13 @@ public interface CreateDbPresenter {
     void showLoading();
 
     void hideLoading();
+
+    void showMessage(String msg);
+
+    void dismiss();
+
+    void showMessageAlert(String msg);
+
+    void setPositiveButtonText(@StringRes int text);
   }
 }

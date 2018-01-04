@@ -47,6 +47,24 @@ public class CreateDbPresenterImpl implements CreateDbPresenter {
   }
 
   @Override public void onOkClick() {
-    compositeDisposable.add(network.createWorkCalendarDb());
+    view.showLoading();
+    compositeDisposable.add(network.createWorkCalendarDb()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(wResult -> {
+          if(wResult.getResult() == NetworkHelper.REQ_SUCCESS) {
+            view.showMessageAlert(wResult.getMsg());
+          } else {
+            view.showMessage(R.string.error_server_error);
+          }
+          view.hideLoading();
+        }, throwable -> {
+          view.showMessage(R.string.error_server_error);
+          view.hideLoading();
+        }));
+  }
+
+  @Override public void onStart() {
+    view.setPositiveButtonText(R.string.create);
   }
 }

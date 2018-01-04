@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.statistics.dialog_create;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -20,6 +21,7 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
   @BindView(R.id.number_picker) NumberPicker numberPicker;
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
+
   @Override protected boolean isNegativeButton() {
     return true;
   }
@@ -66,7 +68,6 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
 
   @Override public void setYear(int year, int maxYear, int minYear) {
     numberPicker.setWrapSelectorWheel(false);
-    numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
     numberPicker.setMinValue(minYear);
     numberPicker.setMaxValue(maxYear);
     numberPicker.setValue(year);
@@ -74,6 +75,21 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
 
   @Override public void showMessage(int resId) {
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showMessage(String msg) {
+    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showMessageAlert(String msg) {
+    final Snackbar snackbar = Snackbar.make(rootView, msg, Snackbar.LENGTH_INDEFINITE);
+    snackbar.setAction(android.R.string.ok, view -> {
+      dismiss();
+    }).show();
+  }
+
+  @Override public void setPositiveButtonText(int text) {
+    alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setText(text);
   }
 
   @Override public void showLoading() {
@@ -87,5 +103,10 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
   @Override public void onDetach() {
     super.onDetach();
     presenter.onDetach();
+  }
+
+  @Override public void onStart() {
+    super.onStart();
+    presenter.onStart();
   }
 }

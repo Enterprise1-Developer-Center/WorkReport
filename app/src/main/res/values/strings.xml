@@ -70,4 +70,5 @@
   <string name="analytics">분석</string>
   <string name="holiday">휴일</string>
   <string name="create_year_db">연(년) DB 생성</string>
+  <string name="create">생성</string>
 </resources>

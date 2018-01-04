@@ -78,6 +78,6 @@ public interface WorkReportApi {
       @Header("Authorization") String header);
 
   @FormUrlEncoded @POST("api/adapters/WorkReportSQL/createWorkCalendarDb")
-  Single<WResult> createWorkCalendarDb(@Header("Authorization") String header,
+  Single<WResult<String>> createWorkCalendarDb(@Header("Authorization") String header,
       @Field("DEPT_NM") String deptNm);
 }

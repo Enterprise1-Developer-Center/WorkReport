@@ -2,7 +2,9 @@ package kr.co.e1.workreport.statistics.dialog_create.di;
 
 import dagger.Module;
 import dagger.Provides;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.statistics.dialog_create.CreateDbFragment;
+import kr.co.e1.workreport.statistics.dialog_create.CreateDbNetwork;
 import kr.co.e1.workreport.statistics.dialog_create.CreateDbPresenter;
 import kr.co.e1.workreport.statistics.dialog_create.CreateDbPresenterImpl;
 
@@ -12,7 +14,11 @@ import kr.co.e1.workreport.statistics.dialog_create.CreateDbPresenterImpl;
 
 @Module public class CreateDbModule {
 
-  @Provides CreateDbPresenter provideCreateDbPresenter(CreateDbFragment fragment) {
-    return new CreateDbPresenterImpl(fragment);
+  @Provides CreateDbPresenter provideCreateDbPresenter(CreateDbFragment fragment, CreateDbNetwork network) {
+    return new CreateDbPresenterImpl(fragment, network);
+  }
+
+  @Provides CreateDbNetwork provideCreateDbNetwork() {
+    return new CreateDbNetwork(Constants.BASE_URL);
   }
 }

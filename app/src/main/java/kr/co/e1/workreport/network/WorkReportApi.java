@@ -7,6 +7,7 @@ import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.main.dialog_login.model.LoginContent;
 import kr.co.e1.workreport.main.dialog_proje.vo.Project;
+import kr.co.e1.workreport.statistics.dialog_create.model.CreateDbYear;
 import kr.co.e1.workreport.statistics.operatio.model.OpRatioContent;
 import kr.co.e1.workreport.statistics.total.model.TotalSummary;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
@@ -72,4 +73,8 @@ public interface WorkReportApi {
 
   @GET("api/adapters/WorkReportSQL/getAvailableStatisticsYear")
   Single<WResult<List<String>>> getAvailableStatisticsYear(@Header("Authorization") String header);
+
+  @GET("api/adapters/WorkReportSQL/getCreateDbYear")
+  Single<WResult<CreateDbYear>> getCreateDbYear(@Header("Authorization") String header);
+
 }

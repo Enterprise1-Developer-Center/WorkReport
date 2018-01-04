@@ -59,7 +59,7 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {
-    return view -> presenter.onOkClick();
+    return view -> presenter.onOkClick(numberPicker.getValue());
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {
@@ -81,7 +81,7 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showMessageAlert(String msg) {
+  @Override public void showIndefiniteSnakback(String msg) {
     final Snackbar snackbar = Snackbar.make(rootView, msg, Snackbar.LENGTH_INDEFINITE);
     snackbar.setAction(android.R.string.ok, view -> {
       dismiss();

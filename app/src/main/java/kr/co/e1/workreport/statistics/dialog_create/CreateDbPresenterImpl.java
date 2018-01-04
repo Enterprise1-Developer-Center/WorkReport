@@ -46,14 +46,14 @@ public class CreateDbPresenterImpl implements CreateDbPresenter {
     compositeDisposable.clear();
   }
 
-  @Override public void onOkClick() {
+  @Override public void onOkClick(int year) {
     view.showLoading();
-    compositeDisposable.add(network.createWorkCalendarDb()
+    compositeDisposable.add(network.createWorkCalendarDb(year)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(wResult -> {
           if(wResult.getResult() == NetworkHelper.REQ_SUCCESS) {
-            view.showMessageAlert(wResult.getMsg());
+            view.showIndefiniteSnakback(wResult.getMsg());
           } else {
             view.showMessage(R.string.error_server_error);
           }

@@ -19,8 +19,8 @@ public class CreateDbNetwork extends NetworkHelper {
     return getWorkReportApi().getCreateDbYear(PreferencesUtils.getToken());
   }
 
-  public Single<WResult<String>> createWorkCalendarDb() {
+  public Single<WResult<String>> createWorkCalendarDb(int year) {
     String token = PreferencesUtils.getToken();
-    return getWorkReportApi().createWorkCalendarDb(token, PreferencesUtils.getDept());
+    return getWorkReportApi().createWorkCalendarDb(token, year, PreferencesUtils.getDept());
   }
 }

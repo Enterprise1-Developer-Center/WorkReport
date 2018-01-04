@@ -12,9 +12,9 @@ public interface CreateDbPresenter {
 
   void onDetach();
 
-  void onOkClick();
-
   void onStart();
+
+  void onOkClick(int year);
 
   interface View {
 
@@ -30,7 +30,7 @@ public interface CreateDbPresenter {
 
     void dismiss();
 
-    void showMessageAlert(String msg);
+    void showIndefiniteSnakback(String msg);
 
     void setPositiveButtonText(@StringRes int text);
   }

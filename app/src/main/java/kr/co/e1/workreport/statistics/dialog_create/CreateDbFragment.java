@@ -57,15 +57,11 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {
-    return view -> {
-
-    };
+    return view -> presenter.onOkClick();
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {
-    return view -> {
-      dismiss();
-    };
+    return view -> dismiss();
   }
 
   @Override public void setYear(int year, int maxYear, int minYear) {

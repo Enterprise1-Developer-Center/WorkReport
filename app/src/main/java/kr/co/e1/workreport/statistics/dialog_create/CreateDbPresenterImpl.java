@@ -45,4 +45,8 @@ public class CreateDbPresenterImpl implements CreateDbPresenter {
   @Override public void onDetach() {
     compositeDisposable.clear();
   }
+
+  @Override public void onOkClick() {
+    compositeDisposable.add(network.createWorkCalendarDb());
+  }
 }

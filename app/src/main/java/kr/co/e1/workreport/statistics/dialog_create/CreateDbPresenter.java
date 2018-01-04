@@ -12,6 +12,8 @@ public interface CreateDbPresenter {
 
   void onDetach();
 
+  void onOkClick();
+
   interface View {
 
     void setYear(int year, int maxYear, int minYear);

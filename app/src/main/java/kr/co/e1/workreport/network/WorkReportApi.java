@@ -74,7 +74,10 @@ public interface WorkReportApi {
   @GET("api/adapters/WorkReportSQL/getAvailableStatisticsYear")
   Single<WResult<List<String>>> getAvailableStatisticsYear(@Header("Authorization") String header);
 
-  @GET("api/adapters/WorkReportSQL/getCreateDbYear")
-  Single<WResult<CreateDbYear>> getCreateDbYear(@Header("Authorization") String header);
+  @GET("api/adapters/WorkReportSQL/getCreateDbYear") Single<WResult<CreateDbYear>> getCreateDbYear(
+      @Header("Authorization") String header);
 
+  @FormUrlEncoded @POST("api/adapters/WorkReportSQL/createWorkCalendarDb")
+  Single<WResult> createWorkCalendarDb(@Header("Authorization") String header,
+      @Field("DEPT_NM") String deptNm);
 }

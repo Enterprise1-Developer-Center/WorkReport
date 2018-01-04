@@ -87,4 +87,5 @@
   <item name="action_analytics" type="id"/>
   <item name="action_holiday" type="id"/>
   <item name="action_create_year_db" type="id"/>
+  <item name="number_picker" type="id"/>
 </resources>

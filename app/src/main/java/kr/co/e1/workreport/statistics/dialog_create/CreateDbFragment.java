@@ -1,10 +1,10 @@
 package kr.co.e1.workreport.statistics.dialog_create;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import java.util.Calendar;
+import android.widget.NumberPicker;
+import butterknife.BindView;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
@@ -15,6 +15,7 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 
 public class CreateDbFragment extends BaseAlertDialogFragment implements CreateDbPresenter.View {
   @Inject CreateDbPresenter presenter;
+  @BindView(R.id.number_picker) NumberPicker numberPicker;
 
   @Override protected boolean isNegativeButton() {
     return true;
@@ -30,14 +31,6 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     presenter.onActivityCreate();
-
-    final Calendar c = Calendar.getInstance();
-    c.add(Calendar.YEAR, -18);
-    int year = c.get(Calendar.YEAR);
-    int month = c.get(Calendar.MONTH);
-    int day = c.get(Calendar.DAY_OF_MONTH);
-
-    new DatePickerDialog(getActivity(), null, year, month, day).show();
   }
 
   @Override protected boolean getAttatchRoot() {
@@ -70,5 +63,13 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
     return view -> {
       dismiss();
     };
+  }
+
+  @Override public void setYear(int year, int maxYear, int minYear) {
+    numberPicker.setWrapSelectorWheel(true);
+    numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+    numberPicker.setMinValue(minYear);
+    numberPicker.setMaxValue(maxYear);
+    numberPicker.setValue(year);
   }
 }

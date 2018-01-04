@@ -10,5 +10,6 @@ public interface CreateDbPresenter {
 
   interface View {
 
+    void setYear(int year, int maxYear, int minYear);
   }
 }

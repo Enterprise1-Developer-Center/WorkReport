@@ -21,6 +21,6 @@ public class CreateDbNetwork extends NetworkHelper {
 
   public Single<WResult<String>> createWorkCalendarDb(int year) {
     String token = PreferencesUtils.getToken();
-    return getWorkReportApi().createWorkCalendarDb(token, year, PreferencesUtils.getDept());
+    return getWorkReportApi().createWorkCalendarDb(token, year, PreferencesUtils.getUserId());
   }
 }

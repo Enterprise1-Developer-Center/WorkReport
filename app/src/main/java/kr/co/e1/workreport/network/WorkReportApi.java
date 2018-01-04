@@ -79,5 +79,5 @@ public interface WorkReportApi {
 
   @FormUrlEncoded @POST("api/adapters/WorkReportSQL/createWorkCalendarDb")
   Single<WResult<String>> createWorkCalendarDb(@Header("Authorization") String header,
-      @Field("YEAR") int year, @Field("DEPT_NM") String deptNm);
+      @Field("YEAR") int year, @Field("USER_ID") String userId);
 }

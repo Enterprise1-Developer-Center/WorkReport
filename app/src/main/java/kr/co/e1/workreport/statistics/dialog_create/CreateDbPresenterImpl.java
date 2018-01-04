@@ -27,7 +27,7 @@ public class CreateDbPresenterImpl implements CreateDbPresenter {
     view.showLoading();
     compositeDisposable.add(network.getCreateDbYear()
         .subscribeOn(Schedulers.io())
-        .subscribeOn(AndroidSchedulers.mainThread())
+        .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
           if (result.getResult() == NetworkHelper.REQ_SUCCESS) {
             int year = Calendar.getInstance().get(Calendar.YEAR);

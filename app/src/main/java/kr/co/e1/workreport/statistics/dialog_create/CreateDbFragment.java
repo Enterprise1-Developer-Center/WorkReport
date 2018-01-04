@@ -69,7 +69,7 @@ public class CreateDbFragment extends BaseAlertDialogFragment implements CreateD
   }
 
   @Override public void setYear(int year, int maxYear, int minYear) {
-    numberPicker.setWrapSelectorWheel(true);
+    numberPicker.setWrapSelectorWheel(false);
     numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
     numberPicker.setMinValue(minYear);
     numberPicker.setMaxValue(maxYear);

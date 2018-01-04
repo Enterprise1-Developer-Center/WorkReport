@@ -3,9 +3,9 @@ package kr.co.e1.workreport.statistics.dialog_create;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
-import java.util.Calendar;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.statistics.dialog_create.model.CreateDbYear;
 
 /**
  * Created by jaeho on 2018. 1. 3
@@ -30,10 +30,8 @@ public class CreateDbPresenterImpl implements CreateDbPresenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
           if (result.getResult() == NetworkHelper.REQ_SUCCESS) {
-            int year = Calendar.getInstance().get(Calendar.YEAR);
-            int minYear = year - result.getContent().getMinValue();
-            int maxYear = year + result.getContent().getMaxValue();
-            view.setYear(year, maxYear, minYear);
+            CreateDbYear year = result.getContent();
+            view.setYear(year.getYear(), year.getMaxYear(), year.getMinYear());
           } else {
             view.showMessage(R.string.error_server_error);
           }

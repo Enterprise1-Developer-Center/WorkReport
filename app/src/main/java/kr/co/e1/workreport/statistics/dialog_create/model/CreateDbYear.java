@@ -7,6 +7,7 @@ import lombok.Getter;
  */
 
 @Getter public class CreateDbYear {
-  private int minValue;
-  private int maxValue;
+  private int year;
+  private int minYear;
+  private int maxYear;
 }

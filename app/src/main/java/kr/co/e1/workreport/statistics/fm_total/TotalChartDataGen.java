@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.total;
+package kr.co.e1.workreport.statistics.fm_total;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,7 +10,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.statistics.total.model.TotalSummary;
+import kr.co.e1.workreport.statistics.fm_total.model.TotalSummary;
 
 /**
  * Created by jaeho on 2017. 12. 12

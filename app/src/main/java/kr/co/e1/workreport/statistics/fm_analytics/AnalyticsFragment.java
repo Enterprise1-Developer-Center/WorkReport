@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.analytics;
+package kr.co.e1.workreport.statistics.fm_analytics;
 
 import android.os.Bundle;
 import kr.co.e1.workreport.R;

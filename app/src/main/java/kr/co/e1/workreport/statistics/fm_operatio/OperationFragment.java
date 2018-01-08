@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.operatio;
+package kr.co.e1.workreport.statistics.fm_operatio;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,7 +48,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    presenter.onActivityCreate(savedInstanceState);
+    presenter.onActivityCreate(getArguments().getInt("year"));
   }
 
   @Override protected boolean isDagger() {

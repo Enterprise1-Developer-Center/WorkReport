@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.operatio;
+package kr.co.e1.workreport.statistics.fm_operatio;
 
 import dagger.Module;
 import dagger.Provides;

@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.operatio.model;
+package kr.co.e1.workreport.statistics.fm_operatio.model;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
@@ -8,8 +8,7 @@ import lombok.ToString;
  * Created by jaeho on 2017. 11. 22
  */
 
-@ToString @Getter public class OpRatioItem {
-  @SerializedName("USER_ID") String id;
+@ToString @Getter public class OpRatioTotal {
   @SerializedName("USER_NM") String userNm;
   @SerializedName("JAN") float jan;
   @SerializedName("FEB") float feb;

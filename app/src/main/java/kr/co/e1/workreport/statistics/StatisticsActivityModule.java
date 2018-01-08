@@ -6,8 +6,8 @@ import dagger.Provides;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.statistics.dialog_create.di.CreateDbComponent;
-import kr.co.e1.workreport.statistics.operatio.OperationFragmentComponent;
-import kr.co.e1.workreport.statistics.total.TotalFragmentComponent;
+import kr.co.e1.workreport.statistics.fm_operatio.OperationFragmentComponent;
+import kr.co.e1.workreport.statistics.fm_total.TotalFragmentComponent;
 
 /**
  * Created by jaeho on 2017. 9. 25

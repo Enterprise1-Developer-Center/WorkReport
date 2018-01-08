@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.total;
+package kr.co.e1.workreport.statistics.fm_total;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;

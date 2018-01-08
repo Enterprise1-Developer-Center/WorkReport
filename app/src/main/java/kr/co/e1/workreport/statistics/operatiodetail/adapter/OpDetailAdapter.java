@@ -7,9 +7,9 @@ import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.ObjectUtils;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
-import kr.co.e1.workreport.statistics.operatio.model.OpRatioHeader;
-import kr.co.e1.workreport.statistics.operatio.model.OpRatioItem;
-import kr.co.e1.workreport.statistics.operatio.model.OpRatioTotal;
+import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioHeader;
+import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioItem;
+import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioTotal;
 
 /**
  * Created by jaeho on 2017. 11. 9

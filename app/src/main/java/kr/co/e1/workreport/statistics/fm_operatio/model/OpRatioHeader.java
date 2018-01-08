@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.operatio.model;
+package kr.co.e1.workreport.statistics.fm_operatio.model;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;

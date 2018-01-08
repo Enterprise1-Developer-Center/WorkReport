@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.total;
+package kr.co.e1.workreport.statistics.fm_total;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;

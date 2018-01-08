@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.operatio;
+package kr.co.e1.workreport.statistics.fm_operatio;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,10 +15,13 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.statistics.operatio.model.OpRatioContent;
-import kr.co.e1.workreport.statistics.operatio.model.OpRatioHeader;
-import kr.co.e1.workreport.statistics.operatio.model.OpRatioItem;
-import kr.co.e1.workreport.statistics.operatio.model.OpRatioTotal;
+import kr.co.e1.workreport.app.MyApplication;
+import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioContent;
+import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioHeader;
+import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioItem;
+import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioTotal;
+import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRatio;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -115,7 +118,6 @@ public class ChartDataGen {
     dataSet.setValues(values);
     dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-
     List<IBarDataSet> dataSets = new ArrayList<>();
     dataSets.add(dataSet);
     BarData barData = new BarData(dataSets);
@@ -123,5 +125,56 @@ public class ChartDataGen {
     barData.setBarWidth(0.5f);
 
     return barData;
+  }
+
+  @Setter private List<YearOperationRatio> yearOperationRatios;
+  @Getter private float tot_rate;
+
+  public String[] getYearOperationRatioQuarters() {
+    int size = 12;
+    String[] quarters = new String[size];
+    for (int i = 0; i < quarters.length; i++) {
+      quarters[i] = (i+1) + MyApplication.getInstance().getString(R.string.month);
+    }
+    return quarters;
+  }
+
+  public LineData getYearOperationRatioData() {
+    final int size = 12;
+    final float[] opRatioFloats = new float[size];
+    for (int i = 0; i < size; i++) {
+      try {
+        YearOperationRatio item = yearOperationRatios.get(i);
+        opRatioFloats[i] = item.getMon_rate();
+        tot_rate = item.getTot_rate();
+      } catch (IndexOutOfBoundsException e) {
+        opRatioFloats[i] = 0;
+      }
+    }
+
+    List<Entry> entries = new ArrayList<>();
+    List<Entry> values = new ArrayList<>();
+    for (int i = 0; i < size; i++) {
+      entries.add(new Entry(i, opRatioFloats[i]));
+      values.add(new Entry(i, opRatioFloats[i]));
+    }
+
+    LineDataSet dataSet = new LineDataSet(entries, context.getString(R.string.monthly));
+    dataSet.setLineWidth(1.0f);
+    dataSet.setCircleRadius(3.5f);
+    dataSet.setHighLightColor(ContextCompat.getColor(context, R.color.colorPrimary));
+    dataSet.setCircleColor(ContextCompat.getColor(context, R.color.colorAccent));
+    dataSet.setDrawValues(true);
+    dataSet.setValueTextSize(12f);
+    dataSet.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
+    dataSet.setValues(values);
+    dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+
+    List<ILineDataSet> dataSets = new ArrayList<>();
+    dataSets.add(dataSet);
+    LineData lineData = new LineData(dataSets);
+    lineData.setValueTextColor(Color.BLACK);
+
+    return lineData;
   }
 }

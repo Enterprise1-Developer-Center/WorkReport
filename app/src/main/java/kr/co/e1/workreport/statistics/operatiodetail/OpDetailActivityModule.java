@@ -3,7 +3,7 @@ package kr.co.e1.workreport.statistics.operatiodetail;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
-import kr.co.e1.workreport.statistics.operatio.OpRatioNetwork;
+import kr.co.e1.workreport.statistics.fm_operatio.OpRatioNetwork;
 import kr.co.e1.workreport.statistics.operatiodetail.adapter.OpDetailAdapter;
 import kr.co.e1.workreport.statistics.operatiodetail.adapter.OpDetailAdapterView;
 

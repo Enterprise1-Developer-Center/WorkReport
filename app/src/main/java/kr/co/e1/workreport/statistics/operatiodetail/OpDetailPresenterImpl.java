@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.statistics.operatio.OpRatioNetwork;
-import kr.co.e1.workreport.statistics.operatio.model.OpRatioItem;
+import kr.co.e1.workreport.statistics.fm_operatio.OpRatioNetwork;
+import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioItem;
 import kr.co.e1.workreport.statistics.operatiodetail.adapter.OpDetailAdapterDataModel;
 
 /**

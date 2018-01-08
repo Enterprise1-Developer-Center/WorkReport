@@ -1,6 +1,5 @@
-package kr.co.e1.workreport.statistics.operatio;
+package kr.co.e1.workreport.statistics.fm_operatio;
 
-import android.os.Bundle;
 import android.support.annotation.StringRes;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.LineData;
@@ -11,11 +10,11 @@ import com.github.mikephil.charting.data.LineData;
 
 public interface OperationFragmentPresenter {
 
-  void onActivityCreate(Bundle savedInstanceState);
-
   void onClick(int id);
 
   void onDetach();
+
+  void onActivityCreate(int year);
 
   interface View {
 

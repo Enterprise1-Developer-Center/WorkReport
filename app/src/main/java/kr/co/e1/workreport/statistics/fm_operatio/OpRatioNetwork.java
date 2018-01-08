@@ -1,10 +1,12 @@
-package kr.co.e1.workreport.statistics.operatio;
+package kr.co.e1.workreport.statistics.fm_operatio;
 
 import io.reactivex.Single;
+import java.util.List;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.statistics.operatio.model.OpRatioContent;
+import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioContent;
+import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRatio;
 
 /**
  * Created by jaeho on 2017. 11. 22
@@ -20,5 +22,10 @@ public class OpRatioNetwork extends NetworkHelper {
     String deptNm = PreferencesUtils.getDept();
     int year = 2017;
     return getWorkReportApi().getOperRatio(header, deptNm, year);
+  }
+
+  public Single<WResult<List<YearOperationRatio>>> getYearOperationRatio(int year) {
+    String header = PreferencesUtils.getToken();
+    return getWorkReportApi().getYearOperatingRatio(header, year);
   }
 }

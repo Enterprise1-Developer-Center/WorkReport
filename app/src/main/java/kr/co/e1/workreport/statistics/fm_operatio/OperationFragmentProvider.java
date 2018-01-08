@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.operatio;
+package kr.co.e1.workreport.statistics.fm_operatio;
 
 import android.support.v4.app.Fragment;
 import dagger.Binds;

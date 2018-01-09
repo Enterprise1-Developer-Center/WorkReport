@@ -5,49 +5,34 @@ import hugo.weaving.DebugLog;
 import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.framework.ObjectUtils;
+import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
-import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioHeader;
-import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioItem;
-import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioTotal;
+import kr.co.e1.workreport.statistics.operatiodetail.model.DetailOperationRate;
 
 /**
  * Created by jaeho on 2017. 11. 9
  */
 
 public class OpDetailAdapter extends BaseRecyclerAdapter
-    implements OpDetailAdapterView, OpDetailAdapterDataModel<OpRatioItem> {
-  private final static int VIEW_TYPE_BODY = 1;
-  private final static int VIEW_TYPE_FOOTER = 2;
-
-  private OpRatioHeader header;
-  private List<OpRatioItem> items = new ArrayList<>();
-  private OpRatioTotal footer;
+    implements OpDetailAdapterView, BaseAdapterDataModel<DetailOperationRate> {
+  private final static int VIEW_TYPE_BODY = 0;
+  private final static int VIEW_TYPE_FOOTER = 1;
+  private List<DetailOperationRate> items = new ArrayList<>();
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
-    switch (viewType) {
-      case VIEW_TYPE_FOOTER:
-        return new OpDetailFooterViewHolder(view);
-      case VIEW_TYPE_BODY:
-        return new OpDetailViewHolder(view);
-      default:
-        return new OpDetailViewHolder(view);
-    }
+    return new OpDetailViewHolder(view);
   }
 
   @Override public int getLayoutRes(int viewType) {
-    switch (viewType) {
-      case VIEW_TYPE_FOOTER:
-        return R.layout.content_statistics_op_detail_item_footer;
-      case VIEW_TYPE_BODY:
-        return R.layout.content_statistics_op_detail_item_body;
-      default:
-        return R.layout.content_statistics_op_detail_item_body;
+    if (viewType == VIEW_TYPE_BODY) {
+      return R.layout.content_statistics_op_detail_item_footer;
+    } else {
+      return R.layout.content_statistics_op_detail_item_body;
     }
   }
 
   @Override public int getItemViewType(int position) {
-    if (position == getSize() - 1) {
+    if (position == getItemCount() - 1) {
       return VIEW_TYPE_FOOTER;
     } else {
       return VIEW_TYPE_BODY;
@@ -57,39 +42,22 @@ public class OpDetailAdapter extends BaseRecyclerAdapter
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof OpDetailViewHolder) {
       OpDetailViewHolder holder = (OpDetailViewHolder) viewHolder;
-      OpRatioItem o = items.get(position);
-      holder.nameTextview.setText(o.getUserNm());
-      holder.janTextview.setText(String.valueOf(o.getJan()));
-      holder.febTextview.setText(String.valueOf(o.getFeb()));
-      holder.marTextview.setText(String.valueOf(o.getMar()));
-      holder.aprTextview.setText(String.valueOf(o.getApr()));
-      holder.mayTextview.setText(String.valueOf(o.getMay()));
-      holder.junTextview.setText(String.valueOf(o.getJun()));
-      holder.julTextview.setText(String.valueOf(o.getJul()));
-      holder.augTextview.setText(String.valueOf(o.getAug()));
-      holder.sepTextview.setText(String.valueOf(o.getSep()));
-      holder.octTextview.setText(String.valueOf(o.getOct()));
-      holder.novTextview.setText(String.valueOf(o.getNov()));
-      holder.decTextview.setText(String.valueOf(o.getDec()));
-      holder.nowOpRatioTextview.setText(String.valueOf(o.getCurOpr()));
-      holder.yearOpRatioTextview.setText(String.valueOf(o.getYearOpr()));
-    } else if (viewHolder instanceof OpDetailFooterViewHolder) {
-      OpDetailFooterViewHolder holder = (OpDetailFooterViewHolder) viewHolder;
-      holder.nameTextview.setText(footer.getUserNm());
-      holder.janTextview.setText(String.valueOf(footer.getJan()));
-      holder.febTextview.setText(String.valueOf(footer.getFeb()));
-      holder.marTextview.setText(String.valueOf(footer.getMar()));
-      holder.aprTextview.setText(String.valueOf(footer.getApr()));
-      holder.mayTextview.setText(String.valueOf(footer.getMay()));
-      holder.junTextview.setText(String.valueOf(footer.getJun()));
-      holder.julTextview.setText(String.valueOf(footer.getJul()));
-      holder.augTextview.setText(String.valueOf(footer.getAug()));
-      holder.sepTextview.setText(String.valueOf(footer.getSep()));
-      holder.octTextview.setText(String.valueOf(footer.getOct()));
-      holder.novTextview.setText(String.valueOf(footer.getNov()));
-      holder.decTextview.setText(String.valueOf(footer.getDec()));
-      holder.nowOpRatioTextview.setText(String.valueOf(footer.getCurOpr()));
-      holder.yearOpRatioTextview.setText(String.valueOf(footer.getYearOpr()));
+      DetailOperationRate o = items.get(position);
+      holder.nameTextview.setText(o.getUser_nm());
+      holder.janTextview.setText(String.valueOf(o.getM1()));
+      holder.febTextview.setText(String.valueOf(o.getM2()));
+      holder.marTextview.setText(String.valueOf(o.getM3()));
+      holder.aprTextview.setText(String.valueOf(o.getM4()));
+      holder.mayTextview.setText(String.valueOf(o.getM5()));
+      holder.junTextview.setText(String.valueOf(o.getM6()));
+      holder.julTextview.setText(String.valueOf(o.getM7()));
+      holder.augTextview.setText(String.valueOf(o.getM8()));
+      holder.sepTextview.setText(String.valueOf(o.getM9()));
+      holder.octTextview.setText(String.valueOf(o.getM10()));
+      holder.novTextview.setText(String.valueOf(o.getM11()));
+      holder.decTextview.setText(String.valueOf(o.getM12()));
+      holder.nowOpRatioTextview.setText(String.valueOf(o.getNowsum()));
+      holder.yearOpRatioTextview.setText(String.valueOf(o.getTotsum()));
     }
   }
 
@@ -97,29 +65,28 @@ public class OpDetailAdapter extends BaseRecyclerAdapter
     return getSize();
   }
 
-  @DebugLog @Override public void add(OpRatioItem item) {
+  @DebugLog @Override public void add(DetailOperationRate item) {
     this.items.add(item);
   }
 
-  @DebugLog @Override public void addAll(List<OpRatioItem> items) {
+  @DebugLog @Override public void addAll(List<DetailOperationRate> items) {
     this.items.addAll(items);
   }
 
-  @Override public OpRatioItem remove(int position) {
+  @Override public DetailOperationRate remove(int position) {
     return items.remove(position);
   }
 
-  @Override public OpRatioItem getItem(int position) {
+  @Override public DetailOperationRate getItem(int position) {
     return items.get(position);
   }
 
-  @Override public void add(int index, OpRatioItem item) {
+  @Override public void add(int index, DetailOperationRate item) {
     items.add(index, item);
   }
 
   @Override public int getSize() {
-    int size = items.size() + (ObjectUtils.isEmpty(footer) ? 0 : 1); //(body size + footer)
-    return size;
+    return items.size();
   }
 
   @Override public void clear() {
@@ -132,9 +99,5 @@ public class OpDetailAdapter extends BaseRecyclerAdapter
 
   @DebugLog public void refresh() {
     notifyItemRangeChanged(0, getSize());
-  }
-
-  @Override public void addFooter(OpRatioTotal footer) {
-    this.footer = footer;
   }
 }

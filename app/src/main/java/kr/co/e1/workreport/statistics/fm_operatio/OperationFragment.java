@@ -69,6 +69,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
 
   @Override public void navigateToOpDetail() {
     Intent intent = new Intent(getContext(), OpDetailActivity.class);
+    intent.putExtra("year", getArguments().getInt("year"));
     startActivity(intent);
   }
 

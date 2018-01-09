@@ -32,7 +32,7 @@ public class OpDetailActivity extends BaseActivity implements OpDetailPresenter.
   @Inject OpDetailPresenter presenter;
 
   @Override protected void onCreated(Bundle savedInstanceState) {
-    presenter.onCreated(savedInstanceState);
+    presenter.onCreated(getIntent());
     setLayoutScrollFlag(true);
   }
 

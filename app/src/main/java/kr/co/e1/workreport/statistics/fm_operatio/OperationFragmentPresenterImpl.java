@@ -31,7 +31,7 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
   @Override public void onActivityCreate(int year) {
     view.showProgress();
     view.detailButtonEnabled(false);
-    compositeDisposable.add(network.getOperRatio()
+    compositeDisposable.add(network.getOperRatio(year)
         .subscribeOn(Schedulers.io())
         .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())

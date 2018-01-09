@@ -8,6 +8,7 @@ import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.main.dialog_login.model.LoginContent;
 import kr.co.e1.workreport.main.dialog_proje.vo.Project;
 import kr.co.e1.workreport.statistics.dialog_create.model.CreateDbYear;
+import kr.co.e1.workreport.statistics.operatiodetail.model.DetailOperationRate;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioContent;
 import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRatio;
 import kr.co.e1.workreport.statistics.fm_total.model.TotalSummary;
@@ -67,6 +68,10 @@ public interface WorkReportApi {
   @GET("api/adapters/WorkReportSQL/getOperRatio") Single<WResult<OpRatioContent>> getOperRatio(
       @Header("Authorization") String header, @Query("DEPT_NM") String deptNm,
       @Query("YEAR") int year);
+
+  @GET("api/adapters/WorkReportSQL/getDetailOperationRate")
+  Single<WResult<List<DetailOperationRate>>> getDetailOperationRate(@Header("Authorization") String header,
+      @Query("DEPT_NM") String deptNm, @Query("YEAR") int year);
 
   @GET("api/adapters/WorkReportSQL/getYearOperatingRatio")
   Single<WResult<List<YearOperationRatio>>> getYearOperatingRatio(

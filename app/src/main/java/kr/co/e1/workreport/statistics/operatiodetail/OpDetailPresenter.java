@@ -1,6 +1,6 @@
 package kr.co.e1.workreport.statistics.operatiodetail;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.annotation.StringRes;
 
 /**
@@ -9,9 +9,9 @@ import android.support.annotation.StringRes;
 
 public interface OpDetailPresenter {
 
-  void onCreated(Bundle savedInstanceState);
-
   void onDestroy();
+
+  void onCreated(Intent intent);
 
   interface View {
 

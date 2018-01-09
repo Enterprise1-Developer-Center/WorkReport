@@ -23,8 +23,7 @@ public class OpDetailPresenterImpl implements OpDetailPresenter {
   private BaseAdapterDataModel<DetailOperationRate> adapterDataModel;
   private OpRatioNetwork network;
 
-  OpDetailPresenterImpl(View view, BaseAdapterDataModel adapterDataModel,
-      OpRatioNetwork network) {
+  OpDetailPresenterImpl(View view, BaseAdapterDataModel adapterDataModel, OpRatioNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     this.network = network;
@@ -52,25 +51,6 @@ public class OpDetailPresenterImpl implements OpDetailPresenter {
           view.hideProgress();
           view.showMessage(R.string.error_server_error);
         }));
-    /*
-    compositeDisposable.add(network.getOperRatio()
-        .delay(Constants.DELAY, TimeUnit.MILLISECONDS)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(result -> {
-          if (result.getResult() == WResult.RESULT_SUCCESS) {
-            adapterDataModel.addAll(result.getContent().getOpRatios());
-            adapterDataModel.addFooter(result.getContent().getOpRatioTotal());
-            view.refresh();
-          } else {
-            view.showMessage(result.getMsg());
-          }
-          view.hideProgress();
-        }, throwable -> {
-          view.hideProgress();
-          view.showMessage(R.string.error_server_error);
-        }));
-    */
   }
 
   @Override public void onDestroy() {

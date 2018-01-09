@@ -25,9 +25,9 @@ public class OpDetailAdapter extends BaseRecyclerAdapter
 
   @Override public int getLayoutRes(int viewType) {
     if (viewType == VIEW_TYPE_BODY) {
-      return R.layout.content_statistics_op_detail_item_footer;
-    } else {
       return R.layout.content_statistics_op_detail_item_body;
+    } else {
+      return R.layout.content_statistics_op_detail_item_footer;
     }
   }
 

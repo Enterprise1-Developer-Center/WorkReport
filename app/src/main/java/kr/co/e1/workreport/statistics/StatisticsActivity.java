@@ -21,7 +21,7 @@ import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.ObjectUtils;
 import kr.co.e1.workreport.framework.abs.OnSimpleItemSelectedListener;
 import kr.co.e1.workreport.statistics.fm_analytics.AnalyticsFragment;
-import kr.co.e1.workreport.statistics.dialog_create.CreateDbFragment;
+import kr.co.e1.workreport.statistics.dg_create.CreateDbFragment;
 import kr.co.e1.workreport.statistics.fm_holiday.HolidayFragment;
 import kr.co.e1.workreport.statistics.fm_operatio.OperationFragment;
 import kr.co.e1.workreport.statistics.fm_total.TotalFragment;

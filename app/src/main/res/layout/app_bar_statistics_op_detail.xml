@@ -5,7 +5,7 @@
     android:id="@id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".statistics.operatiodetail.OpDetailActivity"
+    tools:context=".statistics.ac_detail.OpDetailActivity"
     >
 
   <include layout="@layout/app_bar_layout"/>

@@ -10,8 +10,8 @@ import kr.co.e1.workreport.main.MainActivity;
 import kr.co.e1.workreport.main.MainActivityComponent;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.statistics.StatisticsActivityComponent;
-import kr.co.e1.workreport.statistics.operatiodetail.OpDetailActivity;
-import kr.co.e1.workreport.statistics.operatiodetail.OpDetailActivityComponent;
+import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivity;
+import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivityComponent;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
 import kr.co.e1.workreport.teamreport.TeamReportActivityComponent;
 

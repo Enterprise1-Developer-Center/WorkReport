@@ -19,7 +19,7 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
-import kr.co.e1.workreport.statistics.operatiodetail.OpDetailActivity;
+import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivity;
 
 /**
  * Created by jaeho on 2017. 10. 31

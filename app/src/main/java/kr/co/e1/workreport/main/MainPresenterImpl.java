@@ -27,7 +27,7 @@ import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.main.dialog_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.vo.Project;
 import timber.log.Timber;
 
 import static kr.co.e1.workreport.network.WResult.RESULT_SUCCESS;

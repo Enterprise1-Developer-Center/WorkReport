@@ -8,7 +8,7 @@ import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.statistics.fm_operatio.model.CurrOperationRate;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioContent;
 import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRate;
-import kr.co.e1.workreport.statistics.operatiodetail.model.DetailOperationRate;
+import kr.co.e1.workreport.statistics.ac_detail.model.DetailOperationRate;
 
 /**
  * Created by jaeho on 2017. 11. 22

@@ -31,15 +31,15 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
   @Override public void onActivityCreate(int year) {
     view.showProgress();
     view.detailButtonEnabled(false);
-    compositeDisposable.add(network.getOperRatio(year)
+    compositeDisposable.add(network.getCurrentOperationRate(year)
         .subscribeOn(Schedulers.io())
         .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
-          chartDataGen.setOpRatioContent(result.getContent());
+          chartDataGen.setCurrOperationRates(result.getContent());
           if (result.getResult() == WResult.RESULT_SUCCESS) {
-            view.showNowOpRatioChart(chartDataGen.getNowOpRatioChartData(),
-                chartDataGen.getNowOpRatio(), chartDataGen.getNowOpRatioQuarters());
+            view.showNowOpRatioChart(chartDataGen.getCurrOperationRateData(),
+                chartDataGen.getCurrTotRate(), chartDataGen.getCurrOperationRateQuarters());
             view.detailButtonEnabled(true);
           } else {
             view.showMessage(result.getMsg());
@@ -57,7 +57,7 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
           if (result.getResult() == WResult.RESULT_SUCCESS) {
             chartDataGen.setYearOperationRates(result.getContent());
             view.showYearOpRatioChart(chartDataGen.getYearOperationRateData(),
-                chartDataGen.getTot_rate(), chartDataGen.getYearOperationRateQuarters());
+                chartDataGen.getYear_tot_rate(), chartDataGen.getYearOperationRateQuarters());
           } else {
             view.showMessage(result.getMsg());
           }

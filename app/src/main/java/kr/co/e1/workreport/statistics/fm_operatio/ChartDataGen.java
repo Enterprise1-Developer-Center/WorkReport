@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.app.MyApplication;
+import kr.co.e1.workreport.statistics.fm_operatio.model.CurrOperationRate;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioContent;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioHeader;
-import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioItem;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioTotal;
 import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRate;
 import lombok.Getter;
@@ -33,6 +33,9 @@ public class ChartDataGen {
 
   private Context context;
   @Accessors(chain = true) @Setter private OpRatioContent opRatioContent;
+
+  @Accessors(chain = true) @Setter private List<CurrOperationRate> currOperationRates;
+  @Getter private float currTotRate;
 
   public ChartDataGen(Context context) {
     this.context = context;
@@ -87,27 +90,27 @@ public class ChartDataGen {
     return opRatioContent.getOpRatioTotal().getCurOpr();
   }
 
-  public String[] getNowOpRatioQuarters() {
-    List<OpRatioItem> items = opRatioContent.getOpRatios();
+  public String[] getCurrOperationRateQuarters() {
+    List<CurrOperationRate> items = currOperationRates;
     int size = items.size();
     String[] names = new String[size];
     for (int i = 0; i < size; i++) {
-      OpRatioItem item = items.get(i);
-      names[i] = item.getUserNm();
+      CurrOperationRate item = items.get(i);
+      names[i] = item.getUser_nm();
     }
 
     return names;
   }
 
-  public BarData getNowOpRatioChartData() {
-    List<OpRatioItem> items = opRatioContent.getOpRatios();
+  public BarData getCurrOperationRateData() {
+    List<CurrOperationRate> items = currOperationRates;
     List<BarEntry> entries = new ArrayList<>();
     List<BarEntry> values = new ArrayList<>();
     for (int i = 0; i < items.size(); i++) {
-      OpRatioItem item = items.get(i);
-      item.getCurOpr();
-      entries.add(new BarEntry(i, item.getCurOpr()));
-      values.add(new BarEntry(i, item.getCurOpr()));
+      CurrOperationRate item = items.get(i);
+      currTotRate = item.getTot_rate();
+      entries.add(new BarEntry(i, item.getMan_rate()));
+      values.add(new BarEntry(i, item.getMan_rate()));
     }
 
     BarDataSet dataSet = new BarDataSet(entries, context.getString(R.string.members));
@@ -128,13 +131,13 @@ public class ChartDataGen {
   }
 
   @Setter private List<YearOperationRate> yearOperationRates;
-  @Getter private float tot_rate;
+  @Getter private float year_tot_rate;
 
   public String[] getYearOperationRateQuarters() {
     int size = 12;
     String[] quarters = new String[size];
     for (int i = 0; i < quarters.length; i++) {
-      quarters[i] = (i+1) + MyApplication.getInstance().getString(R.string.month);
+      quarters[i] = (i + 1) + MyApplication.getInstance().getString(R.string.month);
     }
     return quarters;
   }
@@ -146,7 +149,7 @@ public class ChartDataGen {
       try {
         YearOperationRate item = yearOperationRates.get(i);
         opRatioFloats[i] = item.getMon_rate();
-        tot_rate = item.getTot_rate();
+        year_tot_rate = item.getTot_rate();
       } catch (IndexOutOfBoundsException e) {
         opRatioFloats[i] = 0;
       }

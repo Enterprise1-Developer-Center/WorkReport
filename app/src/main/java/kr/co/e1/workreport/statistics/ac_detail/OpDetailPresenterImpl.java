@@ -11,6 +11,7 @@ import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.statistics.ac_detail.model.DetailOperationRate;
+import kr.co.e1.workreport.statistics.ac_detail.network.OpDetailNetwork;
 
 /**
  * Created by jaeho on 2017. 10. 31

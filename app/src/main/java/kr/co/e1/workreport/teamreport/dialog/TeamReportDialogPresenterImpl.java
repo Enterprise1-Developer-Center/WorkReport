@@ -13,6 +13,7 @@ import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.teamreport.dialog.adapter.TeamDialogAdapterDataModel;
+import kr.co.e1.workreport.teamreport.dialog.network.TeamReportDialogNetwork;
 import timber.log.Timber;
 
 /**

@@ -3,6 +3,7 @@ package kr.co.e1.workreport.main.dg_pass;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.main.dg_pass.network.PasswordNetwork;
 
 /**
  * Created by jaeho on 2017. 10. 19

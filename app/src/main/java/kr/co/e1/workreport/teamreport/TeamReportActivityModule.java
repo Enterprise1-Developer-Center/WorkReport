@@ -6,6 +6,7 @@ import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapterView;
 import kr.co.e1.workreport.teamreport.dialog.TeamReportDialogComponent;
+import kr.co.e1.workreport.teamreport.network.TeamReportNetwork;
 
 /**
  * Created by jaeho on 2017. 9. 25

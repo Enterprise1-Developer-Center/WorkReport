@@ -3,6 +3,7 @@ package kr.co.e1.workreport.statistics.fm_total;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.statistics.fm_total.network.TotalNetwork;
 
 /**
  * Created by jaeho on 2017. 11. 2

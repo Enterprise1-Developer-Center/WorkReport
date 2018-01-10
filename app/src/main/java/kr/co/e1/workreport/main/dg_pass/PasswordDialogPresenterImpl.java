@@ -6,6 +6,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.main.dg_pass.network.PasswordNetwork;
 import kr.co.e1.workreport.network.WResult;
 
 /**

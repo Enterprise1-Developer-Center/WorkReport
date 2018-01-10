@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.main.dg_class.adapter.ClassAdapterDataModel;
 import kr.co.e1.workreport.common.model.DetailWork;
+import kr.co.e1.workreport.main.dg_class.network.ClassificationNetwork;
 import kr.co.e1.workreport.network.WResult;
 
 /**

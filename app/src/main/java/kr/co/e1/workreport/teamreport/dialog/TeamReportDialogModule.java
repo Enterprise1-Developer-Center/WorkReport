@@ -5,6 +5,7 @@ import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.teamreport.dialog.adapter.TeamDialogAdapterView;
 import kr.co.e1.workreport.teamreport.dialog.adapter.TeamReportDialogAdapter;
+import kr.co.e1.workreport.teamreport.dialog.network.TeamReportDialogNetwork;
 
 /**
  * Created by jaeho on 2017. 10. 19

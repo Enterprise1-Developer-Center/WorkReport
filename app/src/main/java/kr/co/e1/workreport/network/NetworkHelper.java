@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by jaeho on 2017. 11. 8
  */
 
-public class NetworkHelper {
+public abstract class NetworkHelper<T> {
   public final static int REQ_SUCCESS = 1;
   public final static int REQ_FAILURE = 0;
   public final static int DELAY = 0;
@@ -27,11 +27,16 @@ public class NetworkHelper {
   }
 
   protected WorkReportApi getWorkReportApi() {
-    final Retrofit retrofit = createRetrofit();
-    return retrofit.create(WorkReportApi.class);
+    return createRetrofit().create(WorkReportApi.class);
   }
 
-  private Retrofit createRetrofit() {
+  public T getApi() {
+    return createRetrofit().create(getApiClass());
+  }
+
+  protected abstract Class<T> getApiClass();
+
+  protected Retrofit createRetrofit() {
     Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

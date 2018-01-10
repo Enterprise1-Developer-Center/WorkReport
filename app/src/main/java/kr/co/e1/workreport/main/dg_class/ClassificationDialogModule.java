@@ -5,6 +5,7 @@ import dagger.Provides;
 import kr.co.e1.workreport.main.dg_class.adapter.ClassificationDialogAdapter;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
+import kr.co.e1.workreport.main.dg_class.network.ClassificationNetwork;
 
 /**
  * Created by jaeho on 2017. 10. 19

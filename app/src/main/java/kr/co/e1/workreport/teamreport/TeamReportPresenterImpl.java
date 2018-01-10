@@ -8,6 +8,7 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
+import kr.co.e1.workreport.teamreport.network.TeamReportNetwork;
 
 /**
  * Created by jaeho on 2017. 10. 31

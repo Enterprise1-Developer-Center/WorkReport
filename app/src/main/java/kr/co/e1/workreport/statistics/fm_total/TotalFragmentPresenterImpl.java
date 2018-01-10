@@ -5,6 +5,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.network.WResult;
+import kr.co.e1.workreport.statistics.fm_total.network.TotalNetwork;
 
 /**
  * Created by jaeho on 2017. 11. 2

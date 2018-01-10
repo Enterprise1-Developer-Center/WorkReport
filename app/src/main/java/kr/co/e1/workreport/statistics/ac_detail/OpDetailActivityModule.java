@@ -5,6 +5,7 @@ import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.statistics.ac_detail.adapter.OpDetailAdapter;
 import kr.co.e1.workreport.statistics.ac_detail.adapter.OpDetailAdapterView;
+import kr.co.e1.workreport.statistics.ac_detail.network.OpDetailNetwork;
 
 /**
  * Created by jaeho on 2017. 9. 25

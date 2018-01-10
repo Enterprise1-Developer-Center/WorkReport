@@ -4,7 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.statistics.dg_create.CreateDbFragment;
-import kr.co.e1.workreport.statistics.dg_create.CreateDbNetwork;
+import kr.co.e1.workreport.statistics.dg_create.network.CreateDbNetwork;
 import kr.co.e1.workreport.statistics.dg_create.CreateDbPresenter;
 import kr.co.e1.workreport.statistics.dg_create.CreateDbPresenterImpl;
 

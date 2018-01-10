@@ -1,0 +1,26 @@
+package kr.co.e1.workreport.main.dg_class.network;
+
+import io.reactivex.Single;
+import java.util.List;
+import kr.co.e1.workreport.common.PreferencesUtils;
+import kr.co.e1.workreport.common.model.DetailWork;
+import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.network.WResult;
+
+/**
+ * Created by jaeho on 2017. 11. 14
+ */
+
+public class ClassificationNetwork extends NetworkHelper<ClassificationApi> {
+  public ClassificationNetwork(String baseUrl) {
+    super(baseUrl);
+  }
+
+  @Override protected Class<ClassificationApi> getApiClass() {
+    return ClassificationApi.class;
+  }
+
+  public Single<WResult<List<DetailWork>>> getCode() {
+    return getApi().getCode(PreferencesUtils.getToken());
+  }
+}

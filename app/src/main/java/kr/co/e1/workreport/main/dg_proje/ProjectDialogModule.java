@@ -5,6 +5,7 @@ import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.main.dg_proje.adapter.ProjectDialogAdapter;
+import kr.co.e1.workreport.main.dg_proje.network.ProjectNetwork;
 
 /**
  * Created by jaeho on 2017. 10. 19

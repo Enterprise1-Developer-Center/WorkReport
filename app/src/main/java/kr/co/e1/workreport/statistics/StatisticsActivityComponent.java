@@ -3,7 +3,7 @@ package kr.co.e1.workreport.statistics;
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
 import kr.co.e1.workreport.statistics.dg_create.di.CreateDbProvider;
-import kr.co.e1.workreport.statistics.fm_operatio.OperationFragmentProvider;
+import kr.co.e1.workreport.statistics.fm_operation.OperationFragmentProvider;
 import kr.co.e1.workreport.statistics.fm_total.TotalFragmentProvider;
 
 /**

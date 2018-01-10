@@ -13,6 +13,7 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
 import kr.co.e1.workreport.main.dg_login.model.LoginContent;
+import kr.co.e1.workreport.main.dg_login.network.LoginNetwork;
 import kr.co.e1.workreport.network.TokenResult;
 import kr.co.e1.workreport.network.WResult;
 

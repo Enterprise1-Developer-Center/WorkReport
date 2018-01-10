@@ -2,7 +2,7 @@ package kr.co.e1.workreport.statistics.ac_detail;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.statistics.ac_detail.adapter.OpDetailAdapter;
 import kr.co.e1.workreport.statistics.ac_detail.adapter.OpDetailAdapterView;
 import kr.co.e1.workreport.statistics.ac_detail.network.OpDetailNetwork;
@@ -30,6 +30,6 @@ import kr.co.e1.workreport.statistics.ac_detail.network.OpDetailNetwork;
   }
 
   @Provides OpDetailNetwork provideOpDetailNetwork() {
-    return new OpDetailNetwork(Constants.BASE_URL);
+    return new OpDetailNetwork(MyApplication.BASE_URL);
   }
 }

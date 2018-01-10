@@ -2,11 +2,11 @@ package kr.co.e1.workreport.main;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.main.dg_class.ClassificationDialogComponent;
-import kr.co.e1.workreport.common.Constants;
-import kr.co.e1.workreport.main.dg_login.LoginFragmentComponent;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.main.adapter.MainAdapterView;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
+import kr.co.e1.workreport.main.dg_class.ClassificationDialogComponent;
+import kr.co.e1.workreport.main.dg_login.LoginFragmentComponent;
 import kr.co.e1.workreport.main.dg_pass.PasswordDialogComponent;
 import kr.co.e1.workreport.main.dg_proje.ProjectDialogComponent;
 import kr.co.e1.workreport.main.network.MainNetwork;
@@ -36,6 +36,6 @@ import kr.co.e1.workreport.main.network.MainNetwork;
   }
 
   @Provides MainNetwork provideMainNetwork() {
-    return new MainNetwork(Constants.BASE_URL);
+    return new MainNetwork(MyApplication.BASE_URL);
   }
 }

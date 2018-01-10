@@ -2,9 +2,9 @@ package kr.co.e1.workreport.main.dg_class;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.main.dg_class.adapter.ClassificationDialogAdapter;
-import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
+import kr.co.e1.workreport.main.dg_class.adapter.ClassificationDialogAdapter;
 import kr.co.e1.workreport.main.dg_class.network.ClassificationNetwork;
 
 /**
@@ -30,7 +30,7 @@ import kr.co.e1.workreport.main.dg_class.network.ClassificationNetwork;
   }
 
   @Provides ClassificationNetwork provideNetwork() {
-    return new ClassificationNetwork(Constants.BASE_URL);
+    return new ClassificationNetwork(MyApplication.BASE_URL);
   }
 
   @Provides BaseAdapterView provideClassificationDialogAdapterView(ClassificationDialog dialog) {

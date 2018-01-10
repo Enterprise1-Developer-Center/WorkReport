@@ -2,7 +2,7 @@ package kr.co.e1.workreport.statistics.fm_operation;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.statistics.fm_operation.network.OperationNetwork;
 
 /**
@@ -22,7 +22,7 @@ import kr.co.e1.workreport.statistics.fm_operation.network.OperationNetwork;
   }
 
   @Provides OperationNetwork provideOpRatioNetwork() {
-    return new OperationNetwork(Constants.BASE_URL);
+    return new OperationNetwork(MyApplication.BASE_URL);
   }
 
   @Provides ChartDataGen provideChartDataGen(OperationFragment fragment) {

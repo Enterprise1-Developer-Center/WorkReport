@@ -2,7 +2,7 @@ package kr.co.e1.workreport.main.dg_proje;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.main.dg_proje.adapter.ProjectDialogAdapter;
 import kr.co.e1.workreport.main.dg_proje.network.ProjectNetwork;
@@ -31,6 +31,6 @@ import kr.co.e1.workreport.main.dg_proje.network.ProjectNetwork;
   }
 
   @Provides ProjectNetwork provideProjectNetwork() {
-    return new ProjectNetwork(Constants.BASE_URL);
+    return new ProjectNetwork(MyApplication.BASE_URL);
   }
 }

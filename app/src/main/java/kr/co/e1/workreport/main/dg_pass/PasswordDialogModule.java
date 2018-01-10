@@ -2,7 +2,7 @@ package kr.co.e1.workreport.main.dg_pass;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.main.dg_pass.network.PasswordNetwork;
 
 /**
@@ -21,6 +21,6 @@ import kr.co.e1.workreport.main.dg_pass.network.PasswordNetwork;
   }
 
   @Provides PasswordNetwork providePasswordNetwork() {
-    return new PasswordNetwork(Constants.BASE_URL);
+    return new PasswordNetwork(MyApplication.BASE_URL);
   }
 }

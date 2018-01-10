@@ -28,15 +28,29 @@ public class MyApplication extends Application implements HasActivityInjector {
   @Inject DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
   public static boolean DEBUG = false;
+  public static String BASE_URL = "http://192.168.1.99:9080/mfp/";
 
   @Override public void onCreate() {
     super.onCreate();
     instance = this;
+    initBaseUrl();
+    initDebuggable();
     initLeakCanary();
     initTimber();
     initWLClient();
     initDagger();
     initEasyPrefs();
+  }
+
+  private void initBaseUrl() {
+    if (isDebuggable(this)) {
+      BASE_URL = "http://192.168.1.99:9080/mfp/";
+    } else {
+      BASE_URL = "http://211.219.71.228:9080/mfp/";
+    }
+  }
+
+  private void initDebuggable() {
     this.DEBUG = isDebuggable(this);
   }
 

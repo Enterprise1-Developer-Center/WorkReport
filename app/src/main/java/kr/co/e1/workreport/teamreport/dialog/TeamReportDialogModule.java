@@ -2,7 +2,7 @@ package kr.co.e1.workreport.teamreport.dialog;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.teamreport.dialog.adapter.TeamDialogAdapterView;
 import kr.co.e1.workreport.teamreport.dialog.adapter.TeamReportDialogAdapter;
 import kr.co.e1.workreport.teamreport.dialog.network.TeamReportDialogNetwork;
@@ -32,6 +32,6 @@ import kr.co.e1.workreport.teamreport.dialog.network.TeamReportDialogNetwork;
   }
 
   @Provides TeamReportDialogNetwork provideTeamReportDialogNetwork() {
-    return new TeamReportDialogNetwork(Constants.BASE_URL);
+    return new TeamReportDialogNetwork(MyApplication.BASE_URL);
   }
 }

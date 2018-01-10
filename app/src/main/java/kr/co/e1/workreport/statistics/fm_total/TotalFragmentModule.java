@@ -2,7 +2,7 @@ package kr.co.e1.workreport.statistics.fm_total;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.statistics.fm_total.network.TotalNetwork;
 
 /**
@@ -18,7 +18,7 @@ import kr.co.e1.workreport.statistics.fm_total.network.TotalNetwork;
   }
 
   @Provides TotalNetwork provideTotalNetwork() {
-    return new TotalNetwork(Constants.BASE_URL);
+    return new TotalNetwork(MyApplication.BASE_URL);
   }
 
   @Provides TotalChartDataGen provideTotalChartDataGen(TotalFragment fragment) {

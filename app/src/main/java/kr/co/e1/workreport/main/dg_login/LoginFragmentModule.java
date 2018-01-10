@@ -2,7 +2,7 @@ package kr.co.e1.workreport.main.dg_login;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
 import kr.co.e1.workreport.main.dg_login.network.LoginNetwork;
 
@@ -16,7 +16,7 @@ import kr.co.e1.workreport.main.dg_login.network.LoginNetwork;
   }
 
   @Provides LoginNetwork provideNetworkHelper() {
-    return new LoginNetwork(Constants.BASE_URL);
+    return new LoginNetwork(MyApplication.BASE_URL);
   }
 
   @Provides LoginCommunicationListener provideLoginCommunicationListener(

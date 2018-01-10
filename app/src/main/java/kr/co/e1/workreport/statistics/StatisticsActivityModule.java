@@ -4,7 +4,7 @@ import android.widget.ArrayAdapter;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.Constants;
+import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.statistics.dg_create.di.CreateDbComponent;
 import kr.co.e1.workreport.statistics.fm_operation.OperationFragmentComponent;
 import kr.co.e1.workreport.statistics.fm_total.TotalFragmentComponent;
@@ -34,6 +34,6 @@ import kr.co.e1.workreport.statistics.network.StatisticsNetwork;
   }
 
   @Provides StatisticsNetwork provideStatisticsNetwork() {
-    return new StatisticsNetwork(Constants.BASE_URL);
+    return new StatisticsNetwork(MyApplication.BASE_URL);
   }
 }

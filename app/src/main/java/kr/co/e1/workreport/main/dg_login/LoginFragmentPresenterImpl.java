@@ -41,6 +41,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
 
   @Override public void onPositiveClick(final String id, final String pw) {
     view.showProgress();
+    view.setButtonEnabled(false);
     compositeDisposable.add(network.generateToken()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -68,13 +69,16 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
                   view.showMessage(result.getMsg());
                 }
                 view.hideProgress();
+                view.setButtonEnabled(true);
               }, throwable -> {
                 view.hideProgress();
+                view.setButtonEnabled(true);
                 view.showMessage(R.string.error_server_error);
               }));
         }, throwable -> {
-          view.hideProgress();
           view.showMessage(R.string.error_server_error);
+          view.setButtonEnabled(true);
+          view.hideProgress();
         }));
   }
 

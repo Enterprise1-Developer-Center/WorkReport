@@ -68,13 +68,12 @@ public interface WorkReportApi {
       @Query("YEAR") int year);
 
   @GET("api/adapters/WorkReportSQL/getCurrentOperationRate")
-  Single<WResult<List<CurrOperationRate>>> getCurrentOperationRate(@Header("Authorization") String header,
-      @Query("YEAR") int year, @Query("DEPT_CD") int code);
+  Single<WResult<List<CurrOperationRate>>> getCurrentOperationRate(
+      @Header("Authorization") String header, @Query("YEAR") int year, @Query("DEPT_CD") int code);
 
   @GET("api/adapters/WorkReportSQL/getDetailOperationRate")
   Single<WResult<List<DetailOperationRate>>> getDetailOperationRate(
-      @Header("Authorization") String header, @Query("DEPT_NM") String deptNm,
-      @Query("YEAR") int year);
+      @Header("Authorization") String header, @Query("YEAR") int year, @Query("DEPT_CD") int code);
 
   @GET("api/adapters/WorkReportSQL/getYearOperationRate")
   Single<WResult<List<YearOperationRate>>> getYearOperationRate(

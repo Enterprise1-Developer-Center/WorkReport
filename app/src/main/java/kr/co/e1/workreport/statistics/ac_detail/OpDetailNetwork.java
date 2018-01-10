@@ -18,8 +18,8 @@ public class OpDetailNetwork extends NetworkHelper {
 
   public Single<WResult<List<DetailOperationRate>>> getDetailOperationRate(int year) {
     String header = PreferencesUtils.getToken();
-    String deptNm = PreferencesUtils.getDept();
-    return getWorkReportApi().getDetailOperationRate(header,deptNm, year);
+    int code = PreferencesUtils.getDeptCd();
+    return getWorkReportApi().getDetailOperationRate(header,year, code);
   }
 
 }

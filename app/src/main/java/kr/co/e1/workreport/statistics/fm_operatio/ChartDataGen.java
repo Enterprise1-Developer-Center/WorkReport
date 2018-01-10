@@ -20,7 +20,7 @@ import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioContent;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioHeader;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioItem;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioTotal;
-import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRatio;
+import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -127,10 +127,10 @@ public class ChartDataGen {
     return barData;
   }
 
-  @Setter private List<YearOperationRatio> yearOperationRatios;
+  @Setter private List<YearOperationRate> yearOperationRates;
   @Getter private float tot_rate;
 
-  public String[] getYearOperationRatioQuarters() {
+  public String[] getYearOperationRateQuarters() {
     int size = 12;
     String[] quarters = new String[size];
     for (int i = 0; i < quarters.length; i++) {
@@ -139,12 +139,12 @@ public class ChartDataGen {
     return quarters;
   }
 
-  public LineData getYearOperationRatioData() {
+  public LineData getYearOperationRateData() {
     final int size = 12;
     final float[] opRatioFloats = new float[size];
     for (int i = 0; i < size; i++) {
       try {
-        YearOperationRatio item = yearOperationRatios.get(i);
+        YearOperationRate item = yearOperationRates.get(i);
         opRatioFloats[i] = item.getMon_rate();
         tot_rate = item.getTot_rate();
       } catch (IndexOutOfBoundsException e) {

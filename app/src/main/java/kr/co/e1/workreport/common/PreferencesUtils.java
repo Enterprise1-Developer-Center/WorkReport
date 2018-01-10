@@ -40,4 +40,12 @@ public class PreferencesUtils {
   public static String getToday() {
     return Prefs.getString("today", DateUtils.getConvertoFormat(new Date(), "yyyy-MM-dd"));
   }
+
+  public static void setDeptCd(int code) {
+    Prefs.putInt("deptCd", code);
+  }
+
+  public static int getDeptCd() {
+    return Prefs.getInt("deptCd", 0);
+  }
 }

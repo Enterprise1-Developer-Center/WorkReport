@@ -3,7 +3,6 @@ package kr.co.e1.workreport.statistics.operatiodetail;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.common.Constants;
-import kr.co.e1.workreport.statistics.fm_operatio.OpRatioNetwork;
 import kr.co.e1.workreport.statistics.operatiodetail.adapter.OpDetailAdapter;
 import kr.co.e1.workreport.statistics.operatiodetail.adapter.OpDetailAdapterView;
 
@@ -17,7 +16,7 @@ import kr.co.e1.workreport.statistics.operatiodetail.adapter.OpDetailAdapterView
   }
 
   @Provides OpDetailPresenter provideStatisticsPresenter(OpDetailPresenter.View view,
-      OpDetailActivity opDetailActivity, OpRatioNetwork network) {
+      OpDetailActivity opDetailActivity, OpDetailNetwork network) {
     return new OpDetailPresenterImpl(view, opDetailActivity.adapter, network);
   }
 
@@ -29,7 +28,7 @@ import kr.co.e1.workreport.statistics.operatiodetail.adapter.OpDetailAdapterView
     return activity.adapter;
   }
 
-  @Provides OpRatioNetwork provideOpRatioNetwork() {
-    return new OpRatioNetwork(Constants.BASE_URL);
+  @Provides OpDetailNetwork provideOpDetailNetwork() {
+    return new OpDetailNetwork(Constants.BASE_URL);
   }
 }

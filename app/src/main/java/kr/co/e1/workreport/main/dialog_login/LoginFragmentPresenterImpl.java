@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
+import kr.co.e1.workreport.main.dialog_login.model.LoginContent;
 import kr.co.e1.workreport.network.TokenResult;
 import kr.co.e1.workreport.network.WResult;
 
@@ -53,12 +54,14 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe(result -> {
-                PreferencesUtils.setUserId(result.getContent().getUserId());
-                PreferencesUtils.setDept(result.getContent().getDeptNm());
-                PreferencesUtils.setToday(result.getContent().getDate());
+                LoginContent content = result.getContent();
+                PreferencesUtils.setUserId(content.getUserId());
+                PreferencesUtils.setDept(content.getDeptNm());
+                PreferencesUtils.setToday(content.getDate());
+                PreferencesUtils.setDeptCd(content.getDeptCd());
                 if (result.getResult() == WResult.RESULT_SUCCESS) {
                   WLAnalytics.setUserContext(id);
-                  loginListener.onLoginSuccess(result.getContent().getDate());
+                  loginListener.onLoginSuccess(content.getDate());
                   view.dismiss();
                 } else {
                   view.showMessage(result.getMsg());

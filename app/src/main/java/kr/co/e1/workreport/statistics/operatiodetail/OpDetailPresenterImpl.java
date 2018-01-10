@@ -10,7 +10,6 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.statistics.fm_operatio.OpRatioNetwork;
 import kr.co.e1.workreport.statistics.operatiodetail.model.DetailOperationRate;
 
 /**
@@ -21,9 +20,9 @@ public class OpDetailPresenterImpl implements OpDetailPresenter {
 
   private View view;
   private BaseAdapterDataModel<DetailOperationRate> adapterDataModel;
-  private OpRatioNetwork network;
+  private OpDetailNetwork network;
 
-  OpDetailPresenterImpl(View view, BaseAdapterDataModel adapterDataModel, OpRatioNetwork network) {
+  OpDetailPresenterImpl(View view, BaseAdapterDataModel adapterDataModel, OpDetailNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     this.network = network;

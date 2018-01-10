@@ -16,12 +16,12 @@ import kr.co.e1.workreport.common.Constants;
   }
 
   @Provides OperationFragmentPresenter provideOperationFragmentPresenter(
-      OperationFragmentPresenter.View view, OpRatioNetwork network, ChartDataGen chartDataGen) {
+      OperationFragmentPresenter.View view, OperationNetwork network, ChartDataGen chartDataGen) {
     return new OperationFragmentPresenterImpl(view, network, chartDataGen);
   }
 
-  @Provides OpRatioNetwork provideOpRatioNetwork() {
-    return new OpRatioNetwork(Constants.BASE_URL);
+  @Provides OperationNetwork provideOpRatioNetwork() {
+    return new OperationNetwork(Constants.BASE_URL);
   }
 
   @Provides ChartDataGen provideChartDataGen(OperationFragment fragment) {

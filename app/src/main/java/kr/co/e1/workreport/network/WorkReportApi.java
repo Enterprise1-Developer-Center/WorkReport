@@ -10,7 +10,7 @@ import kr.co.e1.workreport.main.dialog_proje.vo.Project;
 import kr.co.e1.workreport.statistics.dialog_create.model.CreateDbYear;
 import kr.co.e1.workreport.statistics.operatiodetail.model.DetailOperationRate;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioContent;
-import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRatio;
+import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRate;
 import kr.co.e1.workreport.statistics.fm_total.model.TotalSummary;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
 import retrofit2.http.Field;
@@ -44,9 +44,6 @@ public interface WorkReportApi {
       @Header("Authorization") String header);
 
   @GET("api/adapters/WorkReportSQL/getProjects") Single<WResult<List<Project>>> getProjects(
-      @Header("Authorization") String header);
-
-  @GET("api/adapters/WorkReportSQL/getProjects") Single<WResult<List<Project>>> getProjects(
       @Header("Authorization") String header, @Query("DEPT_NM") String deptNm);
 
   @FormUrlEncoded @POST("api/adapters/WorkReportSQL/updateWorkingDay")
@@ -73,9 +70,9 @@ public interface WorkReportApi {
   Single<WResult<List<DetailOperationRate>>> getDetailOperationRate(@Header("Authorization") String header,
       @Query("DEPT_NM") String deptNm, @Query("YEAR") int year);
 
-  @GET("api/adapters/WorkReportSQL/getYearOperatingRatio")
-  Single<WResult<List<YearOperationRatio>>> getYearOperatingRatio(
-      @Header("Authorization") String header, @Query("YEAR") int year);
+  @GET("api/adapters/WorkReportSQL/getYearOperationRate")
+  Single<WResult<List<YearOperationRate>>> getYearOperationRate(
+      @Header("Authorization") String header, @Query("YEAR") int year, @Query("DEPT_CD") int code);
 
   @GET("api/adapters/WorkReportSQL/getSummaryTotal")
   Single<WResult<List<TotalSummary>>> getSummaryTotal(@Header("Authorization") String header,

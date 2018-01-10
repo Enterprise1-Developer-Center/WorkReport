@@ -16,10 +16,10 @@ import kr.co.e1.workreport.network.WResult;
 public class OperationFragmentPresenterImpl implements OperationFragmentPresenter {
 
   private View view;
-  private OpRatioNetwork network;
+  private OperationNetwork network;
   private ChartDataGen chartDataGen;
 
-  OperationFragmentPresenterImpl(View view, OpRatioNetwork network, ChartDataGen chartDataGen) {
+  OperationFragmentPresenterImpl(View view, OperationNetwork network, ChartDataGen chartDataGen) {
     this.view = view;
     this.network = network;
     this.chartDataGen = chartDataGen;
@@ -50,14 +50,14 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
           view.hideProgress();
         }));
 
-    disposable = network.getYearOperationRatio(year)
+    disposable = network.getYearOperationRate(year)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
           if (result.getResult() == WResult.RESULT_SUCCESS) {
-            chartDataGen.setYearOperationRatios(result.getContent());
-            view.showYearOpRatioChart(chartDataGen.getYearOperationRatioData(),
-                chartDataGen.getTot_rate(), chartDataGen.getYearOperationRatioQuarters());
+            chartDataGen.setYearOperationRates(result.getContent());
+            view.showYearOpRatioChart(chartDataGen.getYearOperationRateData(),
+                chartDataGen.getTot_rate(), chartDataGen.getYearOperationRateQuarters());
           } else {
             view.showMessage(result.getMsg());
           }

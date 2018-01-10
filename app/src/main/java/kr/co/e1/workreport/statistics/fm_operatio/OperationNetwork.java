@@ -7,14 +7,14 @@ import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.statistics.fm_operatio.model.OpRatioContent;
 import kr.co.e1.workreport.statistics.operatiodetail.model.DetailOperationRate;
-import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRatio;
+import kr.co.e1.workreport.statistics.fm_operatio.model.YearOperationRate;
 
 /**
  * Created by jaeho on 2017. 11. 22
  */
 
-public class OpRatioNetwork extends NetworkHelper {
-  public OpRatioNetwork(String baseUrl) {
+public class OperationNetwork extends NetworkHelper {
+  public OperationNetwork(String baseUrl) {
     super(baseUrl);
   }
 
@@ -30,8 +30,9 @@ public class OpRatioNetwork extends NetworkHelper {
     return getWorkReportApi().getOperRatio(header, deptNm, year);
   }
 
-  public Single<WResult<List<YearOperationRatio>>> getYearOperationRatio(int year) {
+  public Single<WResult<List<YearOperationRate>>> getYearOperationRate(int year) {
     String header = PreferencesUtils.getToken();
-    return getWorkReportApi().getYearOperatingRatio(header, year);
+    int code = PreferencesUtils.getDeptCd();
+    return getWorkReportApi().getYearOperationRate(header, year, code);
   }
 }

@@ -26,10 +26,6 @@ public abstract class NetworkHelper<T> {
     this.baseUrl = baseUrl;
   }
 
-  protected WorkReportApi getWorkReportApi() {
-    return createRetrofit().create(WorkReportApi.class);
-  }
-
   public T getApi() {
     return createRetrofit().create(getApiClass());
   }

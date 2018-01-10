@@ -57,11 +57,11 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe(result -> {
                 LoginContent content = result.getContent();
-                PreferencesUtils.setUserId(content.getUserId());
-                PreferencesUtils.setDept(content.getDeptNm());
-                PreferencesUtils.setToday(content.getDate());
-                PreferencesUtils.setDeptCd(content.getDeptCd());
                 if (result.getResult() == WResult.RESULT_SUCCESS) {
+                  PreferencesUtils.setUserId(content.getUserId());
+                  PreferencesUtils.setDept(content.getDeptNm());
+                  PreferencesUtils.setToday(content.getDate());
+                  PreferencesUtils.setDeptCd(content.getDeptCd());
                   WLAnalytics.setUserContext(id);
                   loginListener.onLoginSuccess(content.getDate());
                   view.dismiss();

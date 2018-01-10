@@ -1,19 +1,54 @@
 apply plugin: 'com.android.application'
 apply plugin: 'hugo'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
-  compileSdkVersion 27
-  buildToolsVersion '27.0.0'
+
+  signingConfigs {
+    release {
+      keyAlias keystoreProperties['keyAlias']
+      keyPassword keystoreProperties['keyPassword']
+      storeFile file(keystoreProperties['storeFile'])
+      storePassword keystoreProperties['storePassword']
+    }
+  }
+
+  compileSdkVersion rootProject.compile_sdk_version
+  buildToolsVersion rootProject.build_tools_version
   defaultConfig {
-    applicationId "kr.co.e1.workreport"
-    minSdkVersion 21
-    targetSdkVersion 27
-    versionCode 1
-    versionName "1.0"
+    applicationId rootProject.application_id
+    minSdkVersion rootProject.min_sdk_version
+    targetSdkVersion rootProject.target_sdk_version
+    versionCode rootProject.version_code
+
+    int versionMajor = 0
+    int versionMinor = 0
+    int versionPatch = rootProject.version_code
+
+    if (1000 > versionPatch && versionPatch > 99) {
+      versionMajor = versionPatch / 100
+      versionMinor = (versionPatch % 100) / 10
+      versionPatch = (versionPatch % 100) % 10
+    } else if (100 > versionCode && versionPatch > 9) {
+      versionMajor = 0
+      versionMinor = versionPatch / 10
+      versionPatch = versionPatch % 10
+    } else if (versionPatch < 10) {
+      versionMajor = 0
+      versionMinor = 0
+      versionPatch = versionPatch / 1
+    }
+    versionName "${versionMajor}.${versionMinor}.${versionPatch}"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
     release {
+      signingConfig signingConfigs.release
       minifyEnabled false
       proguardFile getDefaultProguardFile('proguard-android.txt')
       proguardFile 'proguard-rules.pro'
@@ -97,7 +132,6 @@ dependencies {
   compile "com.pixplicity.easyprefs:library:$easyprefs_version"
 
   compile "jp.wasabeef:recyclerview-animators:$recyclerview_animators"
-
 }
 repositories {
   mavenCentral()

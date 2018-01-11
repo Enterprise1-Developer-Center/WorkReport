@@ -3,6 +3,7 @@ package kr.co.e1.workreport.statistics;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -103,7 +104,12 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @DebugLog @Override public void showCreateYearDbDialog() {
-    new CreateDbFragment().show(getSupportFragmentManager(), CreateDbFragment.class.getSimpleName());
+    new CreateDbFragment().show(getSupportFragmentManager(),
+        CreateDbFragment.class.getSimpleName());
+  }
+
+  @Override public void showMessage(int resId) {
+    Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override public void showSpinner(List<String> items) {

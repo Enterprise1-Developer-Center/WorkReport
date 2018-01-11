@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.statistics;
 
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import java.util.List;
 
 /**
@@ -34,5 +35,7 @@ public interface StatisticsPresenter {
     void finish();
 
     void showCreateYearDbDialog();
+
+    void showMessage(@StringRes int resId);
   }
 }

@@ -37,7 +37,7 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
           if (result.getContent().size() > 0) {
             view.showSpinner(result.getContent());
           }
-        });
+        }, throwable -> view.showMessage(R.string.error_server_error));
   }
 
   @Override public boolean onBottomNavigationItemSelected(int year, int itemId, boolean isChecked) {

@@ -45,7 +45,7 @@
   <TextView
       android:id="@id/jun_textview"
       tools:text="@string/june"
-      android:text="@string/january"
+      android:text="@string/june"
       style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
@@ -65,17 +65,17 @@
       />
   <TextView
       android:id="@id/oct_textview"
-      android:text="@string/november"
+      android:text="@string/october"
       style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/nov_textview"
-      android:text="@string/december"
+      android:text="@string/november"
       style="@style/OpDetailItemSubjectTextView"
       />
   <TextView
       android:id="@id/dec_textview"
-      android:text="@string/october"
+      android:text="@string/december"
       style="@style/OpDetailItemSubjectTextView"
       />
   <TextView

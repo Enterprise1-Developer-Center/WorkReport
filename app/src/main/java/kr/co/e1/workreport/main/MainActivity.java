@@ -158,6 +158,10 @@ public class MainActivity extends BaseActivity
     adapterView.refreshRemove();
   }
 
+  @Override public void navigateToProjectManage() {
+    
+  }
+
   @Override public void setRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     recyclerView.setAdapter(adapter);

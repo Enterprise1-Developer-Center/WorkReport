@@ -16,7 +16,7 @@
   <string name="validate_pass_contains_id">pass contains substring of username</string>
   <string name="settings">설정</string>
   <string name="statistics">통계</string>
-  <string name="team_report">팀원 업무보고</string>
+
   <string name="review">리뷰(문의/제안/요청)</string>
   <string name="classification_code">분류코드</string>
   <string name="what_did_you_do_today">무슨 업무 하셨어요?</string>
@@ -73,4 +73,8 @@
   <string name="create_year_db">연(년) DB 생성</string>
   <string name="create">생성</string>
   <string name="complete">완료</string>
+  <string name="drawer_statistics">통계</string>
+  <string name="drawer_team_report">팀원 업무보고</string>
+  <string name="drawer_proj_employee">프로젝트와 인력</string>
+  <string name="drawer_change_pw">비밀번호 변경</string>
 </resources>

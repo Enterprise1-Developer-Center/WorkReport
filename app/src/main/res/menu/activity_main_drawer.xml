@@ -5,15 +5,19 @@
     <item
         android:id="@+id/nav_statistics"
         android:icon="@drawable/ic_chart"
-        android:title="@string/statistics"/>
+        android:title="@string/drawer_statistics"/>
     <item
         android:id="@+id/nav_team_report"
         android:icon="@drawable/ic_group"
-        android:title="@string/team_report"/>
+        android:title="@string/drawer_team_report"/>
+    <item
+        android:id="@+id/nav_manage"
+        android:icon="@drawable/ic_build"
+        android:title="@string/drawer_proj_employee"/>
     <item
         android:id="@+id/nav_password"
         android:icon="@drawable/ic_settings"
-        android:title="@string/change_pw"/>
+        android:title="@string/drawer_change_pw"/>
   </group>
 
   <item android:title="Communicate">

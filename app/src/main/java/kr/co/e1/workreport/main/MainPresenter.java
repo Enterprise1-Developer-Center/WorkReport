@@ -77,5 +77,7 @@ public interface MainPresenter {
     void showMessage(String msg);
 
     void refreshRemove();
+
+    void navigateToProjectManage();
   }
 }

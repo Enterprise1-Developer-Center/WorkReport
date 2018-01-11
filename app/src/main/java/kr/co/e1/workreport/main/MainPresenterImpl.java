@@ -58,14 +58,23 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onNavigationItemSelected(int itemId) {
-    if (itemId == R.id.nav_statistics) {
-      view.navigateToStatistics();
-    } else if (itemId == R.id.nav_team_report) {
-      view.navigateToTeamReport();
-    } else if (itemId == R.id.nav_password) {
-      view.showPasswordChangeDialog();
-    } else if (itemId == R.id.nav_review) {
-      view.navigateToReview();
+    switch (itemId) {
+      default:
+      case R.id.nav_statistics:
+        view.navigateToStatistics();
+        break;
+      case R.id.nav_team_report:
+        view.navigateToTeamReport();
+        break;
+      case R.id.nav_password:
+        view.showPasswordChangeDialog();
+        break;
+      case R.id.nav_review:
+        view.navigateToReview();
+        break;
+      case R.id.nav_manage:
+        view.navigateToProjectManage();
+        break;
     }
   }
 

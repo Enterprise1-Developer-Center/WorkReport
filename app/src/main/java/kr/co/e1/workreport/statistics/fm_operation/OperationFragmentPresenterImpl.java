@@ -2,7 +2,6 @@ package kr.co.e1.workreport.statistics.fm_operation;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.concurrent.TimeUnit;
 import kr.co.e1.workreport.R;
@@ -27,11 +26,28 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
   }
 
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
-  private Disposable disposable;
 
   @Override public void onActivityCreate(int year) {
     view.showProgress();
     view.detailButtonEnabled(false);
+
+    compositeDisposable.add(network.getYearOperationRate(year)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(result -> {
+          if (result.getResult() == WResult.RESULT_SUCCESS) {
+            chartDataGen.setYearOperationRates(result.getContent());
+            view.showYearOpRatioChart(chartDataGen.getYearOperationRateData(),
+                chartDataGen.getYear_tot_rate(), chartDataGen.getYearOperationRateQuarters());
+          } else {
+            view.showMessage(result.getMsg());
+          }
+          view.hideProgress();
+        }, throwable -> {
+          view.showMessage(R.string.error_server_error);
+          view.hideProgress();
+        }));
+
     compositeDisposable.add(network.getCurrentOperationRate(year)
         .subscribeOn(Schedulers.io())
         .delay(NetworkHelper.DELAY, TimeUnit.MILLISECONDS)
@@ -51,22 +67,7 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
           view.hideProgress();
         }));
 
-    disposable = network.getYearOperationRate(year)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(result -> {
-          if (result.getResult() == WResult.RESULT_SUCCESS) {
-            chartDataGen.setYearOperationRates(result.getContent());
-            view.showYearOpRatioChart(chartDataGen.getYearOperationRateData(),
-                chartDataGen.getYear_tot_rate(), chartDataGen.getYearOperationRateQuarters());
-          } else {
-            view.showMessage(result.getMsg());
-          }
-          view.hideProgress();
-        }, throwable -> {
-          view.showMessage(R.string.error_server_error);
-          view.hideProgress();
-        });
+
   }
 
   @Override public void onClick(int id) {
@@ -75,8 +76,5 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
 
   @Override public void onDetach() {
     compositeDisposable.clear();
-    if (disposable != null) {
-      disposable.dispose();
-    }
   }
 }

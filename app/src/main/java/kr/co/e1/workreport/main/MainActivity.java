@@ -159,7 +159,7 @@ public class MainActivity extends BaseActivity
   }
 
   @Override public void navigateToProjectManage() {
-    
+
   }
 
   @Override public void setRecyclerView() {

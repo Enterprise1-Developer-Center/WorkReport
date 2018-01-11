@@ -12,11 +12,11 @@
         android:title="@string/drawer_team_report"/>
     <item
         android:id="@+id/nav_manage"
-        android:icon="@drawable/ic_build"
+        android:icon="@drawable/ic_menu_manage"
         android:title="@string/drawer_proj_employee"/>
     <item
         android:id="@+id/nav_password"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/ic_key"
         android:title="@string/drawer_change_pw"/>
   </group>
 

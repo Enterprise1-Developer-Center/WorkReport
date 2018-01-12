@@ -88,4 +88,7 @@
   <item name="action_holiday" type="id"/>
   <item name="action_create_year_db" type="id"/>
   <item name="number_picker" type="id"/>
+  <item name="action_project" type="id"/>
+  <item name="tabs" type="id"/>
+  <item name="viewpager" type="id"/>
 </resources>

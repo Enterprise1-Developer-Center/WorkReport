@@ -13,7 +13,7 @@
     <item
         android:id="@+id/nav_manage"
         android:icon="@drawable/ic_menu_manage"
-        android:title="@string/drawer_proj_employee"/>
+        android:title="@string/drawer_proj_manage"/>
     <item
         android:id="@+id/nav_password"
         android:icon="@drawable/ic_key"

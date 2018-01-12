@@ -78,6 +78,6 @@ public interface MainPresenter {
 
     void refreshRemove();
 
-    void navigateToProjectManage();
+    void navigateToProjManage();
   }
 }

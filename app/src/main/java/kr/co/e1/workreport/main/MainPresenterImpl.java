@@ -73,7 +73,7 @@ public class MainPresenterImpl implements MainPresenter {
         view.navigateToReview();
         break;
       case R.id.nav_manage:
-        view.navigateToProjectManage();
+        view.navigateToProjManage();
         break;
     }
   }

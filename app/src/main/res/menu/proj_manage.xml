@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@id/action_project"
+      android:title="@string/project"
+      android:icon="@drawable/ic_train" />
+  <item android:id="@id/action_total"
+      android:title="@string/total"
+      android:icon="@drawable/ic_border_all" />
+</menu>

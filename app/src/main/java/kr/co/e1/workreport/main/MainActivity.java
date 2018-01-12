@@ -23,23 +23,23 @@ import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.main.dg_class.ClassificationDialog;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.framework.BaseActivity;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
-import kr.co.e1.workreport.main.dg_login.LoginFragment;
 import kr.co.e1.workreport.main.adapter.MainAdapterView;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.main.adapter.OnSaveButtonClickListener;
-import kr.co.e1.workreport.main.model.SummaryReportContent;
+import kr.co.e1.workreport.main.dg_class.ClassificationDialog;
+import kr.co.e1.workreport.main.dg_login.LoginFragment;
 import kr.co.e1.workreport.main.dg_pass.PasswordDialog;
 import kr.co.e1.workreport.main.dg_proje.ProjectDialog;
 import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.model.SummaryReportContent;
+import kr.co.e1.workreport.projmanage.ProjManageActivity;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
-import timber.log.Timber;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
@@ -57,7 +57,6 @@ public class MainActivity extends BaseActivity
 
   @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreate(savedInstanceState);
-    Timber.d("adapter = " + adapter);
   }
 
   @Override public void setListener() {
@@ -117,6 +116,11 @@ public class MainActivity extends BaseActivity
     startActivity(intent);
   }
 
+  @Override public void navigateToProjManage() {
+    Intent intent = new Intent(getApplicationContext(), ProjManageActivity.class);
+    startActivity(intent);
+  }
+
   @Override public void navigateToReview() {
     new AlertDialog.Builder(this).setTitle("Review").setMessage("Please write review").show();
   }
@@ -156,10 +160,6 @@ public class MainActivity extends BaseActivity
 
   @Override public void refreshRemove() {
     adapterView.refreshRemove();
-  }
-
-  @Override public void navigateToProjectManage() {
-
   }
 
   @Override public void setRecyclerView() {

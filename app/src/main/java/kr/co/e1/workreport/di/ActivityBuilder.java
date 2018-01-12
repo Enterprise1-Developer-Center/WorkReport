@@ -8,6 +8,8 @@ import dagger.android.AndroidInjector;
 import dagger.multibindings.IntoMap;
 import kr.co.e1.workreport.main.MainActivity;
 import kr.co.e1.workreport.main.MainActivityComponent;
+import kr.co.e1.workreport.projmanage.ProjManageActivity;
+import kr.co.e1.workreport.projmanage.di.ProjManageActivityComponent;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.statistics.StatisticsActivityComponent;
 import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivity;
@@ -35,4 +37,8 @@ import kr.co.e1.workreport.teamreport.TeamReportActivityComponent;
   @Binds @IntoMap @ActivityKey(OpDetailActivity.class)
   abstract AndroidInjector.Factory<? extends Activity> bindOpDetailActivityInjectorFactory(
       OpDetailActivityComponent.Builder builder);
+
+  @Binds @IntoMap @ActivityKey(ProjManageActivity.class)
+  abstract AndroidInjector.Factory<? extends Activity> bindProjManageActivityInjectorFactory(
+      ProjManageActivityComponent.Builder builder);
 }

@@ -78,4 +78,6 @@
   <string name="drawer_proj_manage">프로젝트 관리</string>
   <string name="drawer_change_pw">비밀번호 변경</string>
   <string name="proj_manage">프로젝트 관리</string>
+  <string name="project_list">프로젝트 리스트</string>
+  <string name="employee_list">투입인원 리스트</string>
 </resources>

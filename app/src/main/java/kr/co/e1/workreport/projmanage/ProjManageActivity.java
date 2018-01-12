@@ -24,8 +24,8 @@ public class ProjManageActivity extends BaseActivity {
   @Override protected void onCreated(Bundle savedInstanceState) {
     viewPager.setAdapter(adapter);
     tabLayout.setupWithViewPager(viewPager);
-    tabLayout.getTabAt(ProjMPos.PROJ.getValue()).setText(R.string.project_list);
-    tabLayout.getTabAt(ProjMPos.EMPL.getValue()).setText(R.string.employee_list);
+    tabLayout.getTabAt(ProjMPos.PROJ.getValue()).setText(R.string.project_list).setIcon(R.drawable.ic_train);
+    tabLayout.getTabAt(ProjMPos.EMPL.getValue()).setText(R.string.employee_list).setIcon(R.drawable.ic_group);
   }
 
   @Override protected int getLayoutResID() {

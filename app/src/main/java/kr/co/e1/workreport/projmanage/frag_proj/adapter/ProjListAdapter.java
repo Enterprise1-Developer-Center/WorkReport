@@ -7,7 +7,10 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by jaeho on 2018. 1. 15
@@ -16,6 +19,8 @@ import kr.co.e1.workreport.main.dg_proje.vo.Project;
 public class ProjListAdapter extends BaseRecyclerAdapter
     implements BaseAdapterView, BaseAdapterDataModel<Project> {
   private List<Project> items = new ArrayList<>();
+  @Setter @Accessors(chain = true) private OnRecyclerItemClickListener<Project>
+      onRecyclerItemClickListener;
 
   @Override protected BaseViewHolder createViewHolder(View view, int viewType) {
     return new ProjListViewHolder(view);
@@ -31,6 +36,11 @@ public class ProjListAdapter extends BaseRecyclerAdapter
       Project proj = items.get(position);
       holder.projCdTextview.setText(proj.getProj_cd());
       holder.projNmTextview.setText(proj.getProj_nm());
+      holder.itemView.setOnClickListener(view -> {
+        if (onRecyclerItemClickListener != null) {
+          onRecyclerItemClickListener.onItemClick(proj);
+        }
+      });
     }
   }
 

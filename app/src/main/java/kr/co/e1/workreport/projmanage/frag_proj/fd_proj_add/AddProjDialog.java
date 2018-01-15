@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_proj.fd_proj;
+package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add;
 
 import android.os.Bundle;
 import android.view.View;

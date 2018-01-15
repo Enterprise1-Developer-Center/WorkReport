@@ -25,8 +25,8 @@ import kr.co.e1.workreport.projmanage.frag_proj.network.ProjListNetwork;
     return new ProjListFragmentPresenterImpl(fragment, network, fragment.getAdapter());
   }
 
-  @Provides ProjListAdapter provideProjListAdapter() {
-    return new ProjListAdapter();
+  @Provides ProjListAdapter provideProjListAdapter(ProjListFragment fragment) {
+    return new ProjListAdapter().setOnRecyclerItemClickListener(fragment);
   }
 
   @Provides ProjListNetwork provideProjListNetwork() {

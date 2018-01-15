@@ -81,4 +81,7 @@
   <string name="project_list">프로젝트 리스트</string>
   <string name="employee_list">투입인원 리스트</string>
   <string name="add_project">프로젝트 추가</string>
+  <string name="edit_project">프로젝트 수정 및 삭제</string>
+  <string name="update">업데이트</string>
+  <string name="del">삭제</string>
 </resources>

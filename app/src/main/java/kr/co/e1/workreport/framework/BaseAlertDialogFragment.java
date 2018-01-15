@@ -26,19 +26,18 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(getTitle());
     if (isPositiveButton()) {
-      builder.setPositiveButton(android.R.string.ok, null);
+      builder.setPositiveButton(getPositiveButtonText(), null);
+    }
+    if (isNeutralButton()) {
+      builder.setNeutralButton(getNeutraButtonText(), null);
     }
     if (isNegativeButton()) {
-      builder.setNegativeButton(android.R.string.cancel, null);
+      builder.setNegativeButton(getNegativeButtonText(), null);
     }
     builder.setView(getContentView());
     builder.create();
     return builder.create();
   }
-
-  protected abstract boolean isNegativeButton();
-
-  protected abstract boolean isPositiveButton();
 
   private View getContentView() {
     View view = LayoutInflater.from(getContext())
@@ -77,15 +76,45 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
 
   protected abstract void onActivityCreate(Bundle savedInstanceState);
 
-  protected abstract boolean getAttatchRoot();
+  protected boolean getAttatchRoot() {
+    return false;
+  }
+
+  protected ViewGroup getInflateRoot() {
+    return null;
+  }
 
   protected abstract @LayoutRes int getLayoutResId();
 
-  protected abstract ViewGroup getInflateRoot();
-
-  protected abstract boolean isDialogCancelable();
+  protected boolean isDialogCancelable() {
+    return false;
+  }
 
   protected abstract @StringRes int getTitle();
+
+  protected @StringRes int getNegativeButtonText() {
+    return android.R.string.cancel;
+  }
+
+  protected @StringRes int getPositiveButtonText() {
+    return android.R.string.ok;
+  }
+
+  protected @StringRes int getNeutraButtonText() {
+    return android.R.string.ok;
+  }
+
+  protected View.OnClickListener onNeutraClickListener() {
+    return null;
+  }
+
+  protected boolean isNeutralButton() {
+    return false;
+  }
+
+  protected abstract boolean isNegativeButton();
+
+  protected abstract boolean isPositiveButton();
 
   protected abstract View.OnClickListener onPositiveClickListener();
 

@@ -12,8 +12,11 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
+import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.main.dg_proje.vo.Project;
 import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapter;
-import kr.co.e1.workreport.projmanage.frag_proj.fd_proj.AddProjDialog;
+import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.AddProjDialog;
+import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit.EditProjDialog;
 import kr.co.e1.workreport.projmanage.listener.OnAddClickListener;
 import lombok.Getter;
 
@@ -22,7 +25,7 @@ import lombok.Getter;
  */
 
 public class ProjListFragment extends BaseFragment
-    implements ProjListFragmentPresenter.View, OnAddClickListener {
+    implements ProjListFragmentPresenter.View, OnAddClickListener, OnRecyclerItemClickListener<Project> {
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @Inject @Getter ProjListAdapter adapter;
@@ -71,5 +74,9 @@ public class ProjListFragment extends BaseFragment
   @Override public void onDetach() {
     super.onDetach();
     presenter.onDetach();
+  }
+
+  @Override public void onItemClick(Project item) {
+    new EditProjDialog().show(getFragmentManager(), EditProjDialog.class.getSimpleName());
   }
 }

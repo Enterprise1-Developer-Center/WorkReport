@@ -1,16 +1,19 @@
 package kr.co.e1.workreport.projmanage.frag_emp;
 
 import android.os.Bundle;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseFragment;
+import kr.co.e1.workreport.projmanage.listener.OnAddClickListener;
 import timber.log.Timber;
 
 /**
  * Created by jaeho on 2018. 1. 12
  */
 
-public class EmpListFragment extends BaseFragment implements EmpListFragmentPresenter.View {
+public class EmpListFragment extends BaseFragment implements EmpListFragmentPresenter.View,
+    OnAddClickListener {
 
   @Inject EmpListFragmentPresenter presenter;
 
@@ -31,5 +34,9 @@ public class EmpListFragment extends BaseFragment implements EmpListFragmentPres
 
   @Override protected boolean isDagger() {
     return true;
+  }
+
+  @DebugLog @Override public void onAddClick() {
+
   }
 }

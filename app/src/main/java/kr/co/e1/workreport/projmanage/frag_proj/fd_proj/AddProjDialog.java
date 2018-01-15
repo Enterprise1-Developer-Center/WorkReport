@@ -3,6 +3,7 @@ package kr.co.e1.workreport.projmanage.frag_proj.fd_proj;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 
 /**
@@ -11,11 +12,11 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 
 public class AddProjDialog extends BaseAlertDialogFragment {
   @Override protected boolean isNegativeButton() {
-    return false;
+    return true;
   }
 
   @Override protected boolean isPositiveButton() {
-    return false;
+    return true;
   }
 
   @Override protected boolean isDagger() {
@@ -31,7 +32,7 @@ public class AddProjDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected int getLayoutResId() {
-    return 0;
+    return R.layout.dialog_add_project;
   }
 
   @Override protected ViewGroup getInflateRoot() {
@@ -39,18 +40,26 @@ public class AddProjDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected boolean isDialogCancelable() {
-    return false;
+    return true;
   }
 
   @Override protected int getTitle() {
-    return 0;
+    return R.string.add_project;
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {
-    return null;
+    return new View.OnClickListener() {
+      @Override public void onClick(View view) {
+
+      }
+    };
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {
-    return null;
+    return new View.OnClickListener() {
+      @Override public void onClick(View view) {
+
+      }
+    };
   }
 }

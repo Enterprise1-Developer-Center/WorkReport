@@ -91,4 +91,6 @@
   <item name="action_project" type="id"/>
   <item name="tabs" type="id"/>
   <item name="viewpager" type="id"/>
+  <item name="proj_id_edittext" type="id"/>
+  <item name="proj_nm_edittext" type="id"/>
 </resources>

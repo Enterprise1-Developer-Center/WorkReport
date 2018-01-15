@@ -1,10 +1,10 @@
 package kr.co.e1.workreport.projmanage.frag_proj;
 
 import android.os.Bundle;
-import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseFragment;
+import kr.co.e1.workreport.projmanage.frag_proj.fd_proj.AddProjDialog;
 import kr.co.e1.workreport.projmanage.listener.OnAddClickListener;
 import timber.log.Timber;
 
@@ -35,7 +35,7 @@ public class ProjListFragment extends BaseFragment implements ProjListFragmentPr
     return true;
   }
 
-  @DebugLog @Override public void onAddClick() {
-
+  @Override public void onAddClick() {
+    new AddProjDialog().show(getFragmentManager(), AddProjDialog.class.getSimpleName());
   }
 }

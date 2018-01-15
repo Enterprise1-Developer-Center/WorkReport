@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginLeft="@dimen/dp_10"
+      android:layout_marginRight="@dimen/dp_10"
+      android:orientation="vertical"
+      >
+    <EditText
+        android:id="@id/proj_id_edittext"
+        style="@style/AddProjectEditText"
+        />
+    <EditText
+        android:id="@id/proj_nm_edittext"
+        style="@style/AddProjectEditText"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text = "시작일 : 데이트피커"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text = "종료일 : 데이트피커"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text = "팀코드 : spinner, NumberPicker ---> 연동?"
+        />
+  </LinearLayout>
+  <ProgressBar
+      android:id="@id/progress_bar"
+      android:layout_width="@dimen/dp_36"
+      android:layout_height="@dimen/dp_36"
+      android:layout_gravity="center"
+      android:visibility="invisible"
+      />
+
+</FrameLayout>

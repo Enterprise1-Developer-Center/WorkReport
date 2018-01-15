@@ -167,5 +167,14 @@
     <item name="android:windowBackground">@drawable/splash_background</item>
   </style>
 
-  <dimen name="dp_150">150dp</dimen>
+  <style name="AddProjectEditText">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">@dimen/dp_24</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:maxLength">100</item>
+    <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+    <item name="android:textColorHint">@color/colorAccent</item>
+  </style>
+
+
 </resources>

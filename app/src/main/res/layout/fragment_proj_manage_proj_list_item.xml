@@ -6,7 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="?android:attr/actionBarSize"
     android:orientation="vertical"
-    android:gravity="center_vertical"
+    android:gravity="bottom"
+    android:clickable="true"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10"
+    android:background="?android:selectableItemBackground"
+    android:foreground="?android:selectableItemBackground"
     >
   <TextView
       android:id="@id/proj_cd_textview"
@@ -17,9 +22,9 @@
       tools:text="0810"/>
   <TextView
       android:id="@id/proj_nm_textview"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:gravity="center_vertical"
+      android:gravity="center_vertical|top"
       android:maxLines="1"
       android:ellipsize="end"
       android:textColor="@android:color/black"

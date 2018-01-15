@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-      android:text="ProjectList"
-      tools:text="ProjectList"
-      />
+  <android.support.v7.widget.RecyclerView
+      android:id="@id/recyclerview"
+      android:paddingLeft="@dimen/dp_10"
+      android:paddingRight="@dimen/dp_10"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@android:color/white"
+      tools:listitem = "@layout/fragment_proj_manage_proj_list_item"/>
 </FrameLayout>

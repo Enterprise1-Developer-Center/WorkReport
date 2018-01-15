@@ -1,19 +1,32 @@
 package kr.co.e1.workreport.projmanage.frag_proj;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import butterknife.BindView;
 import javax.inject.Inject;
+import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
+import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
+import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapter;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj.AddProjDialog;
 import kr.co.e1.workreport.projmanage.listener.OnAddClickListener;
-import timber.log.Timber;
+import lombok.Getter;
 
 /**
  * Created by jaeho on 2018. 1. 12
  */
 
-public class ProjListFragment extends BaseFragment implements ProjListFragmentPresenter.View,
-    OnAddClickListener {
+public class ProjListFragment extends BaseFragment
+    implements ProjListFragmentPresenter.View, OnAddClickListener {
+  @BindView(R.id.root_view) View rootView;
+  @BindView(R.id.recyclerview) RecyclerView recyclerView;
+  @Inject @Getter ProjListAdapter adapter;
+  @Inject BaseAdapterView adapterView;
   @Inject ProjListFragmentPresenter presenter;
 
   public static ProjListFragment newInstance() {
@@ -28,7 +41,7 @@ public class ProjListFragment extends BaseFragment implements ProjListFragmentPr
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    Timber.d("presenter = " + presenter);
+    presenter.onActivityCreate();
   }
 
   @Override protected boolean isDagger() {
@@ -37,5 +50,26 @@ public class ProjListFragment extends BaseFragment implements ProjListFragmentPr
 
   @Override public void onAddClick() {
     new AddProjDialog().show(getFragmentManager(), AddProjDialog.class.getSimpleName());
+  }
+
+  @Override public void setRecyclerView() {
+    LinearLayoutManager layout = new LinearLayoutManager(getContext());
+    recyclerView.setLayoutManager(layout);
+    recyclerView.setAdapter(adapter);
+    recyclerView.setItemAnimator(new SlideInDownAnimator());
+    recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
+  }
+
+  @Override public void showMessage(int resId) {
+    Snackbar.make(rootView,resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void refresh() {
+    adapterView.refresh();
+  }
+
+  @Override public void onDetach() {
+    super.onDetach();
+    presenter.onDetach();
   }
 }

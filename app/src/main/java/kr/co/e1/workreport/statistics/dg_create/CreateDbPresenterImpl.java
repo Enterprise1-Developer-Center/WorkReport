@@ -30,7 +30,7 @@ public class CreateDbPresenterImpl implements CreateDbPresenter {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
-          if (result.getResult() == NetworkHelper.REQ_SUCCESS) {
+          if (result.getResult() == NetworkHelper.RESULT_SUCCESS) {
             CreateDbYear year = result.getContent();
             view.setYear(year.getYear(), year.getMaxYear(), year.getMinYear());
           } else {
@@ -53,7 +53,7 @@ public class CreateDbPresenterImpl implements CreateDbPresenter {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(wResult -> {
-          if(wResult.getResult() == NetworkHelper.REQ_SUCCESS) {
+          if(wResult.getResult() == NetworkHelper.RESULT_SUCCESS) {
             view.showIndefiniteSnakback(wResult.getMsg());
           } else {
             view.showMessage(R.string.error_server_error);

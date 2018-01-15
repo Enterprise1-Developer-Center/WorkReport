@@ -13,8 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public abstract class NetworkHelper<T> {
-  public final static int REQ_SUCCESS = 1;
-  public final static int REQ_FAILURE = 0;
+  public final static int RESULT_SUCCESS = 1;
+  public final static int RESULT_FAILURE = 0;
   public final static int DELAY = 0;
   protected final static String confidentialsClient = Credentials.basic("test", "test");
   protected final static String grantType = "client_credentials";

@@ -55,7 +55,17 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {
-    return view -> dismiss();
+    return new View.OnClickListener() {
+      @Override public void onClick(View view) {
+
+        String projCode = projCodeEdittext.getText().toString().trim();
+        String projName = projNameEdittext.getText().toString().trim();
+        String startDate = startDateEdittext.getText().toString().trim();
+        String endDate = endDateEdittext.getText().toString().trim();
+        String deptCd = deptCdEdittext.getText().toString().trim();
+        presenter.onAddClick(projCode, projName, startDate, endDate, deptCd);
+      }
+    };
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {
@@ -101,6 +111,13 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
 
   @Override public void showDeptName(String dept) {
     deptCdEdittext.setText(dept);
+  }
+
+  @Override public void showSuccessMessage(String msg) {
+    final Snackbar snackbar = Snackbar.make(rootView, msg, Snackbar.LENGTH_INDEFINITE);
+    snackbar.setAction(android.R.string.ok, view -> {
+      dismiss();
+    }).show();
   }
 
   @Override public void onDetach() {

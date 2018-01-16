@@ -3,12 +3,16 @@ package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.utils.DateUtils;
+import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.model.Dept;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.network.AddProjNetwork;
 import timber.log.Timber;
@@ -50,7 +54,13 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
   @DebugLog private void processDepts() {
     compositeDisposable.add(network.getDepts()
         .subscribeOn(Schedulers.io())
-        .map(result -> Dept.convertToNameArray(result.getContent()))
+        .map(new Function<WResult<List<Dept>>, String[]>() {
+          @Override public String[] apply(WResult<List<Dept>> result) throws Exception {
+            depts.clear();
+            depts = result.getContent();
+            return Dept.convertToNameArray(result.getContent());
+          }
+        })
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(items -> {
           view.showDeptCodeListDialog(items);
@@ -61,11 +71,11 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
   }
 
   @Override public void onStartDateSet(int year, int month, int day) {
-    view.showStartDate(DateUtils.getDateString(year, month, day, "yyyy-MM-dd"));
+    view.showStartDate(DateUtils.getDateString(year, month, day, "yyyyMMdd"));
   }
 
   @Override public void onEndDateSet(int year, int month, int day) {
-    view.showEndDate(DateUtils.getDateString(year, month, day, "yyyy-MM-dd"));
+    view.showEndDate(DateUtils.getDateString(year, month, day, "yyyyMMdd"));
   }
 
   @Override public void onDetach() {
@@ -74,5 +84,30 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
 
   @Override public void onDeptsItemClick(String dept) {
     view.showDeptName(dept);
+  }
+
+  @Override
+  public void onAddClick(String projCode, String projName, String startDate, String endDate,
+      String deptName) {
+    HashMap<String, String> fieldMap = new HashMap<>();
+    fieldMap.put("PROJ_CD", projCode);
+    fieldMap.put("PROJ_NM", projName);
+    fieldMap.put("PROJ_SDATE", startDate);
+    fieldMap.put("PROJ_EDATE", endDate);
+    fieldMap.put("DEPT_CD", Dept.getCode(deptName, depts));
+
+    compositeDisposable.add(network.addProject(fieldMap)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(wResult -> {
+          if (wResult.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            view.showSuccessMessage(wResult.getMsg());
+          } else {
+            view.showMessage(R.string.error_server_error);
+          }
+        }, throwable -> {
+          Timber.d(throwable);
+          view.showMessage(R.string.error_server_error);
+        }));
   }
 }

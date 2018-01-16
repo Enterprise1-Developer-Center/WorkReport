@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.network;
 
 import io.reactivex.Single;
+import java.util.HashMap;
 import java.util.List;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.network.NetworkHelper;
@@ -8,7 +9,7 @@ import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.model.Dept;
 
 /**
- * Created by jaeho on 2018. 1. 16..
+ * Created by jaeho on 2018. 1. 16
  */
 
 public class AddProjNetwork extends NetworkHelper<AddProjApi> {
@@ -22,5 +23,9 @@ public class AddProjNetwork extends NetworkHelper<AddProjApi> {
 
   public Single<WResult<List<Dept>>> getDepts() {
     return getApi().getDepts(PreferencesUtils.getToken());
+  }
+  public Single<WResult> addProject(HashMap<String, String> fieldMap) {
+    String token = PreferencesUtils.getToken();
+    return getApi().addProject(token, fieldMap);
   }
 }

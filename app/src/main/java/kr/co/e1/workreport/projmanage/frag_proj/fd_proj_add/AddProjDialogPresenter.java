@@ -18,6 +18,8 @@ public interface AddProjDialogPresenter {
 
   void onDeptsItemClick(String dept);
 
+  void onAddClick(String projCode, String projName, String startDate, String endDate, String deptCd);
+
   interface View {
 
     void showStartDatePickerDialog(int year, int month, int day);
@@ -33,5 +35,7 @@ public interface AddProjDialogPresenter {
     void showDeptCodeListDialog(String[] items);
 
     void showDeptName(String dept);
+
+    void showSuccessMessage(String msg);
   }
 }

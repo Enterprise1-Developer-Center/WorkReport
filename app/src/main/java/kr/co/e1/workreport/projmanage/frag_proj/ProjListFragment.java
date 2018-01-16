@@ -51,10 +51,6 @@ public class ProjListFragment extends BaseFragment
     return true;
   }
 
-  @Override public void onAddClick() {
-    new AddProjDialog().show(getFragmentManager(), AddProjDialog.class.getSimpleName());
-  }
-
   @Override public void setRecyclerView() {
     LinearLayoutManager layout = new LinearLayoutManager(getContext());
     recyclerView.setLayoutManager(layout);
@@ -74,6 +70,10 @@ public class ProjListFragment extends BaseFragment
   @Override public void onDetach() {
     super.onDetach();
     presenter.onDetach();
+  }
+
+  @Override public void onAddClick() {
+    new AddProjDialog().show(getFragmentManager(), AddProjDialog.class.getSimpleName());
   }
 
   @Override public void onItemClick(Project item) {

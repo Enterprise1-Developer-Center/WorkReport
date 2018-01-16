@@ -91,8 +91,11 @@
   <item name="action_project" type="id"/>
   <item name="tabs" type="id"/>
   <item name="viewpager" type="id"/>
-  <item name="proj_id_edittext" type="id"/>
-  <item name="proj_nm_edittext" type="id"/>
-  <item name="proj_cd_textview" type="id"/>
-  <item name="proj_nm_textview" type="id"/>
+  <item name="proj_code_edittext" type="id"/>
+  <item name="proj_name_edittext" type="id"/>
+  <item name="proj_code_textview" type="id"/>
+  <item name="proj_name_textview" type="id"/>
+  <item name="start_date_edittext" type="id"/>
+  <item name="end_date_edittext" type="id"/>
+  <item name="dept_cd_edittext" type="id"/>
 </resources>

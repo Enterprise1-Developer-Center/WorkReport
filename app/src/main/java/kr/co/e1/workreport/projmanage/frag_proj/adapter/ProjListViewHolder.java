@@ -11,8 +11,8 @@ import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
  */
 
 public class ProjListViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
-  @BindView(R.id.proj_cd_textview) TextView projCdTextview;
-  @BindView(R.id.proj_nm_textview) TextView projNmTextview;
+  @BindView(R.id.proj_code_textview) TextView projCdTextview;
+  @BindView(R.id.proj_name_textview) TextView projNmTextview;
 
   public ProjListViewHolder(View itemView) {
     super(itemView);

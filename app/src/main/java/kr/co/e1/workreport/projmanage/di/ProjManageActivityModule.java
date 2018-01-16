@@ -13,11 +13,12 @@ import kr.co.e1.workreport.projmanage.frag_emp.EmpListFragment;
 import kr.co.e1.workreport.projmanage.frag_emp.di.EmpListFragmentComponent;
 import kr.co.e1.workreport.projmanage.frag_proj.ProjListFragment;
 import kr.co.e1.workreport.projmanage.frag_proj.di.ProjListFragmentComponent;
+import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.di.AddProjDialogComponent;
 
 /**
  * Created by jaeho on 2017. 9. 25
  */
-@Module(subcomponents = { ProjListFragmentComponent.class, EmpListFragmentComponent.class })
+@Module(subcomponents = { ProjListFragmentComponent.class, EmpListFragmentComponent.class, AddProjDialogComponent.class })
 public class ProjManageActivityModule {
 
   @Provides ProjManageAdapter provideProjManageAdapter(ProjManageActivity activity) {

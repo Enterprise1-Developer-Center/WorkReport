@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 import kr.co.e1.workreport.R;
 
@@ -21,7 +22,7 @@ import kr.co.e1.workreport.R;
  */
 
 public abstract class BaseAlertDialogFragment extends DialogFragment {
-
+  private Unbinder unbinder;
   @NonNull @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(getTitle());
@@ -42,7 +43,7 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
   private View getContentView() {
     View view = LayoutInflater.from(getContext())
         .inflate(getLayoutResId(), getInflateRoot(), getAttatchRoot());
-    ButterKnife.bind(this, view);
+    unbinder = ButterKnife.bind(this, view);
     return view;
   }
 
@@ -54,6 +55,13 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
   @Override public void onAttach(Context context) {
     if (isDagger()) AndroidSupportInjection.inject(this);
     super.onAttach(context);
+  }
+
+  @Override public void onDetach() {
+    super.onDetach();
+    if (unbinder != null) {
+      unbinder.unbind();
+    }
   }
 
   protected abstract boolean isDagger();

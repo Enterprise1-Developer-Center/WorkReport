@@ -169,11 +169,27 @@
 
   <style name="AddProjectEditText">
     <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">@dimen/dp_24</item>
+    <item name="android:layout_height">wrap_content</item>
     <item name="android:maxLines">1</item>
     <item name="android:maxLength">100</item>
-    <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Title</item>
+    <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
     <item name="android:textColorHint">@color/colorAccent</item>
+    <item name="android:background">?attr/editTextBackground</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:textColor">?attr/editTextColor</item>
+
+  </style>
+
+  <style name="AddProjectTextView">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:maxLength">100</item>
+    <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
+    <item name="android:textColorHint">@color/colorAccent</item>
+    <item name="android:background">?attr/editTextBackground</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:textColor">?attr/editTextColor</item>
   </style>
 
 

@@ -14,14 +14,14 @@
     android:foreground="?android:selectableItemBackground"
     >
   <TextView
-      android:id="@id/proj_cd_textview"
+      android:id="@id/proj_code_textview"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
       android:textColor="@android:color/darker_gray"
       tools:text="0810"/>
   <TextView
-      android:id="@id/proj_nm_textview"
+      android:id="@id/proj_name_textview"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:gravity="center_vertical|top"

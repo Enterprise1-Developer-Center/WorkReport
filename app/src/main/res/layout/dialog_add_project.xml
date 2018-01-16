@@ -14,27 +14,30 @@
       android:orientation="vertical"
       >
     <EditText
-        android:id="@id/proj_id_edittext"
+        android:id="@id/proj_code_edittext"
         style="@style/AddProjectEditText"
         />
     <EditText
-        android:id="@id/proj_nm_edittext"
+        android:id="@id/proj_name_edittext"
         style="@style/AddProjectEditText"
         />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text = "시작일 : 데이트피커"
+    <EditText
+        android:id="@id/start_date_edittext"
+        android:clickable="true"
+        android:focusable="false"
+        style="@style/AddProjectEditText"
         />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text = "종료일 : 데이트피커"
+    <EditText
+        android:id="@id/end_date_edittext"
+        android:clickable="true"
+        android:focusable="false"
+        style="@style/AddProjectEditText"
         />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text = "팀코드 : spinner, NumberPicker ---> 연동?"
+    <EditText
+        android:id="@id/dept_cd_edittext"
+        android:clickable="true"
+        android:focusable="false"
+        style="@style/AddProjectEditText"
         />
   </LinearLayout>
   <ProgressBar

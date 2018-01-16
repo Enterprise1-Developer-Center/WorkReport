@@ -17,11 +17,15 @@
         android:id="@id/proj_code_edittext"
         style="@style/AddProjectEditText"
         android:inputType="number"
+        android:drawableLeft="@drawable/ic_looks_one"
+        android:hint="@string/project_code"
         />
     <EditText
         android:id="@id/proj_name_edittext"
         style="@style/AddProjectEditText"
         android:inputType="text"
+        android:drawableLeft="@drawable/ic_whatshot"
+        android:hint="@string/project_name"
         />
     <EditText
         android:id="@id/start_date_edittext"
@@ -29,6 +33,8 @@
         android:focusable="false"
         style="@style/AddProjectEditText"
         android:inputType="date"
+        android:drawableLeft="@drawable/ic_flight_takeoff"
+        android:hint="@string/start_date"
         />
     <EditText
         android:id="@id/end_date_edittext"
@@ -36,6 +42,8 @@
         android:focusable="false"
         style="@style/AddProjectEditText"
         android:inputType="date"
+        android:drawableLeft="@drawable/ic_flight_land"
+        android:hint="@string/end_date"
         />
     <EditText
         android:id="@id/dept_cd_edittext"
@@ -43,6 +51,8 @@
         android:focusable="false"
         style="@style/AddProjectEditText"
         android:inputType="text"
+        android:drawableLeft="@drawable/ic_confirmation_number"
+        android:hint="@string/dept_code"
         />
   </LinearLayout>
   <ProgressBar

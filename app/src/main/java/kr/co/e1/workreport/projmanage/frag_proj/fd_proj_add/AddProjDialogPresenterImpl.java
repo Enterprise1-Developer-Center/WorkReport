@@ -1,7 +1,6 @@
 package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add;
 
 import java.util.Calendar;
-import java.util.Locale;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 
@@ -35,10 +34,10 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
   }
 
   @Override public void onStartDateSet(int year, int month, int day) {
-    view.showStartDate(DateUtils.getDateString(year, month, day, "yyyy-MM-dd (EEE)", Locale.KOREA));
+    view.showStartDate(DateUtils.getDateString(year, month, day, "yyyy-MM-dd"));
   }
 
   @Override public void onEndDateSet(int year, int month, int day) {
-    view.showEndDate(DateUtils.getDateString(year, month, day, "yyyy-MM-dd (EEE)", Locale.KOREAN));
+    view.showEndDate(DateUtils.getDateString(year, month, day, "yyyy-MM-dd"));
   }
 }

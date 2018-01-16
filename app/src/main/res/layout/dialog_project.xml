@@ -12,7 +12,7 @@
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
       android:gravity="center"
-      android:text="@string/project_name"
+      android:text="@string/project_wip"
       android:textAppearance="@style/TextAppearance.AppCompat.Title"
       />
   <FrameLayout

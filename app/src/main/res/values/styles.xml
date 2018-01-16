@@ -175,7 +175,7 @@
     <item name="android:textAppearance">?android:attr/textAppearanceMediumInverse</item>
     <item name="android:textColorHint">@color/colorAccent</item>
     <item name="android:background">?attr/editTextBackground</item>
-    <item name="android:gravity">center_vertical</item>
+    <item name="android:gravity">center</item>
     <item name="android:textColor">?attr/editTextColor</item>
     <item name="android:textColorHint">@android:color/darker_gray</item>
   </style>

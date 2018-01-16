@@ -2,6 +2,8 @@ package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -83,5 +85,26 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
 
   @Override public void showEndDate(String dateString) {
     endDateEdittext.setText(dateString);
+  }
+
+  @Override public void showMessage(int resId) {
+    Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showDeptCodeListDialog(String[] items) {
+    new AlertDialog.Builder(getActivity()).setSingleChoiceItems(items, 0,
+        (dialogInterface, position) -> {
+          presenter.onDeptsItemClick(items[position]);
+          dialogInterface.dismiss();
+        }).show();
+  }
+
+  @Override public void showDeptName(String dept) {
+    deptCdEdittext.setText(dept);
+  }
+
+  @Override public void onDetach() {
+    presenter.onDetach();
+    super.onDetach();
   }
 }

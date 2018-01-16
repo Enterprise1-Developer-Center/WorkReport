@@ -1,5 +1,7 @@
 package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add;
 
+import android.support.annotation.StringRes;
+
 /**
  * Created by jaeho on 2018. 1. 16
  */
@@ -12,6 +14,10 @@ public interface AddProjDialogPresenter {
 
   void onEndDateSet(int year, int month, int day);
 
+  void onDetach();
+
+  void onDeptsItemClick(String dept);
+
   interface View {
 
     void showStartDatePickerDialog(int year, int month, int day);
@@ -21,5 +27,11 @@ public interface AddProjDialogPresenter {
     void showStartDate(String dateString);
 
     void showEndDate(String dateString);
+
+    void showMessage(@StringRes int resId);
+
+    void showDeptCodeListDialog(String[] items);
+
+    void showDeptName(String dept);
   }
 }

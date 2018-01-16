@@ -18,7 +18,7 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
-import kr.co.e1.workreport.framework.SystemUtility;
+import kr.co.e1.workreport.framework.utils.SystemUtility;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
 import lombok.Setter;
 import lombok.experimental.Accessors;

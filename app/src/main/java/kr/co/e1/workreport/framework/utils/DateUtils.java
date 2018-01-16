@@ -1,9 +1,10 @@
-package kr.co.e1.workreport.common;
+package kr.co.e1.workreport.framework.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import javax.annotation.Nonnull;
 
@@ -64,6 +65,13 @@ public class DateUtils {
 
   public static String getDateString(int year, int month, int dayOfMonth, String pattern) {
     SimpleDateFormat format = new SimpleDateFormat(pattern);
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(year, month, dayOfMonth);
+    return format.format(calendar.getTime());
+  }
+
+  public static String getDateString(int year, int month, int dayOfMonth, String pattern, Locale locale) {
+    SimpleDateFormat format = new SimpleDateFormat(pattern, locale);
     Calendar calendar = Calendar.getInstance();
     calendar.set(year, month, dayOfMonth);
     return format.format(calendar.getTime());

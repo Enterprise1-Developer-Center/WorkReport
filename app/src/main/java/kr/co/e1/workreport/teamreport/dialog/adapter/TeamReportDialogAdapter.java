@@ -7,7 +7,7 @@ import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.ReportEntry;
-import kr.co.e1.workreport.framework.LayoutUtility;
+import kr.co.e1.workreport.framework.utils.LayoutUtility;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 

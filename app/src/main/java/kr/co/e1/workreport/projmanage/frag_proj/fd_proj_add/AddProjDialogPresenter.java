@@ -8,7 +8,18 @@ public interface AddProjDialogPresenter {
 
   void onClick(int id);
 
+  void onStartDateSet(int year, int month, int day);
+
+  void onEndDateSet(int year, int month, int day);
+
   interface View {
 
+    void showStartDatePickerDialog(int year, int month, int day);
+
+    void showEndDatePickerDialog(int year, int month, int day);
+
+    void showStartDate(String dateString);
+
+    void showEndDate(String dateString);
   }
 }

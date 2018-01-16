@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.framework;
+package kr.co.e1.workreport.framework.utils;
 
 import java.util.List;
 import java.util.Map;

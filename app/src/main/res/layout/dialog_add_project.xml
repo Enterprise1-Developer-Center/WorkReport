@@ -16,28 +16,33 @@
     <EditText
         android:id="@id/proj_code_edittext"
         style="@style/AddProjectEditText"
+        android:inputType="number"
         />
     <EditText
         android:id="@id/proj_name_edittext"
         style="@style/AddProjectEditText"
+        android:inputType="text"
         />
     <EditText
         android:id="@id/start_date_edittext"
         android:clickable="true"
         android:focusable="false"
         style="@style/AddProjectEditText"
+        android:inputType="date"
         />
     <EditText
         android:id="@id/end_date_edittext"
         android:clickable="true"
         android:focusable="false"
         style="@style/AddProjectEditText"
+        android:inputType="date"
         />
     <EditText
         android:id="@id/dept_cd_edittext"
         android:clickable="true"
         android:focusable="false"
         style="@style/AddProjectEditText"
+        android:inputType="text"
         />
   </LinearLayout>
   <ProgressBar

@@ -2,7 +2,6 @@ package kr.co.e1.workreport.common.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import kr.co.e1.workreport.common.DateUtils;
 import kr.co.e1.workreport.common.ReportType;
 import lombok.Data;
 import lombok.ToString;

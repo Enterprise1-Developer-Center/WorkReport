@@ -7,7 +7,7 @@ import io.reactivex.schedulers.Schedulers;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.DateUtils;
+import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.network.NetworkHelper;

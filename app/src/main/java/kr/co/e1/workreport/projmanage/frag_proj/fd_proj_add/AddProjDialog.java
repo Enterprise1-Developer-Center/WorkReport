@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -62,5 +63,25 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
   @OnClick({ R.id.start_date_edittext, R.id.end_date_edittext, R.id.dept_cd_edittext })
   void onClick(View view) {
     presenter.onClick(view.getId());
+  }
+
+  @Override public void showStartDatePickerDialog(int $year, int $month, int $day) {
+    new DatePickerDialog(getContext(),
+        (datePicker, year, month, day) -> presenter.onStartDateSet(year, month, day), $year, $month,
+        $day).show();
+  }
+
+  @Override public void showEndDatePickerDialog(int $year, int $month, int $day) {
+    new DatePickerDialog(getContext(),
+        (datePicker, year, month, day) -> presenter.onEndDateSet(year, month, day), $year, $month,
+        $day).show();
+  }
+
+  @Override public void showStartDate(String dateString) {
+    startDateEdittext.setText(dateString);
+  }
+
+  @Override public void showEndDate(String dateString) {
+    endDateEdittext.setText(dateString);
   }
 }

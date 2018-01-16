@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.DateUtils;
+import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.DetailWork;

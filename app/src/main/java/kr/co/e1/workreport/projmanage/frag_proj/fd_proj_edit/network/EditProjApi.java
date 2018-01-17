@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.network;
+package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit.network;
 
 import io.reactivex.Single;
 import java.util.HashMap;
@@ -12,14 +12,13 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
- * Created by jaeho on 2018. 1. 16
+ * Created by jaeho on 2018. 1. 17
  */
 
-public interface AddProjApi {
+public interface EditProjApi {
   @GET("api/adapters/WorkReportSQL/getDepts") Single<WResult<List<Dept>>> getDepts(
       @Header("Authorization") String header);
 
-  @FormUrlEncoded @POST("api/adapters/WorkReportSQL/addProject") Single<WResult> addProject(
+  @FormUrlEncoded @POST("api/adapters/WorkReportSQL/editProject") Single<WResult> editProject(
       @Header("Authorization") String header, @FieldMap HashMap<String, String> fieldMap);
-
 }

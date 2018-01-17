@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add;
+package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit;
 
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -12,20 +12,20 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.model.Dept;
-import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.network.AddProjNetwork;
+import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit.network.EditProjNetwork;
 import timber.log.Timber;
 
 /**
  * Created by jaeho on 2018. 1. 16
  */
 
-public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
+public class EditProjDialogPresenterImpl implements EditProjDialogPresenter {
 
-  private AddProjDialogPresenter.View view;
+  private View view;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
-  private AddProjNetwork network;
+  private EditProjNetwork network;
 
-  public AddProjDialogPresenterImpl(AddProjDialogPresenter.View view, AddProjNetwork network) {
+  public EditProjDialogPresenterImpl(View view, EditProjNetwork network) {
     this.view = view;
     this.network = network;
   }
@@ -50,20 +50,16 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
   private List<Dept> depts = new ArrayList<>();
 
   @DebugLog private void processDepts() {
-    compositeDisposable.add(network.getDepts()
-        .subscribeOn(Schedulers.io())
-        .map(result -> {
-          depts.clear();
-          depts.addAll(result.getContent());
-          return Dept.convertToNameArray(result.getContent());
-        })
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(items -> {
-          view.showDeptCodeListDialog(items);
-        }, throwable -> {
-          Timber.d(throwable);
-          view.showMessage(throwable.getMessage());
-        }));
+    compositeDisposable.add(network.getDepts().subscribeOn(Schedulers.io()).map(result -> {
+      depts.clear();
+      depts.addAll(result.getContent());
+      return Dept.convertToNameArray(result.getContent());
+    }).observeOn(AndroidSchedulers.mainThread()).subscribe(items -> {
+      view.showDeptCodeListDialog(items);
+    }, throwable -> {
+      Timber.d(throwable);
+      view.showMessage(throwable.getMessage());
+    }));
   }
 
   @Override public void onStartDateSet(int year, int month, int day) {
@@ -94,7 +90,7 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
     fieldMap.put("PROJ_EDATE", endDate);
     fieldMap.put("DEPT_CD", Dept.getCode(deptName, depts));
 
-    compositeDisposable.add(network.addProject(fieldMap)
+    compositeDisposable.add(network.editProject(fieldMap)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(wResult -> {

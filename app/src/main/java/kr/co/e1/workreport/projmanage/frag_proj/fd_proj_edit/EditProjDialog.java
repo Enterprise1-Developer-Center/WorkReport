@@ -2,14 +2,31 @@ package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import butterknife.BindView;
+import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2018. 1. 15
  */
 
-public class EditProjDialog extends BaseAlertDialogFragment {
+public class EditProjDialog extends BaseAlertDialogFragment
+    implements EditProjDialogPresenter.View {
+
+  @BindView(R.id.proj_code_edittext) EditText projCodeEdittext;
+  @BindView(R.id.proj_name_edittext) EditText projNameEdittext;
+  @BindView(R.id.start_date_edittext) EditText startDateEdittext;
+  @BindView(R.id.end_date_edittext) EditText endDateEdittext;
+  @BindView(R.id.dept_cd_edittext) EditText deptCdEdittext;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
+  @BindView(R.id.root_view) FrameLayout rootView;
+
+  @Inject EditProjDialogPresenter presenter;
 
   @Override protected boolean isNeutralButton() {
     return true;
@@ -36,7 +53,7 @@ public class EditProjDialog extends BaseAlertDialogFragment {
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-
+    Timber.d("presenter = " + presenter);
   }
 
   @Override protected int getLayoutResId() {
@@ -63,5 +80,45 @@ public class EditProjDialog extends BaseAlertDialogFragment {
     return view -> {
       dismiss();
     };
+  }
+
+  @Override public void showStartDatePickerDialog(int year, int month, int day) {
+
+  }
+
+  @Override public void showEndDatePickerDialog(int year, int month, int day) {
+
+  }
+
+  @Override public void showStartDate(String dateString) {
+
+  }
+
+  @Override public void showEndDate(String dateString) {
+
+  }
+
+  @Override public void showMessage(int resId) {
+
+  }
+
+  @Override public void showDeptCodeListDialog(String[] items) {
+
+  }
+
+  @Override public void showDeptName(String dept) {
+
+  }
+
+  @Override public void showSuccessMessage(String msg) {
+
+  }
+
+  @Override public void showMessage(String msg) {
+
+  }
+
+  @Override public void setButtonEnabled(boolean enabled) {
+
   }
 }

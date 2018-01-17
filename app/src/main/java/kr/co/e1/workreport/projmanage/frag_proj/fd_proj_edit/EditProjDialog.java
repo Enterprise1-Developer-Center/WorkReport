@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -49,11 +50,12 @@ public class EditProjDialog extends BaseAlertDialogFragment
   }
 
   @Override protected boolean isDagger() {
-    return false;
+    return true;
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     Timber.d("presenter = " + presenter);
+    presenter.onActivityCreate();
   }
 
   @Override protected int getLayoutResId() {
@@ -66,7 +68,7 @@ public class EditProjDialog extends BaseAlertDialogFragment
 
   @Override protected View.OnClickListener onPositiveClickListener() {
     return view -> {
-      dismiss();
+      presenter.onEditClick();
     };
   }
 
@@ -78,7 +80,7 @@ public class EditProjDialog extends BaseAlertDialogFragment
 
   @Override protected View.OnClickListener onNeutraClickListener() {
     return view -> {
-      dismiss();
+      presenter.onDelClick();
     };
   }
 
@@ -119,6 +121,16 @@ public class EditProjDialog extends BaseAlertDialogFragment
   }
 
   @Override public void setButtonEnabled(boolean enabled) {
+    alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(enabled);
+    alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL).setEnabled(enabled);
+  }
 
+  @Override public void disableProjectCode() {
+    projCodeEdittext.setEnabled(false);
+  }
+
+  @Override public void onDetach() {
+    super.onDetach();
+    presenter.onDetach();
   }
 }

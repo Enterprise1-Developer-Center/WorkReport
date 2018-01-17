@@ -107,4 +107,16 @@ public class EditProjDialogPresenterImpl implements EditProjDialogPresenter {
           view.setButtonEnabled(true);
         }));
   }
+
+  @Override public void onActivityCreate() {
+    view.disableProjectCode();
+  }
+
+  @Override public void onDelClick() {
+
+  }
+
+  @Override public void onEditClick() {
+
+  }
 }

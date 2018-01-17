@@ -20,6 +20,12 @@ public interface EditProjDialogPresenter {
 
   void onAddClick(String projCode, String projName, String startDate, String endDate, String deptCd);
 
+  void onActivityCreate();
+
+  void onDelClick();
+
+  void onEditClick();
+
   interface View {
 
     void showStartDatePickerDialog(int year, int month, int day);
@@ -41,5 +47,7 @@ public interface EditProjDialogPresenter {
     void showMessage(String msg);
 
     void setButtonEnabled(boolean enabled);
+
+    void disableProjectCode();
   }
 }

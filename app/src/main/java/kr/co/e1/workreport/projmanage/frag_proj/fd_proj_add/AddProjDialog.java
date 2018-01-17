@@ -120,6 +120,10 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
     }).show();
   }
 
+  @Override public void showMessage(String msg) {
+    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+  }
+
   @Override public void onDetach() {
     presenter.onDetach();
     super.onDetach();

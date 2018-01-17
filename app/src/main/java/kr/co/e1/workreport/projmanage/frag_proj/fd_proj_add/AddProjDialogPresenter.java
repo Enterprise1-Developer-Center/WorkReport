@@ -37,5 +37,7 @@ public interface AddProjDialogPresenter {
     void showDeptName(String dept);
 
     void showSuccessMessage(String msg);
+
+    void showMessage(String msg);
   }
 }

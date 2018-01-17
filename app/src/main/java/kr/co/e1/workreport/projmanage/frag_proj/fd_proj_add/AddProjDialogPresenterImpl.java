@@ -3,7 +3,6 @@ package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,7 +11,6 @@ import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.network.NetworkHelper;
-import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.model.Dept;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.network.AddProjNetwork;
 import timber.log.Timber;
@@ -32,8 +30,6 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
     this.network = network;
   }
 
-  private List<Dept> depts = new ArrayList<>();
-
   @Override public void onClick(int id) {
     int year = Calendar.getInstance().get(Calendar.YEAR);
     int month = Calendar.getInstance().get(Calendar.MONTH);
@@ -51,22 +47,21 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
     }
   }
 
+  private List<Dept> depts = new ArrayList<>();
+
   @DebugLog private void processDepts() {
     compositeDisposable.add(network.getDepts()
         .subscribeOn(Schedulers.io())
-        .map(new Function<WResult<List<Dept>>, String[]>() {
-          @Override public String[] apply(WResult<List<Dept>> result) throws Exception {
-            depts.clear();
-            depts = result.getContent();
-            return Dept.convertToNameArray(result.getContent());
-          }
+        .map(result -> {
+          depts.addAll(result.getContent());
+          return Dept.convertToNameArray(result.getContent());
         })
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(items -> {
           view.showDeptCodeListDialog(items);
         }, throwable -> {
           Timber.d(throwable);
-          view.showMessage(R.string.error_server_error);
+          view.showMessage(throwable.getMessage());
         }));
   }
 
@@ -103,11 +98,12 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
           if (wResult.getResult() == NetworkHelper.RESULT_SUCCESS) {
             view.showSuccessMessage(wResult.getMsg());
           } else {
-            view.showMessage(R.string.error_server_error);
+            view.showMessage(wResult.getMsg());
           }
         }, throwable -> {
           Timber.d(throwable);
-          view.showMessage(R.string.error_server_error);
+          //view.showMessage(R.string.error_server_error);
+          view.showMessage(throwable.getMessage().toString());
         }));
   }
 }

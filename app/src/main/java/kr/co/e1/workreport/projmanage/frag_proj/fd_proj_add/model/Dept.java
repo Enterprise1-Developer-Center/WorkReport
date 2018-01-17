@@ -3,6 +3,7 @@ package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.model;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
+import kr.co.e1.workreport.framework.utils.MyTextUtils;
 import kr.co.e1.workreport.framework.utils.ObjectUtils;
 import lombok.Getter;
 import lombok.ToString;
@@ -31,13 +32,22 @@ import lombok.ToString;
     return names;
   }
 
+  public static String getCode(String deptName) {
+    String deptCode = "";
+    if (!MyTextUtils.isBlank(deptName)) {
+      if (deptName.indexOf("-") != -1) {
+        return deptName.split("-")[1];
+      }
+    }
+    return deptCode;
+  }
+
   public static String getCode(String deptName, List<Dept> depts) {
-    String deptCode = null;
+    String deptCode = "";
     if (!ObjectUtils.isEmpty(depts)) {
       for (Dept dept : depts) {
         if (dept.getDept_nm().equals(deptName)) {
-          deptCode = dept.getDept_cd();
-          break;
+          return dept.getDept_cd();
         }
       }
     }

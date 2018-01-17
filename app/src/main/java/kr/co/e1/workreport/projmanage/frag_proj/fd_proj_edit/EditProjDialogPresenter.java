@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit;
 
 import android.support.annotation.StringRes;
+import kr.co.e1.workreport.main.dg_proje.vo.Project;
 
 /**
  * Created by jaeho on 2018. 1. 16
@@ -18,13 +19,11 @@ public interface EditProjDialogPresenter {
 
   void onDeptsItemClick(String dept);
 
-  void onAddClick(String projCode, String projName, String startDate, String endDate, String deptCd);
+  void onActivityCreate(Project project);
 
-  void onActivityCreate();
+  void onEditClick(String projCode, String projName, String startDate, String endDate, String deptCd);
 
-  void onDelClick();
-
-  void onEditClick();
+  void onDelClick(String projCode);
 
   interface View {
 
@@ -49,5 +48,7 @@ public interface EditProjDialogPresenter {
     void setButtonEnabled(boolean enabled);
 
     void disableProjectCode();
+
+    void showProject(Project project);
   }
 }

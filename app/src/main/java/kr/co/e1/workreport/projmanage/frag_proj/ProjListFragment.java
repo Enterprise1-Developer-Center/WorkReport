@@ -88,7 +88,11 @@ public class ProjListFragment extends BaseFragment
   }
 
   @Override public void onItemClick(Project item) {
-    new EditProjDialog().show(getFragmentManager(), EditProjDialog.class.getSimpleName());
+    new EditProjDialog().setProject(item).setOnCompleteListener(new OnCompleteListener() {
+      @Override public void onComplete() {
+
+      }
+    }).show(getFragmentManager(), EditProjDialog.class.getSimpleName());
   }
 
 }

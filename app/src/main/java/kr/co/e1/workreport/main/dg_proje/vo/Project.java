@@ -9,8 +9,9 @@ import lombok.ToString;
  */
 
 @ToString @Getter public class Project {
-  @SerializedName("PROJ_CD")
-  private String proj_cd = "0";
-  @SerializedName("PROJ_NM")
-  private String proj_nm = "No";
+  @SerializedName("PROJ_CD") private String proj_cd = "0";
+  @SerializedName("PROJ_NM") private String proj_nm = "No";
+  @SerializedName("PROJ_SDATE") private String proj_sdate;
+  @SerializedName("PROJ_EDATE") private String proj_edate;
+  @SerializedName("DEPT_CD") private String dept_cd;
 }

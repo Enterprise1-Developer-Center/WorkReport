@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.utils.DateUtils;
+import kr.co.e1.workreport.main.dg_proje.vo.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.model.Dept;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit.network.EditProjNetwork;
@@ -79,7 +80,7 @@ public class EditProjDialogPresenterImpl implements EditProjDialogPresenter {
   }
 
   @Override
-  public void onAddClick(String projCode, String projName, String startDate, String endDate,
+  public void onEditClick(String projCode, String projName, String startDate, String endDate,
       String deptName) {
     view.setButtonEnabled(false);
 
@@ -108,15 +109,26 @@ public class EditProjDialogPresenterImpl implements EditProjDialogPresenter {
         }));
   }
 
-  @Override public void onActivityCreate() {
+  @Override public void onActivityCreate(Project project) {
     view.disableProjectCode();
+    view.showProject(project);
   }
 
-  @Override public void onDelClick() {
-
-  }
-
-  @Override public void onEditClick() {
-
+  @DebugLog @Override public void onDelClick(String projCode) {
+    view.setButtonEnabled(false);
+    compositeDisposable.add(network.delProject(projCode)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(result -> {
+          if(result.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            view.showSuccessMessage(result.getMsg());
+          } else {
+            view.showMessage(result.getMsg());
+          }
+          view.setButtonEnabled(true);
+        }, throwable -> {
+          view.showMessage(throwable.getMessage());
+          view.setButtonEnabled(true);
+        }));
   }
 }

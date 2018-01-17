@@ -14,7 +14,7 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
 import kr.co.e1.workreport.main.dg_proje.adapter.ProjectDialogAdapter;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 

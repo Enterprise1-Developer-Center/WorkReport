@@ -1,7 +1,7 @@
 package kr.co.e1.workreport.common.model;
 
 import com.google.gson.annotations.SerializedName;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

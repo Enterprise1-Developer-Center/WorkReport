@@ -13,7 +13,7 @@ import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
 import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapter;
 import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapterView;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.AddProjDialog;

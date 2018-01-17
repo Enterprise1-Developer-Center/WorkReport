@@ -2,7 +2,7 @@ package kr.co.e1.workreport.main.dg_proje;
 
 import android.os.Bundle;
 import android.support.annotation.StringRes;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 
 /**
  * Created by jaeho on 2017. 10. 29

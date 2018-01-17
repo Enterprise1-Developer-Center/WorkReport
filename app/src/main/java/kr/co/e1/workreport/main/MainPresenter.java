@@ -7,7 +7,7 @@ import android.support.annotation.StringRes;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportEntry;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 
 /**
  * Created by jaeho on 2017. 9. 25

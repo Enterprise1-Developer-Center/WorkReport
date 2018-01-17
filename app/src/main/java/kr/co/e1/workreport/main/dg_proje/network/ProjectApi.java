@@ -2,7 +2,7 @@ package kr.co.e1.workreport.main.dg_proje.network;
 
 import io.reactivex.Single;
 import java.util.List;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.WResult;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

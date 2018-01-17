@@ -1,7 +1,7 @@
 package kr.co.e1.workreport.main.dg_proje.adapter;
 
 import kr.co.e1.workreport.framework.adapter.SelectableItem;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 
 /**
  * Created by jaeho on 2017. 10. 30

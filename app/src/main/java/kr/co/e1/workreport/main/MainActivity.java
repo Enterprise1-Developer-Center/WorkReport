@@ -35,7 +35,7 @@ import kr.co.e1.workreport.main.dg_class.ClassificationDialog;
 import kr.co.e1.workreport.main.dg_login.LoginFragment;
 import kr.co.e1.workreport.main.dg_pass.PasswordDialog;
 import kr.co.e1.workreport.main.dg_proje.ProjectDialog;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.projmanage.ProjManageActivity;
 import kr.co.e1.workreport.statistics.StatisticsActivity;

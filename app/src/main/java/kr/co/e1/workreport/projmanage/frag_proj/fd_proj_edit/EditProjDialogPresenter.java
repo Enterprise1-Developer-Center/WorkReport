@@ -1,7 +1,7 @@
 package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit;
 
 import android.support.annotation.StringRes;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 
 /**
  * Created by jaeho on 2018. 1. 16

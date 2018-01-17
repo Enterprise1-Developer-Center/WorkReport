@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.utils.DateUtils;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.model.Dept;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit.network.EditProjNetwork;

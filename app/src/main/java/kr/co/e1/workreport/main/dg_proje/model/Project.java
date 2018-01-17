@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.main.dg_proje.vo;
+package kr.co.e1.workreport.main.dg_proje.model;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;

@@ -5,7 +5,7 @@ import java.util.List;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.main.dg_proje.vo.Project;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 
 /**
  * Created by jaeho on 2017. 11. 15

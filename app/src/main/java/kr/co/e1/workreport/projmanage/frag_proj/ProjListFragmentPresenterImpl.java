@@ -49,7 +49,7 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
 
   @Override public void onAddProjComplete() {
     adapterDataModel.clear();
-    view.refresh();
+    view.removeRefresh();
     compositeDisposable.add(network.getProjects2()
         .subscribeOn(Schedulers.io())
         .delay(200, TimeUnit.MILLISECONDS)
@@ -62,5 +62,22 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
             view.showMessage(R.string.error_server_error);
           }
         }, throwable -> view.showMessage(R.string.error_server_error)));
+  }
+
+  @Override public void onEditProjComplete() {
+    adapterDataModel.clear();
+    view.removeRefresh();
+    compositeDisposable.add(network.getProjects2()
+        .subscribeOn(Schedulers.io())
+        .delay(200, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(results -> {
+          if (results.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            adapterDataModel.addAll(results.getContent());
+            view.refresh();
+          } else {
+            view.showMessage(results.getMsg());
+          }
+        }, throwable -> view.showMessage(throwable.getMessage())));
   }
 }

@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import butterknife.BindView;
+import butterknife.OnClick;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
@@ -82,7 +83,6 @@ public class EditProjDialog extends BaseAlertDialogFragment
       String startDate = startDateEdittext.getText().toString().trim();
       String endDate = endDateEdittext.getText().toString().trim();
       String deptCd = deptCdEdittext.getText().toString().trim();
-
       presenter.onEditClick(projCode, projName, startDate, endDate, deptCd);
     };
   }
@@ -159,11 +159,17 @@ public class EditProjDialog extends BaseAlertDialogFragment
     projNameEdittext.setText(project.getProj_nm());
     startDateEdittext.setText(project.getProj_sdate());
     endDateEdittext.setText(project.getProj_edate());
-    deptCdEdittext.setText(project.getDept_cd());
+    deptCdEdittext.setText(project.getDept_nm());
   }
 
   @Override public void onDetach() {
     super.onDetach();
     presenter.onDetach();
   }
+
+  @OnClick({ R.id.start_date_edittext, R.id.end_date_edittext, R.id.dept_cd_edittext })
+  void onClick(View view) {
+    presenter.onClick(view.getId());
+  }
+
 }

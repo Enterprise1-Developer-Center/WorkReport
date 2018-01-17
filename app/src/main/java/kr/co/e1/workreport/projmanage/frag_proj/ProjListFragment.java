@@ -66,6 +66,10 @@ public class ProjListFragment extends BaseFragment
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
+  @Override public void showMessage(String msg) {
+    Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+  }
+
   @Override public void refresh() {
     adapterView.refresh();
   }
@@ -90,7 +94,7 @@ public class ProjListFragment extends BaseFragment
   @Override public void onItemClick(Project item) {
     new EditProjDialog().setProject(item).setOnCompleteListener(new OnCompleteListener() {
       @Override public void onComplete() {
-
+        presenter.onEditProjComplete();
       }
     }).show(getFragmentManager(), EditProjDialog.class.getSimpleName());
   }

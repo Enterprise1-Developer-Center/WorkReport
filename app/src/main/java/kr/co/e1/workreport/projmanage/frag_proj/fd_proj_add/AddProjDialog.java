@@ -61,16 +61,13 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {
-    return new View.OnClickListener() {
-      @Override public void onClick(View view) {
-
-        String projCode = projCodeEdittext.getText().toString().trim();
-        String projName = projNameEdittext.getText().toString().trim();
-        String startDate = startDateEdittext.getText().toString().trim();
-        String endDate = endDateEdittext.getText().toString().trim();
-        String deptCd = deptCdEdittext.getText().toString().trim();
-        presenter.onAddClick(projCode, projName, startDate, endDate, deptCd);
-      }
+    return view -> {
+      String projCode = projCodeEdittext.getText().toString().trim();
+      String projName = projNameEdittext.getText().toString().trim();
+      String startDate = startDateEdittext.getText().toString().trim();
+      String endDate = endDateEdittext.getText().toString().trim();
+      String deptCd = deptCdEdittext.getText().toString().trim();
+      presenter.onAddClick(projCode, projName, startDate, endDate, deptCd);
     };
   }
 

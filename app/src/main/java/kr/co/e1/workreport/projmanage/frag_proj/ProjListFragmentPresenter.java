@@ -14,6 +14,8 @@ public interface ProjListFragmentPresenter {
 
   void onAddProjComplete();
 
+  void onEditProjComplete();
+
   interface View {
 
     void setRecyclerView();
@@ -23,5 +25,7 @@ public interface ProjListFragmentPresenter {
     void refresh();
 
     void removeRefresh();
+
+    void showMessage(String msg);
   }
 }

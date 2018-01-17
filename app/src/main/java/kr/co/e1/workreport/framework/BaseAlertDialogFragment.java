@@ -79,6 +79,8 @@ public abstract class BaseAlertDialogFragment extends DialogFragment {
           .setOnClickListener(onPositiveClickListener());
       alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
           .setOnClickListener(onNegativeClickListener());
+      alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL)
+          .setOnClickListener(onNeutraClickListener());
     }
   }
 

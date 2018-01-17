@@ -14,6 +14,9 @@ import butterknife.OnClick;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
+import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by jaeho on 2018. 1. 15
@@ -30,6 +33,8 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
   @BindView(R.id.dept_cd_edittext) EditText deptCdEdittext;
 
   @Inject AddProjDialogPresenter presenter;
+
+  private @Setter @Accessors(chain = true) OnCompleteListener onCompleteListener;
 
   @Override protected boolean isNegativeButton() {
     return true;
@@ -117,6 +122,9 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
   @Override public void showSuccessMessage(String msg) {
     final Snackbar snackbar = Snackbar.make(rootView, msg, Snackbar.LENGTH_INDEFINITE);
     snackbar.setAction(android.R.string.ok, view -> {
+      if (onCompleteListener != null) {
+        onCompleteListener.onComplete();
+      }
       dismiss();
     }).show();
   }

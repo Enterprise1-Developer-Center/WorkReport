@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.main.dg_proje.vo.Project;
@@ -17,7 +16,7 @@ import lombok.experimental.Accessors;
  */
 
 public class ProjListAdapter extends BaseRecyclerAdapter
-    implements BaseAdapterView, BaseAdapterDataModel<Project> {
+    implements ProjListAdapterView, BaseAdapterDataModel<Project> {
   private List<Project> items = new ArrayList<>();
   @Setter @Accessors(chain = true) private OnRecyclerItemClickListener<Project>
       onRecyclerItemClickListener;
@@ -78,5 +77,9 @@ public class ProjListAdapter extends BaseRecyclerAdapter
 
   @Override public void clear() {
     items.clear();
+  }
+
+  @Override public void refreshRemove() {
+    notifyItemRangeRemoved(0, getSize());
   }
 }

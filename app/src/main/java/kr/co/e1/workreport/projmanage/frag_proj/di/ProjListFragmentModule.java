@@ -3,11 +3,11 @@ package kr.co.e1.workreport.projmanage.frag_proj.di;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.app.MyApplication;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.projmanage.frag_proj.ProjListFragment;
 import kr.co.e1.workreport.projmanage.frag_proj.ProjListFragmentPresenter;
 import kr.co.e1.workreport.projmanage.frag_proj.ProjListFragmentPresenterImpl;
 import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapter;
+import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapterView;
 import kr.co.e1.workreport.projmanage.frag_proj.network.ProjListNetwork;
 
 /**
@@ -33,7 +33,7 @@ import kr.co.e1.workreport.projmanage.frag_proj.network.ProjListNetwork;
     return new ProjListNetwork(MyApplication.BASE_URL);
   }
 
-  @Provides BaseAdapterView provideAdapterView(ProjListFragment fragment) {
+  @Provides ProjListAdapterView provideAdapterView(ProjListFragment fragment) {
     return fragment.getAdapter();
   }
 }

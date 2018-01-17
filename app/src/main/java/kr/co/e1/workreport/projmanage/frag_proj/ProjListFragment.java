@@ -6,16 +6,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import butterknife.BindView;
-import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
-import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
+import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.main.dg_proje.vo.Project;
 import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapter;
+import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapterView;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.AddProjDialog;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit.EditProjDialog;
 import kr.co.e1.workreport.projmanage.listener.OnAddClickListener;
@@ -31,7 +31,7 @@ public class ProjListFragment extends BaseFragment
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @Inject @Getter ProjListAdapter adapter;
-  @Inject BaseAdapterView adapterView;
+  @Inject ProjListAdapterView adapterView;
   @Inject ProjListFragmentPresenter presenter;
 
   public static ProjListFragment newInstance() {
@@ -59,6 +59,7 @@ public class ProjListFragment extends BaseFragment
     recyclerView.setAdapter(adapter);
     recyclerView.setItemAnimator(new SlideInDownAnimator());
     recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
+    recyclerView.getItemAnimator().setRemoveDuration(Constants.ANI_DURATION);
   }
 
   @Override public void showMessage(int resId) {
@@ -69,20 +70,25 @@ public class ProjListFragment extends BaseFragment
     adapterView.refresh();
   }
 
+  @Override public void removeRefresh() {
+    adapterView.refreshRemove();
+  }
+
   @Override public void onDetach() {
     super.onDetach();
     presenter.onDetach();
   }
 
   @Override public void onAddClick() {
-    new AddProjDialog().show(getFragmentManager(), AddProjDialog.class.getSimpleName());
+    new AddProjDialog().setOnCompleteListener(new OnCompleteListener() {
+      @Override public void onComplete() {
+        presenter.onAddProjComplete();
+      }
+    }).show(getFragmentManager(), AddProjDialog.class.getSimpleName());
   }
 
   @Override public void onItemClick(Project item) {
     new EditProjDialog().show(getFragmentManager(), EditProjDialog.class.getSimpleName());
   }
 
-  @DebugLog @Override public void onResume() {
-    super.onResume();
-  }
 }

@@ -2,14 +2,12 @@ package kr.co.e1.workreport.projmanage.frag_proj;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.main.dg_proje.vo.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
-import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.projmanage.frag_proj.network.ProjListNetwork;
 
 /**
@@ -32,27 +30,37 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
 
   @Override public void onActivityCreate() {
     view.setRecyclerView();
-
     compositeDisposable.add(network.getProjects2()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Consumer<WResult<List<Project>>>() {
-          @Override public void accept(WResult<List<Project>> results) throws Exception {
-            if (results.getResult() == NetworkHelper.RESULT_SUCCESS) {
-              adapterDataModel.addAll(results.getContent());
-              view.refresh();
-            } else {
-              view.showMessage(R.string.error_server_error);
-            }
-          }
-        }, new Consumer<Throwable>() {
-          @Override public void accept(Throwable throwable) throws Exception {
+        .subscribe(results -> {
+          if (results.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            adapterDataModel.addAll(results.getContent());
+            view.refresh();
+          } else {
             view.showMessage(R.string.error_server_error);
           }
-        }));
+        }, throwable -> view.showMessage(R.string.error_server_error)));
   }
 
   @Override public void onDetach() {
     compositeDisposable.clear();
+  }
+
+  @Override public void onAddProjComplete() {
+    adapterDataModel.clear();
+    view.refresh();
+    compositeDisposable.add(network.getProjects2()
+        .subscribeOn(Schedulers.io())
+        .delay(200, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(results -> {
+          if (results.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            adapterDataModel.addAll(results.getContent());
+            view.refresh();
+          } else {
+            view.showMessage(R.string.error_server_error);
+          }
+        }, throwable -> view.showMessage(R.string.error_server_error)));
   }
 }

@@ -39,5 +39,7 @@ public interface AddProjDialogPresenter {
     void showSuccessMessage(String msg);
 
     void showMessage(String msg);
+
+    void setButtonEnabled(boolean enabled);
   }
 }

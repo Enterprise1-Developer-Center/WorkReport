@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import butterknife.BindView;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
@@ -25,7 +26,8 @@ import lombok.Getter;
  */
 
 public class ProjListFragment extends BaseFragment
-    implements ProjListFragmentPresenter.View, OnAddClickListener, OnRecyclerItemClickListener<Project> {
+    implements ProjListFragmentPresenter.View, OnAddClickListener,
+    OnRecyclerItemClickListener<Project> {
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @Inject @Getter ProjListAdapter adapter;
@@ -60,7 +62,7 @@ public class ProjListFragment extends BaseFragment
   }
 
   @Override public void showMessage(int resId) {
-    Snackbar.make(rootView,resId, Snackbar.LENGTH_SHORT).show();
+    Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override public void refresh() {
@@ -78,5 +80,9 @@ public class ProjListFragment extends BaseFragment
 
   @Override public void onItemClick(Project item) {
     new EditProjDialog().show(getFragmentManager(), EditProjDialog.class.getSimpleName());
+  }
+
+  @DebugLog @Override public void onResume() {
+    super.onResume();
   }
 }

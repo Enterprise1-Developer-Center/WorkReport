@@ -84,6 +84,8 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
   @Override
   public void onAddClick(String projCode, String projName, String startDate, String endDate,
       String deptName) {
+    view.setButtonEnabled(false);
+
     HashMap<String, String> fieldMap = new HashMap<>();
     fieldMap.put("PROJ_CD", projCode);
     fieldMap.put("PROJ_NM", projName);
@@ -100,10 +102,12 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
           } else {
             view.showMessage(wResult.getMsg());
           }
+          view.setButtonEnabled(true);
         }, throwable -> {
           Timber.d(throwable);
           //view.showMessage(R.string.error_server_error);
           view.showMessage(throwable.getMessage().toString());
+          view.setButtonEnabled(true);
         }));
   }
 }

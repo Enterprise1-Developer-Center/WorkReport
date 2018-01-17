@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -122,6 +123,10 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
 
   @Override public void showMessage(String msg) {
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void setButtonEnabled(boolean enabled) {
+    alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(enabled);
   }
 
   @Override public void onDetach() {

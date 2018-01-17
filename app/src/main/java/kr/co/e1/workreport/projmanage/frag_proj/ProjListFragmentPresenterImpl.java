@@ -48,8 +48,8 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
   }
 
   @Override public void onAddProjComplete() {
-    adapterDataModel.clear();
     view.removeRefresh();
+    adapterDataModel.clear();
     compositeDisposable.add(network.getProjects2()
         .subscribeOn(Schedulers.io())
         .delay(200, TimeUnit.MILLISECONDS)
@@ -65,8 +65,8 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
   }
 
   @Override public void onEditProjComplete() {
-    adapterDataModel.clear();
     view.removeRefresh();
+    adapterDataModel.clear();
     compositeDisposable.add(network.getProjects2()
         .subscribeOn(Schedulers.io())
         .delay(200, TimeUnit.MILLISECONDS)

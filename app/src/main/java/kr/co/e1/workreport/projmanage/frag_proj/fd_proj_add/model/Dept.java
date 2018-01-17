@@ -43,7 +43,7 @@ import lombok.ToString;
   }
 
   public static String getCode(String deptName, List<Dept> depts) {
-    String deptCode = "";
+    String deptCode = "1";
     if (!ObjectUtils.isEmpty(depts)) {
       for (Dept dept : depts) {
         if (dept.getDept_nm().equals(deptName)) {

@@ -36,7 +36,7 @@ public interface AddProjDialogPresenter {
 
     void showMessage(@StringRes int resId);
 
-    void showDeptCodeListDialog(String[] items);
+    void showDeptCodeListDialog(String[] items, int checkedItem);
 
     void showDeptName(String dept);
 

@@ -100,8 +100,8 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showDeptCodeListDialog(String[] items) {
-    new AlertDialog.Builder(getActivity()).setSingleChoiceItems(items, 0,
+  @Override public void showDeptCodeListDialog(String[] items, int checkedItem) {
+    new AlertDialog.Builder(getActivity()).setSingleChoiceItems(items, checkedItem,
         (dialogInterface, position) -> {
           presenter.onDeptsItemClick(items[position]);
           dialogInterface.dismiss();

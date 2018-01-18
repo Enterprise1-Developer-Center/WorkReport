@@ -33,19 +33,6 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
 
   private List<Dept> depts = new ArrayList<>();
 
-  @DebugLog private void processDepts() {
-    compositeDisposable.add(network.getDepts().subscribeOn(Schedulers.io()).map(result -> {
-      depts.clear();
-      depts.addAll(result.getContent());
-      return Dept.convertToNameArray(result.getContent());
-    }).observeOn(AndroidSchedulers.mainThread()).subscribe(items -> {
-      view.showDeptCodeListDialog(items);
-    }, throwable -> {
-      Timber.d(throwable);
-      view.showMessage(throwable.getMessage());
-    }));
-  }
-
   @DebugLog @Override public void onStartDateSet(int year, int month, int day) {
     view.showStartDate(DateUtils.getDateString(year, month, day, "yyyy-MM-dd (EEE)", Locale.KOREA));
   }
@@ -78,10 +65,6 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
     fieldMap.put("PROJ_SDATE", startDate);
     fieldMap.put("PROJ_EDATE", endDate);
     fieldMap.put("DEPT_CD", Dept.getCode(deptName, depts));
-    Timber.d("map = " + fieldMap);
-    if(true) {
-      return;
-    }
     compositeDisposable.add(network.addProject(fieldMap)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -133,6 +116,15 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
   }
 
   @Override public void onDeptNameEditText(String deptName) {
-
+    compositeDisposable.add(network.getDepts().subscribeOn(Schedulers.io()).map(result -> {
+      depts.clear();
+      depts.addAll(result.getContent());
+      return Dept.convertToNameArray(result.getContent());
+    }).observeOn(AndroidSchedulers.mainThread()).subscribe(items -> {
+      view.showDeptCodeListDialog(items, Dept.convertNameToPosition(deptName, items));
+    }, throwable -> {
+      Timber.d(throwable);
+      view.showMessage(throwable.getMessage());
+    }));
   }
 }

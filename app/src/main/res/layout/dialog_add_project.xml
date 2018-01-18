@@ -46,7 +46,7 @@
         android:hint="@string/end_date"
         />
     <EditText
-        android:id="@id/dept_cd_edittext"
+        android:id="@id/dept_name_edittext"
         android:clickable="true"
         android:focusable="false"
         style="@style/AddProjectEditText"

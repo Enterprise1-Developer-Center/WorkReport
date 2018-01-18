@@ -31,7 +31,7 @@ public class EditProjDialogPresenterImpl implements EditProjDialogPresenter {
     this.network = network;
   }
 
-  @Override public void onClick(int id) {
+  @Override public void onClick(int id, String deptName) {
     int year = Calendar.getInstance().get(Calendar.YEAR);
     int month = Calendar.getInstance().get(Calendar.MONTH);
     int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
@@ -42,21 +42,21 @@ public class EditProjDialogPresenterImpl implements EditProjDialogPresenter {
       case R.id.end_date_edittext:
         view.showEndDatePickerDialog(year, month, day);
         break;
-      case R.id.dept_cd_edittext:
-        processDepts();
+      case R.id.dept_name_edittext:
+        processDepts(deptName);
         break;
     }
   }
 
   private List<Dept> depts = new ArrayList<>();
 
-  @DebugLog private void processDepts() {
+  @DebugLog private void processDepts(String deptName) {
     compositeDisposable.add(network.getDepts().subscribeOn(Schedulers.io()).map(result -> {
       depts.clear();
       depts.addAll(result.getContent());
       return Dept.convertToNameArray(result.getContent());
     }).observeOn(AndroidSchedulers.mainThread()).subscribe(items -> {
-      view.showDeptCodeListDialog(items);
+      view.showDeptCodeListDialog(items, Dept.convertNameToPosition(deptName, items));
     }, throwable -> {
       Timber.d(throwable);
       view.showMessage(throwable.getMessage());

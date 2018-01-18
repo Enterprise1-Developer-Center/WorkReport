@@ -30,7 +30,7 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
   @BindView(R.id.root_view) FrameLayout rootView;
   @BindView(R.id.start_date_edittext) EditText startDateEdittext;
   @BindView(R.id.end_date_edittext) EditText endDateEdittext;
-  @BindView(R.id.dept_cd_edittext) EditText deptCdEdittext;
+  @BindView(R.id.dept_name_edittext) EditText deptCdEdittext;
 
   @Inject AddProjDialogPresenter presenter;
 
@@ -75,7 +75,7 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
     return view -> dismiss();
   }
 
-  @OnClick({ R.id.start_date_edittext, R.id.end_date_edittext, R.id.dept_cd_edittext })
+  @OnClick({ R.id.start_date_edittext, R.id.end_date_edittext, R.id.dept_name_edittext })
   void onClick(View view) {
     presenter.onClick(view.getId());
   }

@@ -97,5 +97,5 @@
   <item name="proj_name_textview" type="id"/>
   <item name="start_date_edittext" type="id"/>
   <item name="end_date_edittext" type="id"/>
-  <item name="dept_cd_edittext" type="id"/>
+  <item name="dept_name_edittext" type="id"/>
 </resources>

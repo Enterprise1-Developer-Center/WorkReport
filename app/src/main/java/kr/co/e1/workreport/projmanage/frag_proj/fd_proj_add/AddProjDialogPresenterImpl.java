@@ -41,7 +41,7 @@ public class AddProjDialogPresenterImpl implements AddProjDialogPresenter {
       case R.id.end_date_edittext:
         view.showEndDatePickerDialog(year, month, day);
         break;
-      case R.id.dept_cd_edittext:
+      case R.id.dept_name_edittext:
         processDepts();
         break;
     }

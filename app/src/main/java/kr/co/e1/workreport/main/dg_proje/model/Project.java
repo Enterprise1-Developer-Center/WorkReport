@@ -14,5 +14,4 @@ import lombok.ToString;
   @SerializedName("PROJ_SDATE") private String proj_sdate;
   @SerializedName("PROJ_EDATE") private String proj_edate;
   @SerializedName("DEPT_CD") private String dept_cd;
-  @SerializedName("DEPT_NM") private String dept_nm;
 }

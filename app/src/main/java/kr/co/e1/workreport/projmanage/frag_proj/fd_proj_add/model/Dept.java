@@ -53,4 +53,15 @@ import lombok.ToString;
     }
     return deptCode;
   }
+
+  public static int convertNameToPosition(String deptName, String[] items) {
+    if (!MyTextUtils.isBlank(deptName) && !ObjectUtils.isEmpty(items)) {
+      for (int i = 0; i < items.length; i++) {
+        if (deptName.equals(items[i])) {
+          return i;
+        }
+      }
+    }
+    return 0;
+  }
 }

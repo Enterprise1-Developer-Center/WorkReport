@@ -9,8 +9,6 @@ import kr.co.e1.workreport.main.dg_proje.model.Project;
 
 public interface EditProjDialogPresenter {
 
-  void onClick(int id);
-
   void onStartDateSet(int year, int month, int day);
 
   void onEndDateSet(int year, int month, int day);
@@ -25,6 +23,8 @@ public interface EditProjDialogPresenter {
 
   void onDelClick(String projCode);
 
+  void onClick(int id, String deptName);
+
   interface View {
 
     void showStartDatePickerDialog(int year, int month, int day);
@@ -37,7 +37,7 @@ public interface EditProjDialogPresenter {
 
     void showMessage(@StringRes int resId);
 
-    void showDeptCodeListDialog(String[] items);
+    void showDeptCodeListDialog(String[] items, int checkedItem);
 
     void showDeptName(String dept);
 

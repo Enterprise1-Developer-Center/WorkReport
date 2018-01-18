@@ -18,7 +18,7 @@ import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapter;
 import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapterView;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.AddProjDialog;
 import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_edit.EditProjDialog;
-import kr.co.e1.workreport.projmanage.listener.OnAddClickListener;
+import kr.co.e1.workreport.projmanage.listener.OnFabClickListener;
 import lombok.Getter;
 
 /**
@@ -26,7 +26,7 @@ import lombok.Getter;
  */
 
 public class ProjListFragment extends BaseFragment
-    implements ProjListFragmentPresenter.View, OnAddClickListener,
+    implements ProjListFragmentPresenter.View, OnFabClickListener,
     OnRecyclerItemClickListener<Project> {
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
@@ -83,20 +83,23 @@ public class ProjListFragment extends BaseFragment
     presenter.onDetach();
   }
 
-  @Override public void onAddClick() {
-    new AddProjDialog().setOnCompleteListener(new OnCompleteListener() {
-      @Override public void onComplete() {
-        presenter.onAddProjComplete();
-      }
-    }).show(getFragmentManager(), AddProjDialog.class.getSimpleName());
+  @Override public void onFabClick() {
+    new AddProjDialog().setOnCompleteListener(() -> presenter.onAddProjComplete())
+        .show(getFragmentManager(), AddProjDialog.class.getSimpleName());
   }
 
   @Override public void onItemClick(Project item) {
-    new EditProjDialog().setProject(item).setOnCompleteListener(new OnCompleteListener() {
-      @Override public void onComplete() {
-        presenter.onEditProjComplete();
-      }
-    }).show(getFragmentManager(), EditProjDialog.class.getSimpleName());
+    presenter.onItemClick(item);
   }
 
+  @Override public void showEditProjDialog(Project item, String deptName) {
+    new EditProjDialog().setProject(item)
+        .setDeptName(deptName)
+        .setOnCompleteListener(new OnCompleteListener() {
+          @Override public void onComplete() {
+            presenter.onEditProjComplete();
+          }
+        })
+        .show(getFragmentManager(), EditProjDialog.class.getSimpleName());
+  }
 }

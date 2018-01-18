@@ -31,12 +31,13 @@ public class EditProjDialog extends BaseAlertDialogFragment
   @BindView(R.id.proj_name_edittext) EditText projNameEdittext;
   @BindView(R.id.start_date_edittext) EditText startDateEdittext;
   @BindView(R.id.end_date_edittext) EditText endDateEdittext;
-  @BindView(R.id.dept_cd_edittext) EditText deptCdEdittext;
+  @BindView(R.id.dept_name_edittext) EditText deptNameEdittext;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) FrameLayout rootView;
 
   @Inject EditProjDialogPresenter presenter;
   @Accessors(chain = true) @Setter private Project project;
+  @Accessors(chain = true) @Setter private String deptName;
   @Accessors(chain = true) @Setter private OnCompleteListener onCompleteListener;
 
   @Override protected boolean isNeutralButton() {
@@ -82,7 +83,7 @@ public class EditProjDialog extends BaseAlertDialogFragment
       String projName = projNameEdittext.getText().toString().trim();
       String startDate = startDateEdittext.getText().toString().trim();
       String endDate = endDateEdittext.getText().toString().trim();
-      String deptCd = deptCdEdittext.getText().toString().trim();
+      String deptCd = deptNameEdittext.getText().toString().trim();
       presenter.onEditClick(projCode, projName, startDate, endDate, deptCd);
     };
   }
@@ -119,8 +120,8 @@ public class EditProjDialog extends BaseAlertDialogFragment
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showDeptCodeListDialog(String[] items) {
-    new AlertDialog.Builder(getActivity()).setSingleChoiceItems(items, 0,
+  @Override public void showDeptCodeListDialog(String[] items, int checkedItem) {
+    new AlertDialog.Builder(getActivity()).setSingleChoiceItems(items, checkedItem,
         (dialogInterface, position) -> {
           presenter.onDeptsItemClick(items[position]);
           dialogInterface.dismiss();
@@ -128,7 +129,7 @@ public class EditProjDialog extends BaseAlertDialogFragment
   }
 
   @Override public void showDeptName(String dept) {
-    deptCdEdittext.setText(dept);
+    deptNameEdittext.setText(dept);
   }
 
   @Override public void showSuccessMessage(String msg) {
@@ -159,7 +160,7 @@ public class EditProjDialog extends BaseAlertDialogFragment
     projNameEdittext.setText(project.getProj_nm());
     startDateEdittext.setText(project.getProj_sdate());
     endDateEdittext.setText(project.getProj_edate());
-    deptCdEdittext.setText(project.getDept_nm());
+    deptNameEdittext.setText(deptName);
   }
 
   @Override public void onDetach() {
@@ -167,9 +168,8 @@ public class EditProjDialog extends BaseAlertDialogFragment
     presenter.onDetach();
   }
 
-  @OnClick({ R.id.start_date_edittext, R.id.end_date_edittext, R.id.dept_cd_edittext })
+  @OnClick({ R.id.start_date_edittext, R.id.end_date_edittext, R.id.dept_name_edittext })
   void onClick(View view) {
-    presenter.onClick(view.getId());
+    presenter.onClick(view.getId(), deptNameEdittext.getText().toString().trim());
   }
-
 }

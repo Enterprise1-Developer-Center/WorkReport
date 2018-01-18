@@ -1,6 +1,7 @@
 package kr.co.e1.workreport.projmanage.frag_proj;
 
 import android.support.annotation.StringRes;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 
 /**
  * Created by jaeho on 2018. 1. 12
@@ -16,6 +17,8 @@ public interface ProjListFragmentPresenter {
 
   void onEditProjComplete();
 
+  void onItemClick(Project item);
+
   interface View {
 
     void setRecyclerView();
@@ -27,5 +30,7 @@ public interface ProjListFragmentPresenter {
     void removeRefresh();
 
     void showMessage(String msg);
+
+    void showEditProjDialog(Project item, String deptName);
   }
 }

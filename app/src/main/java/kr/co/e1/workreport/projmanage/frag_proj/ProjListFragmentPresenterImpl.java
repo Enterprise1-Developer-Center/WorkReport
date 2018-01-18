@@ -1,13 +1,20 @@
 package kr.co.e1.workreport.projmanage.frag_proj;
 
+import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.network.WResult;
+import kr.co.e1.workreport.projmanage.frag_proj.fd_proj_add.model.Dept;
 import kr.co.e1.workreport.projmanage.frag_proj.network.ProjListNetwork;
 
 /**
@@ -40,7 +47,7 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
           } else {
             view.showMessage(R.string.error_server_error);
           }
-        }, throwable -> view.showMessage(R.string.error_server_error)));
+        }, throwable -> view.showMessage(throwable.getMessage())));
   }
 
   @Override public void onDetach() {
@@ -79,5 +86,33 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
             view.showMessage(results.getMsg());
           }
         }, throwable -> view.showMessage(throwable.getMessage())));
+  }
+
+  @Override public void onItemClick(final Project item) {
+    compositeDisposable.add(network.getDepts()
+        .subscribeOn(Schedulers.io())
+        .flattenAsObservable(new Function<WResult<List<Dept>>, Iterable<Dept>>() {
+          @Override public Iterable<Dept> apply(WResult<List<Dept>> result) throws Exception {
+            return result.getContent();
+          }
+        })
+        .filter(new Predicate<Dept>() {
+          @Override public boolean test(Dept dept) throws Exception {
+            return item.getDept_cd().equals(dept.getDept_cd());
+          }
+        })
+        .toList()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<List<Dept>>() {
+          @DebugLog @Override public void accept(List<Dept> depts) throws Exception {
+            if (depts.size() > 0) {
+              view.showEditProjDialog(item, depts.get(0).getDept_nm());
+            }
+          }
+        }, new Consumer<Throwable>() {
+          @Override public void accept(Throwable throwable) throws Exception {
+            view.showMessage(throwable.getMessage());
+          }
+        }));
   }
 }

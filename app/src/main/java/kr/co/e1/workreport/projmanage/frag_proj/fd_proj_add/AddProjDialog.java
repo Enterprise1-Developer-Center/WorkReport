@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
@@ -30,7 +31,7 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
   @BindView(R.id.root_view) FrameLayout rootView;
   @BindView(R.id.start_date_edittext) EditText startDateEdittext;
   @BindView(R.id.end_date_edittext) EditText endDateEdittext;
-  @BindView(R.id.dept_name_edittext) EditText deptCdEdittext;
+  @BindView(R.id.dept_name_edittext) EditText deptNameEdittext;
 
   @Inject AddProjDialogPresenter presenter;
 
@@ -66,7 +67,7 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
       String projName = projNameEdittext.getText().toString().trim();
       String startDate = startDateEdittext.getText().toString().trim();
       String endDate = endDateEdittext.getText().toString().trim();
-      String deptCd = deptCdEdittext.getText().toString().trim();
+      String deptCd = deptNameEdittext.getText().toString().trim();
       presenter.onAddClick(projCode, projName, startDate, endDate, deptCd);
     };
   }
@@ -75,18 +76,13 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
     return view -> dismiss();
   }
 
-  @OnClick({ R.id.start_date_edittext, R.id.end_date_edittext, R.id.dept_name_edittext })
-  void onClick(View view) {
-    presenter.onClick(view.getId());
-  }
-
-  @Override public void showStartDatePickerDialog(int $year, int $month, int $day) {
+  @DebugLog @Override public void showStartDatePickerDialog(int $year, int $month, int $day) {
     new DatePickerDialog(getContext(),
         (datePicker, year, month, day) -> presenter.onStartDateSet(year, month, day), $year, $month,
         $day).show();
   }
 
-  @Override public void showEndDatePickerDialog(int $year, int $month, int $day) {
+  @DebugLog @Override public void showEndDatePickerDialog(int $year, int $month, int $day) {
     new DatePickerDialog(getContext(),
         (datePicker, year, month, day) -> presenter.onEndDateSet(year, month, day), $year, $month,
         $day).show();
@@ -113,7 +109,7 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
   }
 
   @Override public void showDeptName(String dept) {
-    deptCdEdittext.setText(dept);
+    deptNameEdittext.setText(dept);
   }
 
   @Override public void showSuccessMessage(String msg) {
@@ -137,5 +133,17 @@ public class AddProjDialog extends BaseAlertDialogFragment implements AddProjDia
   @Override public void onDetach() {
     presenter.onDetach();
     super.onDetach();
+  }
+
+  @OnClick(R.id.start_date_edittext) void onStartDateEditTextClick() {
+    presenter.onStartDateEditTextClick(startDateEdittext.getText().toString().trim());
+  }
+
+  @OnClick(R.id.end_date_edittext) void onEndDateEditTextClick() {
+    presenter.onEndDateEditTextClick(endDateEdittext.getText().toString().trim());
+  }
+
+  @OnClick(R.id.dept_name_edittext) void onDeptNameEditTextClick() {
+    presenter.onDeptNameEditText(deptNameEdittext.getText().toString().trim());
   }
 }

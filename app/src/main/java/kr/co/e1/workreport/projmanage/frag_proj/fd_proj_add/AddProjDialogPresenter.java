@@ -8,8 +8,6 @@ import android.support.annotation.StringRes;
 
 public interface AddProjDialogPresenter {
 
-  void onClick(int id);
-
   void onStartDateSet(int year, int month, int day);
 
   void onEndDateSet(int year, int month, int day);
@@ -19,6 +17,12 @@ public interface AddProjDialogPresenter {
   void onDeptsItemClick(String dept);
 
   void onAddClick(String projCode, String projName, String startDate, String endDate, String deptCd);
+
+  void onStartDateEditTextClick(String startDate);
+
+  void onEndDateEditTextClick(String endDate);
+
+  void onDeptNameEditText(String deptName);
 
   interface View {
 

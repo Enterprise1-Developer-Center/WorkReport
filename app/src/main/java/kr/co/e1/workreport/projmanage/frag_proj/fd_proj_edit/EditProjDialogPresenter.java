@@ -17,13 +17,18 @@ public interface EditProjDialogPresenter {
 
   void onDeptsItemClick(String dept);
 
-  void onActivityCreate(Project project);
+  void onActivityCreate(Project project, String deptName);
 
-  void onEditClick(String projCode, String projName, String startDate, String endDate, String deptCd);
+  void onEditClick(String projCode, String projName, String startDate, String endDate,
+      String deptCd);
 
   void onDelClick(String projCode);
 
-  void onClick(int id, String deptName);
+  void onStartDateEditTextClick(Project project);
+
+  void onEndDateEditTextClick(Project project);
+
+  void onDeptNameEditText(String deptName);
 
   interface View {
 
@@ -41,6 +46,8 @@ public interface EditProjDialogPresenter {
 
     void showDeptName(String dept);
 
+    void showDeptName();
+
     void showSuccessMessage(String msg);
 
     void showMessage(String msg);
@@ -50,5 +57,9 @@ public interface EditProjDialogPresenter {
     void disableProjectCode();
 
     void showProject(Project project);
+
+    void showProjectCode(String proj_cd);
+
+    void showProjectName(String proj_nm);
   }
 }

@@ -18,7 +18,6 @@ import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2018. 1. 15
@@ -65,8 +64,7 @@ public class EditProjDialog extends BaseAlertDialogFragment
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    Timber.d("presenter = " + presenter);
-    presenter.onActivityCreate(project);
+    presenter.onActivityCreate(project, deptName);
   }
 
   @Override protected int getLayoutResId() {
@@ -129,7 +127,11 @@ public class EditProjDialog extends BaseAlertDialogFragment
   }
 
   @Override public void showDeptName(String dept) {
-    deptNameEdittext.setText(dept);
+    deptNameEdittext.setText(deptName);
+  }
+
+  @Override public void showDeptName() {
+    deptNameEdittext.setText(deptName);
   }
 
   @Override public void showSuccessMessage(String msg) {
@@ -156,11 +158,17 @@ public class EditProjDialog extends BaseAlertDialogFragment
   }
 
   @Override public void showProject(Project project) {
-    projCodeEdittext.setText(project.getProj_cd());
-    projNameEdittext.setText(project.getProj_nm());
     startDateEdittext.setText(project.getProj_sdate());
     endDateEdittext.setText(project.getProj_edate());
     deptNameEdittext.setText(deptName);
+  }
+
+  @Override public void showProjectCode(String proj_cd) {
+    projCodeEdittext.setText(proj_cd);
+  }
+
+  @Override public void showProjectName(String proj_nm) {
+    projNameEdittext.setText(proj_nm);
   }
 
   @Override public void onDetach() {
@@ -168,8 +176,15 @@ public class EditProjDialog extends BaseAlertDialogFragment
     presenter.onDetach();
   }
 
-  @OnClick({ R.id.start_date_edittext, R.id.end_date_edittext, R.id.dept_name_edittext })
-  void onClick(View view) {
-    presenter.onClick(view.getId(), deptNameEdittext.getText().toString().trim());
+  @OnClick(R.id.start_date_edittext) void onStartDateEditTextClick() {
+    presenter.onStartDateEditTextClick(project);
+  }
+
+  @OnClick(R.id.end_date_edittext) void onEndDateEditTextClick() {
+    presenter.onEndDateEditTextClick(project);
+  }
+
+  @OnClick(R.id.dept_name_edittext) void onDeptNameEditTextClick() {
+    presenter.onDeptNameEditText(deptNameEdittext.getText().toString().trim());
   }
 }

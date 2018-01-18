@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.framework.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -70,10 +71,59 @@ public class DateUtils {
     return format.format(calendar.getTime());
   }
 
-  public static String getDateString(int year, int month, int dayOfMonth, String pattern, Locale locale) {
+  public static String getDateString(int year, int month, int dayOfMonth, String pattern,
+      Locale locale) {
     SimpleDateFormat format = new SimpleDateFormat(pattern, locale);
     Calendar calendar = Calendar.getInstance();
     calendar.set(year, month, dayOfMonth);
     return format.format(calendar.getTime());
+  }
+
+  public static Date convertStringToDate(String dateString, String format) {
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+    try {
+      return simpleDateFormat.parse(dateString);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  public static String convertStringToFormatString(String dateString, String fromFormat,
+      String toFormat, Locale locale) {
+    SimpleDateFormat fromSimpleDateFormat = new SimpleDateFormat(fromFormat, locale);
+
+    try {
+      Date date = fromSimpleDateFormat.parse(dateString);
+      SimpleDateFormat toSimpleDateFormat = new SimpleDateFormat(toFormat, locale);
+      return toSimpleDateFormat.format(date);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  public static String convertStringToFormatString(String dateString, String fromFormat,
+      String toFormat) {
+    SimpleDateFormat fromSimpleDateFormat = new SimpleDateFormat(fromFormat);
+
+    try {
+      Date date = fromSimpleDateFormat.parse(dateString);
+      SimpleDateFormat toSimpleDateFormat = new SimpleDateFormat(toFormat);
+      return toSimpleDateFormat.format(date);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  public static Date convertStringToDate(String dateString, String format, Locale locale) {
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, locale);
+    try {
+      return simpleDateFormat.parse(dateString);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }

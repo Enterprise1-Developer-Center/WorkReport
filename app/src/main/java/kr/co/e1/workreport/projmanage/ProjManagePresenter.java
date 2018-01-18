@@ -12,10 +12,14 @@ public interface ProjManagePresenter {
 
   void onFabClick(Fragment item);
 
+  void onTabSelected(int position);
+
   interface View {
 
-    void setViewPager();
-
     void setTabLayout();
+
+    void showProjListFragment();
+
+    void showEmpListFragment();
   }
 }

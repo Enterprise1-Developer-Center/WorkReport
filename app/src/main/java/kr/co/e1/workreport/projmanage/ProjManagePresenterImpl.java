@@ -18,16 +18,26 @@ public class ProjManagePresenterImpl implements ProjManagePresenter {
   }
 
   @Override public void onCreated() {
-    view.setViewPager();
     view.setTabLayout();
+    view.showProjListFragment();
   }
 
   @Override public void onFabClick(Fragment item) {
-    if(item instanceof ProjListFragment || item instanceof EmpListFragment) {
+    if (item instanceof ProjListFragment || item instanceof EmpListFragment) {
       OnFabClickListener onFabClickListener = (OnFabClickListener) item;
       if (onFabClickListener != null) {
         onFabClickListener.onFabClick();
       }
+    }
+  }
+
+  @Override public void onTabSelected(int position) {
+    if (position == ProjMPos.PROJ.getValue()) {
+      view.showProjListFragment();
+    } else if (position == ProjMPos.EMPL.getValue()) {
+      view.showEmpListFragment();
+    } else {
+      new RuntimeException("What tab..?");
     }
   }
 }

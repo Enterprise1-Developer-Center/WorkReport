@@ -17,12 +17,12 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       >
-    <android.support.v4.view.ViewPager
-        android:id="@id/viewpager"
+    <FrameLayout
+        android:id="@id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-    </android.support.v4.view.ViewPager>
+        android:orientation="vertical"
+        />
     <android.support.design.widget.FloatingActionButton
         android:id="@id/fab"
         android:layout_width="wrap_content"

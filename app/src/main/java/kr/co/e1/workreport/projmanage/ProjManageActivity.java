@@ -3,7 +3,6 @@ package kr.co.e1.workreport.projmanage;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -12,33 +11,49 @@ import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseActivity;
+import kr.co.e1.workreport.framework.interfaces.OnSimpleTabSelectedListener;
+import kr.co.e1.workreport.framework.utils.ObjectUtils;
+import kr.co.e1.workreport.projmanage.frag_emp.EmpListFragment;
+import kr.co.e1.workreport.projmanage.frag_proj.ProjListFragment;
 
 /**
  * Created by jaeho on 2018. 1. 12
  */
 
 public class ProjManageActivity extends BaseActivity implements ProjManagePresenter.View {
-  @BindView(R.id.viewpager) ViewPager viewPager;
   @BindView(R.id.tabs) TabLayout tabLayout;
   @Inject ProjManagePresenter presenter;
-  @Inject ProjManageAdapter adapter;
 
   @Override protected void onCreated(Bundle savedInstanceState) {
     presenter.onCreated();
   }
 
-  @Override public void setViewPager() {
-    viewPager.setAdapter(adapter);
-    tabLayout.setupWithViewPager(viewPager);
+  @Override public void setTabLayout() {
+    tabLayout.addTab(
+        tabLayout.newTab().setIcon(R.drawable.ic_whatshot).setText(R.string.project_list));
+    tabLayout.addTab(
+        tabLayout.newTab().setIcon(R.drawable.ic_group).setText(R.string.employee_list));
+    tabLayout.addOnTabSelectedListener(new OnSimpleTabSelectedListener() {
+      @Override public void onTabSelected(TabLayout.Tab tab) {
+        presenter.onTabSelected(tab.getPosition());
+      }
+    });
   }
 
-  @Override public void setTabLayout() {
-    tabLayout.getTabAt(ProjMPos.PROJ.getValue())
-        .setText(R.string.project_list)
-        .setIcon(R.drawable.ic_train);
-    tabLayout.getTabAt(ProjMPos.EMPL.getValue())
-        .setText(R.string.employee_list)
-        .setIcon(R.drawable.ic_group);
+  @Override public void showProjListFragment() {
+    getSupportFragmentManager().beginTransaction()
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
+        .replace(R.id.fragment_container, ProjListFragment.newInstance())
+        .commit();
+  }
+
+  @Override public void showEmpListFragment() {
+    getSupportFragmentManager().beginTransaction()
+        .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
+            R.animator.enter_animation, R.animator.exit_animation)
+        .replace(R.id.fragment_container, EmpListFragment.newInstance())
+        .commit();
   }
 
   @Override protected int getLayoutResID() {
@@ -63,7 +78,8 @@ public class ProjManageActivity extends BaseActivity implements ProjManagePresen
   }
 
   @OnClick(R.id.fab) void onFabClick() {
-    presenter.onFabClick(adapter.getItem(viewPager.getCurrentItem()));
+    Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+    if (!ObjectUtils.isEmpty(f)) presenter.onFabClick(f);
   }
 
   @Inject DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;

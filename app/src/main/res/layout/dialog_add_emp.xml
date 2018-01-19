@@ -14,14 +14,18 @@
       >
     <EditText
         android:id="@id/user_name_edittext"
+        android:clickable="true"
         android:drawableLeft="@drawable/ic_person"
-        android:hint="@string/project_code"
+        android:focusable="false"
+        android:hint="@string/emp_name"
         android:inputType="number"
         style="@style/AddProjectEditText"
         />
     <EditText
         android:id="@id/proj_name_edittext"
+        android:clickable="true"
         android:drawableLeft="@drawable/ic_whatshot"
+        android:focusable="false"
         android:hint="@string/project_name"
         android:inputType="text"
         style="@style/AddProjectEditText"

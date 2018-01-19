@@ -91,4 +91,5 @@
   <string name="dept_code">부서코드</string>
   <string name="emp_code">투입형태</string>
   <string name="add_emp">투입인원 추가</string>
+  <string name="emp_name">투입원</string>
 </resources>

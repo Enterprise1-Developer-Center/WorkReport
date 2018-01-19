@@ -53,10 +53,6 @@ public class EmpListFragment extends BaseFragment
     return true;
   }
 
-  @DebugLog @Override public void onFabClick() {
-
-  }
-
   @Override public void setRecyclerView() {
     LinearLayoutManager layout = new LinearLayoutManager(getContext());
     recyclerview.setLayoutManager(layout);
@@ -83,6 +79,11 @@ public class EmpListFragment extends BaseFragment
   }
 
   @Override public void onItemClick(Employee item) {
+
+  }
+
+  @DebugLog @Override public void onFabClick() {
     new AddEmpDialog().show(getFragmentManager(), AddEmpDialog.class.getSimpleName());
   }
+
 }

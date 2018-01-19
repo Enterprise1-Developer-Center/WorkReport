@@ -8,7 +8,6 @@ import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.projmanage.frag_emp.model.Employee;
-import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListViewHolder;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -31,12 +30,16 @@ public class EmpListAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
-    if (viewHolder instanceof ProjListViewHolder) {
-      ProjListViewHolder holder = (ProjListViewHolder) viewHolder;
-      Employee emp = items.get(position);
+    if (viewHolder instanceof EmpListViewHolder) {
+      EmpListViewHolder holder = (EmpListViewHolder) viewHolder;
+      Employee item = items.get(position);
+      holder.userNameTextview.setText(item.getUser_nm());
+      holder.startDateTextview.setText(item.getUser_sdate());
+      holder.endDateTextview.setText(item.getUser_edate());
+      holder.projNameTextview.setText(item.getProj_nm());
       holder.itemView.setOnClickListener(view -> {
         if (onRecyclerItemClickListener != null) {
-          onRecyclerItemClickListener.onItemClick(emp);
+          onRecyclerItemClickListener.onItemClick(item);
         }
       });
     }

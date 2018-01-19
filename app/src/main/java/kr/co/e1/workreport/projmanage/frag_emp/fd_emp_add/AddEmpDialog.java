@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import butterknife.BindView;
@@ -130,9 +129,15 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
   }
 
   @Override public void showUserChoiceDialog(List<User> items) {
+    String[] itemArray = new String[items.size()];
+    for (int i = 0; i < items.size(); i++) {
+      itemArray[i] = items.get(i).getUser_nm();
+    }
+    /*
     ArrayAdapter arrayAdapter =
-        new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, items);
-    new AlertDialog.Builder(getContext()).setSingleChoiceItems(arrayAdapter, 0, null).show();
+        new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, itemArray);
+    */
+    new AlertDialog.Builder(getContext()).setSingleChoiceItems(itemArray, 0, null).show();
   }
 
   @Override public void onDetach() {

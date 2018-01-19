@@ -1,6 +1,11 @@
 package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network;
 
+import io.reactivex.Single;
+import java.util.List;
+import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.network.WResult;
+import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 
 /**
  * Created by jaeho on 2018. 1. 16
@@ -15,4 +20,7 @@ public class AddEmpNetwork extends NetworkHelper<AddEmpApi> {
     return AddEmpApi.class;
   }
 
+  public Single<WResult<List<User>>> getUsers() {
+    return getApi().getUsers(PreferencesUtils.getToken());
+  }
 }

@@ -1,6 +1,8 @@
 package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
 
 import android.support.annotation.StringRes;
+import java.util.List;
+import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 
 /**
  * Created by jaeho on 2018. 1. 16
@@ -24,6 +26,10 @@ public interface AddEmpDialogPresenter {
 
   void onEmpTypeEditTextClick(String deptName);
 
+  void onUserNameEditTextClick(String userName);
+
+  void onProjNameEditTextClick(String projName);
+
   interface View {
 
     void showStartDatePickerDialog(int year, int month, int day);
@@ -45,5 +51,7 @@ public interface AddEmpDialogPresenter {
     void showMessage(String msg);
 
     void setButtonEnabled(boolean enabled);
+
+    void showUserChoiceDialog(List<User> items);
   }
 }

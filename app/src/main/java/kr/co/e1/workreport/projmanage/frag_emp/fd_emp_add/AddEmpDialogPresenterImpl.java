@@ -1,11 +1,14 @@
 package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
 
 import hugo.weaving.DebugLog;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import java.util.Calendar;
 import java.util.Locale;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.framework.utils.MyTextUtils;
+import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network.AddEmpNetwork;
 
 /**
@@ -77,6 +80,25 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
   }
 
   @Override public void onEmpTypeEditTextClick(String deptName) {
+
+  }
+
+  @Override public void onUserNameEditTextClick(String userName) {
+    compositeDisposable.add(network.getUsers()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(result -> {
+          if(result.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            view.showUserChoiceDialog(result.getContent());
+          } else {
+            view.showMessage(result.getMsg());
+          }
+        }, throwable -> {
+          view.showMessage(throwable.getMessage());
+        }));
+  }
+
+  @Override public void onProjNameEditTextClick(String projName) {
 
   }
 }

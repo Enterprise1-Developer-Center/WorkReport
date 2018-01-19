@@ -6,15 +6,18 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
+import java.util.List;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
+import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -126,9 +129,23 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
     alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(enabled);
   }
 
+  @Override public void showUserChoiceDialog(List<User> items) {
+    ArrayAdapter arrayAdapter =
+        new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, items);
+    new AlertDialog.Builder(getContext()).setSingleChoiceItems(arrayAdapter, 0, null).show();
+  }
+
   @Override public void onDetach() {
     presenter.onDetach();
     super.onDetach();
+  }
+
+  @OnClick(R.id.user_name_edittext) void onUserNameEditTextClick() {
+    presenter.onUserNameEditTextClick(userNameEdittext.getText().toString().trim());
+  }
+
+  @OnClick(R.id.proj_name_edittext) void onProjNameEditTextClick() {
+    presenter.onProjNameEditTextClick(projNameEdittext.getText().toString().trim());
   }
 
   @OnClick(R.id.start_date_edittext) void onStartDateEditTextClick() {

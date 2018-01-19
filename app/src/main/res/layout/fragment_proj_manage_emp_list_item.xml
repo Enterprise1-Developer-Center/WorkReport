@@ -18,25 +18,33 @@
       android:id="@+id/start_date_textview"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-
-      android:drawableLeft="@drawable/ic_flight_takeoff"
-      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       android:textColor="@android:color/darker_gray"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/user_name_textview"
       tools:text="2018-01-01"
       />
   <TextView
-      android:id="@+id/end_date_textview"
+      android:id="@+id/textView2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
-
-      android:drawableLeft="@drawable/ic_flight_land"
+      android:layout_marginStart="4dp"
+      android:text="~"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
       android:textColor="@android:color/darker_gray"
       app:layout_constraintStart_toEndOf="@+id/start_date_textview"
       app:layout_constraintTop_toTopOf="@+id/start_date_textview"
+      tools:text="~"
+      />
+  <TextView
+      android:id="@+id/end_date_textview"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="4dp"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      android:textColor="@android:color/darker_gray"
+      app:layout_constraintStart_toEndOf="@+id/textView2"
+      app:layout_constraintTop_toTopOf="@+id/textView2"
       tools:text="2018-01-01"
       />
   <TextView
@@ -67,11 +75,11 @@
   <TextView
       android:id="@+id/proj_name_textview"
       android:layout_width="match_parent"
-      android:layout_height="30dp"
+      android:layout_height="wrap_content"
       android:ellipsize="end"
       android:gravity="center_vertical|top"
       android:maxLines="1"
-      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       android:textColor="@android:color/darker_gray"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"

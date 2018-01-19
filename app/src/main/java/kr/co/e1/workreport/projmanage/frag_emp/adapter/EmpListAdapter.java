@@ -3,10 +3,12 @@ package kr.co.e1.workreport.projmanage.frag_emp.adapter;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.projmanage.frag_emp.model.Employee;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -33,9 +35,13 @@ public class EmpListAdapter extends BaseRecyclerAdapter
     if (viewHolder instanceof EmpListViewHolder) {
       EmpListViewHolder holder = (EmpListViewHolder) viewHolder;
       Employee item = items.get(position);
+      holder.startDateTextview.setText(
+          DateUtils.convertStringToFormatString(item.getUser_sdate(), "yyyyMMdd",
+              "yyyy-MM-dd (EEE)", Locale.KOREA));
+      holder.endDateTextview.setText(
+          DateUtils.convertStringToFormatString(item.getUser_edate(), "yyyyMMdd",
+              "yyyy-MM-dd (EEE)", Locale.KOREA));
       holder.userNameTextview.setText(item.getUser_nm());
-      holder.startDateTextview.setText(item.getUser_sdate());
-      holder.endDateTextview.setText(item.getUser_edate());
       holder.projNameTextview.setText(item.getProj_nm());
       holder.itemView.setOnClickListener(view -> {
         if (onRecyclerItemClickListener != null) {

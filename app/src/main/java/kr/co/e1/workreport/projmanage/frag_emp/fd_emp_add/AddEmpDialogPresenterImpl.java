@@ -1,0 +1,82 @@
+package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
+
+import hugo.weaving.DebugLog;
+import io.reactivex.disposables.CompositeDisposable;
+import java.util.Calendar;
+import java.util.Locale;
+import kr.co.e1.workreport.framework.utils.DateUtils;
+import kr.co.e1.workreport.framework.utils.MyTextUtils;
+import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network.AddEmpNetwork;
+
+/**
+ * Created by jaeho on 2018. 1. 16
+ */
+
+public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
+
+  private View view;
+  private CompositeDisposable compositeDisposable = new CompositeDisposable();
+  private AddEmpNetwork network;
+
+  public AddEmpDialogPresenterImpl(View view, AddEmpNetwork network) {
+    this.view = view;
+    this.network = network;
+  }
+
+  @DebugLog @Override public void onStartDateSet(int year, int month, int day) {
+    view.showStartDate(DateUtils.getDateString(year, month, day, "yyyy-MM-dd (EEE)", Locale.KOREA));
+  }
+
+  @DebugLog @Override public void onEndDateSet(int year, int month, int day) {
+    view.showEndDate(DateUtils.getDateString(year, month, day, "yyyy-MM-dd (EEE)", Locale.KOREA));
+  }
+
+  @Override public void onDetach() {
+    compositeDisposable.clear();
+  }
+
+  @Override public void onEmpsItemClick(String dept) {
+    view.showEmp(dept);
+  }
+
+  @Override
+  public void onAddClick(String projCode, String projName, String $startDate, String $endDate,
+      String deptName) {
+  }
+
+  @Override public void onStartDateEditTextClick(String startDate) {
+    Calendar cal = Calendar.getInstance();
+    int year = cal.get(Calendar.YEAR);
+    int month = cal.get(Calendar.MONTH);
+    int day = cal.get(Calendar.DAY_OF_MONTH);
+
+    if (!MyTextUtils.isBlank(startDate)) {
+      cal.setTime(DateUtils.convertStringToDate(startDate, "yyyy-MM-dd (EEE)", Locale.KOREA));
+      year = cal.get(Calendar.YEAR);
+      month = cal.get(Calendar.MONTH);
+      day = cal.get(Calendar.DAY_OF_MONTH);
+    }
+
+    view.showStartDatePickerDialog(year, month, day);
+  }
+
+  @Override public void onEndDateEditTextClick(String endDate) {
+    Calendar cal = Calendar.getInstance();
+    int year = cal.get(Calendar.YEAR);
+    int month = cal.get(Calendar.MONTH);
+    int day = cal.get(Calendar.DAY_OF_MONTH);
+
+    if (!MyTextUtils.isBlank(endDate)) {
+      cal.setTime(DateUtils.convertStringToDate(endDate, "yyyy-MM-dd (EEE)", Locale.KOREA));
+      year = cal.get(Calendar.YEAR);
+      month = cal.get(Calendar.MONTH);
+      day = cal.get(Calendar.DAY_OF_MONTH);
+    }
+
+    view.showEndDatePickerDialog(year, month, day);
+  }
+
+  @Override public void onEmpTypeEditTextClick(String deptName) {
+
+  }
+}

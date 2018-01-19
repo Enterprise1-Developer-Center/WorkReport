@@ -98,4 +98,6 @@
   <item name="start_date_edittext" type="id"/>
   <item name="end_date_edittext" type="id"/>
   <item name="dept_name_edittext" type="id"/>
+  <item name="user_name_edittext" type="id"/>
+  <item name="emp_type_edittext" type="id"/>
 </resources>

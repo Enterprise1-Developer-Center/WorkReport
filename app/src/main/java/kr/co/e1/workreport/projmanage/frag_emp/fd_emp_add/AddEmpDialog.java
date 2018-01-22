@@ -11,10 +11,13 @@ import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
+import java.util.List;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
+import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.fd_class.ClassDialog;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -30,6 +33,7 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
   @BindView(R.id.start_date_edittext) EditText startDateEdittext;
   @BindView(R.id.end_date_edittext) EditText endDateEdittext;
   @BindView(R.id.user_type_edittext) EditText userTypeEdittext;
+  @BindView(R.id.class_edittext) EditText classEditText;
   @BindView(R.id.root_view) FrameLayout rootView;
 
   private @Setter @Accessors(chain = true) OnCompleteListener onCompleteListener;
@@ -135,6 +139,13 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
         .show();
   }
 
+  @Override public void showClassChoiceDialog(List<DetailWork> items, int checkedItem) {
+    new ClassDialog().setItems(items)
+        .setCheckedItem(checkedItem)
+        .setOnItemClickListener((item, dialog) -> presenter.onClassItemClick(item, dialog))
+        .show(getFragmentManager(), ClassDialog.class.getSimpleName());
+  }
+
   @Override public void showProjName(String projName) {
     projNameEdittext.setText(projName);
   }
@@ -145,6 +156,10 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
 
   @Override public void showUserType(String userTypeName) {
     userTypeEdittext.setText(userTypeName);
+  }
+
+  @Override public void showClassCode(String mcls_cd) {
+    classEditText.setText(mcls_cd);
   }
 
   @Override public void onDetach() {
@@ -170,5 +185,9 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
 
   @OnClick(R.id.user_type_edittext) void onEmpTypeEditTextClick() {
     presenter.onUserTypeEditTextClick(userTypeEdittext.getText().toString().trim());
+  }
+
+  @OnClick(R.id.class_edittext) void onClassEditTextClick() {
+    presenter.onClassEditTextClick(classEditText.getText().toString().trim());
   }
 }

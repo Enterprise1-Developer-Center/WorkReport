@@ -2,6 +2,8 @@ package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
 
 import android.content.DialogInterface;
 import android.support.annotation.StringRes;
+import java.util.List;
+import kr.co.e1.workreport.common.model.DetailWork;
 
 /**
  * Created by jaeho on 2018. 1. 16
@@ -34,6 +36,10 @@ public interface AddEmpDialogPresenter {
 
   void onUserTypeOfDialogListClick(DialogInterface dialog, String userTypeName);
 
+  void onClassEditTextClick(String mclsCode);
+
+  void onClassItemClick(DetailWork item, DialogInterface dialog);
+
   interface View {
 
     void showStartDatePickerDialog(int year, int month, int day);
@@ -63,5 +69,9 @@ public interface AddEmpDialogPresenter {
     void showUserTypeChoiceDialog(String[] names, int checkedItem);
 
     void showUserType(String userTypeName);
+
+    void showClassChoiceDialog(List<DetailWork> items, int checkedItem);
+
+    void showClassCode(String mcls_cd);
   }
 }

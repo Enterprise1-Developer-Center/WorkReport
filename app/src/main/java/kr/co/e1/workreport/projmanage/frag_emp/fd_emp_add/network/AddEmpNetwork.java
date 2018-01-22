@@ -3,6 +3,7 @@ package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network;
 import io.reactivex.Single;
 import java.util.List;
 import kr.co.e1.workreport.common.PreferencesUtils;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
@@ -33,5 +34,9 @@ public class AddEmpNetwork extends NetworkHelper<AddEmpApi> {
 
   public Single<WResult<List<UserType>>> getUserTypes() {
     return getApi().getUserTypes(PreferencesUtils.getToken());
+  }
+
+  public Single<WResult<List<DetailWork>>> getCode() {
+    return getApi().getCode(PreferencesUtils.getToken());
   }
 }

@@ -15,9 +15,9 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 
 public class ClassificationDialogViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
   @BindView(R.id.code_textview) TextView codeTextview;
-  @BindView(R.id.big_class_textview) TextView bigClassTextview;
+  @BindView(R.id.large_class_textview) TextView bigClassTextview;
   @BindView(R.id.small_class_textview) TextView smallClassTextview;
-  @BindView(R.id.description_textview) TextView descriptionTextview;
+  @BindView(R.id.desc_textview) TextView descriptionTextview;
   @BindView(R.id.recyclerview_item_container) View containerView;
 
   DetailSelectableItem selectableItem;

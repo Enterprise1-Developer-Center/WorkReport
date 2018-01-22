@@ -57,6 +57,15 @@
         android:inputType="text"
         style="@style/AddProjectEditText"
         />
+    <EditText
+        android:id="@id/class_edittext"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_format_list_numbered"
+        android:focusable="false"
+        android:hint="@string/classification_code"
+        android:inputType="text"
+        style="@style/AddProjectEditText"
+        />
   </LinearLayout>
 
 </FrameLayout>

@@ -7,6 +7,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.Calendar;
 import java.util.Locale;
+import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.framework.utils.MyTextUtils;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
@@ -79,7 +80,7 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
   }
 
   @Override public void onUserTypeEditTextClick(String typeName) {
-    network.getUserTypes()
+    compositeDisposable.add(network.getUserTypes()
         .subscribeOn(Schedulers.io())
         .map(result -> UserType.convertToNameList(result.getContent()))
         .observeOn(AndroidSchedulers.mainThread())
@@ -87,7 +88,7 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
           String[] names = items.toArray(new String[items.size()]);
           int checkedItem = items.indexOf(typeName);
           view.showUserTypeChoiceDialog(names, checkedItem);
-        }, throwable -> view.showMessage(throwable.getMessage()));
+        }, throwable -> view.showMessage(throwable.getMessage())));
   }
 
   @Override public void onUserNameEditTextClick(final String userName) {
@@ -124,5 +125,20 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
   @Override public void onUserTypeOfDialogListClick(DialogInterface dialog, String userTypeName) {
     view.showUserType(userTypeName);
     dialog.dismiss();
+  }
+
+  @Override public void onClassItemClick(DetailWork item, DialogInterface dialog) {
+    view.showClassCode(item.getMcls_cd());
+    dialog.dismiss();
+  }
+
+  @Override public void onClassEditTextClick(final String mclsCode) {
+    compositeDisposable.add(network.getCode()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(result -> {
+          int checkedItem = DetailWork.indexOfMclsCode(mclsCode, result.getContent());
+          view.showClassChoiceDialog(result.getContent(), checkedItem);
+        }, throwable -> view.showMessage(throwable.getMessage())));
   }
 }

@@ -4,11 +4,13 @@ import android.content.DialogInterface;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.util.Calendar;
 import java.util.Locale;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.framework.utils.MyTextUtils;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network.AddEmpNetwork;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 
@@ -38,11 +40,7 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
   @Override public void onDetach() {
     compositeDisposable.clear();
   }
-
-  @Override public void onEmpsItemClick(String dept) {
-    view.showEmp(dept);
-  }
-
+  
   @Override
   public void onAddClick(String projCode, String projName, String $startDate, String $endDate,
       String deptName) {
@@ -94,12 +92,28 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
   }
 
   @Override public void onProjNameEditTextClick(String projName) {
-    //view.showProjNameChoiceDialog();
-    //compositeDisposable.add(network.getUsers())
+    compositeDisposable.add(network.getProjects2()
+        .subscribeOn(Schedulers.io())
+        .map(result -> result.getContent())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(projects -> {
+          String[] projectNames = Project.convertToNameArray(projects);
+          int checkedItem = Project.indexOfName(projName, projects);
+          view.showProjNamesChoiceDialog(projectNames, checkedItem);
+        }, new Consumer<Throwable>() {
+          @Override public void accept(Throwable throwable) throws Exception {
+            view.showMessage(throwable.getMessage());
+          }
+        }));
   }
 
   @Override public void onUserNameOfDialogListClick(DialogInterface dialog, String userName) {
     view.showUserName(userName);
+    dialog.dismiss();
+  }
+
+  @Override public void onProjNameOfDialogListClick(DialogInterface dialog, String projName) {
+    view.showProjName(projName);
     dialog.dismiss();
   }
 }

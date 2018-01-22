@@ -96,18 +96,6 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
     Snackbar.make(rootView, resId, Snackbar.LENGTH_SHORT).show();
   }
 
-  @Override public void showEmpsDialog(String[] items, int checkedItem) {
-    new AlertDialog.Builder(getActivity()).setSingleChoiceItems(items, checkedItem,
-        (dialogInterface, position) -> {
-          presenter.onEmpsItemClick(items[position]);
-          dialogInterface.dismiss();
-        }).show();
-  }
-
-  @Override public void showEmp(String emp) {
-    //deptNameEdittext.setText(dept);
-  }
-
   @Override public void showSuccessMessage(String msg) {
     final Snackbar snackbar = Snackbar.make(rootView, msg, Snackbar.LENGTH_INDEFINITE);
     snackbar.setAction(android.R.string.ok, view -> {
@@ -129,6 +117,16 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
   @Override public void showUserChoiceDialog(final String[] names, int checkedItem) {
     new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, checkedItem,
         (dialog, which) -> presenter.onUserNameOfDialogListClick(dialog, names[which])).show();
+  }
+
+  @Override public void showProjNamesChoiceDialog(String[] projectNames, int checkedItem) {
+    new AlertDialog.Builder(getContext()).setSingleChoiceItems(projectNames, checkedItem,
+        (dialog, which) -> presenter.onProjNameOfDialogListClick(dialog, projectNames[which]))
+        .show();
+  }
+
+  @Override public void showProjName(String projName) {
+    projNameEdittext.setText(projName);
   }
 
   @Override public void showUserName(String userName) {

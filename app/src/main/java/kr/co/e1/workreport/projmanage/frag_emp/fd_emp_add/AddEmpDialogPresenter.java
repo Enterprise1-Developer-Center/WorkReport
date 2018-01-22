@@ -15,8 +15,6 @@ public interface AddEmpDialogPresenter {
 
   void onDetach();
 
-  void onEmpsItemClick(String dept);
-
   void onAddClick(String projCode, String projName, String startDate, String endDate,
       String deptCd);
 
@@ -32,6 +30,8 @@ public interface AddEmpDialogPresenter {
 
   void onUserNameOfDialogListClick(DialogInterface dialog, String userName);
 
+  void onProjNameOfDialogListClick(DialogInterface dialog, String projectName);
+
   interface View {
 
     void showStartDatePickerDialog(int year, int month, int day);
@@ -44,10 +44,6 @@ public interface AddEmpDialogPresenter {
 
     void showMessage(@StringRes int resId);
 
-    void showEmpsDialog(String[] items, int checkedItem);
-
-    void showEmp(String dept);
-
     void showSuccessMessage(String msg);
 
     void showMessage(String msg);
@@ -57,5 +53,9 @@ public interface AddEmpDialogPresenter {
     void showUserChoiceDialog(String[] names, int checkedItem);
 
     void showUserName(String userName);
+
+    void showProjNamesChoiceDialog(String[] projectNames, int checkedItem);
+
+    void showProjName(String projName);
   }
 }

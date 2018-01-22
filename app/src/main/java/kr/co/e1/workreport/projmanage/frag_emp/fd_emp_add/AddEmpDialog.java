@@ -126,8 +126,8 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
     alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(enabled);
   }
 
-  @Override public void showUserChoiceDialog(final String[] names) {
-    new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, 0,
+  @Override public void showUserChoiceDialog(final String[] names, int checkedItem) {
+    new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, checkedItem,
         (dialog, which) -> presenter.onUserNameOfDialogListClick(dialog, names[which])).show();
   }
 

@@ -54,7 +54,7 @@ public interface AddEmpDialogPresenter {
 
     void setButtonEnabled(boolean enabled);
 
-    void showUserChoiceDialog(String[] names);
+    void showUserChoiceDialog(String[] names, int checkedItem);
 
     void showUserName(String userName);
   }

@@ -84,16 +84,17 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
 
   }
 
-  @Override public void onUserNameEditTextClick(String userName) {
+  @Override public void onUserNameEditTextClick(final String userName) {
     compositeDisposable.add(network.getUsers()
         .subscribeOn(Schedulers.io())
         .map(result -> User.convertToNameArray(result.getContent()))
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(names -> view.showUserChoiceDialog(names),
+        .subscribe(names -> view.showUserChoiceDialog(names, User.indexOf(names, userName)),
             throwable -> view.showMessage(throwable.getMessage())));
   }
 
   @Override public void onProjNameEditTextClick(String projName) {
+    //view.showProjNameChoiceDialog();
 
   }
 

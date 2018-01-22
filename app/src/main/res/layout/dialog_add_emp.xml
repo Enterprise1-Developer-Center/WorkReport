@@ -49,7 +49,7 @@
         style="@style/AddProjectEditText"
         />
     <EditText
-        android:id="@id/emp_type_edittext"
+        android:id="@id/user_type_edittext"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_label_outline"
         android:focusable="false"

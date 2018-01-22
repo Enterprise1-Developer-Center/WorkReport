@@ -22,7 +22,7 @@ public interface AddEmpDialogPresenter {
 
   void onEndDateEditTextClick(String endDate);
 
-  void onEmpTypeEditTextClick(String deptName);
+  void onUserTypeEditTextClick(String deptName);
 
   void onUserNameEditTextClick(String userName);
 
@@ -31,6 +31,8 @@ public interface AddEmpDialogPresenter {
   void onUserNameOfDialogListClick(DialogInterface dialog, String userName);
 
   void onProjNameOfDialogListClick(DialogInterface dialog, String projectName);
+
+  void onUserTypeOfDialogListClick(DialogInterface dialog, String userTypeName);
 
   interface View {
 
@@ -57,5 +59,9 @@ public interface AddEmpDialogPresenter {
     void showProjNamesChoiceDialog(String[] projectNames, int checkedItem);
 
     void showProjName(String projName);
+
+    void showUserTypeChoiceDialog(String[] names, int checkedItem);
+
+    void showUserType(String userTypeName);
   }
 }

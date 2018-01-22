@@ -29,7 +29,7 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
   @BindView(R.id.proj_name_edittext) EditText projNameEdittext;
   @BindView(R.id.start_date_edittext) EditText startDateEdittext;
   @BindView(R.id.end_date_edittext) EditText endDateEdittext;
-  @BindView(R.id.emp_type_edittext) EditText empTypeEdittext;
+  @BindView(R.id.user_type_edittext) EditText userTypeEdittext;
   @BindView(R.id.root_view) FrameLayout rootView;
 
   private @Setter @Accessors(chain = true) OnCompleteListener onCompleteListener;
@@ -63,7 +63,7 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
       String projName = projNameEdittext.getText().toString().trim();
       String startDate = startDateEdittext.getText().toString().trim();
       String endDate = endDateEdittext.getText().toString().trim();
-      String emlType = empTypeEdittext.getText().toString().trim();
+      String emlType = userTypeEdittext.getText().toString().trim();
       //presenter.onAddClick(projCode, projName, startDate, endDate, deptCd);
     };
   }
@@ -116,12 +116,22 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
 
   @Override public void showUserChoiceDialog(final String[] names, int checkedItem) {
     new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, checkedItem,
-        (dialog, which) -> presenter.onUserNameOfDialogListClick(dialog, names[which])).show();
+        (dialog, which) -> presenter.onUserNameOfDialogListClick(dialog, names[which]))
+        .setNegativeButton(android.R.string.cancel, null)
+        .show();
   }
 
   @Override public void showProjNamesChoiceDialog(String[] projectNames, int checkedItem) {
     new AlertDialog.Builder(getContext()).setSingleChoiceItems(projectNames, checkedItem,
         (dialog, which) -> presenter.onProjNameOfDialogListClick(dialog, projectNames[which]))
+        .setNegativeButton(android.R.string.cancel, null)
+        .show();
+  }
+
+  @Override public void showUserTypeChoiceDialog(String[] names, int checkedItem) {
+    new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, checkedItem,
+        (dialog, which) -> presenter.onUserTypeOfDialogListClick(dialog, names[which]))
+        .setNegativeButton(android.R.string.cancel, null)
         .show();
   }
 
@@ -131,6 +141,10 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
 
   @Override public void showUserName(String userName) {
     userNameEdittext.setText(userName);
+  }
+
+  @Override public void showUserType(String userTypeName) {
+    userTypeEdittext.setText(userTypeName);
   }
 
   @Override public void onDetach() {
@@ -154,7 +168,7 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
     presenter.onEndDateEditTextClick(endDateEdittext.getText().toString().trim());
   }
 
-  @OnClick(R.id.emp_type_edittext) void onEmpTypeEditTextClick() {
-    presenter.onEmpTypeEditTextClick(empTypeEdittext.getText().toString().trim());
+  @OnClick(R.id.user_type_edittext) void onEmpTypeEditTextClick() {
+    presenter.onUserTypeEditTextClick(userTypeEdittext.getText().toString().trim());
   }
 }

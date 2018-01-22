@@ -6,6 +6,7 @@ import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
+import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model.UserType;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 
 /**
@@ -26,8 +27,11 @@ public class AddEmpNetwork extends NetworkHelper<AddEmpApi> {
   }
 
   public Single<WResult<List<Project>>> getProjects2() {
-    String header = PreferencesUtils.getToken();
     String deptCd = PreferencesUtils.getDeptCd();
     return getApi().getProjects2(PreferencesUtils.getToken(), deptCd);
+  }
+
+  public Single<WResult<List<UserType>>> getUserTypes() {
+    return getApi().getUserTypes(PreferencesUtils.getToken());
   }
 }

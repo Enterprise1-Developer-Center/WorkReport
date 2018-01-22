@@ -4,13 +4,13 @@ import android.content.DialogInterface;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.util.Calendar;
 import java.util.Locale;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.framework.utils.MyTextUtils;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
+import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model.UserType;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network.AddEmpNetwork;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 
@@ -40,7 +40,7 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
   @Override public void onDetach() {
     compositeDisposable.clear();
   }
-  
+
   @Override
   public void onAddClick(String projCode, String projName, String $startDate, String $endDate,
       String deptName) {
@@ -78,8 +78,16 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
     view.showEndDatePickerDialog(year, month, day);
   }
 
-  @Override public void onEmpTypeEditTextClick(String deptName) {
-
+  @Override public void onUserTypeEditTextClick(String typeName) {
+    network.getUserTypes()
+        .subscribeOn(Schedulers.io())
+        .map(result -> UserType.convertToNameList(result.getContent()))
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(items -> {
+          String[] names = items.toArray(new String[items.size()]);
+          int checkedItem = items.indexOf(typeName);
+          view.showUserTypeChoiceDialog(names, checkedItem);
+        }, throwable -> view.showMessage(throwable.getMessage()));
   }
 
   @Override public void onUserNameEditTextClick(final String userName) {
@@ -100,11 +108,7 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
           String[] projectNames = Project.convertToNameArray(projects);
           int checkedItem = Project.indexOfName(projName, projects);
           view.showProjNamesChoiceDialog(projectNames, checkedItem);
-        }, new Consumer<Throwable>() {
-          @Override public void accept(Throwable throwable) throws Exception {
-            view.showMessage(throwable.getMessage());
-          }
-        }));
+        }, throwable -> view.showMessage(throwable.getMessage())));
   }
 
   @Override public void onUserNameOfDialogListClick(DialogInterface dialog, String userName) {
@@ -114,6 +118,11 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
 
   @Override public void onProjNameOfDialogListClick(DialogInterface dialog, String projName) {
     view.showProjName(projName);
+    dialog.dismiss();
+  }
+
+  @Override public void onUserTypeOfDialogListClick(DialogInterface dialog, String userTypeName) {
+    view.showUserType(userTypeName);
     dialog.dismiss();
   }
 }

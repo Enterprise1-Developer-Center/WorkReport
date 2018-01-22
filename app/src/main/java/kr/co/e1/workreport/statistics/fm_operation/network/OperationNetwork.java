@@ -23,13 +23,13 @@ public class OperationNetwork extends NetworkHelper<OperationApi> {
 
   public Single<WResult<List<CurrOperationRate>>> getCurrentOperationRate(int year) {
     String header = PreferencesUtils.getToken();
-    int code = PreferencesUtils.getDeptCd();
-    return getApi().getCurrentOperationRate(header, year, code);
+    String deptCd = PreferencesUtils.getDeptCd();
+    return getApi().getCurrentOperationRate(header, year, deptCd);
   }
 
   public Single<WResult<List<YearOperationRate>>> getYearOperationRate(int year) {
     String header = PreferencesUtils.getToken();
-    int code = PreferencesUtils.getDeptCd();
-    return getApi().getYearOperationRate(header, year, code);
+    String deptCd = PreferencesUtils.getDeptCd();
+    return getApi().getYearOperationRate(header, year, deptCd);
   }
 }

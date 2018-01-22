@@ -23,8 +23,8 @@ public class ProjListNetwork extends NetworkHelper<ProjListApi> {
 
   public Single<WResult<List<Project>>> getProjects2() {
     String header = PreferencesUtils.getToken();
-    int code = PreferencesUtils.getDeptCd();
-    return getApi().getProjects2(header, code);
+    String deptCd = PreferencesUtils.getDeptCd();
+    return getApi().getProjects2(header, deptCd);
   }
 
   public Single<WResult<List<Dept>>> getDepts() {

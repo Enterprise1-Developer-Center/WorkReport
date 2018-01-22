@@ -22,7 +22,7 @@ public class OpDetailNetwork extends NetworkHelper<OpDetailApi> {
 
   public Single<WResult<List<DetailOperationRate>>> getDetailOperationRate(int year) {
     String header = PreferencesUtils.getToken();
-    int code = PreferencesUtils.getDeptCd();
-    return getApi().getDetailOperationRate(header, year, code);
+    String deptCd = PreferencesUtils.getDeptCd();
+    return getApi().getDetailOperationRate(header, year, deptCd);
   }
 }

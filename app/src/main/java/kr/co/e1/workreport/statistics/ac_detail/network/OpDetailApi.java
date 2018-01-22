@@ -15,5 +15,6 @@ import retrofit2.http.Query;
 public interface OpDetailApi {
   @GET("api/adapters/WorkReportSQL/getDetailOperationRate")
   Single<WResult<List<DetailOperationRate>>> getDetailOperationRate(
-      @Header("Authorization") String header, @Query("YEAR") int year, @Query("DEPT_CD") int code);
+      @Header("Authorization") String header, @Query("YEAR") int year,
+      @Query("DEPT_CD") String deptCd);
 }

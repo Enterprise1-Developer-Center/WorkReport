@@ -15,7 +15,7 @@ import retrofit2.http.Query;
 
 public interface ProjListApi {
   @GET("api/adapters/WorkReportSQL/getProjects2") Single<WResult<List<Project>>> getProjects2(
-      @Header("Authorization") String header, @Query("DEPT_CD") int deptCD);
+      @Header("Authorization") String header, @Query("DEPT_CD") String deptCd);
 
   @GET("api/adapters/WorkReportSQL/getDepts") Single<WResult<List<Dept>>> getDepts(
       @Header("Authorization") String header);

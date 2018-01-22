@@ -95,7 +95,7 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
 
   @Override public void onProjNameEditTextClick(String projName) {
     //view.showProjNameChoiceDialog();
-
+    //compositeDisposable.add(network.getUsers())
   }
 
   @Override public void onUserNameOfDialogListClick(DialogInterface dialog, String userName) {

@@ -17,10 +17,11 @@ public interface OperationApi {
 
   @GET("api/adapters/WorkReportSQL/getCurrentOperationRate")
   Single<WResult<List<CurrOperationRate>>> getCurrentOperationRate(
-      @Header("Authorization") String header, @Query("YEAR") int year, @Query("DEPT_CD") int code);
+      @Header("Authorization") String header, @Query("YEAR") int year,
+      @Query("DEPT_CD") String deptCd);
 
   @GET("api/adapters/WorkReportSQL/getYearOperationRate")
   Single<WResult<List<YearOperationRate>>> getYearOperationRate(
-      @Header("Authorization") String header, @Query("YEAR") int year, @Query("DEPT_CD") int code);
-
+      @Header("Authorization") String header, @Query("YEAR") int year,
+      @Query("DEPT_CD") String deptCd);
 }

@@ -11,12 +11,10 @@ import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.OnClick;
 import hugo.weaving.DebugLog;
-import java.util.List;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
-import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -128,16 +126,13 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
     alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(enabled);
   }
 
-  @Override public void showUserChoiceDialog(List<User> items) {
-    String[] itemArray = new String[items.size()];
-    for (int i = 0; i < items.size(); i++) {
-      itemArray[i] = items.get(i).getUser_nm();
-    }
-    /*
-    ArrayAdapter arrayAdapter =
-        new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, itemArray);
-    */
-    new AlertDialog.Builder(getContext()).setSingleChoiceItems(itemArray, 0, null).show();
+  @Override public void showUserChoiceDialog(final String[] names) {
+    new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, 0,
+        (dialog, which) -> presenter.onUserNameOfDialogListClick(dialog, names[which])).show();
+  }
+
+  @Override public void showUserName(String userName) {
+    userNameEdittext.setText(userName);
   }
 
   @Override public void onDetach() {

@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
 
+import android.content.DialogInterface;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -8,8 +9,8 @@ import java.util.Calendar;
 import java.util.Locale;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.framework.utils.MyTextUtils;
-import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network.AddEmpNetwork;
+import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 
 /**
  * Created by jaeho on 2018. 1. 16
@@ -86,19 +87,18 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
   @Override public void onUserNameEditTextClick(String userName) {
     compositeDisposable.add(network.getUsers()
         .subscribeOn(Schedulers.io())
+        .map(result -> User.convertToNameArray(result.getContent()))
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(result -> {
-          if(result.getResult() == NetworkHelper.RESULT_SUCCESS) {
-            view.showUserChoiceDialog(result.getContent());
-          } else {
-            view.showMessage(result.getMsg());
-          }
-        }, throwable -> {
-          view.showMessage(throwable.getMessage());
-        }));
+        .subscribe(names -> view.showUserChoiceDialog(names),
+            throwable -> view.showMessage(throwable.getMessage())));
   }
 
   @Override public void onProjNameEditTextClick(String projName) {
 
+  }
+
+  @Override public void onUserNameOfDialogListClick(DialogInterface dialog, String userName) {
+    view.showUserName(userName);
+    dialog.dismiss();
   }
 }

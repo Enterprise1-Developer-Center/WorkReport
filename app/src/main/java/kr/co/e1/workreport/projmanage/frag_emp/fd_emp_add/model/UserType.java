@@ -1,8 +1,8 @@
 package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model;
 
 import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
 import java.util.List;
+import kr.co.e1.workreport.framework.utils.ObjectUtils;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -19,7 +19,6 @@ import lombok.ToString;
     for (int i = 0; i < userTypes.size(); i++) {
       names[i] = userTypes.get(i).getTypeNm();
     }
-
     return names;
   }
 
@@ -29,14 +28,17 @@ import lombok.ToString;
         return i;
       }
     }
-    return 0;
+    return -1;
   }
 
-  public static List<String> convertToNameList(List<UserType> userTypes) {
-    List<String> names = new ArrayList<>();
-    for (UserType userType : userTypes) {
-      names.add(userType.getTypeNm());
+  public static int indexOf(UserType userType, List<UserType> userTypes) {
+    if (!ObjectUtils.isEmpty(userType)) {
+      for (int i = 0; i < userTypes.size(); i++) {
+        if (userType.getTypeCd().equals(userTypes.get(i).getTypeCd())) {
+          return i;
+        }
+      }
     }
-    return names;
+    return -1;
   }
 }

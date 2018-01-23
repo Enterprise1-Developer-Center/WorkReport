@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.support.annotation.StringRes;
 import java.util.List;
@@ -10,10 +11,6 @@ import kr.co.e1.workreport.common.model.DetailWork;
  */
 
 public interface AddEmpDialogPresenter {
-
-  void onStartDateSet(int year, int month, int day);
-
-  void onEndDateSet(int year, int month, int day);
 
   void onDetach();
 
@@ -30,21 +27,15 @@ public interface AddEmpDialogPresenter {
 
   void onProjNameEditTextClick(String projName);
 
-  void onUserNameOfDialogListClick(DialogInterface dialog, String userName);
-
-  void onProjNameOfDialogListClick(DialogInterface dialog, String projectName);
-
-  void onUserTypeOfDialogListClick(DialogInterface dialog, String userTypeName);
-
   void onClassEditTextClick(String mclsCode);
-
-  void onClassItemClick(DetailWork item, DialogInterface dialog);
 
   interface View {
 
-    void showStartDatePickerDialog(int year, int month, int day);
+    void showStartDatePickerDialog(int year, int month, int dayOfMonth,
+        DatePickerDialog.OnDateSetListener onDateSetListener);
 
-    void showEndDatePickerDialog(int year, int month, int day);
+    void showEndDatePickerDialog(int year, int month, int dayOfMonth,
+        DatePickerDialog.OnDateSetListener onDateSetListener);
 
     void showStartDate(String dateString);
 
@@ -58,19 +49,23 @@ public interface AddEmpDialogPresenter {
 
     void setButtonEnabled(boolean enabled);
 
-    void showUserChoiceDialog(String[] names, int checkedItem);
+    void showUserChoiceDialog(String[] names, int checkedItem,
+        DialogInterface.OnClickListener onClickListener);
 
     void showUserName(String userName);
 
-    void showProjNamesChoiceDialog(String[] projectNames, int checkedItem);
+    void showProjNamesChoiceDialog(String[] projectNames, int checkedItem,
+        DialogInterface.OnClickListener onClickListener);
 
     void showProjName(String projName);
 
-    void showUserTypeChoiceDialog(String[] names, int checkedItem);
+    void showUserTypeChoiceDialog(String[] names, int checkedItem,
+        DialogInterface.OnClickListener onClickListener);
 
     void showUserType(String userTypeName);
 
-    void showClassChoiceDialog(List<DetailWork> items, int checkedItem);
+    void showClassChoiceDialog(List<DetailWork> items, int checkedItem,
+        OnClassItemClickListener onClassItemClickListener);
 
     void showClassCode(String mcls_cd);
   }

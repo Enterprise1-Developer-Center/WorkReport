@@ -2,6 +2,7 @@ package kr.co.e1.workreport.main.dg_proje.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
+import kr.co.e1.workreport.framework.utils.ObjectUtils;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -24,12 +25,14 @@ import lombok.ToString;
     return names;
   }
 
-  public static int indexOfName(String projName, List<Project> projects) {
-    for (int i = 0; i < projects.size(); i++) {
-      if (projName.equals(projects.get(i).getProj_nm())) {
-        return i;
+  public static int indexOf(Project project, List<Project> projects) {
+    if (!ObjectUtils.isEmpty(project)) {
+      for (int i = 0; i < projects.size(); i++) {
+        if (project.getProj_cd().equals(projects.get(i).getProj_cd())) {
+          return i;
+        }
       }
     }
-    return 0;
+    return -1;
   }
 }

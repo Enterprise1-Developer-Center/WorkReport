@@ -64,11 +64,14 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
 
   @Override protected View.OnClickListener onPositiveClickListener() {
     return view -> {
+      String userName = userNameEdittext.getText().toString().trim();
       String projName = projNameEdittext.getText().toString().trim();
       String startDate = startDateEdittext.getText().toString().trim();
       String endDate = endDateEdittext.getText().toString().trim();
-      String emlType = userTypeEdittext.getText().toString().trim();
+      //String emlType = userTypeEdittext.getText().toString().trim();
       //presenter.onAddClick(projCode, projName, startDate, endDate, deptCd);
+
+      presenter.onAddClick(null, null, null, null, null);
     };
   }
 
@@ -76,16 +79,14 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
     return view -> dismiss();
   }
 
-  @DebugLog @Override public void showStartDatePickerDialog(int $year, int $month, int $day) {
-    new DatePickerDialog(getContext(),
-        (datePicker, year, month, day) -> presenter.onStartDateSet(year, month, day), $year, $month,
-        $day).show();
+  @DebugLog @Override public void showStartDatePickerDialog(int year, int month, int day,
+      DatePickerDialog.OnDateSetListener onDateSetListener) {
+    new DatePickerDialog(getContext(), onDateSetListener, year, month, day).show();
   }
 
-  @DebugLog @Override public void showEndDatePickerDialog(int $year, int $month, int $day) {
-    new DatePickerDialog(getContext(),
-        (datePicker, year, month, day) -> presenter.onEndDateSet(year, month, day), $year, $month,
-        $day).show();
+  @DebugLog @Override public void showEndDatePickerDialog(int year, int month, int dayOfMonth,
+      DatePickerDialog.OnDateSetListener onDateSetListener) {
+    new DatePickerDialog(getContext(), onDateSetListener, year, month, dayOfMonth).show();
   }
 
   @Override public void showStartDate(String dateString) {
@@ -118,31 +119,31 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
     alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(enabled);
   }
 
-  @Override public void showUserChoiceDialog(final String[] names, int checkedItem) {
-    new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, checkedItem,
-        (dialog, which) -> presenter.onUserNameOfDialogListClick(dialog, names[which]))
+  @Override public void showUserChoiceDialog(final String[] names, int checkedItem,
+      DialogInterface.OnClickListener onClickListener) {
+    new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, checkedItem, onClickListener)
         .setNegativeButton(android.R.string.cancel, null)
         .show();
   }
 
-  @Override public void showProjNamesChoiceDialog(String[] projectNames, int checkedItem) {
+  @Override public void showProjNamesChoiceDialog(String[] projectNames, int checkedItem,
+      DialogInterface.OnClickListener onClickListener) {
     new AlertDialog.Builder(getContext()).setSingleChoiceItems(projectNames, checkedItem,
-        (dialog, which) -> presenter.onProjNameOfDialogListClick(dialog, projectNames[which]))
+        onClickListener).setNegativeButton(android.R.string.cancel, null).show();
+  }
+
+  @Override public void showUserTypeChoiceDialog(String[] names, int checkedItem,
+      DialogInterface.OnClickListener onClickListener) {
+    new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, checkedItem, onClickListener)
         .setNegativeButton(android.R.string.cancel, null)
         .show();
   }
 
-  @Override public void showUserTypeChoiceDialog(String[] names, int checkedItem) {
-    new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, checkedItem,
-        (dialog, which) -> presenter.onUserTypeOfDialogListClick(dialog, names[which]))
-        .setNegativeButton(android.R.string.cancel, null)
-        .show();
-  }
-
-  @Override public void showClassChoiceDialog(List<DetailWork> items, int checkedItem) {
+  @Override public void showClassChoiceDialog(List<DetailWork> items, int checkedItem,
+      OnClassItemClickListener onClassItemClickListener) {
     new ClassDialog().setItems(items)
         .setCheckedItem(checkedItem)
-        .setOnItemClickListener((item, dialog) -> presenter.onClassItemClick(item, dialog))
+        .setOnItemClickListener(onClassItemClickListener)
         .show(getFragmentManager(), ClassDialog.class.getSimpleName());
   }
 

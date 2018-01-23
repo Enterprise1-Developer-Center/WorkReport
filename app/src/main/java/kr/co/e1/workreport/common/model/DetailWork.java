@@ -2,6 +2,7 @@ package kr.co.e1.workreport.common.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
+import kr.co.e1.workreport.framework.utils.ObjectUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -18,12 +19,14 @@ import lombok.experimental.Accessors;
   @SerializedName("MCLS_CD") private String mcls_cd = "no";
   @SerializedName("REMARK") private String remark = "no";
 
-  public static int indexOfMclsCode(String mclsCode, List<DetailWork> items) {
-    for (int i = 0; i < items.size(); i++) {
-      if (mclsCode.equals(items.get(i).getMcls_cd())) {
-        return i;
+  public static int indexOf(DetailWork detailWork, List<DetailWork> detailWorks) {
+    if (!ObjectUtils.isEmpty(detailWork)) {
+      for (int i = 0; i < detailWorks.size(); i++) {
+        if (detailWork.getMcls_cd().equals(detailWorks.get(i).getMcls_cd())) {
+          return i;
+        }
       }
     }
-    return 0;
+    return -1;
   }
 }

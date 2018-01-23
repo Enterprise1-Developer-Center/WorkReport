@@ -8,7 +8,7 @@ import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model.UserType;
+import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model.UserStats;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 
 /**
@@ -33,8 +33,8 @@ public class AddEmpNetwork extends NetworkHelper<AddEmpApi> {
     return getApi().getProjects2(PreferencesUtils.getToken(), deptCd);
   }
 
-  public Single<WResult<List<UserType>>> getUserTypes() {
-    return getApi().getUserTypes(PreferencesUtils.getToken());
+  public Single<WResult<List<UserStats>>> getUserStats() {
+    return getApi().getUserStats(PreferencesUtils.getToken());
   }
 
   public Single<WResult<List<DetailWork>>> getCode() {

@@ -14,7 +14,7 @@ import lombok.Data;
   private Project project;
   private String startDate;
   private String endDate;
-  private UserType userType;
+  private UserStats userStats;
   private DetailWork detailWork;
 
 }

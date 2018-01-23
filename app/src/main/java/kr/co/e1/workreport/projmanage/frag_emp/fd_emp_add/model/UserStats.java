@@ -10,19 +10,19 @@ import lombok.ToString;
  * Created by jaeho on 2018. 1. 22
  */
 
-@ToString @Getter public class UserType {
-  @SerializedName("TYPE_CD") private String typeCd;
-  @SerializedName("TYPE_NM") private String typeNm;
+@ToString @Getter public class UserStats {
+  @SerializedName("STATS") private String stats;
+  @SerializedName("STATS_NM") private String statsNm;
 
-  public static String[] convertToNameArray(List<UserType> userTypes) {
+  public static String[] convertToNameArray(List<UserStats> userTypes) {
     String[] names = new String[userTypes.size()];
     for (int i = 0; i < userTypes.size(); i++) {
-      names[i] = userTypes.get(i).getTypeNm();
+      names[i] = userTypes.get(i).getStatsNm();
     }
     return names;
   }
 
-  public static int indexOf(String typeName, List<UserType> userTypes) {
+  public static int indexOf(String typeName, List<UserStats> userTypes) {
     for (int i = 0; i < userTypes.size(); i++) {
       if (typeName.equals(userTypes.get(i))) {
         return i;
@@ -31,10 +31,10 @@ import lombok.ToString;
     return -1;
   }
 
-  public static int indexOf(UserType userType, List<UserType> userTypes) {
-    if (!ObjectUtils.isEmpty(userType)) {
+  public static int indexOf(UserStats userStats, List<UserStats> userTypes) {
+    if (!ObjectUtils.isEmpty(userStats)) {
       for (int i = 0; i < userTypes.size(); i++) {
-        if (userType.getTypeCd().equals(userTypes.get(i).getTypeCd())) {
+        if (userStats.getStats().equals(userTypes.get(i).getStats())) {
           return i;
         }
       }

@@ -83,7 +83,7 @@ public class EmpListFragment extends BaseFragment
   }
 
   @DebugLog @Override public void onFabClick() {
-    new AddEmpDialog().show(getFragmentManager(), AddEmpDialog.class.getSimpleName());
+    new AddEmpDialog().setOnCompleteListener(() -> presenter.onComplete())
+        .show(getFragmentManager(), AddEmpDialog.class.getSimpleName());
   }
-
 }

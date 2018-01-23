@@ -41,4 +41,20 @@ public class EmpListFragmentPresenterImpl implements EmpListFragmentPresenter {
           }
         }, throwable -> view.showMessage(throwable.getMessage())));
   }
+
+  @Override public void onComplete() {
+    view.removeRefresh();
+    adapterDataModel.clear();
+    compositeDisposable.add(network.getEmployees()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(results -> {
+          if (results.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            adapterDataModel.addAll(results.getContent());
+            view.refresh();
+          } else {
+            view.showMessage(results.getMsg());
+          }
+        }, throwable -> view.showMessage(throwable.getMessage())));
+  }
 }

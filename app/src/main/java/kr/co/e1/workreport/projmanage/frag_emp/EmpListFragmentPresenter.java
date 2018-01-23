@@ -10,6 +10,8 @@ public interface EmpListFragmentPresenter {
 
   void onActivityCreate();
 
+  void onComplete();
+
   interface View {
 
     void setRecyclerView();

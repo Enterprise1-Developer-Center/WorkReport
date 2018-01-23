@@ -13,7 +13,6 @@ import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model.AddEmpModelWrapp
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model.UserType;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network.AddEmpNetwork;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
-import timber.log.Timber;
 
 /**
  * Created by jaeho on 2018. 1. 16
@@ -36,10 +35,8 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
     compositeDisposable.clear();
   }
 
-  @Override
-  public void onAddClick(String projCode, String projName, String $startDate, String $endDate,
-      String deptName) {
-    Timber.d("modelWrapper = " + modelWrapper);
+  @Override public void onAddClick() {
+    
   }
 
   @Override public void onUserNameEditTextClick(final String userName) {

@@ -14,8 +14,7 @@ public interface AddEmpDialogPresenter {
 
   void onDetach();
 
-  void onAddClick(String projCode, String projName, String startDate, String endDate,
-      String deptCd);
+  void onAddClick();
 
   void onStartDateEditTextClick(String startDate);
 

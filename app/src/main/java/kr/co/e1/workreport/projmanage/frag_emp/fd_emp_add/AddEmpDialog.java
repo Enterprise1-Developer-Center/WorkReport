@@ -63,16 +63,7 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {
-    return view -> {
-      String userName = userNameEdittext.getText().toString().trim();
-      String projName = projNameEdittext.getText().toString().trim();
-      String startDate = startDateEdittext.getText().toString().trim();
-      String endDate = endDateEdittext.getText().toString().trim();
-      //String emlType = userTypeEdittext.getText().toString().trim();
-      //presenter.onAddClick(projCode, projName, startDate, endDate, deptCd);
-
-      presenter.onAddClick(null, null, null, null, null);
-    };
+    return view -> presenter.onAddClick();
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {

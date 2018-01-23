@@ -1,18 +1,24 @@
 package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
 
+import android.text.TextUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.framework.utils.MyTextUtils;
+import kr.co.e1.workreport.framework.utils.ObjectUtils;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
+import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model.AddEmpModelWrapper;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model.UserType;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network.AddEmpNetwork;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2018. 1. 16
@@ -35,8 +41,38 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
     compositeDisposable.clear();
   }
 
+  private Map<String, String> getAddFieldMap() {
+    AddEmpModelWrapper o = modelWrapper;
+    Map<String, String> fieldMap = new HashMap<>();
+    fieldMap.put("USER_SDATE", TextUtils.isEmpty(o.getStartDate()) ? "" : o.getStartDate());
+    fieldMap.put("USER_EDATE", TextUtils.isEmpty(o.getEndDate()) ? "" : o.getEndDate());
+    fieldMap.put("LCLS_CD",
+        ObjectUtils.isEmpty(o.getDetailWork()) ? "" : o.getDetailWork().getLcls_cd());
+    fieldMap.put("MCLS_CD",
+        ObjectUtils.isEmpty(o.getDetailWork()) ? "" : o.getDetailWork().getMcls_cd());
+    fieldMap.put("PROJ_CD", ObjectUtils.isEmpty(o.getProject()) ? "" : o.getProject().getProj_cd());
+    fieldMap.put("USER_ID", ObjectUtils.isEmpty(o.getUser()) ? "" : o.getUser().getUser_id());
+
+    return fieldMap;
+  }
+
   @Override public void onAddClick() {
-    
+    view.setButtonEnabled(false);
+    compositeDisposable.add(network.addEmployee(getAddFieldMap())
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(wResult -> {
+          if (wResult.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            view.showSuccessMessage(wResult.getMsg());
+          } else {
+            view.showMessage(wResult.getMsg());
+          }
+          view.setButtonEnabled(true);
+        }, throwable -> {
+          Timber.d(throwable.getMessage());
+          view.showMessage(throwable.getMessage());
+          view.setButtonEnabled(true);
+        }));
   }
 
   @Override public void onUserNameEditTextClick(final String userName) {

@@ -10,14 +10,17 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.OnClick;
+import com.jakewharton.rxbinding2.view.RxView;
 import hugo.weaving.DebugLog;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
-import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.fd_class.ClassDialog;
+import kr.co.e1.workreport.projmanage.frag_emp.fd_class.ClassDialog;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -52,6 +55,10 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
 
+    RxView.clicks(classEditText)
+        .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(o -> presenter.onClassEditTextClick(classEditText.getText().toString().trim()));
   }
 
   @Override protected int getLayoutResId() {
@@ -179,7 +186,9 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
     presenter.onUserTypeEditTextClick(userTypeEdittext.getText().toString().trim());
   }
 
+  /*
   @OnClick(R.id.class_edittext) void onClassEditTextClick() {
     presenter.onClassEditTextClick(classEditText.getText().toString().trim());
   }
+  */
 }

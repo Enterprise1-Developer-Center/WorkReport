@@ -13,7 +13,7 @@ buildscript {
     jsr_version = '1.0'
     lombok_version = '1.16.18'
     timber_version = '4.5.1'
-    //rxbinding_version = '2.0.0'
+    rxbinding_version = '2.0.0'
     rxjava_version = '2.1.6'
     rxandroid_version = '2.0.1'
     dagger_version = '2.13'

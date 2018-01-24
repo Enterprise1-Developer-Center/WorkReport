@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
+package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -11,7 +11,7 @@ import kr.co.e1.workreport.projmanage.frag_emp.fd_class.OnClassItemClickListener
  * Created by jaeho on 2018. 1. 16
  */
 
-public interface AddEmpDialogPresenter {
+public interface EditEmpDialogPresenter {
 
   void onDetach();
 

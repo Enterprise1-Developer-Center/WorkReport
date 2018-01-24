@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
+package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -29,9 +29,9 @@ import lombok.experimental.Accessors;
  * Created by jaeho on 2018. 1. 15
  */
 
-public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialogPresenter.View {
+public class EditEmpDialog extends BaseAlertDialogFragment implements EditEmpDialogPresenter.View {
 
-  @Inject AddEmpDialogPresenter presenter;
+  @Inject EditEmpDialogPresenter presenter;
   @BindView(R.id.user_name_edittext) EditText userNameEdittext;
   @BindView(R.id.proj_name_edittext) EditText projNameEdittext;
   @BindView(R.id.start_date_edittext) EditText startDateEdittext;

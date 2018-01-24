@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network;
+package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit.network;
 
 import io.reactivex.Single;
 import java.util.List;
@@ -8,20 +8,20 @@ import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.projmanage.frag_emp.model.UserStats;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
+import kr.co.e1.workreport.projmanage.frag_emp.model.UserStats;
 
 /**
  * Created by jaeho on 2018. 1. 16
  */
 
-public class AddEmpNetwork extends NetworkHelper<AddEmpApi> {
-  public AddEmpNetwork(String baseUrl) {
+public class EditEmpNetwork extends NetworkHelper<EditEmpApi> {
+  public EditEmpNetwork(String baseUrl) {
     super(baseUrl);
   }
 
-  @Override protected Class<AddEmpApi> getApiClass() {
-    return AddEmpApi.class;
+  @Override protected Class<EditEmpApi> getApiClass() {
+    return EditEmpApi.class;
   }
 
   public Single<WResult<List<User>>> getUsers() {

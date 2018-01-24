@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
+package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit;
 
 import android.text.TextUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -14,24 +14,24 @@ import kr.co.e1.workreport.framework.utils.MyTextUtils;
 import kr.co.e1.workreport.framework.utils.ObjectUtils;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit.network.EditEmpNetwork;
 import kr.co.e1.workreport.projmanage.frag_emp.model.EmpDialogModelWrapper;
-import kr.co.e1.workreport.projmanage.frag_emp.model.UserStats;
-import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network.AddEmpNetwork;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
+import kr.co.e1.workreport.projmanage.frag_emp.model.UserStats;
 import timber.log.Timber;
 
 /**
  * Created by jaeho on 2018. 1. 16
  */
 
-public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
+public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
 
   private View view;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
-  private AddEmpNetwork network;
+  private EditEmpNetwork network;
   private EmpDialogModelWrapper modelWrapper;
 
-  public AddEmpDialogPresenterImpl(View view, AddEmpNetwork network) {
+  public EditEmpDialogPresenterImpl(View view, EditEmpNetwork network) {
     this.view = view;
     this.network = network;
     this.modelWrapper = new EmpDialogModelWrapper();

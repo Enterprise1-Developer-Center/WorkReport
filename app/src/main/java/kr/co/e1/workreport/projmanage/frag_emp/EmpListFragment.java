@@ -16,6 +16,7 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.projmanage.frag_emp.adapter.EmpListAdapter;
 import kr.co.e1.workreport.projmanage.frag_emp.adapter.EmpListAdapterView;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.AddEmpDialog;
+import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit.EditEmpDialog;
 import kr.co.e1.workreport.projmanage.frag_emp.model.Employee;
 import kr.co.e1.workreport.projmanage.listener.OnFabClickListener;
 import lombok.Getter;
@@ -79,7 +80,8 @@ public class EmpListFragment extends BaseFragment
   }
 
   @Override public void onItemClick(Employee item) {
-
+    new EditEmpDialog().setOnCompleteListener(() -> presenter.onComplete())
+        .show(getFragmentManager(), EditEmpDialog.class.getSimpleName());
   }
 
   @DebugLog @Override public void onFabClick() {

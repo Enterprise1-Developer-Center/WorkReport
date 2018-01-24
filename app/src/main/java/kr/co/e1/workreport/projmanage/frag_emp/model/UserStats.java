@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.model;
+package kr.co.e1.workreport.projmanage.frag_emp.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;

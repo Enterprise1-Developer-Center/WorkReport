@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add;
+package kr.co.e1.workreport.projmanage.frag_emp.fd_class;
 
 import android.content.DialogInterface;
 import kr.co.e1.workreport.common.model.DetailWork;

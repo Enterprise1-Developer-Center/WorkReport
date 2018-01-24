@@ -15,7 +15,6 @@ import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
-import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.OnClassItemClickListener;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 

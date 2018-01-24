@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.network;
+package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit.network;
 
 import io.reactivex.Single;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Map;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.projmanage.frag_emp.model.UserStats;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
+import kr.co.e1.workreport.projmanage.frag_emp.model.UserStats;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -19,7 +19,7 @@ import retrofit2.http.Query;
  * Created by jaeho on 2018. 1. 16
  */
 
-public interface AddEmpApi {
+public interface EditEmpApi {
   @GET("api/adapters/WorkReportSQL/getUsers") Single<WResult<List<User>>> getUsers(
       @Header("Authorization") String header);
 

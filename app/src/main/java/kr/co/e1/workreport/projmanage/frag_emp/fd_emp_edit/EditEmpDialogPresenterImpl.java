@@ -16,6 +16,7 @@ import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit.network.EditEmpNetwork;
 import kr.co.e1.workreport.projmanage.frag_emp.model.EmpDialogModelWrapper;
+import kr.co.e1.workreport.projmanage.frag_emp.model.Employee;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 import kr.co.e1.workreport.projmanage.frag_emp.model.UserStats;
 import timber.log.Timber;
@@ -35,6 +36,11 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
     this.view = view;
     this.network = network;
     this.modelWrapper = new EmpDialogModelWrapper();
+  }
+
+  @Override public void onActivityCreate(Employee item) {
+    view.setListener();
+
   }
 
   @Override public void onDetach() {
@@ -57,9 +63,9 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
     return fieldMap;
   }
 
-  @Override public void onAddClick() {
+  @Override public void onEditClick() {
     view.setButtonEnabled(false);
-    compositeDisposable.add(network.addEmployee(getAddFieldMap())
+    compositeDisposable.add(network.editEmployee(getAddFieldMap())
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(wResult -> {
@@ -74,6 +80,10 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
           view.showMessage(throwable.getMessage());
           view.setButtonEnabled(true);
         }));
+  }
+
+  @Override public void onDelClick() {
+
   }
 
   @Override public void onUserNameEditTextClick(final String userName) {

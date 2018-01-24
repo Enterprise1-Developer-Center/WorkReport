@@ -86,5 +86,18 @@
       app:layout_constraintTop_toBottomOf="@+id/start_date_textview"
       tools:text="2017년 법규인증 시스템 CHG 크레딧 관리 국내적용"
       />
+  <TextView
+      android:id="@id/stats_textview"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:textAllCaps="false"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      android:textColor="@android:color/darker_gray"
+      app:layout_constraintStart_toEndOf="@+id/user_name_textview"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:text="S"
+      />
 
 </android.support.constraint.ConstraintLayout>

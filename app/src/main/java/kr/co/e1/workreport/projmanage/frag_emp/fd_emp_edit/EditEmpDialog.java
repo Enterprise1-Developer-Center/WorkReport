@@ -22,6 +22,7 @@ import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_class.ClassDialog;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_class.OnClassItemClickListener;
+import kr.co.e1.workreport.projmanage.frag_emp.model.Employee;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -40,6 +41,7 @@ public class EditEmpDialog extends BaseAlertDialogFragment implements EditEmpDia
   @BindView(R.id.class_edittext) EditText classEditText;
   @BindView(R.id.root_view) FrameLayout rootView;
 
+  private @Setter @Accessors(chain = true) Employee item;
   private @Setter @Accessors(chain = true) OnCompleteListener onCompleteListener;
 
   @Override protected boolean isNegativeButton() {
@@ -50,12 +52,19 @@ public class EditEmpDialog extends BaseAlertDialogFragment implements EditEmpDia
     return true;
   }
 
+  @Override protected boolean isNeutralButton() {
+    return true;
+  }
+
   @Override protected boolean isDagger() {
     return true;
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
+    presenter.onActivityCreate(item);
+  }
 
+  @Override public void setListener() {
     RxView.clicks(classEditText)
         .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
         .observeOn(AndroidSchedulers.mainThread())
@@ -71,7 +80,11 @@ public class EditEmpDialog extends BaseAlertDialogFragment implements EditEmpDia
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {
-    return view -> presenter.onAddClick();
+    return view -> presenter.onEditClick();
+  }
+
+  @Override protected View.OnClickListener onNeutraClickListener() {
+    return view -> presenter.onDelClick();
   }
 
   @Override protected View.OnClickListener onNegativeClickListener() {
@@ -186,10 +199,4 @@ public class EditEmpDialog extends BaseAlertDialogFragment implements EditEmpDia
   @OnClick(R.id.user_type_edittext) void onEmpTypeEditTextClick() {
     presenter.onUserTypeEditTextClick(userTypeEdittext.getText().toString().trim());
   }
-
-  /*
-  @OnClick(R.id.class_edittext) void onClassEditTextClick() {
-    presenter.onClassEditTextClick(classEditText.getText().toString().trim());
-  }
-  */
 }

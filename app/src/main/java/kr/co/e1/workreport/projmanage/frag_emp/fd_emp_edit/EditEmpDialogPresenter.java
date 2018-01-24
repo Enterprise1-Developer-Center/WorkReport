@@ -6,6 +6,7 @@ import android.support.annotation.StringRes;
 import java.util.List;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_class.OnClassItemClickListener;
+import kr.co.e1.workreport.projmanage.frag_emp.model.Employee;
 
 /**
  * Created by jaeho on 2018. 1. 16
@@ -15,7 +16,7 @@ public interface EditEmpDialogPresenter {
 
   void onDetach();
 
-  void onAddClick();
+  void onEditClick();
 
   void onStartDateEditTextClick(String startDate);
 
@@ -28,6 +29,10 @@ public interface EditEmpDialogPresenter {
   void onProjNameEditTextClick(String projName);
 
   void onClassEditTextClick(String mclsCode);
+
+  void onDelClick();
+
+  void onActivityCreate(Employee item);
 
   interface View {
 
@@ -68,5 +73,7 @@ public interface EditEmpDialogPresenter {
         OnClassItemClickListener onClassItemClickListener);
 
     void showClassCode(String mcls_cd);
+
+    void setListener();
   }
 }

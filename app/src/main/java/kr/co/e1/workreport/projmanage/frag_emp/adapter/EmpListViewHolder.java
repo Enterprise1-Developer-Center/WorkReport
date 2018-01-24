@@ -15,6 +15,7 @@ public class EmpListViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
   @BindView(R.id.end_date_textview) TextView endDateTextview;
   @BindView(R.id.user_name_textview) TextView userNameTextview;
   @BindView(R.id.proj_name_textview) TextView projNameTextview;
+  @BindView(R.id.stats_textview) TextView statsTextView;
 
   public EmpListViewHolder(View itemView) {
     super(itemView);

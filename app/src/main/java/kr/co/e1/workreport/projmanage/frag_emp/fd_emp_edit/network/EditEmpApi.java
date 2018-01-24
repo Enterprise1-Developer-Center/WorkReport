@@ -32,6 +32,6 @@ public interface EditEmpApi {
   @GET("api/adapters/WorkReportSQL/getCode") Single<WResult<List<DetailWork>>> getCode(
       @Header("Authorization") String header);
 
-  @FormUrlEncoded @POST("api/adapters/WorkReportSQL/addEmployee") Single<WResult> addEmployee(
+  @FormUrlEncoded @POST("api/adapters/WorkReportSQL/editEmployee") Single<WResult> editEmployee(
       @Header("Authorization") String header, @FieldMap Map<String, String> fieldMap);
 }

@@ -80,7 +80,7 @@ public class EmpListFragment extends BaseFragment
   }
 
   @Override public void onItemClick(Employee item) {
-    new EditEmpDialog().setOnCompleteListener(() -> presenter.onComplete())
+    new EditEmpDialog().setItem(item).setOnCompleteListener(() -> presenter.onComplete())
         .show(getFragmentManager(), EditEmpDialog.class.getSimpleName());
   }
 

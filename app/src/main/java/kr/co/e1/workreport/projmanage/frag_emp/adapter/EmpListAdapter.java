@@ -48,6 +48,7 @@ public class EmpListAdapter extends BaseRecyclerAdapter
           onRecyclerItemClickListener.onItemClick(item);
         }
       });
+      holder.statsTextView.setText(item.getStats());
     }
   }
 

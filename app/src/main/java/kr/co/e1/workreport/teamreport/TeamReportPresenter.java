@@ -24,5 +24,7 @@ public interface TeamReportPresenter {
     void showProgress();
 
     void showMessage(@StringRes int resId);
+
+    void showMessage(String msg);
   }
 }

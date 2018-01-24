@@ -4,7 +4,6 @@ import android.os.Bundle;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
-import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.network.WResult;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
@@ -39,11 +38,11 @@ public class TeamReportPresenterImpl implements TeamReportPresenter {
             adapterDataModel.addAll(result.getContent());
             view.refresh();
           } else {
-            view.showMessage(R.string.error_server_error);
+            view.showMessage(result.getMsg());
           }
           view.hideProgress();
         }, throwable -> {
-          view.showMessage(R.string.error_server_error);
+          view.showMessage(throwable.getMessage());
           view.hideProgress();
         }));
   }

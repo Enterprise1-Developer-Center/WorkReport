@@ -85,6 +85,9 @@ public class TeamReportActivity extends BaseActivity
   @Override public void showMessage(int resId) {
     Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
   }
+  @Override public void showMessage(String msg) {
+    Snackbar.make(drawer, msg, Snackbar.LENGTH_SHORT).show();
+  }
 
   @Override public void onItemClick(TeamReportContent item) {
     new TeamReportDialog().setUserId(item.getUser_id())

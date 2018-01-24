@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.projmanage.frag_emp.model;
 
+import android.text.TextUtils;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import kr.co.e1.workreport.framework.utils.ObjectUtils;
@@ -26,6 +27,16 @@ import lombok.ToString;
     if (!ObjectUtils.isEmpty(user)) {
       for (int i = 0; i < users.size(); i++) {
         if (user.getUser_id().equals(users.get(i).getUser_id())) {
+          return i;
+        }
+      }
+    }
+    return -1;
+  }
+  public static int indexOf(String userId, List<User> users) {
+    if (!TextUtils.isEmpty(userId)) {
+      for (int i = 0; i < users.size(); i++) {
+        if (userId.equals(users.get(i).getUser_id())) {
           return i;
         }
       }

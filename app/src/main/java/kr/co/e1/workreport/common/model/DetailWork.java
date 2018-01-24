@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.common.model;
 
+import android.text.TextUtils;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import kr.co.e1.workreport.framework.utils.ObjectUtils;
@@ -23,6 +24,16 @@ import lombok.experimental.Accessors;
     if (!ObjectUtils.isEmpty(detailWork)) {
       for (int i = 0; i < detailWorks.size(); i++) {
         if (detailWork.getMcls_cd().equals(detailWorks.get(i).getMcls_cd())) {
+          return i;
+        }
+      }
+    }
+    return -1;
+  }
+  public static int indexOf(String mcls_cd, List<DetailWork> detailWorks) {
+    if (!TextUtils.isEmpty(mcls_cd)) {
+      for (int i = 0; i < detailWorks.size(); i++) {
+        if (mcls_cd.equals(detailWorks.get(i).getMcls_cd())) {
           return i;
         }
       }

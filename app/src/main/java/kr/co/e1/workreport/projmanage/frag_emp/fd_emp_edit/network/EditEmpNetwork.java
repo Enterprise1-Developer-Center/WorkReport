@@ -39,4 +39,8 @@ public class EditEmpNetwork extends NetworkHelper<EditEmpApi> {
   public Single<WResult> editEmployee(Map<String, String> fieldMap) {
     return getApi().editEmployee(PreferencesUtils.getToken(), fieldMap);
   }
+
+  public Single<WResult> delEmployee(Map<String, String> fieldMap) {
+    return getApi().delEmployee(PreferencesUtils.getToken(), fieldMap);
+  }
 }

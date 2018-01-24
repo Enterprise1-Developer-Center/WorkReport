@@ -68,5 +68,7 @@ public interface EditEmpDialogPresenter {
     void showClassCode(String mcls_cd);
 
     void setListener();
+
+    void disableLayout();
   }
 }

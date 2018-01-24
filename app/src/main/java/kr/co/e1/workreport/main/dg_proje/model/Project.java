@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.main.dg_proje.model;
 
+import android.text.TextUtils;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import kr.co.e1.workreport.framework.utils.ObjectUtils;
@@ -29,6 +30,16 @@ import lombok.ToString;
     if (!ObjectUtils.isEmpty(project)) {
       for (int i = 0; i < projects.size(); i++) {
         if (project.getProj_cd().equals(projects.get(i).getProj_cd())) {
+          return i;
+        }
+      }
+    }
+    return -1;
+  }
+  public static int indexOf(String proj_cd, List<Project> projects) {
+    if (!TextUtils.isEmpty(proj_cd)) {
+      for (int i = 0; i < projects.size(); i++) {
+        if (proj_cd.equals(projects.get(i).getProj_cd())) {
           return i;
         }
       }

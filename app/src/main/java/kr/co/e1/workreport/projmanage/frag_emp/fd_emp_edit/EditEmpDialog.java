@@ -51,6 +51,14 @@ public class EditEmpDialog extends BaseAlertDialogFragment implements EditEmpDia
     return true;
   }
 
+  @Override protected int getPositiveButtonText() {
+    return R.string.update;
+  }
+
+  @Override protected int getNeutraButtonText() {
+    return R.string.del;
+  }
+
   @Override protected boolean isNeutralButton() {
     return true;
   }
@@ -70,12 +78,17 @@ public class EditEmpDialog extends BaseAlertDialogFragment implements EditEmpDia
         .subscribe(o -> presenter.onClassEditTextClick(classEditText.getText().toString().trim()));
   }
 
+  @Override public void disableLayout() {
+    userNameEdittext.setEnabled(false);
+    projNameEdittext.setEnabled(false);
+  }
+
   @Override protected int getLayoutResId() {
     return R.layout.dialog_add_emp;
   }
 
   @Override protected int getTitle() {
-    return R.string.add_emp;
+    return R.string.edit_emp;
   }
 
   @Override protected View.OnClickListener onPositiveClickListener() {

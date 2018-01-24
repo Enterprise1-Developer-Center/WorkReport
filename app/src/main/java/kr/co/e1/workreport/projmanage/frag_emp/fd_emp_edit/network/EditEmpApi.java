@@ -30,4 +30,7 @@ public interface EditEmpApi {
 
   @FormUrlEncoded @POST("api/adapters/WorkReportSQL/editEmployee") Single<WResult> editEmployee(
       @Header("Authorization") String header, @FieldMap Map<String, String> fieldMap);
+
+  @FormUrlEncoded @POST("api/adapters/WorkReportSQL/delEmployee") Single<WResult> delEmployee(
+      @Header("Authorization") String header, @FieldMap Map<String, String> fieldMap);
 }

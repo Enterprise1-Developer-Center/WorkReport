@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit;
 
-import android.text.TextUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -11,11 +10,10 @@ import java.util.Map;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.framework.utils.MyTextUtils;
-import kr.co.e1.workreport.framework.utils.ObjectUtils;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.NetworkHelper;
+import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit.model.EditEmpNetModel;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit.network.EditEmpNetwork;
-import kr.co.e1.workreport.projmanage.frag_emp.model.EmpDialogModelWrapper;
 import kr.co.e1.workreport.projmanage.frag_emp.model.Employee;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 import timber.log.Timber;
@@ -29,45 +27,49 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
   private View view;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
   private EditEmpNetwork network;
-  private EmpDialogModelWrapper modelWrapper;
+  private EditEmpNetModel netModel;
 
   public EditEmpDialogPresenterImpl(View view, EditEmpNetwork network) {
     this.view = view;
     this.network = network;
-    this.modelWrapper = new EmpDialogModelWrapper();
+    this.netModel = new EditEmpNetModel();
   }
 
   @Override public void onActivityCreate(Employee item) {
+    netModel.initialize(item);
     view.setListener();
-    view.showUserName(item.getUser_nm());
-    view.showProjName(item.getProj_nm());
-    view.showStartDate(item.getUser_sdate());
-    view.showEndDate(item.getUser_edate());
-    view.showClassCode(item.getMcls_cd());
+    view.disableLayout();
+
+    view.showUserName(netModel.getUser_nm());
+    view.showProjName(netModel.getProj_nm());
+    view.showStartDate(DateUtils.convertStringToFormatString(netModel.getUser_sdate(), "yyyyMMdd",
+        "yyyy-MM-dd (EEE)", Locale.KOREA));
+    view.showEndDate(
+        DateUtils.convertStringToFormatString(netModel.getUser_edate(), "yyyyMMdd", "yyyy-MM-dd (EEE)",
+            Locale.KOREA));
+    view.showClassCode(netModel.getMcls_cd());
   }
 
   @Override public void onDetach() {
     compositeDisposable.clear();
   }
 
-  private Map<String, String> getAddFieldMap() {
-    EmpDialogModelWrapper o = modelWrapper;
+  private Map<String, String> getEditFieldMap() {
     Map<String, String> fieldMap = new HashMap<>();
-    fieldMap.put("USER_SDATE", TextUtils.isEmpty(o.getStartDate()) ? "" : o.getStartDate());
-    fieldMap.put("USER_EDATE", TextUtils.isEmpty(o.getEndDate()) ? "" : o.getEndDate());
-    fieldMap.put("LCLS_CD",
-        ObjectUtils.isEmpty(o.getDetailWork()) ? "" : o.getDetailWork().getLcls_cd());
-    fieldMap.put("MCLS_CD",
-        ObjectUtils.isEmpty(o.getDetailWork()) ? "" : o.getDetailWork().getMcls_cd());
-    fieldMap.put("PROJ_CD", ObjectUtils.isEmpty(o.getProject()) ? "" : o.getProject().getProj_cd());
-    fieldMap.put("USER_ID", ObjectUtils.isEmpty(o.getUser()) ? "" : o.getUser().getUser_id());
+
+    fieldMap.put("USER_SDATE", netModel.getUser_sdate());
+    fieldMap.put("USER_EDATE", netModel.getUser_edate());
+    fieldMap.put("LCLS_CD", netModel.getLcls_cd());
+    fieldMap.put("MCLS_CD", netModel.getMcls_cd());
+    fieldMap.put("PROJ_CD", netModel.getProj_cd());
+    fieldMap.put("USER_ID", netModel.getUser_id());
 
     return fieldMap;
   }
 
   @Override public void onEditClick() {
     view.setButtonEnabled(false);
-    compositeDisposable.add(network.editEmployee(getAddFieldMap())
+    compositeDisposable.add(network.editEmployee(getEditFieldMap())
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(wResult -> {
@@ -85,7 +87,25 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
   }
 
   @Override public void onDelClick() {
+    view.setButtonEnabled(false);
+    Map<String, String> fieldMap = new HashMap<>();
+    fieldMap.put("PROJ_CD", netModel.getProj_cd());
+    fieldMap.put("USER_ID", netModel.getUser_id());
 
+    compositeDisposable.add(network.delEmployee(fieldMap)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(wResult -> {
+          if (wResult.getResult() == NetworkHelper.RESULT_SUCCESS) {
+            view.showSuccessMessage(wResult.getMsg());
+          } else {
+            view.showMessage(wResult.getMsg());
+          }
+          view.setButtonEnabled(true);
+        }, throwable -> {
+          view.showMessage(throwable.getMessage());
+          view.setButtonEnabled(true);
+        }));
   }
 
   @Override public void onUserNameEditTextClick(final String userName) {
@@ -95,9 +115,10 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(users -> {
           final String[] userNames = User.convertToNameArray(users);
-          final int checkedItem = User.indexOf(modelWrapper.getUser(), users);
+          int checkedItem = User.indexOf(netModel.getUser_id(), users);
           view.showUserChoiceDialog(userNames, checkedItem, (dialogInterface, which) -> {
-            modelWrapper.setUser(users.get(which));
+            netModel.setUser_id((users.get(which).getUser_id()))
+                .setUser_nm(users.get(which).getUser_nm());
             view.showUserName(userNames[which]);
             dialogInterface.dismiss();
           });
@@ -111,9 +132,10 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(projects -> {
           final String[] projectNames = Project.convertToNameArray(projects);
-          final int checkedItem = Project.indexOf(modelWrapper.getProject(), projects);
+          int checkedItem = Project.indexOf(netModel.getProj_cd(), projects);
           view.showProjNamesChoiceDialog(projectNames, checkedItem, (dialogInterface, which) -> {
-            modelWrapper.setProject(projects.get(which));
+            netModel.setProj_cd(projects.get(which).getProj_cd())
+                .setProj_nm(projects.get(which).getProj_nm());
             view.showProjName(projectNames[which]);
             dialogInterface.dismiss();
           });
@@ -135,7 +157,8 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
 
     view.showStartDatePickerDialog($year, $month, $dayOfMonth,
         (picker, year, month, dayOfMonth) -> {
-          modelWrapper.setStartDate(DateUtils.getDateString(year, month, dayOfMonth, "yyyyMMdd"));
+          netModel.setUser_sdate(DateUtils.getDateString(year, month, dayOfMonth, "yyyyMMdd"));
+
           view.showStartDate(
               DateUtils.getDateString(year, month, dayOfMonth, "yyyy-MM-dd (EEE)", Locale.KOREA));
         });
@@ -155,7 +178,7 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
     }
 
     view.showEndDatePickerDialog($year, $month, $dayOfMonth, (picker, year, month, dayOfMonth) -> {
-      modelWrapper.setEndDate(DateUtils.getDateString(year, month, dayOfMonth, "yyyyMMdd"));
+      netModel.setUser_edate(DateUtils.getDateString(year, month, dayOfMonth, "yyyyMMdd"));
       view.showEndDate(
           DateUtils.getDateString(year, month, dayOfMonth, "yyyy-MM-dd (EEE)", Locale.KOREA));
     });
@@ -166,11 +189,10 @@ public class EditEmpDialogPresenterImpl implements EditEmpDialogPresenter {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {
-          final int checkedItem =
-              DetailWork.indexOf(modelWrapper.getDetailWork(), result.getContent());
+          int checkedItem = DetailWork.indexOf(netModel.getMcls_cd(), result.getContent());
           view.showClassChoiceDialog(result.getContent(), checkedItem,
               (detailWork, dialogInterface) -> {
-                modelWrapper.setDetailWork(detailWork);
+                netModel.setMcls_cd(detailWork.getMcls_cd()).setLcls_cd(detailWork.getLcls_cd());
                 view.showClassCode(detailWork.getMcls_cd());
                 dialogInterface.dismiss();
               });

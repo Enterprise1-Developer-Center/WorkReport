@@ -1,8 +1,11 @@
-package kr.co.e1.workreport.teamreport;
+package kr.co.e1.workreport.teamreport.di;
 
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.app.MyApplication;
+import kr.co.e1.workreport.teamreport.TeamReportActivity;
+import kr.co.e1.workreport.teamreport.TeamReportPresenter;
+import kr.co.e1.workreport.teamreport.TeamReportPresenterImpl;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapterView;
 import kr.co.e1.workreport.teamreport.dialog.TeamReportDialogComponent;
@@ -19,7 +22,7 @@ import kr.co.e1.workreport.teamreport.network.TeamReportNetwork;
 
   @Provides TeamReportPresenter provideTeamReportPresenter(TeamReportPresenter.View view,
       TeamReportActivity teamReportActivity, TeamReportNetwork network) {
-    return new TeamReportPresenterImpl(view, teamReportActivity.adapter, network);
+    return new TeamReportPresenterImpl(view, teamReportActivity.getAdapter(), network);
   }
 
   @Provides TeamReportAdapter provideTeamReportAdapter(TeamReportActivity teamReportActivity) {
@@ -28,7 +31,7 @@ import kr.co.e1.workreport.teamreport.network.TeamReportNetwork;
 
   @Provides TeamReportAdapterView provideTeamReportAdapterView(
       TeamReportActivity teamReportActivity) {
-    return teamReportActivity.adapter;
+    return teamReportActivity.getAdapter();
   }
 
   @Provides TeamReportNetwork provideTeamReportNetwork() {

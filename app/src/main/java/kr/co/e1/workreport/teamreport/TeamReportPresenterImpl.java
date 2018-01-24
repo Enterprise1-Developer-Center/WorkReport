@@ -19,7 +19,7 @@ public class TeamReportPresenterImpl implements TeamReportPresenter {
   private BaseAdapterDataModel<TeamReportContent> adapterDataModel;
   private TeamReportNetwork network;
 
-  TeamReportPresenterImpl(TeamReportPresenter.View view,
+  public TeamReportPresenterImpl(TeamReportPresenter.View view,
       BaseAdapterDataModel<TeamReportContent> adapterDataModel, TeamReportNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;

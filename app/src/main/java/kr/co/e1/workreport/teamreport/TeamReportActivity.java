@@ -21,6 +21,7 @@ import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapter;
 import kr.co.e1.workreport.teamreport.adapter.TeamReportAdapterView;
 import kr.co.e1.workreport.teamreport.model.TeamReportContent;
 import kr.co.e1.workreport.teamreport.dialog.TeamReportDialog;
+import lombok.Getter;
 
 /**
  * Created by jaeho on 2017. 10. 31
@@ -32,7 +33,7 @@ public class TeamReportActivity extends BaseActivity
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
 
-  @Inject TeamReportAdapter adapter;
+  @Getter @Inject TeamReportAdapter adapter;
   @Inject TeamReportAdapterView adapterView;
   @Inject TeamReportPresenter presenter;
 

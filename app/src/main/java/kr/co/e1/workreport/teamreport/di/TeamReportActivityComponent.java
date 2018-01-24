@@ -1,7 +1,8 @@
-package kr.co.e1.workreport.teamreport;
+package kr.co.e1.workreport.teamreport.di;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
+import kr.co.e1.workreport.teamreport.TeamReportActivity;
 import kr.co.e1.workreport.teamreport.dialog.TeamReportDialogProvider;
 
 /**

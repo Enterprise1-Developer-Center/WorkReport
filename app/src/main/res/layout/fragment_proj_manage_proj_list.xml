@@ -11,5 +11,13 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:background="@android:color/white"
-      tools:listitem = "@layout/fragment_proj_manage_proj_list_item"/>
+      tools:listitem="@layout/fragment_proj_manage_proj_list_item"
+      />
+  <ProgressBar
+      android:id="@id/progress_bar"
+      android:layout_width="@dimen/dp_34"
+      android:layout_height="@dimen/dp_34"
+      android:layout_gravity="center"
+      android:visibility="gone"
+      />
 </FrameLayout>

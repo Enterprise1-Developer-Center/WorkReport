@@ -3,6 +3,7 @@ package kr.co.e1.workreport.projmanage.frag_emp;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import java.util.concurrent.TimeUnit;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.projmanage.frag_emp.model.Employee;
@@ -28,9 +29,10 @@ public class EmpListFragmentPresenterImpl implements EmpListFragmentPresenter {
 
   @Override public void onActivityCreate() {
     view.setRecyclerView();
-
+    view.showProgress();
     compositeDisposable.add(network.getEmployees()
         .subscribeOn(Schedulers.io())
+        .delay(200, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(results -> {
           if (results.getResult() == NetworkHelper.RESULT_SUCCESS) {
@@ -39,10 +41,15 @@ public class EmpListFragmentPresenterImpl implements EmpListFragmentPresenter {
           } else {
             view.showMessage(results.getMsg());
           }
-        }, throwable -> view.showMessage(throwable.getMessage())));
+          view.hideProgress();
+        }, throwable -> {
+          view.showMessage(throwable.getMessage());
+          view.hideProgress();
+        }));
   }
 
   @Override public void onComplete() {
+    view.showProgress();
     view.removeRefresh();
     adapterDataModel.clear();
     compositeDisposable.add(network.getEmployees()
@@ -55,6 +62,10 @@ public class EmpListFragmentPresenterImpl implements EmpListFragmentPresenter {
           } else {
             view.showMessage(results.getMsg());
           }
-        }, throwable -> view.showMessage(throwable.getMessage())));
+          view.hideProgress();
+        }, throwable -> {
+          view.showMessage(throwable.getMessage());
+          view.hideProgress();
+        }));
   }
 }

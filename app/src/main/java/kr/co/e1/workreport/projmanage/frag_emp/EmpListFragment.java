@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import butterknife.BindView;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
@@ -30,6 +32,7 @@ public class EmpListFragment extends BaseFragment
     OnRecyclerItemClickListener<Employee> {
 
   @BindView(R.id.recyclerview) RecyclerView recyclerview;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) FrameLayout rootView;
   @Inject @Getter EmpListAdapter adapter;
   @Inject EmpListAdapterView adapterView;
@@ -69,6 +72,14 @@ public class EmpListFragment extends BaseFragment
 
   @Override public void showMessage(String msg) {
     Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showProgress() {
+    progressBar.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void hideProgress() {
+    progressBar.setVisibility(View.GONE);
   }
 
   @Override public void refresh() {

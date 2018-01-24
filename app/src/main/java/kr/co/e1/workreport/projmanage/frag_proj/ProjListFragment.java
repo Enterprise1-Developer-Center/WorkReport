@@ -5,13 +5,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
 import butterknife.BindView;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.Constants;
 import kr.co.e1.workreport.framework.BaseFragment;
-import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.projmanage.frag_proj.adapter.ProjListAdapter;
@@ -29,6 +29,7 @@ public class ProjListFragment extends BaseFragment
     implements ProjListFragmentPresenter.View, OnFabClickListener,
     OnRecyclerItemClickListener<Project> {
   @BindView(R.id.root_view) View rootView;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
   @Inject @Getter ProjListAdapter adapter;
   @Inject ProjListAdapterView adapterView;
@@ -84,7 +85,7 @@ public class ProjListFragment extends BaseFragment
   }
 
   @Override public void onFabClick() {
-    new AddProjDialog().setOnCompleteListener(() -> presenter.onAddProjComplete())
+    new AddProjDialog().setOnCompleteListener(() -> presenter.onComplete())
         .show(getFragmentManager(), AddProjDialog.class.getSimpleName());
   }
 
@@ -95,11 +96,15 @@ public class ProjListFragment extends BaseFragment
   @Override public void showEditProjDialog(Project item, String deptName) {
     new EditProjDialog().setProject(item)
         .setDeptName(deptName)
-        .setOnCompleteListener(new OnCompleteListener() {
-          @Override public void onComplete() {
-            presenter.onEditProjComplete();
-          }
-        })
+        .setOnCompleteListener(() -> presenter.onComplete())
         .show(getFragmentManager(), EditProjDialog.class.getSimpleName());
+  }
+
+  @Override public void showProgress() {
+    progressBar.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void hideProgress() {
+    progressBar.setVisibility(View.GONE);
   }
 }

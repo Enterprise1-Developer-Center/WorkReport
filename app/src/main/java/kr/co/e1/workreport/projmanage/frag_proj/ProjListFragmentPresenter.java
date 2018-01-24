@@ -13,9 +13,7 @@ public interface ProjListFragmentPresenter {
 
   void onDetach();
 
-  void onAddProjComplete();
-
-  void onEditProjComplete();
+  void onComplete();
 
   void onItemClick(Project item);
 
@@ -32,5 +30,9 @@ public interface ProjListFragmentPresenter {
     void showMessage(String msg);
 
     void showEditProjDialog(Project item, String deptName);
+
+    void showProgress();
+
+    void hideProgress();
   }
 }

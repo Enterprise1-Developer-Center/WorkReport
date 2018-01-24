@@ -37,6 +37,7 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
 
   @Override public void onActivityCreate() {
     view.setRecyclerView();
+    view.showProgress();
     compositeDisposable.add(network.getProjects2()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -47,31 +48,19 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
           } else {
             view.showMessage(R.string.error_server_error);
           }
-        }, throwable -> view.showMessage(throwable.getMessage())));
+          view.hideProgress();
+        }, throwable -> {
+          view.showMessage(throwable.getMessage());
+          view.hideProgress();
+        }));
   }
 
   @Override public void onDetach() {
     compositeDisposable.clear();
   }
 
-  @Override public void onAddProjComplete() {
-    view.removeRefresh();
-    adapterDataModel.clear();
-    compositeDisposable.add(network.getProjects2()
-        .subscribeOn(Schedulers.io())
-        .delay(200, TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(results -> {
-          if (results.getResult() == NetworkHelper.RESULT_SUCCESS) {
-            adapterDataModel.addAll(results.getContent());
-            view.refresh();
-          } else {
-            view.showMessage(R.string.error_server_error);
-          }
-        }, throwable -> view.showMessage(R.string.error_server_error)));
-  }
-
-  @Override public void onEditProjComplete() {
+  @Override public void onComplete() {
+    view.showProgress();
     view.removeRefresh();
     adapterDataModel.clear();
     compositeDisposable.add(network.getProjects2()
@@ -85,7 +74,11 @@ public class ProjListFragmentPresenterImpl implements ProjListFragmentPresenter 
           } else {
             view.showMessage(results.getMsg());
           }
-        }, throwable -> view.showMessage(throwable.getMessage())));
+          view.hideProgress();
+        }, throwable -> {
+          view.showMessage(throwable.getMessage());
+          view.hideProgress();
+        }));
   }
 
   @Override public void onItemClick(final Project item) {

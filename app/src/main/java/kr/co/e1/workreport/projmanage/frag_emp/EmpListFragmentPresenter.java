@@ -23,5 +23,8 @@ public interface EmpListFragmentPresenter {
 
     void showMessage(String msg);
 
+    void showProgress();
+
+    void hideProgress();
   }
 }

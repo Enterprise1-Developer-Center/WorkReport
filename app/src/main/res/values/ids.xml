@@ -99,7 +99,6 @@
   <item name="end_date_edittext" type="id"/>
   <item name="dept_name_edittext" type="id"/>
   <item name="user_name_edittext" type="id"/>
-  <item name="user_type_edittext" type="id"/>
   <item name="class_edittext" type="id"/>
   <item name="stats_textview" type="id"/>
 </resources>

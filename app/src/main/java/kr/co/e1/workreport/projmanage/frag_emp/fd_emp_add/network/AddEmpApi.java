@@ -6,7 +6,6 @@ import java.util.Map;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.projmanage.frag_emp.model.UserStats;
 import kr.co.e1.workreport.projmanage.frag_emp.model.User;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -25,9 +24,6 @@ public interface AddEmpApi {
 
   @GET("api/adapters/WorkReportSQL/getProjects2") Single<WResult<List<Project>>> getProjects2(
       @Header("Authorization") String header, @Query("DEPT_CD") String deptCd);
-
-  @GET("api/adapters/WorkReportSQL/getUserStats") Single<WResult<List<UserStats>>> getUserStats(
-      @Header("Authorization") String header);
 
   @GET("api/adapters/WorkReportSQL/getCode") Single<WResult<List<DetailWork>>> getCode(
       @Header("Authorization") String header);

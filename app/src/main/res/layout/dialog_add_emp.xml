@@ -49,15 +49,6 @@
         style="@style/AddProjectEditText"
         />
     <EditText
-        android:id="@id/user_type_edittext"
-        android:clickable="true"
-        android:drawableLeft="@drawable/ic_label_outline"
-        android:focusable="false"
-        android:hint="@string/emp_code"
-        android:inputType="text"
-        style="@style/AddProjectEditText"
-        />
-    <EditText
         android:id="@id/class_edittext"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_format_list_numbered"

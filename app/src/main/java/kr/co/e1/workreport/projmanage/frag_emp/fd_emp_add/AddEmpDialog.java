@@ -36,7 +36,6 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
   @BindView(R.id.proj_name_edittext) EditText projNameEdittext;
   @BindView(R.id.start_date_edittext) EditText startDateEdittext;
   @BindView(R.id.end_date_edittext) EditText endDateEdittext;
-  @BindView(R.id.user_type_edittext) EditText userTypeEdittext;
   @BindView(R.id.class_edittext) EditText classEditText;
   @BindView(R.id.root_view) FrameLayout rootView;
 
@@ -131,13 +130,6 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
         onClickListener).setNegativeButton(android.R.string.cancel, null).show();
   }
 
-  @Override public void showUserTypeChoiceDialog(String[] names, int checkedItem,
-      DialogInterface.OnClickListener onClickListener) {
-    new AlertDialog.Builder(getContext()).setSingleChoiceItems(names, checkedItem, onClickListener)
-        .setNegativeButton(android.R.string.cancel, null)
-        .show();
-  }
-
   @Override public void showClassChoiceDialog(List<DetailWork> items, int checkedItem,
       OnClassItemClickListener onClassItemClickListener) {
     new ClassDialog().setItems(items)
@@ -152,10 +144,6 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
 
   @Override public void showUserName(String userName) {
     userNameEdittext.setText(userName);
-  }
-
-  @Override public void showUserType(String userTypeName) {
-    userTypeEdittext.setText(userTypeName);
   }
 
   @Override public void showClassCode(String mcls_cd) {
@@ -182,14 +170,4 @@ public class AddEmpDialog extends BaseAlertDialogFragment implements AddEmpDialo
   @OnClick(R.id.end_date_edittext) void onEndDateEditTextClick() {
     presenter.onEndDateEditTextClick(endDateEdittext.getText().toString().trim());
   }
-
-  @OnClick(R.id.user_type_edittext) void onEmpTypeEditTextClick() {
-    presenter.onUserTypeEditTextClick(userTypeEdittext.getText().toString().trim());
-  }
-
-  /*
-  @OnClick(R.id.class_edittext) void onClassEditTextClick() {
-    presenter.onClassEditTextClick(classEditText.getText().toString().trim());
-  }
-  */
 }

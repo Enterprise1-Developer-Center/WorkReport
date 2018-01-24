@@ -52,7 +52,6 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
         ObjectUtils.isEmpty(o.getDetailWork()) ? "" : o.getDetailWork().getMcls_cd());
     fieldMap.put("PROJ_CD", ObjectUtils.isEmpty(o.getProject()) ? "" : o.getProject().getProj_cd());
     fieldMap.put("USER_ID", ObjectUtils.isEmpty(o.getUser()) ? "" : o.getUser().getUser_id());
-    fieldMap.put("STATS", ObjectUtils.isEmpty(o.getUserStats()) ? "" : o.getUserStats().getStats());
 
     return fieldMap;
   }
@@ -147,22 +146,6 @@ public class AddEmpDialogPresenterImpl implements AddEmpDialogPresenter {
       view.showEndDate(
           DateUtils.getDateString(year, month, dayOfMonth, "yyyy-MM-dd (EEE)", Locale.KOREA));
     });
-  }
-
-  @Override public void onUserTypeEditTextClick(final String typeName) {
-    compositeDisposable.add(network.getUserStats()
-        .subscribeOn(Schedulers.io())
-        .map(result -> result.getContent())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(userTypes -> {
-          final String[] names = UserStats.convertToNameArray(userTypes);
-          final int checkedItem = UserStats.indexOf(modelWrapper.getUserStats(), userTypes);
-          view.showUserTypeChoiceDialog(names, checkedItem, (dialogInterface, which) -> {
-            modelWrapper.setUserStats(userTypes.get(which));
-            view.showUserType(names[which]);
-            dialogInterface.dismiss();
-          });
-        }, throwable -> view.showMessage(throwable.getMessage())));
   }
 
   @Override public void onClassEditTextClick(final String mclsCode) {

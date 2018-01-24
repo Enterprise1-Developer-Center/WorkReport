@@ -22,8 +22,6 @@ public interface EditEmpDialogPresenter {
 
   void onEndDateEditTextClick(String endDate);
 
-  void onUserTypeEditTextClick(String deptName);
-
   void onUserNameEditTextClick(String userName);
 
   void onProjNameEditTextClick(String projName);
@@ -63,11 +61,6 @@ public interface EditEmpDialogPresenter {
         DialogInterface.OnClickListener onClickListener);
 
     void showProjName(String projName);
-
-    void showUserTypeChoiceDialog(String[] names, int checkedItem,
-        DialogInterface.OnClickListener onClickListener);
-
-    void showUserType(String userTypeName);
 
     void showClassChoiceDialog(List<DetailWork> items, int checkedItem,
         OnClassItemClickListener onClassItemClickListener);

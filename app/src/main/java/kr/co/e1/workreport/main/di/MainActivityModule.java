@@ -1,8 +1,11 @@
-package kr.co.e1.workreport.main;
+package kr.co.e1.workreport.main.di;
 
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.app.MyApplication;
+import kr.co.e1.workreport.main.MainActivity;
+import kr.co.e1.workreport.main.MainPresenter;
+import kr.co.e1.workreport.main.MainPresenterImpl;
 import kr.co.e1.workreport.main.adapter.MainAdapterView;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
 import kr.co.e1.workreport.main.dg_class.ClassificationDialogComponent;
@@ -23,8 +26,9 @@ import kr.co.e1.workreport.main.network.MainNetwork;
     return mainActivity;
   }
 
-  @Provides MainPresenter provideMainPresenter(MainPresenter.View view, MainActivity activity, MainNetwork network) {
-    return new MainPresenterImpl(view, activity.adapter, network);
+  @Provides MainPresenter provideMainPresenter(MainPresenter.View view, MainActivity activity,
+      MainNetwork network) {
+    return new MainPresenterImpl(view, activity.getAdapter(), network);
   }
 
   @Provides MainReportAdapter provideReportAdapter(MainActivity activity) {
@@ -32,7 +36,7 @@ import kr.co.e1.workreport.main.network.MainNetwork;
   }
 
   @Provides MainAdapterView provideBaseAdapterView(MainActivity activity) {
-    return activity.adapter;
+    return activity.getAdapter();
   }
 
   @Provides MainNetwork provideMainNetwork() {

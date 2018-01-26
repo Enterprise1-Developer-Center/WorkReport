@@ -19,7 +19,7 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
   private StatisticsNetwork network;
   private Disposable disposable;
 
-  StatisticsPresenterImpl(StatisticsPresenter.View view, StatisticsNetwork network) {
+  public StatisticsPresenterImpl(StatisticsPresenter.View view, StatisticsNetwork network) {
     this.view = view;
     this.network = network;
   }

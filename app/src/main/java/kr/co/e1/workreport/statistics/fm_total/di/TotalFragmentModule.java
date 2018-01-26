@@ -1,8 +1,12 @@
-package kr.co.e1.workreport.statistics.fm_total;
+package kr.co.e1.workreport.statistics.fm_total.di;
 
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.app.MyApplication;
+import kr.co.e1.workreport.statistics.fm_total.TotalChartDataGen;
+import kr.co.e1.workreport.statistics.fm_total.TotalFragment;
+import kr.co.e1.workreport.statistics.fm_total.TotalFragmentPresenter;
+import kr.co.e1.workreport.statistics.fm_total.TotalFragmentPresenterImpl;
 import kr.co.e1.workreport.statistics.fm_total.network.TotalNetwork;
 
 /**

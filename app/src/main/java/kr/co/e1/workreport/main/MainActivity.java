@@ -40,6 +40,7 @@ import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.projmanage.ProjManageActivity;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
+import lombok.Getter;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener, MainPresenter.View,
@@ -51,7 +52,7 @@ public class MainActivity extends BaseActivity
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
-  @Inject MainReportAdapter adapter;
+  @Inject @Getter MainReportAdapter adapter;
   @Inject MainAdapterView adapterView;
   @Inject MainPresenter presenter;
 

@@ -1,7 +1,8 @@
-package kr.co.e1.workreport.main;
+package kr.co.e1.workreport.main.di;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
+import kr.co.e1.workreport.main.MainActivity;
 import kr.co.e1.workreport.main.dg_class.ClassificationDialogProvider;
 import kr.co.e1.workreport.main.dg_login.LoginFragmentProvider;
 import kr.co.e1.workreport.main.dg_pass.PasswordDialogProvider;

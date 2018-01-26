@@ -19,7 +19,7 @@ public class OperationFragmentPresenterImpl implements OperationFragmentPresente
   private OperationNetwork network;
   private ChartDataGen chartDataGen;
 
-  OperationFragmentPresenterImpl(View view, OperationNetwork network, ChartDataGen chartDataGen) {
+  public OperationFragmentPresenterImpl(View view, OperationNetwork network, ChartDataGen chartDataGen) {
     this.view = view;
     this.network = network;
     this.chartDataGen = chartDataGen;

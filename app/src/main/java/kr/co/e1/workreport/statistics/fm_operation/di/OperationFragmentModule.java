@@ -1,8 +1,12 @@
-package kr.co.e1.workreport.statistics.fm_operation;
+package kr.co.e1.workreport.statistics.fm_operation.di;
 
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.app.MyApplication;
+import kr.co.e1.workreport.statistics.fm_operation.ChartDataGen;
+import kr.co.e1.workreport.statistics.fm_operation.OperationFragment;
+import kr.co.e1.workreport.statistics.fm_operation.OperationFragmentPresenter;
+import kr.co.e1.workreport.statistics.fm_operation.OperationFragmentPresenterImpl;
 import kr.co.e1.workreport.statistics.fm_operation.network.OperationNetwork;
 
 /**

@@ -1,13 +1,16 @@
-package kr.co.e1.workreport.statistics;
+package kr.co.e1.workreport.statistics.di;
 
 import android.widget.ArrayAdapter;
 import dagger.Module;
 import dagger.Provides;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.app.MyApplication;
+import kr.co.e1.workreport.statistics.StatisticsActivity;
+import kr.co.e1.workreport.statistics.StatisticsPresenter;
+import kr.co.e1.workreport.statistics.StatisticsPresenterImpl;
 import kr.co.e1.workreport.statistics.dg_create.di.CreateDbComponent;
-import kr.co.e1.workreport.statistics.fm_operation.OperationFragmentComponent;
-import kr.co.e1.workreport.statistics.fm_total.TotalFragmentComponent;
+import kr.co.e1.workreport.statistics.fm_operation.di.OperationFragmentComponent;
+import kr.co.e1.workreport.statistics.fm_total.di.TotalFragmentComponent;
 import kr.co.e1.workreport.statistics.network.StatisticsNetwork;
 
 /**

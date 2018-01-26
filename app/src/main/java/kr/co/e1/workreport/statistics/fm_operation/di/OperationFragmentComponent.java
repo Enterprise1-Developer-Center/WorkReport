@@ -1,7 +1,8 @@
-package kr.co.e1.workreport.statistics.fm_operation;
+package kr.co.e1.workreport.statistics.fm_operation.di;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
+import kr.co.e1.workreport.statistics.fm_operation.OperationFragment;
 
 /**
  * Created by jaeho on 2017. 11. 2

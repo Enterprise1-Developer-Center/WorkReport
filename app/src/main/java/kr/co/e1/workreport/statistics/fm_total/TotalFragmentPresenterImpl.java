@@ -18,7 +18,8 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
   private TotalChartDataGen chartDataGen;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-  TotalFragmentPresenterImpl(View view, TotalNetwork network, TotalChartDataGen chartDataGen) {
+  public TotalFragmentPresenterImpl(View view, TotalNetwork network,
+      TotalChartDataGen chartDataGen) {
     this.view = view;
     this.network = network;
     this.chartDataGen = chartDataGen;
@@ -44,24 +45,6 @@ public class TotalFragmentPresenterImpl implements TotalFragmentPresenter {
           view.showMessage(R.string.error_server_error);
           view.hideProgress();
         }));
-    /*
-    compositeDisposable.add(network.getWorkingDayTOT()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(result -> {
-          if (result.getResult() == WResult.RESULT_SUCCESS) {
-            chartDataGen.setItems(result.getContent());
-            view.showChart(chartDataGen.getBarData(), chartDataGen.getQuarters());
-            view.showTotal(chartDataGen.getTotal());
-          } else {
-            view.showMessage(result.getMsg());
-          }
-          view.hideProgress();
-        }, throwable -> {
-          view.showMessage(R.string.error_server_error);
-          view.hideProgress();
-        }));
-    */
   }
 
   @Override public void onDetach() {

@@ -5,9 +5,9 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
-import kr.co.e1.workreport.main.MainActivityComponent;
+import kr.co.e1.workreport.main.di.MainActivityComponent;
 import kr.co.e1.workreport.projmanage.di.ProjManageActivityComponent;
-import kr.co.e1.workreport.statistics.StatisticsActivityComponent;
+import kr.co.e1.workreport.statistics.di.StatisticsActivityComponent;
 import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivityComponent;
 import kr.co.e1.workreport.teamreport.di.TeamReportActivityComponent;
 

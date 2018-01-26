@@ -21,6 +21,6 @@ public class TotalNetwork extends NetworkHelper<TotalApi> {
   }
 
   public Single<WResult<List<TotalSummary>>> getSummaryTotal(int year) {
-    return getApi().getSummaryTotal(PreferencesUtils.getToken(), PreferencesUtils.getDept(), year);
+    return getApi().getSummaryTotal(PreferencesUtils.getToken(), PreferencesUtils.getDeptCd(), year);
   }
 }

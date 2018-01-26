@@ -15,6 +15,6 @@ import retrofit2.http.Query;
 public interface TotalApi {
   @GET("api/adapters/WorkReportSQL/getSummaryTotal")
   Single<WResult<List<TotalSummary>>> getSummaryTotal(@Header("Authorization") String header,
-      @Query("DEPT_NM") String deptNm, @Query("YEAR") int year);
+      @Query("DEPT_CD") String deptCd, @Query("YEAR") int year);
 
 }

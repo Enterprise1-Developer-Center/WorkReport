@@ -4,6 +4,7 @@ import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
 import kr.co.e1.workreport.statistics.dg_create.di.CreateDbProvider;
+import kr.co.e1.workreport.statistics.fm_holiday.di.HolidayFragmentProvider;
 import kr.co.e1.workreport.statistics.fm_operation.di.OperationFragmentProvider;
 import kr.co.e1.workreport.statistics.fm_total.di.TotalFragmentProvider;
 
@@ -13,7 +14,7 @@ import kr.co.e1.workreport.statistics.fm_total.di.TotalFragmentProvider;
 
 @Subcomponent(modules = {
     StatisticsActivityModule.class, OperationFragmentProvider.class, TotalFragmentProvider.class,
-    CreateDbProvider.class
+    CreateDbProvider.class, HolidayFragmentProvider.class
 }) public interface StatisticsActivityComponent extends AndroidInjector<StatisticsActivity> {
   @Subcomponent.Builder abstract class Builder extends AndroidInjector.Builder<StatisticsActivity> {
 

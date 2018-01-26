@@ -6,12 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-      android:text="준비중입니다."
+  <android.support.v7.widget.RecyclerView
+      android:id="@id/recyclerview"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@android:color/white"
+      tools:listitem = "@layout/fragment_proj_manage_emp_list_item"/>
+  <ProgressBar
+      android:id="@id/progress_bar"
+      android:layout_width="@dimen/dp_34"
+      android:layout_height="@dimen/dp_34"
+      android:visibility="gone"
       android:layout_gravity="center"
-      tools:text="Holiday"
       />
 </FrameLayout>

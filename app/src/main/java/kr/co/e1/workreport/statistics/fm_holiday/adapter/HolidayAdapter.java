@@ -1,5 +1,7 @@
 package kr.co.e1.workreport.statistics.fm_holiday.adapter;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,20 +34,28 @@ public class HolidayAdapter extends BaseRecyclerAdapter
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
+    Context context = viewHolder.itemView.getContext();
+    Resources res = context.getResources();
     if (viewHolder instanceof HolidayViewHolder) {
       HolidayViewHolder holder = (HolidayViewHolder) viewHolder;
       Holiday holiday = items.get(position);
-      holder.holidayTextView.setText(
-          DateUtils.convertStringToFormatString(holiday.getYmd(), "yyyyMMdd", "yyyy-MM-dd (EEEE)",
-              Locale.KOREA));
-      holder.holidayNameTextView.setText(
-          holiday.getName().indexOf("요일") == -1 ? holiday.getName() : "");
+      holder.holidayTextView.setText(replaceDate(holiday.getYmd()));
+      holder.holidayNameTextView.setText(replaceDateName(res, holiday.getName()));
       holder.itemView.setOnClickListener(view -> {
         if (onRecyclerItemClickListener != null) {
           onRecyclerItemClickListener.onItemClick(holiday);
         }
       });
     }
+  }
+
+  private String replaceDateName(Resources res, String name) {
+    return !name.contains(res.getString(R.string.day_of_week)) ? name : null;
+  }
+
+  private String replaceDate(String ymd) {
+    return DateUtils.convertStringToFormatString(ymd, "yyyyMMdd", "yyyy-MM-dd (EEEE)",
+        Locale.KOREA);
   }
 
   @Override public int getItemCount() {

@@ -101,4 +101,6 @@
   <item name="user_name_edittext" type="id"/>
   <item name="class_edittext" type="id"/>
   <item name="stats_textview" type="id"/>
+  <item name="holiday_name_textview" type="id"/>
+  <item name="holiday_textview" type="id"/>
 </resources>

@@ -11,8 +11,8 @@ import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
  */
 
 public class HolidayViewHolder extends BaseRecyclerAdapter.BaseViewHolder {
-  @BindView(R.id.proj_code_textview) TextView projCdTextview;
-  @BindView(R.id.proj_name_textview) TextView projNmTextview;
+  @BindView(R.id.holiday_textview) TextView holidayTextView;
+  @BindView(R.id.holiday_name_textview) TextView holidayNameTextView;
 
   public HolidayViewHolder(View itemView) {
     super(itemView);

@@ -36,8 +36,8 @@ public class HolidayFragmentPresenterImpl implements HolidayFragmentPresenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(results -> {
           if (results.getResult() == NetworkHelper.RESULT_SUCCESS) {
-            //adapterDataModel.addAll(results.getContent());
-            //view.refresh();
+            adapterDataModel.addAll(results.getContent());
+            view.refresh();
           } else {
             view.showMessage(results.getMsg());
           }

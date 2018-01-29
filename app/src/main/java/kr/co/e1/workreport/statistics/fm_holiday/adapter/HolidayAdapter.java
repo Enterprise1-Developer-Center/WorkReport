@@ -3,10 +3,12 @@ package kr.co.e1.workreport.statistics.fm_holiday.adapter;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterDataModel;
 import kr.co.e1.workreport.framework.adapter.BaseRecyclerAdapter;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
+import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.statistics.fm_holiday.model.Holiday;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -26,13 +28,18 @@ public class HolidayAdapter extends BaseRecyclerAdapter
   }
 
   @Override public int getLayoutRes(int viewType) {
-    return R.layout.fragment_proj_manage_proj_list_item;
+    return R.layout.fragment_holiday_item;
   }
 
   @Override public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
     if (viewHolder instanceof HolidayViewHolder) {
       HolidayViewHolder holder = (HolidayViewHolder) viewHolder;
       Holiday holiday = items.get(position);
+      holder.holidayTextView.setText(
+          DateUtils.convertStringToFormatString(holiday.getYmd(), "yyyyMMdd", "yyyy-MM-dd (EEEE)",
+              Locale.KOREA));
+      holder.holidayNameTextView.setText(
+          holiday.getName().indexOf("요일") == -1 ? holiday.getName() : "");
       holder.itemView.setOnClickListener(view -> {
         if (onRecyclerItemClickListener != null) {
           onRecyclerItemClickListener.onItemClick(holiday);

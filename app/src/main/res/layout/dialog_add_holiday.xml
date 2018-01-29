@@ -17,17 +17,18 @@
         android:clickable="true"
         android:drawableLeft="@drawable/ic_today"
         android:focusable="false"
-        android:hint="@string/holiday"
+        android:hint="@string/date"
         android:inputType="date"
         style="@style/AddProjectEditText"
         />
     <EditText
-        android:id="@id/legal_holiday_edittext"
+        android:id="@id/holiday_name_edittext"
         android:clickable="true"
         android:drawableLeft="@drawable/ic_nature_people"
         android:focusable="false"
         android:hint="@string/legal_holiday"
         android:inputType="text"
+        android:textColor="@android:color/holo_red_dark"
         style="@style/AddProjectEditText"
         />
   </LinearLayout>

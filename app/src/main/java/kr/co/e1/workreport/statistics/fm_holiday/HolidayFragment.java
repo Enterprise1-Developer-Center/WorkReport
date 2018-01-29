@@ -93,7 +93,7 @@ public class HolidayFragment extends BaseFragment
   }
 
   @Override public void showAddHolidayDialog() {
-    new AddHolidayDialog().show(getFragmentManager(), AddHolidayDialog.class.getSimpleName());
+    new AddHolidayDialog().setOnCompleteListener(() -> presenter.onComplete()).show(getFragmentManager(), AddHolidayDialog.class.getSimpleName());
   }
 
   @DebugLog @Override public void onItemClick(Holiday item) {

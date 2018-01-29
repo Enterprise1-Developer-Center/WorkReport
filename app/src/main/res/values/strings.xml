@@ -96,4 +96,5 @@
   <string name="edit_emp">투입인원 수정</string>
   <string name="day_of_week">요일</string>
   <string name="legal_holiday">토,일을 제외한 공휴일</string>
+  <string name="date">날짜</string>
 </resources>

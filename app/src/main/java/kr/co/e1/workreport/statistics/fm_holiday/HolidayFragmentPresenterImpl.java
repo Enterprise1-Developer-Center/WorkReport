@@ -28,10 +28,13 @@ public class HolidayFragmentPresenterImpl implements HolidayFragmentPresenter {
     this.adapterDataModel = adapterDataModel;
   }
 
+  private int year = 2018;
+
   @Override public void onActivityCreate(Bundle args) {
+    year = args.getInt("year");
     view.setRecyclerView();
     view.showProgress();
-    compositeDisposable.add(network.getHolidays(args.getInt("year"))
+    compositeDisposable.add(network.getHolidays(year)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(results -> {
@@ -56,7 +59,7 @@ public class HolidayFragmentPresenterImpl implements HolidayFragmentPresenter {
     view.showProgress();
     view.removeRefresh();
     adapterDataModel.clear();
-    compositeDisposable.add(network.getHolidays(2017)
+    compositeDisposable.add(network.getHolidays(year)
         .subscribeOn(Schedulers.io())
         .delay(200, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())

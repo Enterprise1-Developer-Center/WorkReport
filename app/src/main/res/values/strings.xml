@@ -70,6 +70,7 @@
   <string name="op_ratio_detail_view">가동률 상세보기</string>
   <string name="analytics">분석</string>
   <string name="holiday">휴일</string>
+  <string name="holiday_add">휴일 추가</string>
   <string name="create_year_db">연(년) DB 생성</string>
   <string name="create">생성</string>
   <string name="complete">완료</string>
@@ -94,4 +95,5 @@
   <string name="emp_name">투입원</string>
   <string name="edit_emp">투입인원 수정</string>
   <string name="day_of_week">요일</string>
+  <string name="legal_holiday">토,일을 제외한 공휴일</string>
 </resources>

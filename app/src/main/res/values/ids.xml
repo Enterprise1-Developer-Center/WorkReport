@@ -103,4 +103,7 @@
   <item name="stats_textview" type="id"/>
   <item name="holiday_name_textview" type="id"/>
   <item name="holiday_textview" type="id"/>
+  <item name="legal_holiday_textview" type="id"/>
+  <item name="holiday_edittext" type="id"/>
+  <item name="legal_holiday_edittext" type="id"/>
 </resources>

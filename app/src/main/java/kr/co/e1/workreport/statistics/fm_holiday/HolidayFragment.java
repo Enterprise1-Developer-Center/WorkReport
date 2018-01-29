@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import butterknife.BindView;
+import butterknife.OnClick;
 import hugo.weaving.DebugLog;
 import javax.inject.Inject;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
@@ -16,6 +17,7 @@ import kr.co.e1.workreport.framework.BaseFragment;
 import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.statistics.fm_holiday.adapter.HolidayAdapter;
 import kr.co.e1.workreport.statistics.fm_holiday.adapter.HolidayAdapterView;
+import kr.co.e1.workreport.statistics.fm_holiday.fd_add_holiday.AddHolidayDialog;
 import kr.co.e1.workreport.statistics.fm_holiday.model.Holiday;
 import lombok.Getter;
 
@@ -60,7 +62,6 @@ public class HolidayFragment extends BaseFragment
     recyclerView.setItemAnimator(new SlideInDownAnimator());
     recyclerView.getItemAnimator().setAddDuration(Constants.ANI_DURATION);
     recyclerView.getItemAnimator().setRemoveDuration(Constants.ANI_DURATION);
-
   }
 
   @Override public void showMessage(int resId) {
@@ -91,8 +92,16 @@ public class HolidayFragment extends BaseFragment
     progressBar.setVisibility(View.GONE);
   }
 
-  @DebugLog @Override public void onItemClick(Holiday item) {
+  @Override public void showAddHolidayDialog() {
+    new AddHolidayDialog().show(getFragmentManager(), AddHolidayDialog.class.getSimpleName());
+  }
 
+  @DebugLog @Override public void onItemClick(Holiday item) {
+    presenter.onItemClick(item);
+  }
+
+  @OnClick(R.id.fab) void onFabClick() {
+    presenter.onFabClick();
   }
 
   @Override public void onDetach() {

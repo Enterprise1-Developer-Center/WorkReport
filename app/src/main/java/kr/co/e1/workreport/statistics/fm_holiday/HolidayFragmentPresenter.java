@@ -18,6 +18,8 @@ public interface HolidayFragmentPresenter {
 
   void onItemClick(Holiday item);
 
+  void onFabClick();
+
   interface View {
 
     void setRecyclerView();
@@ -35,5 +37,7 @@ public interface HolidayFragmentPresenter {
     void showProgress();
 
     void hideProgress();
+
+    void showAddHolidayDialog();
   }
 }

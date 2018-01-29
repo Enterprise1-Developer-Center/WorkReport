@@ -77,4 +77,8 @@ public class HolidayFragmentPresenterImpl implements HolidayFragmentPresenter {
   @Override public void onItemClick(final Holiday item) {
 
   }
+
+  @Override public void onFabClick() {
+    view.showAddHolidayDialog();
+  }
 }

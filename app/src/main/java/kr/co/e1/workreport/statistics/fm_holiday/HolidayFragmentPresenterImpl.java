@@ -36,6 +36,7 @@ public class HolidayFragmentPresenterImpl implements HolidayFragmentPresenter {
     view.showProgress();
     compositeDisposable.add(network.getHolidays(year)
         .subscribeOn(Schedulers.io())
+        .delay(200, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(results -> {
           if (results.getResult() == NetworkHelper.RESULT_SUCCESS) {
@@ -78,7 +79,7 @@ public class HolidayFragmentPresenterImpl implements HolidayFragmentPresenter {
   }
 
   @Override public void onItemClick(final Holiday item) {
-
+    view.showEditHolidayDialog(item);
   }
 
   @Override public void onFabClick() {

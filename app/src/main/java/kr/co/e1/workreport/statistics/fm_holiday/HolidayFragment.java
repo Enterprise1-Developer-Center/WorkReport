@@ -18,6 +18,7 @@ import kr.co.e1.workreport.framework.interfaces.OnRecyclerItemClickListener;
 import kr.co.e1.workreport.statistics.fm_holiday.adapter.HolidayAdapter;
 import kr.co.e1.workreport.statistics.fm_holiday.adapter.HolidayAdapterView;
 import kr.co.e1.workreport.statistics.fm_holiday.fd_add_holiday.AddHolidayDialog;
+import kr.co.e1.workreport.statistics.fm_holiday.fd_edit_holiday.EditHolidayDialog;
 import kr.co.e1.workreport.statistics.fm_holiday.model.Holiday;
 import lombok.Getter;
 
@@ -81,7 +82,9 @@ public class HolidayFragment extends BaseFragment
   }
 
   @Override public void showEditHolidayDialog(Holiday item) {
-
+    new EditHolidayDialog().setHoliday(item)
+        .setOnCompleteListener(() -> presenter.onComplete())
+        .show(getFragmentManager(), EditHolidayDialog.class.getSimpleName());
   }
 
   @Override public void showProgress() {
@@ -93,7 +96,8 @@ public class HolidayFragment extends BaseFragment
   }
 
   @Override public void showAddHolidayDialog() {
-    new AddHolidayDialog().setOnCompleteListener(() -> presenter.onComplete()).show(getFragmentManager(), AddHolidayDialog.class.getSimpleName());
+    new AddHolidayDialog().setOnCompleteListener(() -> presenter.onComplete())
+        .show(getFragmentManager(), AddHolidayDialog.class.getSimpleName());
   }
 
   @DebugLog @Override public void onItemClick(Holiday item) {

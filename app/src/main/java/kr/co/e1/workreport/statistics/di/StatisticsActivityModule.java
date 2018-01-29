@@ -11,6 +11,7 @@ import kr.co.e1.workreport.statistics.StatisticsPresenterImpl;
 import kr.co.e1.workreport.statistics.dg_create.di.CreateDbComponent;
 import kr.co.e1.workreport.statistics.fm_holiday.di.HolidayFragmentComponent;
 import kr.co.e1.workreport.statistics.fm_holiday.fd_add_holiday.di.AddHolidayDialogComponent;
+import kr.co.e1.workreport.statistics.fm_holiday.fd_edit_holiday.di.EditHolidayDialogComponent;
 import kr.co.e1.workreport.statistics.fm_operation.di.OperationFragmentComponent;
 import kr.co.e1.workreport.statistics.fm_total.di.TotalFragmentComponent;
 import kr.co.e1.workreport.statistics.network.StatisticsNetwork;
@@ -20,7 +21,8 @@ import kr.co.e1.workreport.statistics.network.StatisticsNetwork;
  */
 @Module(subcomponents = {
     OperationFragmentComponent.class, TotalFragmentComponent.class, CreateDbComponent.class,
-    HolidayFragmentComponent.class, AddHolidayDialogComponent.class
+    HolidayFragmentComponent.class, AddHolidayDialogComponent.class,
+    EditHolidayDialogComponent.class
 }) public class StatisticsActivityModule {
 
   @Provides StatisticsPresenter.View provideStatisticsView(StatisticsActivity statisticsActivity) {

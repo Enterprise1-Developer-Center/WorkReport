@@ -1,6 +1,5 @@
-package kr.co.e1.workreport.statistics.fm_holiday.fd_add_holiday;
+package kr.co.e1.workreport.statistics.fm_holiday.fd_edit_holiday;
 
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -14,6 +13,7 @@ import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.interfaces.OnCompleteListener;
+import kr.co.e1.workreport.statistics.fm_holiday.model.Holiday;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -21,20 +21,21 @@ import lombok.experimental.Accessors;
  * Created by jaeho on 2018. 1. 29
  */
 
-public class AddHolidayDialog extends BaseAlertDialogFragment
-    implements AddHolidayDialogPresenter.View {
+public class EditHolidayDialog extends BaseAlertDialogFragment
+    implements EditHolidayDialogPresenter.View {
   @BindView(R.id.holiday_edittext) EditText holidayEditText;
   @BindView(R.id.holiday_name_edittext) EditText holidayNameEditText;
   @BindView(R.id.root_view) View rootView;
-  @Inject AddHolidayDialogPresenter presenter;
+  @Inject EditHolidayDialogPresenter presenter;
   private @Setter @Accessors(chain = true) OnCompleteListener onCompleteListener;
+  private @Setter @Accessors(chain = true) Holiday holiday;
 
   @Override protected boolean isDagger() {
     return true;
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-
+    presenter.onActivityCreate(holiday);
   }
 
   @Override protected int getLayoutResId() {
@@ -42,7 +43,7 @@ public class AddHolidayDialog extends BaseAlertDialogFragment
   }
 
   @Override protected int getTitle() {
-    return R.string.holiday_add;
+    return R.string.holiday_edit;
   }
 
   @Override protected boolean isDialogCancelable() {
@@ -57,8 +58,28 @@ public class AddHolidayDialog extends BaseAlertDialogFragment
     return true;
   }
 
+  @Override protected boolean isNeutralButton() {
+    return true;
+  }
+
+  @Override protected int getPositiveButtonText() {
+    return R.string.update;
+  }
+
+  @Override protected int getNeutraButtonText() {
+    return R.string.del;
+  }
+
+  @Override protected View.OnClickListener onNeutraClickListener() {
+    return new View.OnClickListener() {
+      @Override public void onClick(View view) {
+        presenter.onDelClick(holidayEditText.getText().toString().trim());
+      }
+    };
+  }
+
   @Override protected View.OnClickListener onPositiveClickListener() {
-    return view -> presenter.onAddClick(holidayEditText.getText().toString().trim(),
+    return view -> presenter.onEditClick(holidayEditText.getText().toString().trim(),
         holidayNameEditText.getText().toString().trim());
   }
 
@@ -66,17 +87,8 @@ public class AddHolidayDialog extends BaseAlertDialogFragment
     return view -> dismiss();
   }
 
-  @DebugLog @OnClick(R.id.holiday_edittext) void onHolidayEditTextClick() {
-    presenter.onHolidayEditTextClick(holidayEditText.getText().toString().trim());
-  }
-
   @DebugLog @OnClick(R.id.holiday_name_edittext) void onHolidayNameEditTextClick() {
     presenter.onHolidayNameEditTextClick(holidayNameEditText.getText().toString().trim());
-  }
-
-  @Override public void showDatePickerDialog(int year, int month, int dayOfMonth,
-      DatePickerDialog.OnDateSetListener onDateSetListener) {
-    new DatePickerDialog(getContext(), onDateSetListener, year, month, dayOfMonth).show();
   }
 
   @Override public void showNameChoiceDialog(String[] items, int checkedItem,
@@ -114,5 +126,9 @@ public class AddHolidayDialog extends BaseAlertDialogFragment
 
   @Override public void showHolidayName(String name) {
     holidayNameEditText.setText(name);
+  }
+
+  @Override public void disableLayout() {
+    holidayEditText.setEnabled(false);
   }
 }

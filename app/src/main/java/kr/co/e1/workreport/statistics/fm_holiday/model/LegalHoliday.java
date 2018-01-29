@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.statistics.fm_holiday.fd_add_holiday.model;
+package kr.co.e1.workreport.statistics.fm_holiday.model;
 
 import java.util.List;
 import lombok.Getter;

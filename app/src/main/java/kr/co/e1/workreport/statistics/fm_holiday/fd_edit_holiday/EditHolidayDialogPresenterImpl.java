@@ -1,5 +1,6 @@
 package kr.co.e1.workreport.statistics.fm_holiday.fd_edit_holiday;
 
+import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -9,6 +10,7 @@ import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.statistics.fm_holiday.fd_edit_holiday.network.EditHolidayNetwork;
 import kr.co.e1.workreport.statistics.fm_holiday.model.Holiday;
 import kr.co.e1.workreport.statistics.fm_holiday.model.LegalHoliday;
+import timber.log.Timber;
 
 /**
  * Created by jaeho on 2018. 1. 16
@@ -53,14 +55,15 @@ public class EditHolidayDialogPresenterImpl implements EditHolidayDialogPresente
     String date =
         DateUtils.convertStringToFormatString(holiday.getYmd(), "yyyyMMdd", "yyyy-MM-dd (EEEE)",
             Locale.KOREA);
-    view.showDate(holiday.getYmd());
-    view.showHolidayName(date);
+    view.showDate(date);
+    view.showHolidayName(holiday.getName());
     view.disableLayout();
   }
 
-  @Override public void onDelClick(String $date) {
+  @DebugLog @Override public void onDelClick(String $date) {
     view.setButtonEnabled(false);
     String date = DateUtils.convertStringToFormatString($date, "yyyy-MM-dd (EEEE)", "yyyyMMdd");
+    Timber.d("date = " + date);
     compositeDisposable.add(network.delHoliday(date)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())

@@ -6,6 +6,7 @@ import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import javax.annotation.Nullable;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.statistics.network.StatisticsNetwork;
 
@@ -37,7 +38,7 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
           if (result.getContent().size() > 0) {
             view.showSpinner(result.getContent());
           }
-        }, throwable -> view.showMessage(R.string.error_server_error));
+        }, throwable -> view.showMessage(throwable.getMessage()));
   }
 
   @Override public boolean onBottomNavigationItemSelected(int year, int itemId, boolean isChecked) {
@@ -72,12 +73,16 @@ public class StatisticsPresenterImpl implements StatisticsPresenter {
     return true;
   }
 
-  @DebugLog @Override public void onSpinnerItemSelected(String name, int year) {
+  @DebugLog @Override public void onSpinnerItemSelected(@Nullable String name, int year) {
     if (!TextUtils.isEmpty(name)) {
-      if (name.equals("OperationFragment")) {
+      if (name.equals(BottomNav.RATIO.getFName())) {
         view.showOperationFragment(year);
-      } else {
+      } else if (name.equals(BottomNav.TOTAL.getFName())) {
         view.showTotalFragment(year);
+      } else if (name.equals(BottomNav.ANALY.getFName())) {
+        view.showAnalyticsFragment(year);
+      } else if (name.equals(BottomNav.HOLID.getFName())) {
+        view.showHolidayFragment(year);
       }
     } else {
       view.showOperationFragment(year);

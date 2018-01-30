@@ -37,5 +37,6 @@ public interface StatisticsPresenter {
     void showCreateYearDbDialog();
 
     void showMessage(@StringRes int resId);
+    void showMessage(String msg);
   }
 }

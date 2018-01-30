@@ -67,8 +67,8 @@ public class StatisticsActivity extends BaseActivity
     return super.onCreateOptionsMenu(menu);
   }
 
-  @Override public void showOperationFragment(int year) {
-    bottomNavigationView.getMenu().getItem(BottomNav.RATIO.getValue()).setChecked(true);
+  @DebugLog @Override public void showOperationFragment(int year) {
+    bottomNavigationView.getMenu().getItem(BottomNav.RATIO.getPosition()).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
@@ -77,7 +77,7 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public void showTotalFragment(int year) {
-    bottomNavigationView.getMenu().getItem(BottomNav.TOTAL.getValue()).setChecked(true);
+    bottomNavigationView.getMenu().getItem(BottomNav.TOTAL.getPosition()).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
@@ -86,7 +86,7 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public void showAnalyticsFragment(int year) {
-    bottomNavigationView.getMenu().getItem(BottomNav.ANALY.getValue()).setChecked(true);
+    bottomNavigationView.getMenu().getItem(BottomNav.ANALY.getPosition()).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
@@ -95,7 +95,7 @@ public class StatisticsActivity extends BaseActivity
   }
 
   @Override public void showHolidayFragment(int year) {
-    bottomNavigationView.getMenu().getItem(BottomNav.HOLID.getValue()).setChecked(true);
+    bottomNavigationView.getMenu().getItem(BottomNav.HOLID.getPosition()).setChecked(true);
     getSupportFragmentManager().beginTransaction()
         .setCustomAnimations(R.animator.enter_animation, R.animator.exit_animation,
             R.animator.enter_animation, R.animator.exit_animation)
@@ -110,6 +110,10 @@ public class StatisticsActivity extends BaseActivity
 
   @Override public void showMessage(int resId) {
     Snackbar.make(drawer, resId, Snackbar.LENGTH_SHORT).show();
+  }
+
+  @Override public void showMessage(String msg) {
+    Snackbar.make(drawer, msg, Snackbar.LENGTH_SHORT).show();
   }
 
   @Override public void showSpinner(List<String> items) {

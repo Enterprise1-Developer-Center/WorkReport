@@ -93,7 +93,8 @@ public class EditHolidayDialog extends BaseAlertDialogFragment
 
   @Override public void showNameChoiceDialog(String[] items, int checkedItem,
       DialogInterface.OnClickListener onClickListener) {
-    new AlertDialog.Builder(getContext()).setSingleChoiceItems(items, checkedItem, onClickListener)
+    new AlertDialog.Builder(getContext()).setTitle(R.string.holiday_list)
+        .setSingleChoiceItems(items, checkedItem, onClickListener)
         .setNegativeButton(android.R.string.cancel, null)
         .show();
   }

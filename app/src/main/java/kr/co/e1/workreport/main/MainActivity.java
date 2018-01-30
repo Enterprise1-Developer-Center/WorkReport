@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import butterknife.BindView;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -120,6 +121,12 @@ public class MainActivity extends BaseActivity
   @Override public void navigateToProjManage() {
     Intent intent = new Intent(getApplicationContext(), ProjManageActivity.class);
     startActivity(intent);
+  }
+
+  @Override public void showVersionName(String version) {
+    TextView versionTextView = navigationView.getHeaderView(0).findViewById(R.id.version_textview);
+    versionTextView.setText(version);
+    //versionTextView.setText(version);
   }
 
   @Override public void navigateToReview() {

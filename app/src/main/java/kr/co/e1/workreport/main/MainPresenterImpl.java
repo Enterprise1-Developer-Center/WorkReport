@@ -16,19 +16,20 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import kr.co.e1.workreport.BuildConfig;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.common.ReportType;
 import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.common.model.ReportContent;
 import kr.co.e1.workreport.common.model.ReportEntry;
+import kr.co.e1.workreport.framework.utils.DateUtils;
 import kr.co.e1.workreport.main.adapter.MainAdapterDataModel;
+import kr.co.e1.workreport.main.dg_proje.model.Project;
 import kr.co.e1.workreport.main.model.SummaryReportContent;
 import kr.co.e1.workreport.main.network.MainNetwork;
 import kr.co.e1.workreport.network.NetworkHelper;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.main.dg_proje.model.Project;
 import timber.log.Timber;
 
 import static kr.co.e1.workreport.network.WResult.RESULT_SUCCESS;
@@ -55,6 +56,7 @@ public class MainPresenterImpl implements MainPresenter {
     view.showLoginFragment(savedInstanceState);
     view.setListener();
     view.setRecyclerView();
+    view.showVersionName("v " + BuildConfig.VERSION_NAME);
   }
 
   @Override public void onNavigationItemSelected(int itemId) {

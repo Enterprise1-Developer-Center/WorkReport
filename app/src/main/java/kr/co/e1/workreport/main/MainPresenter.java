@@ -79,5 +79,7 @@ public interface MainPresenter {
     void refreshRemove();
 
     void navigateToProjManage();
+
+    void showVersionName(String version);
   }
 }

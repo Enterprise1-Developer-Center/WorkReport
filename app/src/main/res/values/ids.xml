@@ -106,4 +106,5 @@
   <item name="legal_holiday_textview" type="id"/>
   <item name="holiday_edittext" type="id"/>
   <item name="holiday_name_edittext" type="id"/>
+  <item name="version_textview" type="id"/>
 </resources>

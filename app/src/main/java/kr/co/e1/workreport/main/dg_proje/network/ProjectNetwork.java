@@ -20,8 +20,9 @@ public class ProjectNetwork extends NetworkHelper<ProjectApi> {
     return ProjectApi.class;
   }
 
-  public Single<WResult<List<Project>>> getProjects(String deptNm) {
+  public Single<WResult<List<Project>>> getProjects() {
     String header = PreferencesUtils.getToken();
-    return getApi().getProjects(header, deptNm);
+    String deptCd = PreferencesUtils.getDeptCd();
+    return getApi().getProjects(header, deptCd);
   }
 }

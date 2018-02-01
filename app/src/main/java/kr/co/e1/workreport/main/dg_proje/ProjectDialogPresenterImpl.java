@@ -8,10 +8,9 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import javax.inject.Inject;
 import kr.co.e1.workreport.R;
-import kr.co.e1.workreport.common.PreferencesUtils;
+import kr.co.e1.workreport.main.dg_proje.adapter.ProjectAdapterDataModel;
 import kr.co.e1.workreport.main.dg_proje.network.ProjectNetwork;
 import kr.co.e1.workreport.network.WResult;
-import kr.co.e1.workreport.main.dg_proje.adapter.ProjectAdapterDataModel;
 
 /**
  * Created by jaeho on 2017. 10. 29
@@ -35,7 +34,7 @@ public class ProjectDialogPresenterImpl implements ProjectDialogPresenter {
   @Override public void onActivityCreate(Bundle savedInstanceState) {
     view.setRecyclerView();
     view.showProgress();
-    compositeDisposable.add(network.getProjects(PreferencesUtils.getDept())
+    compositeDisposable.add(network.getProjects()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(result -> {

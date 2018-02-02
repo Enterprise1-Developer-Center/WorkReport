@@ -62,8 +62,9 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
                   PreferencesUtils.setDept(content.getDeptNm());
                   PreferencesUtils.setToday(content.getDate());
                   PreferencesUtils.setDeptCd(content.getDeptCd());
+                  PreferencesUtils.setAdmin(content.isAdmin());
                   WLAnalytics.setUserContext(id);
-                  loginListener.onLoginSuccess(content.getDate());
+                  loginListener.onLoginSuccess(content.getDate(), content.isAdmin());
                   view.dismiss();
                 } else {
                   view.showMessage(result.getMsg());

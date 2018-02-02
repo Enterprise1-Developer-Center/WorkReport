@@ -5,5 +5,5 @@ package kr.co.e1.workreport.main;
  */
 
 public interface LoginCommunicationListener {
-  void onLoginSuccess(String date);
+  void onLoginSuccess(String date, boolean isAdmin);
 }

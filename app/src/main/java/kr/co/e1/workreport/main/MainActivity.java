@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -126,7 +127,13 @@ public class MainActivity extends BaseActivity
   @Override public void showVersionName(String version) {
     TextView versionTextView = navigationView.getHeaderView(0).findViewById(R.id.version_textview);
     versionTextView.setText(version);
-    //versionTextView.setText(version);
+  }
+
+  @Override public void hideMasterMode() {
+    Menu menu = navigationView.getMenu();
+    menu.findItem(R.id.nav_statistics).setVisible(false);
+    menu.findItem(R.id.nav_team_report).setVisible(false);
+    menu.findItem(R.id.nav_manage).setVisible(false);
   }
 
   @Override public void navigateToReview() {
@@ -197,8 +204,8 @@ public class MainActivity extends BaseActivity
     return true;
   }
 
-  @DebugLog @Override public void onLoginSuccess(String date) {
-    presenter.onLoginSuccess(date);
+  @DebugLog @Override public void onLoginSuccess(String date, boolean isAdmin) {
+    presenter.onLoginSuccess(date, isAdmin);
   }
 
   @Inject DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;

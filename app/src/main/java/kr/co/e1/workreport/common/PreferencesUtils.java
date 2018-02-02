@@ -49,4 +49,12 @@ public class PreferencesUtils {
   public static String getDeptCd() {
     return Prefs.getString("deptCd", null);
   }
+
+  public static void setAdmin(boolean admin) {
+    Prefs.putBoolean("admin", admin);
+  }
+
+  public static boolean isAdmin() {
+    return Prefs.getBoolean("admin", false);
+  }
 }

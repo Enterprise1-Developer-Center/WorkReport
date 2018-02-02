@@ -64,18 +64,18 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
 
   @Override protected View.OnClickListener onNegativeClickListener() {
     return view -> {
-      getActivity().finish();
+      dismiss();
+      LoginFragment.this.getActivity().finish();
     };
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
     presenter.onActivityCreate(savedInstanceState);
 
-    if(MyApplication.DEBUG) {
+    if (MyApplication.DEBUG) {
       idEdittext.setText("jhoh");
       pwEdittext.setText("1111");
     }
-
   }
 
   @Override protected boolean getAttatchRoot() {

@@ -32,7 +32,7 @@ public interface MainPresenter {
 
   void onDestroy();
 
-  void onLoginSuccess(String date);
+  void onLoginSuccess(String date, boolean isAdmin);
 
   interface View {
     void setListener();
@@ -81,5 +81,7 @@ public interface MainPresenter {
     void navigateToProjManage();
 
     void showVersionName(String version);
+
+    void hideMasterMode();
   }
 }

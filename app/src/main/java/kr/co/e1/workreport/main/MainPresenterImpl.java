@@ -84,7 +84,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Nonnull private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-  @Override public void onLoginSuccess(String date) {
+  @Override public void onLoginSuccess(String date, boolean isAdmin) {
     view.showProgress();
     compositeDisposable.add(network.getWorkingDay(date)
         .subscribeOn(Schedulers.io())
@@ -105,6 +105,8 @@ public class MainPresenterImpl implements MainPresenter {
           view.hideProgress();
           view.showMessage(R.string.error_server_error);
         }));
+
+    if(!isAdmin) view.hideMasterMode();
   }
 
   @Override public void onBackPressed(boolean isDrawerOpen) {
@@ -145,7 +147,7 @@ public class MainPresenterImpl implements MainPresenter {
                 view.showMessage(R.string.save_completed);
               } else if (result.getResult() == WResult.RESULT_FAILURE) {
                 view.showMessage(result.getMsg());
-                onLoginSuccess(PreferencesUtils.getToday());
+                onLoginSuccess(PreferencesUtils.getToday(), PreferencesUtils.isAdmin());
               } else {
                 view.showMessage(R.string.error_server_error);
               }
@@ -198,7 +200,7 @@ public class MainPresenterImpl implements MainPresenter {
             } else {
               view.showMessage(result.getMsg());
               adapterDataModel.clear();
-              onLoginSuccess(entry.getContents());
+              onLoginSuccess(entry.getContents(), PreferencesUtils.isAdmin());
             }
             view.hideProgress();
           }, throwable -> {

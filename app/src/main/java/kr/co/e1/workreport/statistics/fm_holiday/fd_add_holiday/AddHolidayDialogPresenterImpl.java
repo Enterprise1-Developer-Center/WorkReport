@@ -33,7 +33,7 @@ public class AddHolidayDialogPresenterImpl implements AddHolidayDialogPresenter 
 
   @Override public void onAddClick(String $date, String name) {
     view.setButtonEnabled(false);
-    String date = DateUtils.convertStringToFormatString($date, "yyyy-MM-dd (EEEE)", "yyyyMMdd");
+    String date = DateUtils.convertStringToFormatString($date, "yyyy-MM-dd (EEEE)", "yyyyMMdd", Locale.KOREA);
     compositeDisposable.add(network.addHoliday(date, name)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())

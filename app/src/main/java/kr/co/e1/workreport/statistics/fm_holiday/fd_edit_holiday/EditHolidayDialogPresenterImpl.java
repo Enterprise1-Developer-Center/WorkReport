@@ -32,9 +32,10 @@ public class EditHolidayDialogPresenterImpl implements EditHolidayDialogPresente
     compositeDisposable.clear();
   }
 
-  @Override public void onEditClick(String $date, String name) {
+  @DebugLog @Override public void onEditClick(String $date, String name) {
     view.setButtonEnabled(false);
-    String date = DateUtils.convertStringToFormatString($date, "yyyy-MM-dd (EEEE)", "yyyyMMdd");
+    String date = DateUtils.convertStringToFormatString($date, "yyyy-MM-dd (EEEE)", "yyyyMMdd", Locale.KOREA);
+    Timber.d("date = " + date + ", name = " + name);
     compositeDisposable.add(network.editHoliday(date, name)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())

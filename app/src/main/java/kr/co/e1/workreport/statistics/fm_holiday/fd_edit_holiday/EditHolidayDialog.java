@@ -119,6 +119,7 @@ public class EditHolidayDialog extends BaseAlertDialogFragment
 
   @Override public void setButtonEnabled(boolean enabled) {
     alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(enabled);
+    alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL).setEnabled(enabled);
   }
 
   @Override public void showDate(String holiday) {

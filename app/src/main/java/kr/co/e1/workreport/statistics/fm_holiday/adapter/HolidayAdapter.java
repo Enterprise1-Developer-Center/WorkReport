@@ -40,17 +40,13 @@ public class HolidayAdapter extends BaseRecyclerAdapter
       HolidayViewHolder holder = (HolidayViewHolder) viewHolder;
       Holiday holiday = items.get(position);
       holder.holidayTextView.setText(replaceDate(holiday.getYmd()));
-      holder.holidayNameTextView.setText(replaceDateName(res, holiday.getName()));
+      holder.holidayNameTextView.setText(holiday.getName());
       holder.itemView.setOnClickListener(view -> {
         if (onRecyclerItemClickListener != null) {
           onRecyclerItemClickListener.onItemClick(holiday);
         }
       });
     }
-  }
-
-  private String replaceDateName(Resources res, String name) {
-    return !name.contains(res.getString(R.string.day_of_week)) ? name : null;
   }
 
   private String replaceDate(String ymd) {

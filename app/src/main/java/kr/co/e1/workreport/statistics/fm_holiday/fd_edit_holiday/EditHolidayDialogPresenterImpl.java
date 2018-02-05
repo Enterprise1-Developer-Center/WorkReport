@@ -34,7 +34,8 @@ public class EditHolidayDialogPresenterImpl implements EditHolidayDialogPresente
 
   @DebugLog @Override public void onEditClick(String $date, String name) {
     view.setButtonEnabled(false);
-    String date = DateUtils.convertStringToFormatString($date, "yyyy-MM-dd (EEEE)", "yyyyMMdd", Locale.KOREA);
+    String date =
+        DateUtils.convertStringToFormatString($date, "yyyy-MM-dd (EEEE)", "yyyyMMdd", Locale.KOREA);
     Timber.d("date = " + date + ", name = " + name);
     compositeDisposable.add(network.editHoliday(date, name)
         .subscribeOn(Schedulers.io())
@@ -63,7 +64,8 @@ public class EditHolidayDialogPresenterImpl implements EditHolidayDialogPresente
 
   @DebugLog @Override public void onDelClick(String $date) {
     view.setButtonEnabled(false);
-    String date = DateUtils.convertStringToFormatString($date, "yyyy-MM-dd (EEEE)", "yyyyMMdd");
+    String date =
+        DateUtils.convertStringToFormatString($date, "yyyy-MM-dd (EEEE)", "yyyyMMdd", Locale.KOREA);
     Timber.d("date = " + date);
     compositeDisposable.add(network.delHoliday(date)
         .subscribeOn(Schedulers.io())

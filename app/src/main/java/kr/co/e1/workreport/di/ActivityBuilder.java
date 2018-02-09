@@ -11,11 +11,9 @@ import kr.co.e1.workreport.main.di.MainActivityComponent;
 import kr.co.e1.workreport.projmanage.ProjManageActivity;
 import kr.co.e1.workreport.projmanage.di.ProjManageActivityComponent;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
-import kr.co.e1.workreport.statistics.di.StatisticsActivityComponent;
 import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivity;
 import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivityComponent;
-import kr.co.e1.workreport.teamreport.TeamReportActivity;
-import kr.co.e1.workreport.teamreport.di.TeamReportActivityComponent;
+import kr.co.e1.workreport.statistics.di.StatisticsActivityComponent;
 
 /**
  * Created by jaeho on 2017. 9. 25
@@ -29,10 +27,6 @@ import kr.co.e1.workreport.teamreport.di.TeamReportActivityComponent;
   @Binds @IntoMap @ActivityKey(StatisticsActivity.class)
   abstract AndroidInjector.Factory<? extends Activity> bindStatisticsActivityInjectorFactory(
       StatisticsActivityComponent.Builder builder);
-
-  @Binds @IntoMap @ActivityKey(TeamReportActivity.class)
-  abstract AndroidInjector.Factory<? extends Activity> bindTeamReportActivityInjectorFactory(
-      TeamReportActivityComponent.Builder builder);
 
   @Binds @IntoMap @ActivityKey(OpDetailActivity.class)
   abstract AndroidInjector.Factory<? extends Activity> bindOpDetailActivityInjectorFactory(

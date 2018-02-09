@@ -21,7 +21,6 @@ import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_add.AddEmpDialog;
 import kr.co.e1.workreport.projmanage.frag_emp.fd_emp_edit.EditEmpDialog;
 import kr.co.e1.workreport.projmanage.frag_emp.model.Employee;
 import kr.co.e1.workreport.projmanage.listener.OnFabClickListener;
-import lombok.Getter;
 
 /**
  * Created by jaeho on 2018. 1. 12
@@ -34,7 +33,7 @@ public class EmpListFragment extends BaseFragment
   @BindView(R.id.recyclerview) RecyclerView recyclerview;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) FrameLayout rootView;
-  @Inject @Getter EmpListAdapter adapter;
+  @Inject EmpListAdapter adapter;
   @Inject EmpListAdapterView adapterView;
   @Inject EmpListFragmentPresenter presenter;
 
@@ -91,7 +90,8 @@ public class EmpListFragment extends BaseFragment
   }
 
   @Override public void onItemClick(Employee item) {
-    new EditEmpDialog().setItem(item).setOnCompleteListener(() -> presenter.onComplete())
+    new EditEmpDialog().setItem(item)
+        .setOnCompleteListener(() -> presenter.onComplete())
         .show(getFragmentManager(), EditEmpDialog.class.getSimpleName());
   }
 

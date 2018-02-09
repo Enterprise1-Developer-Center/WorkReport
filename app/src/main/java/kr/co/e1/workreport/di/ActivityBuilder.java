@@ -11,8 +11,6 @@ import kr.co.e1.workreport.main.di.MainActivityComponent;
 import kr.co.e1.workreport.projmanage.ProjManageActivity;
 import kr.co.e1.workreport.projmanage.di.ProjManageActivityComponent;
 import kr.co.e1.workreport.statistics.StatisticsActivity;
-import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivity;
-import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivityComponent;
 import kr.co.e1.workreport.statistics.di.StatisticsActivityComponent;
 
 /**
@@ -27,10 +25,6 @@ import kr.co.e1.workreport.statistics.di.StatisticsActivityComponent;
   @Binds @IntoMap @ActivityKey(StatisticsActivity.class)
   abstract AndroidInjector.Factory<? extends Activity> bindStatisticsActivityInjectorFactory(
       StatisticsActivityComponent.Builder builder);
-
-  @Binds @IntoMap @ActivityKey(OpDetailActivity.class)
-  abstract AndroidInjector.Factory<? extends Activity> bindOpDetailActivityInjectorFactory(
-      OpDetailActivityComponent.Builder builder);
 
   @Binds @IntoMap @ActivityKey(ProjManageActivity.class)
   abstract AndroidInjector.Factory<? extends Activity> bindProjManageActivityInjectorFactory(

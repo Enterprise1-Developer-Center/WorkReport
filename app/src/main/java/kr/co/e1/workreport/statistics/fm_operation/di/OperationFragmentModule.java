@@ -2,6 +2,7 @@ package kr.co.e1.workreport.statistics.fm_operation.di;
 
 import dagger.Module;
 import dagger.Provides;
+import javax.inject.Singleton;
 import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.statistics.fm_operation.ChartDataGen;
 import kr.co.e1.workreport.statistics.fm_operation.OperationFragment;
@@ -20,7 +21,7 @@ import kr.co.e1.workreport.statistics.fm_operation.network.OperationNetwork;
     return fragment;
   }
 
-  @Provides OperationFragmentPresenter provideOperationFragmentPresenter(
+  @Singleton @Provides OperationFragmentPresenter provideOperationFragmentPresenter(
       OperationFragmentPresenter.View view, OperationNetwork network, ChartDataGen chartDataGen) {
     return new OperationFragmentPresenterImpl(view, network, chartDataGen);
   }

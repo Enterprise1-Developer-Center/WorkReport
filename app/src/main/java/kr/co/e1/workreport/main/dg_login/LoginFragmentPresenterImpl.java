@@ -8,7 +8,6 @@ import io.reactivex.schedulers.Schedulers;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nonnull;
-import javax.inject.Inject;
 import kr.co.e1.workreport.R;
 import kr.co.e1.workreport.common.PreferencesUtils;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
@@ -28,7 +27,7 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
   private LoginNetwork network;
   @Nonnull private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-  @Inject LoginFragmentPresenterImpl(LoginFragmentPresenter.View view, LoginNetwork network,
+  public LoginFragmentPresenterImpl(LoginFragmentPresenter.View view, LoginNetwork network,
       LoginCommunicationListener loginListener) {
     this.view = view;
     this.loginListener = loginListener;

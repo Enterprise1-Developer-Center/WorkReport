@@ -34,6 +34,7 @@ public class OperationFragment extends BaseFragment implements OperationFragment
   @BindView(R.id.year_op_ratio_textview) TextView yearOpRatioTextView;
   @BindView(R.id.member_cur_op_ratio_textview) TextView memberCurOpRatioTextView;
   @Inject OperationFragmentPresenter presenter;
+  @Inject OperationFragmentPresenter presenter2;
 
   public static OperationFragment newInstance(int year) {
     OperationFragment f = new OperationFragment();

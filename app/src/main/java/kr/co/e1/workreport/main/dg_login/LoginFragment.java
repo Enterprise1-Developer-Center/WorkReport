@@ -20,6 +20,7 @@ import kr.co.e1.workreport.app.MyApplication;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.utils.SystemUtility;
 import kr.co.e1.workreport.main.LoginCommunicationListener;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -36,7 +37,7 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
   @BindView(R.id.pw_edittext_layout) TextInputLayout pwEdittextLayout;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
-  @Accessors(chain = true) @Setter LoginCommunicationListener loginCommunicationListener;
+  @Accessors(chain = true) @Setter @Getter LoginCommunicationListener loginCommunicationListener;
 
   @Override protected int getLayoutResId() {
     return R.layout.fragment_login;

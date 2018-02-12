@@ -8,13 +8,15 @@ import kr.co.e1.workreport.main.di.MainActivityComponent;
 import kr.co.e1.workreport.projmanage.di.ProjManageActivityComponent;
 import kr.co.e1.workreport.statistics.ac_detail.di.OpDetailActivityComponent;
 import kr.co.e1.workreport.statistics.di.StatisticsActivityComponent;
+import kr.co.e1.workreport.teamreport.di.TeamReportActivityComponent;
 
 /**
  * Created by jaeho on 2017. 9. 25
  */
 @Module(subcomponents = {
     MainActivityComponent.class, StatisticsActivityComponent.class,
-    ProjManageActivityComponent.class, OpDetailActivityComponent.class
+    ProjManageActivityComponent.class, OpDetailActivityComponent.class,
+    TeamReportActivityComponent.class
 }) public class AppModule {
   @Provides Context provideContext(Application application) {
     return application;

@@ -31,7 +31,7 @@ public class TeamReportDialog extends BaseAlertDialogFragment
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.recyclerview) RecyclerView recyclerView;
 
-  @Inject TeamReportDialogAdapter adapter;
+  @Inject @Getter TeamReportDialogAdapter adapter;
   @Inject TeamDialogAdapterView adapterView;
   @Inject TeamReportDialogPresenter presenter;
 

@@ -27,7 +27,7 @@ public class TeamReportDialogPresenterImpl implements TeamReportDialogPresenter 
   private TeamReportDialogNetwork network;
   private String userId;
 
-  TeamReportDialogPresenterImpl(TeamReportDialogPresenter.View view,
+  public TeamReportDialogPresenterImpl(TeamReportDialogPresenter.View view,
       TeamDialogAdapterDataModel adapterDataModel, TeamReportDialogNetwork network, String userId) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;

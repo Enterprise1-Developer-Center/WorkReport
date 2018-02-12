@@ -23,7 +23,7 @@ public class OpDetailPresenterImpl implements OpDetailPresenter {
   private BaseAdapterDataModel<DetailOperationRate> adapterDataModel;
   private OpDetailNetwork network;
 
-  OpDetailPresenterImpl(View view, BaseAdapterDataModel adapterDataModel, OpDetailNetwork network) {
+  public OpDetailPresenterImpl(View view, BaseAdapterDataModel adapterDataModel, OpDetailNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;
     this.network = network;

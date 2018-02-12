@@ -2,8 +2,6 @@ package kr.co.e1.workreport.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivity;
-import kr.co.e1.workreport.statistics.ac_detail.OpDetailActivityModule;
 import kr.co.e1.workreport.teamreport.TeamReportActivity;
 import kr.co.e1.workreport.teamreport.di.TeamReportActivityModule;
 import kr.co.e1.workreport.teamreport.dialog.TeamReportDialogModule;
@@ -17,6 +15,6 @@ import kr.co.e1.workreport.teamreport.dialog.TeamReportDialogModule;
       TeamReportActivityModule.class, TeamReportDialogModule.class
   }) abstract TeamReportActivity bindTeamReportActivity();
 
-  @ContributesAndroidInjector(modules = { OpDetailActivityModule.class })
-  abstract OpDetailActivity bindOpDetailActivity();
+  //@ContributesAndroidInjector(modules = { OpDetailActivityModule.class })
+  //abstract OpDetailActivity bindOpDetailActivity();
 }

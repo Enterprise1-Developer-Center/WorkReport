@@ -8,7 +8,7 @@ import kr.co.e1.workreport.main.MainPresenter;
 import kr.co.e1.workreport.main.MainPresenterImpl;
 import kr.co.e1.workreport.main.adapter.MainAdapterView;
 import kr.co.e1.workreport.main.adapter.MainReportAdapter;
-import kr.co.e1.workreport.main.dg_class.ClassificationDialogComponent;
+import kr.co.e1.workreport.main.dg_class.di.ClassificationDialogComponent;
 import kr.co.e1.workreport.main.dg_login.di.LoginFragmentComponent;
 import kr.co.e1.workreport.main.dg_pass.PasswordDialogComponent;
 import kr.co.e1.workreport.main.dg_proje.ProjectDialogComponent;

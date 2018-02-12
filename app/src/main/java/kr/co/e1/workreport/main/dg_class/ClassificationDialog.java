@@ -16,6 +16,7 @@ import kr.co.e1.workreport.common.model.DetailWork;
 import kr.co.e1.workreport.framework.BaseAlertDialogFragment;
 import kr.co.e1.workreport.framework.adapter.BaseAdapterView;
 import kr.co.e1.workreport.framework.interfaces.OnDialogClickListener;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -30,13 +31,13 @@ public class ClassificationDialog extends BaseAlertDialogFragment
   @BindView(R.id.progress_bar) ProgressBar progressBar;
   @BindView(R.id.root_view) View rootView;
 
-  @Inject ClassificationDialogAdapter adapter;
+  @Inject @Getter ClassificationDialogAdapter adapter;
   @Inject BaseAdapterView adapterView;
   @Inject ClassificationDialogPresenter presenter;
 
   @Accessors(chain = true) @Setter private OnDialogClickListener<DetailWork>
       onDialogClickListener;
-  @Accessors(chain = true) @Setter DetailWork nowDetailWork;
+  @Accessors(chain = true) @Setter @Getter DetailWork nowDetailWork;
   @Override protected boolean isNegativeButton() {
     return true;
   }

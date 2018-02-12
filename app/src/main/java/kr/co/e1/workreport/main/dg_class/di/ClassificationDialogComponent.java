@@ -1,7 +1,8 @@
-package kr.co.e1.workreport.main.dg_class;
+package kr.co.e1.workreport.main.dg_class.di;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
+import kr.co.e1.workreport.main.dg_class.ClassificationDialog;
 
 /**
  * Created by jaeho on 2017. 10. 19

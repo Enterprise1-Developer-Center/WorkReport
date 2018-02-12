@@ -25,7 +25,7 @@ public class ClassificationDialogPresenterImpl implements ClassificationDialogPr
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
   private ClassificationNetwork network;
 
-  @Inject ClassificationDialogPresenterImpl(View view,
+  @Inject public ClassificationDialogPresenterImpl(View view,
       ClassAdapterDataModel adapterDataModel, ClassificationNetwork network) {
     this.view = view;
     this.adapterDataModel = adapterDataModel;

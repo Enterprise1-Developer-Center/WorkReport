@@ -1,4 +1,4 @@
-package kr.co.e1.workreport.main.dg_class;
+package kr.co.e1.workreport.main.dg_class.di;
 
 import android.support.v4.app.Fragment;
 import dagger.Binds;
@@ -6,6 +6,7 @@ import dagger.Module;
 import dagger.android.AndroidInjector;
 import dagger.android.support.FragmentKey;
 import dagger.multibindings.IntoMap;
+import kr.co.e1.workreport.main.dg_class.ClassificationDialog;
 
 /**
  * Created by jaeho on 2017. 10. 19

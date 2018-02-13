@@ -7,7 +7,7 @@ buildscript {
     application_id = 'kr.co.e1.workreport'
     min_sdk_version = 21
     target_sdk_version = 27
-    version_code = 2
+    version_code = 3
 
     hugo_version = '1.2.1'
     jsr_version = '1.0'

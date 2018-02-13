@@ -27,8 +27,6 @@ buildscript {
     okhttp3_version = '3.9.0'
     easyprefs_version = '1.9.0'
     recyclerview_animators = '2.2.7'
-
-    kotlin_version = '1.2.21'
   }
   repositories {
     jcenter()
@@ -37,7 +35,6 @@ buildscript {
   dependencies {
     classpath 'com.android.tools.build:gradle:3.0.1'
     classpath "com.jakewharton.hugo:hugo-plugin:$hugo_version"
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
   }

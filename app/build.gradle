@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'hugo'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -134,7 +133,6 @@ dependencies {
   implementation "com.pixplicity.easyprefs:library:$easyprefs_version"
 
   implementation "jp.wasabeef:recyclerview-animators:$recyclerview_animators"
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {
   mavenCentral()

@@ -1,6 +1,5 @@
 package kr.co.e1.workreport.main.dg_login;
 
-import android.os.Bundle;
 import android.support.annotation.StringRes;
 
 /**
@@ -8,8 +7,6 @@ import android.support.annotation.StringRes;
  */
 
 public interface LoginFragmentPresenter {
-
-  void onActivityCreate(Bundle savedInstanceState);
 
   void onPositiveClick(String id, String pw);
 

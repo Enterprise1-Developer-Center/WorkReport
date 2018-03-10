@@ -34,10 +34,6 @@ public class LoginFragmentPresenterImpl implements LoginFragmentPresenter {
     this.network = network;
   }
 
-  @Override public void onActivityCreate(Bundle savedInstanceState) {
-
-  }
-
   @Override public void onPositiveClick(final String id, final String pw) {
     view.showProgress();
     view.setButtonEnabled(false);

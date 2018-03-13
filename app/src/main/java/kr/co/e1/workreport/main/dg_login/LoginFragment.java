@@ -71,7 +71,7 @@ public class LoginFragment extends BaseAlertDialogFragment implements LoginFragm
   }
 
   @Override protected void onActivityCreate(Bundle savedInstanceState) {
-    
+
     if (MyApplication.DEBUG) {
       idEdittext.setText("jhoh");
       pwEdittext.setText("1111");

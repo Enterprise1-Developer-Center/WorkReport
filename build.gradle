@@ -18,7 +18,7 @@ buildscript {
     rxandroid_version = '2.0.1'
     dagger_version = '2.13'
     butterknife_version = '8.8.1'
-    mfp_version = '8.0.2017101807'
+    mfp_version = '8.0.2018031510'
     support_version = '27.0.0'
     leakcanary_version = '1.5.4'
     MPAndroidChart_version = 'v3.0.2'
